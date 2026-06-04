@@ -1,0 +1,338 @@
+// Hero — cinematic 4-scene sequence
+function Nav({ lang, setLang, t }) {
+  return (
+    <nav className="nav">
+      <a href="#" className="nav-logo">
+        <span className="dot"></span>
+        Tangering
+      </a>
+      <div className="nav-links">
+        <a href="#solution">{t.nav.product}</a>
+        <a href="#cases">{t.nav.cases}</a>
+        <a href="#diff">{t.nav.pricing}</a>
+        <a href="#footer">{t.nav.contact}</a>
+      </div>
+      <div className="nav-right">
+        <div className="lang-toggle">
+          <button
+            className={lang === "es" ? "active" : ""}
+            onClick={() => setLang("es")}
+          >
+            ES
+          </button>
+          <button
+            className={lang === "en" ? "active" : ""}
+            onClick={() => setLang("en")}
+          >
+            EN
+          </button>
+        </div>
+        <a
+          className="btn btn-dark"
+          href="https://calendar.app.google/rSZM4ebTrNXp7bzk9"
+          target="_blank"
+          rel="noopener"
+        >
+          {t.nav.demo}
+        </a>
+      </div>
+    </nav>
+  );
+}
+
+function SceneCounter({ active, total = 4, duration = 5000 }) {
+  return (
+    <div className="scene-counter">
+      {Array.from({ length: total }).map((_, i) => (
+        <span
+          key={i}
+          className={i < active ? "done" : i === active ? "active" : ""}
+          style={i === active ? { "--d": `${duration}ms` } : {}}
+        >
+          <style>{`.scene-counter span.active::after { animation-duration: ${duration}ms; }`}</style>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function Phone({ children, className = "" }) {
+  return (
+    <div className={`phone ${className}`}>
+      <div className="phone-screen">
+        <div className="phone-notch"></div>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function PhoneBar({ dark = false }) {
+  return (
+    <div
+      className="phone-bar"
+      style={{ color: dark ? "white" : "var(--dark)" }}
+    >
+      <span>9:41</span>
+      <span className="phone-bar-icons">
+        <span style={{ fontSize: 9 }}>●●●●●</span>
+        <span style={{ marginLeft: 4 }}>100</span>
+      </span>
+    </div>
+  );
+}
+
+function Scene1WhatsApp({ active, t }) {
+  return (
+    <Phone>
+      <PhoneBar />
+      <div className="wa-screen" style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+        <div className="wa-header">
+          <div className="wa-avatar">E</div>
+          <div>
+            <div className="wa-name">{t.hero.wa.contact}</div>
+            <div className="wa-status">{t.hero.wa.status}</div>
+          </div>
+        </div>
+        <div className="wa-body" key={active ? "on" : "off"}>
+          <div className="wa-msg them" style={{ animationDelay: "0.4s" }}>
+            {t.hero.wa.m1}
+            <span className="time">{t.hero.wa.time}</span>
+          </div>
+          <div className="wa-msg them" style={{ animationDelay: "1.6s" }}>
+            {t.hero.wa.m2}
+            <span className="time">{t.hero.wa.time}</span>
+          </div>
+          <div className="wa-typing" style={{ animationDelay: "2.6s" }}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div className="wa-msg me" style={{ animationDelay: "3.4s" }}>
+            {t.hero.wa.m3}
+            <span className="time">
+              {t.hero.wa.time} <span className="check">✓✓</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      {active && (
+        <div className="confirm-badge">
+          <span>✓</span> {t.hero.wa.confirmed}
+        </div>
+      )}
+    </Phone>
+  );
+}
+
+function Scene2Dashboard({ active, t }) {
+  const [step, setStep] = useState(0);
+  useEffect(() => {
+    if (!active) return;
+    setStep(0);
+    const timers = [
+      setTimeout(() => setStep(1), 800),
+      setTimeout(() => setStep(2), 2200),
+      setTimeout(() => setStep(3), 3800),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, [active]);
+  return (
+    <div className="dash">
+      <div className="dash-top">
+        <span className="dot red"></span>
+        <span className="dot yellow"></span>
+        <span className="dot green"></span>
+        <span className="title">{t.hero.dash.title}</span>
+      </div>
+      <div className="dash-grid">
+        <div className="dash-cell full">
+          <div className="dash-label">{t.hero.dash.callTitle}</div>
+          <div className="dash-call">
+            <div className="avatar">S</div>
+            <div className="info">
+              <div className="name">Sarah · AI</div>
+              <div className="num">→ +57 300 123 4567</div>
+            </div>
+            <div className="dash-waves">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+        <div className="dash-cell">
+          <div className="dash-label">{t.hero.dash.statusTitle}</div>
+          <div className="dash-status">
+            <div className={`dash-pill ${step >= 0 ? "" : ""}`}>{t.hero.dash.s1}</div>
+            <div className={`dash-pill ${step >= 1 ? "active" : ""}`}>{t.hero.dash.s2}</div>
+            <div className={`dash-pill ${step >= 2 ? "active" : ""}`}>{t.hero.dash.s3} ✓</div>
+          </div>
+        </div>
+        <div className="dash-cell">
+          <div className="dash-label">{t.hero.dash.metricsTitle}</div>
+          <div style={{ display: "flex", gap: 18, marginTop: 4 }}>
+            <div>
+              <div className="dash-num">
+                {t.hero.dash.m1v}
+              </div>
+              <div style={{ fontSize: 11, color: "var(--muted)" }}>
+                {t.hero.dash.m1l}
+              </div>
+            </div>
+            <div>
+              <div className="dash-num">
+                {t.hero.dash.m2v}
+              </div>
+              <div style={{ fontSize: 11, color: "var(--muted)" }}>
+                {t.hero.dash.m2l}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="dash-cell full">
+          <div className="dash-label">{t.hero.dash.transcriptTitle}</div>
+          <div className="dash-transcript" key={active ? "a" : "b"}>
+            <div className="dash-line agent" style={{ animationDelay: "0.4s" }}>
+              <span className="who">{t.hero.dash.l1a}</span> {t.hero.dash.l1b}
+            </div>
+            <div className="dash-line client" style={{ animationDelay: "1.6s" }}>
+              <span className="who">{t.hero.dash.l2a}</span> {t.hero.dash.l2b}
+            </div>
+            <div className="dash-line agent" style={{ animationDelay: "2.8s" }}>
+              <span className="who">{t.hero.dash.l3a}</span> {t.hero.dash.l3b}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Scene3Courier({ active, t }) {
+  return (
+    <div className="scene-3-bg">
+      <Phone className="courier-phone">
+        <PhoneBar dark />
+        <div style={{ flex: 1, position: "relative", color: "white" }}>
+          <div className="push" key={active ? "x" : "y"}>
+            <div className="push-head">
+              <div className="push-app">T</div>
+              <div className="push-app-name">{t.hero.courier.appName}</div>
+              <div className="push-time">{t.hero.courier.time}</div>
+            </div>
+            <div className="push-title">{t.hero.courier.title}</div>
+            <div className="push-body">{t.hero.courier.body}</div>
+          </div>
+          <div className="thumbs-up">👍</div>
+        </div>
+      </Phone>
+    </div>
+  );
+}
+
+function Scene4Outro({ active, t }) {
+  return (
+    <div className="scene-4-bg" key={active ? "1" : "0"}>
+      <div className="big">
+        {t.hero.outro1a} <span className="orange">{t.hero.outro1b}</span>.
+      </div>
+      <div className="small">{t.hero.outro2}</div>
+    </div>
+  );
+}
+
+function HeroStage({ t }) {
+  const DUR = [5500, 6000, 4500, 4500];
+  const [scene, setScene] = useState(0);
+
+  useEffect(() => {
+    const tm = setTimeout(() => setScene((scene + 1) % 4), DUR[scene]);
+    return () => clearTimeout(tm);
+  }, [scene]);
+
+  return (
+    <div className="hero-stage">
+      <div className="scene-tag">
+        <span className="rec"></span>
+        {t.hero.sceneTag}
+      </div>
+      <SceneCounter active={scene} duration={DUR[scene]} />
+
+      <div className={`scene ${scene === 0 ? "active" : ""}`}>
+        {scene === 0 && <Scene1WhatsApp active={true} t={t} />}
+      </div>
+      <div className={`scene ${scene === 1 ? "active" : ""}`}>
+        {scene === 1 && <Scene2Dashboard active={true} t={t} />}
+      </div>
+      <div className={`scene ${scene === 2 ? "active" : ""}`}>
+        {scene === 2 && <Scene3Courier active={true} t={t} />}
+      </div>
+      <div className={`scene ${scene === 3 ? "active" : ""}`}>
+        {scene === 3 && <Scene4Outro active={true} t={t} />}
+      </div>
+    </div>
+  );
+}
+
+function Hero({ t }) {
+  return (
+    <section className="hero" data-screen-label="01 Hero">
+      <div className="container hero-grid">
+        <div>
+          <FadeUp>
+            <div className="eyebrow">
+              <span className="pulse"></span>
+              {t.hero.eyebrow}
+            </div>
+          </FadeUp>
+          <h1>
+            <WordReveal as="span">{t.hero.h1a}</WordReveal>{" "}
+            <WordReveal as="span" className="accent" delay={300}>
+              {t.hero.h1b}
+            </WordReveal>{" "}
+            <WordReveal as="span" delay={700}>{t.hero.h1c}</WordReveal>
+          </h1>
+          <FadeUp delay={500}>
+            <p className="lead hero-sub">{t.hero.sub}</p>
+          </FadeUp>
+          <FadeUp delay={700}>
+            <div className="hero-ctas">
+              <a className="btn btn-primary" href="#solution">
+                {t.hero.cta1} <span>→</span>
+              </a>
+              <a
+                className="btn btn-ghost"
+                href="https://calendar.app.google/rSZM4ebTrNXp7bzk9"
+                target="_blank"
+                rel="noopener"
+              >
+                {t.hero.cta2}
+              </a>
+            </div>
+          </FadeUp>
+          <FadeUp delay={900}>
+            <div className="hero-meta">
+              <div className="metric">
+                <span className="n">{t.hero.m1v}</span>
+                <span className="l">{t.hero.m1}</span>
+              </div>
+              <div className="metric">
+                <span className="n">{t.hero.m2v}</span>
+                <span className="l">{t.hero.m2}</span>
+              </div>
+              <div className="metric">
+                <span className="n">{t.hero.m3v}</span>
+                <span className="l">{t.hero.m3}</span>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+        <FadeUp delay={200}>
+          <HeroStage t={t} />
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, { Nav, Hero });
