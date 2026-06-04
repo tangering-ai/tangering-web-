@@ -698,11 +698,14 @@ function CourierNotifyView() {
 
             {/* Input bar */}
             <div className="wa-input-bar">
-              <svg viewBox="0 0 24 24" fill="#8e8e93" width="22" height="22"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              <span className="material-icons wa-add-icon">add_circle</span>
               <div className="wa-input-field">
+                <span className="material-icons wa-field-icon">mood</span>
                 <span className="wa-input-placeholder">Message</span>
-                <svg viewBox="0 0 24 24" fill="#8e8e93" width="18" height="18"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.7z"/></svg>
-                <svg viewBox="0 0 24 24" fill="#8e8e93" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                <span className="material-icons wa-field-icon">camera_alt</span>
+              </div>
+              <div className="wa-mic-btn">
+                <span className="material-icons">mic</span>
               </div>
             </div>
           </div>
