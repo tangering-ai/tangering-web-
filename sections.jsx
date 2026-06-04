@@ -616,58 +616,81 @@ function CourierNotifyView() {
 
           {/* WhatsApp UI */}
           <div className="wa-app">
-            {/* Status bar */}
+            {/* Status bar — same row as island */}
             <div className="wa-status-bar">
-              <span className="wa-time">3:41</span>
+              <span className="wa-time">9:40</span>
               <div className="wa-status-right">
-                <svg viewBox="0 0 17 12" fill="white" width="15" height="11"><rect x="0" y="8" width="3" height="4" rx="0.5"/><rect x="4.5" y="5.5" width="3" height="6.5" rx="0.5"/><rect x="9" y="3" width="3" height="9" rx="0.5"/><rect x="13.5" y="0" width="3" height="12" rx="0.5"/></svg>
-                <svg viewBox="0 0 25 12" fill="none" width="22" height="11"><rect x="0.5" y="0.5" width="21" height="11" rx="2.5" stroke="white" strokeOpacity="0.4"/><rect x="2" y="2" width="15" height="8" rx="1.5" fill="white"/></svg>
+                {/* Signal */}
+                <svg viewBox="0 0 17 12" fill="#000" width="17" height="12">
+                  <rect x="0"    y="8"   width="3" height="4"  rx="0.5"/>
+                  <rect x="4.5"  y="5.5" width="3" height="6.5" rx="0.5"/>
+                  <rect x="9"    y="3"   width="3" height="9"  rx="0.5"/>
+                  <rect x="13.5" y="0"   width="3" height="12" rx="0.5"/>
+                </svg>
+                {/* WiFi */}
+                <svg viewBox="0 0 16 12" fill="#000" width="16" height="12">
+                  <path d="M8 2.5C5.5 2.5 3.3 3.4 1.6 5L0 3.3C2.1 1.3 4.9 0 8 0s5.9 1.3 8 3.3L14.4 5C12.7 3.4 10.5 2.5 8 2.5z" opacity="0.4"/>
+                  <path d="M8 5.7c-1.7 0-3.2.7-4.3 1.7L2.1 5.8C3.6 4.4 5.7 3.5 8 3.5s4.4.9 5.9 2.3L12.3 7.4C11.2 6.4 9.7 5.7 8 5.7z" opacity="0.7"/>
+                  <path d="M8 8.9c-.8 0-1.5.3-2.1.8L8 12l2.1-2.3C9.5 9.2 8.8 8.9 8 8.9z"/>
+                </svg>
+                {/* Battery */}
+                <svg viewBox="0 0 26 13" fill="none" width="26" height="13">
+                  <rect x="0.5" y="0.5" width="22" height="12" rx="3" stroke="#000" strokeOpacity="0.35"/>
+                  <rect x="2" y="2" width="18" height="9" rx="1.5" fill="#000"/>
+                  <rect x="23.5" y="4" width="2" height="5" rx="1" fill="#000" fillOpacity="0.4"/>
+                </svg>
               </div>
             </div>
 
             {/* WA Header */}
             <div className="wa-header">
-              <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+              <span className="material-icons wa-back-icon">arrow_back_ios</span>
               <div className="wa-header-av">
-                <img src="assets/icono-tangering.png" alt="" style={{width:22,height:22,objectFit:'contain'}}/>
+                <svg viewBox="0 0 40 40" width="40" height="40">
+                  <rect width="40" height="40" rx="20" fill="#1565C0"/>
+                  <circle cx="20" cy="15" r="8" fill="rgba(255,255,255,0.92)"/>
+                  <ellipse cx="20" cy="35" rx="14" ry="10" fill="rgba(255,255,255,0.92)"/>
+                </svg>
               </div>
               <div className="wa-header-info">
                 <div className="wa-header-name">Courier #12</div>
-                <div className="wa-header-sub">online</div>
+                <div className="wa-header-sub">Online</div>
               </div>
               <div className="wa-header-icons">
-                <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M15 8v8H5V8h10m1-2H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4V7c0-.55-.45-1-1-1z"/></svg>
-                <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C6.44 21 2 16.56 2 11c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.26.2 2.46.57 3.58.11.35.02.74-.24 1.02L6.6 10.8z"/></svg>
+                <span className="material-icons wa-hdr-icon">videocam</span>
+                <span className="material-icons wa-hdr-icon">more_vert</span>
               </div>
             </div>
 
             {/* Chat area */}
             <div className="wa-chat" ref={msgsRef}>
-              {/* Date label */}
-              <div className="wa-date-label">TODAY</div>
+              <div className="wa-date-label">Today</div>
 
               {items.map((m, i) => (
                 <div key={i} className={`wa-row ${m.side === "out" ? "wa-row-out" : "wa-row-in"}`}>
-                  <div className={`wa-bubble ${m.side === "out" ? "wa-bubble-out" : "wa-bubble-in"} ${m.confirm ? "wa-bubble-confirm" : ""}`}>
-                    <span className="wa-bubble-text">{m.text}</span>
-                    <span className="wa-bubble-meta">
+                  <div className="wa-msg-group">
+                    <div className={`wa-bubble ${m.side === "out" ? "wa-bubble-out" : "wa-bubble-in"}`}>
+                      <span className="wa-bubble-text">{m.text}</span>
+                    </div>
+                    <div className={`wa-ts ${m.side === "out" ? "wa-ts-out" : "wa-ts-in"}`}>
                       {m.time}
                       {m.side === "out" && (
-                        <svg viewBox="0 0 16 11" fill="none" width="16" height="11" style={{marginLeft:3}}>
-                          <path d="M1 5.5l3.5 3.5L14 1" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M5 5.5l3.5 3.5L14 1" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" transform="translate(2,0)"/>
+                        <svg viewBox="0 0 18 11" fill="none" width="18" height="11">
+                          <path d="M1 5.5l3 3L12 1" stroke="#4CAF50" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M6 5.5l3 3L17 1" stroke="#4CAF50" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       )}
-                    </span>
+                    </div>
                   </div>
                 </div>
               ))}
 
-              {/* Typing indicator */}
               {typing && (
                 <div className={`wa-row ${typing === "out" ? "wa-row-out" : "wa-row-in"}`}>
-                  <div className={`wa-bubble ${typing === "out" ? "wa-bubble-out" : "wa-bubble-in"}`}>
-                    <div className="wa-typing"><span/><span/><span/></div>
+                  <div className="wa-msg-group">
+                    <div className={`wa-bubble ${typing === "out" ? "wa-bubble-out" : "wa-bubble-in"}`}>
+                      <div className="wa-typing"><span/><span/><span/></div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -675,13 +698,11 @@ function CourierNotifyView() {
 
             {/* Input bar */}
             <div className="wa-input-bar">
+              <svg viewBox="0 0 24 24" fill="#8e8e93" width="22" height="22"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
               <div className="wa-input-field">
-                <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.4)" width="18" height="18"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
                 <span className="wa-input-placeholder">Message</span>
-                <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.4)" width="18" height="18"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
-              </div>
-              <div className="wa-send-btn">
-                <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="#8e8e93" width="18" height="18"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.7z"/></svg>
+                <svg viewBox="0 0 24 24" fill="#8e8e93" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
               </div>
             </div>
           </div>
