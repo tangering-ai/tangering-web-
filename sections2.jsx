@@ -472,76 +472,71 @@ function VoiceTech() {
 
 function FlowBuilder({ t }) {
   const [ref, inView] = useInView({ threshold: 0.2, once: false });
-  const [open, setOpen] = useState(0);
 
-  const items = [
+  const features = [
     {
       title: "Drag-and-drop builder",
-      desc: "Compose calls visually: triggers, branches, hand-offs. Anyone on your ops team can ship a new flow in an afternoon.",
+      desc: "Compose conversational flows with a no-code editor. Triggers, branches and hand-offs in minutes — anyone on your ops team can ship a new flow in an afternoon.",
+      video: "assets/flow-builder.mov",
+      gradient: "ag",
     },
     {
-      title: "Decisions, not scripts",
-      desc: "Set conditions on real customer responses — confirm, reschedule, escalate — without writing a single line of code.",
+      title: "Real-time decisions on every call",
+      desc: "Set conditions on real customer responses — confirm, reschedule, escalate, book — and watch the agent act on them live without a single line of code.",
+      video: "assets/flow-builder.mov",
+      gradient: "ag2",
     },
     {
       title: "Version control & live testing",
-      desc: "Test every change against past calls before going live. Roll back any version with one click.",
-    },
-    {
-      title: "Built-in integrations",
-      desc: "Pull data from your CRM, write back to your ERP, fire webhooks. All inside the same canvas.",
+      desc: "Test every change against past calls before going live. Roll back any version in one click. Your ops team is never one bad deploy away from a broken call.",
+      video: "assets/flow-builder.mov",
+      gradient: "ag3",
     },
   ];
 
   return (
-    <section className="flow2" data-screen-label="08 Flow builder" ref={ref}>
+    <section className="flow3" data-screen-label="08 Flow builder" ref={ref}>
       <div className="container">
-        <div className="flow2-grid">
-          {/* Left — title + accordion */}
-          <div className="flow2-left">
-            <FadeUp>
-              <div className="eyebrow"><span className="pulse"></span>No-code builder</div>
-            </FadeUp>
-            <FadeUp delay={120}>
-              <h2 className="flow2-h2">
-                Build flows
-                <br/><em className="flow2-accent">without writing a line.</em>
-              </h2>
-            </FadeUp>
-
-            <div className="flow2-acc">
-              {items.map((it, i) => (
-                <FadeUp key={i} delay={200 + i * 80}>
-                  <div className={`flow2-acc-item ${open === i ? "is-open" : ""}`}
-                       onClick={() => setOpen(i)}>
-                    <div className="flow2-acc-head">
-                      <span className="flow2-acc-title">{it.title}</span>
-                      <span className="flow2-acc-toggle">
-                        <span className="material-icons">
-                          {open === i ? "remove" : "add"}
-                        </span>
-                      </span>
-                    </div>
-                    {open === i && (
-                      <div className="flow2-acc-body">{it.desc}</div>
-                    )}
-                  </div>
-                </FadeUp>
-              ))}
-            </div>
-          </div>
-
-          {/* Right — video card */}
-          <FadeUp delay={200} className="flow2-right">
-            <div className="flow2-video-card">
-              <div className="flow2-video-glow"></div>
-              <video
-                className="flow2-video"
-                src="assets/flow-builder.mov"
-                autoPlay loop muted playsInline
-              />
-            </div>
+        {/* Header: 2-col title + description */}
+        <div className="flow3-head">
+          <FadeUp className="flow3-head-left">
+            <div className="eyebrow"><span className="pulse"></span>No-code builder</div>
+            <h2 className="flow3-h2">
+              Build flows
+              <br/><em className="flow3-accent">without writing a line.</em>
+            </h2>
           </FadeUp>
+          <FadeUp delay={140} className="flow3-head-right">
+            <p>
+              Handle everything from a simple delivery confirmation to a complex
+              multi-step reschedule. Tangering's no-code studio lets your team
+              design, test and launch new agents in weeks — not months.
+            </p>
+          </FadeUp>
+        </div>
+
+        {/* Horizontal carousel of feature cards */}
+        <div className="flow3-carousel-wrap">
+          <div className="flow3-carousel">
+            {features.map((f, i) => (
+              <div key={i} className="flow3-feature">
+                <div className={`flow3-video-card flow3-grad-${f.gradient}`}>
+                  <video
+                    className="flow3-video"
+                    src={f.video}
+                    autoPlay loop muted playsInline
+                  />
+                </div>
+                <h3 className="flow3-feature-title">{f.title}</h3>
+                <p className="flow3-feature-desc">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="flow3-carousel-hint">
+            <span className="material-icons">arrow_back</span>
+            <span>Scroll to see more</span>
+            <span className="material-icons">arrow_forward</span>
+          </div>
         </div>
       </div>
     </section>
