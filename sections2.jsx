@@ -249,42 +249,223 @@ function IPhone17Call({ play }) {
 }
 
 function HowItWorks({ t }) {
-  const [ref, inView] = useInView({ threshold: 0.25, once: false });
+  const [ref, inView] = useInView({ threshold: 0.2, once: false });
+
+  const channels = [
+    {
+      title: "Voice",
+      icon: "call",
+      desc: "Deliver natural, human-like phone conversations at scale through your SIP.",
+    },
+    {
+      title: "WhatsApp",
+      icon: "chat",
+      desc: "Reach customers on the channel they actually answer — text or voice notes.",
+    },
+    {
+      title: "CRM",
+      icon: "swap_horiz",
+      desc: "Two-way sync with Salesforce, HubSpot or your in-house CRM.",
+    },
+    {
+      title: "API",
+      icon: "code",
+      desc: "Build custom flows with our webhooks and REST API in any language.",
+    },
+  ];
+
   return (
-    <section className="how" data-screen-label="07 How it works" ref={ref}>
+    <section className="how4" data-screen-label="07 How it works" ref={ref}>
       <div className="container">
-        <FadeUp className="how-head">
-          <div className="eyebrow"><span className="pulse"></span>{t.how.eyebrow}</div>
-          <h2>{t.how.h2}</h2>
+        <FadeUp className="how4-head">
+          <h2>True omni-channel integration.</h2>
+          <p className="how4-sub">
+            Plug Tangering into the tools you already use. One AI agent across every
+            channel — without ripping out a thing.
+          </p>
         </FadeUp>
 
-        <div className="how-body">
-          {/* ─ iPhone 17 ─ */}
-          <div className="how-phone-col">
-            <IPhone17Call play={inView} />
+        <div className="how4-stair">
+          {channels.map((c, i) => (
+            <FadeUp key={i} delay={150 + i * 130}>
+              <div className="how4-card" style={{ "--offset": i }}>
+                <div className="how4-card-top">
+                  <h3>{c.title}</h3>
+                  <div className="how4-icon">
+                    <span className="material-icons">{c.icon}</span>
+                  </div>
+                </div>
+                <p>{c.desc}</p>
+              </div>
+            </FadeUp>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Inline voice player ─────────────────────────────
+const VOICE_SAMPLE_URL = "https://media.vocaroo.com/mp3/1kEa2KjGICxl";
+function VoicePlayer() {
+  const audioRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+  const [cur, setCur] = useState(0);
+  const [dur, setDur] = useState(0);
+
+  useEffect(() => {
+    const a = audioRef.current;
+    if (!a) return;
+    const onTime = () => { setCur(a.currentTime); setDur(a.duration || 0); };
+    const onEnd  = () => { setPlaying(false); setCur(0); };
+    a.addEventListener("timeupdate", onTime);
+    a.addEventListener("loadedmetadata", onTime);
+    a.addEventListener("ended", onEnd);
+    return () => {
+      a.removeEventListener("timeupdate", onTime);
+      a.removeEventListener("loadedmetadata", onTime);
+      a.removeEventListener("ended", onEnd);
+    };
+  }, []);
+
+  const toggle = () => {
+    const a = audioRef.current;
+    if (!a) return;
+    if (a.paused) { a.play(); setPlaying(true); }
+    else { a.pause(); setPlaying(false); }
+  };
+
+  const fmt = s => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+  const pct = dur ? (cur / dur) * 100 : 0;
+
+  return (
+    <div className="vplayer">
+      <button className={`vplayer-btn ${playing ? "is-playing" : ""}`} onClick={toggle} aria-label="Play sample">
+        <span className="material-icons">{playing ? "pause" : "play_arrow"}</span>
+      </button>
+      <div className="vplayer-body">
+        <div className="vplayer-top">
+          <div className="vplayer-meta">
+            <span className="vplayer-pill">SAMPLE</span>
+            <span className="vplayer-name">Sarah · AI Agent</span>
+            <span className="vplayer-tag">ES</span>
+          </div>
+          <div className="vplayer-time">
+            {fmt(cur)} <span style={{opacity:0.4}}>/ {fmt(dur || 0)}</span>
+          </div>
+        </div>
+        <div className="vplayer-wave">
+          {Array.from({length: 38}).map((_, i) => (
+            <span key={i} className={playing ? "is-on" : ""}
+              style={{ animationDelay: `${i * 0.04}s`, animationDuration: `${0.55 + (i%5)*0.12}s` }}/>
+          ))}
+          <div className="vplayer-progress" style={{ width: `${pct}%` }}/>
+        </div>
+      </div>
+      <audio ref={audioRef} src={VOICE_SAMPLE_URL} preload="auto" playsInline/>
+    </div>
+  );
+}
+
+// ── Voice Tech / Highlights section ─────────────────────────────
+function VoiceTech() {
+  const [ref, inView] = useInView({ threshold: 0.2, once: false });
+
+  const features = [
+    {
+      title: "Sounds local, not robotic.",
+      desc: "Native Latam Spanish and US English with regional accents. Customers don't hang up on day one.",
+      visual: "globe",
+    },
+    {
+      title: "Reads the room.",
+      desc: "Detects frustration, hesitation or urgency in real time and shifts tone — calm when needed, firm when it matters.",
+      visual: "duo",
+    },
+    {
+      title: "Trained on last-mile.",
+      desc: "Speaks the vocabulary of your operation: addresses, delivery windows, exceptions, payment promises — without scripting every edge case.",
+      visual: "dot",
+    },
+    {
+      title: "Remembers every attempt.",
+      desc: "Picks up where the last call ended. If it's the third try today, your customer hears it — not a fresh start every time.",
+      visual: "wave",
+    },
+  ];
+
+  return (
+    <section className="vtech" data-screen-label="08 Voice tech" ref={ref}>
+      <div className="container">
+        {/* Top: 2-column hero */}
+        <div className="vtech-hero">
+          <div className="vtech-hero-content">
+            <FadeUp>
+              <div className="vtech-eyebrow">
+                <span className="vtech-eyebrow-line"></span>
+                THE VOICE BEHIND TANGERING
+              </div>
+            </FadeUp>
+            <FadeUp delay={120}>
+              <h2 className="vtech-h2">
+                Voices customers
+                <br/><em className="vtech-accent">actually pick up.</em>
+              </h2>
+            </FadeUp>
+            <FadeUp delay={240}>
+              <p className="vtech-sub">
+                A voice agent built specifically for last-mile — not a generic chatbot reading a script. It speaks your customer's language, understands logistics, and knows what to do when things go off-plan.
+              </p>
+            </FadeUp>
+            <FadeUp delay={360}>
+              <div className="vtech-player-label">Hear one of our voices</div>
+              <VoicePlayer/>
+            </FadeUp>
           </div>
 
-          {/* ─ Steps ─ */}
-          <div className="how-steps-col">
-            <div className="how-steps">
-              <div className={`how-line-v ${inView ? "in" : ""}`}></div>
-              {[
-                { n: "01", title: t.how.s1, desc: t.how.s1d },
-                { n: "02", title: t.how.s2, desc: t.how.s2d },
-                { n: "03", title: t.how.s3, desc: t.how.s3d },
-              ].map((s, i) => (
-                <FadeUp key={i} delay={300 + i * 180}>
-                  <div className={`how-step ${inView ? "in" : ""}`}>
-                    <div className="ball">{s.n}</div>
-                    <div className="how-step-text">
-                      <h3>{s.title}</h3>
-                      <p>{s.desc}</p>
-                    </div>
-                  </div>
-                </FadeUp>
-              ))}
+          <FadeUp delay={160} className="vtech-hero-photo-col">
+            <div className="vtech-photo">
+              <img
+                src="https://images.unsplash.com/photo-1573497019418-b400bb3ab074?w=900&h=1100&fit=crop&auto=format"
+                alt="Person on a Tangering AI call"
+              />
             </div>
-          </div>
+          </FadeUp>
+        </div>
+
+        {/* Feature rows */}
+        <div className="vtech-rows">
+          {features.map((f, i) => (
+            <FadeUp key={i} delay={120 + i * 100}>
+              <div className="vtech-row">
+                <div className="vtech-row-title">{f.title}</div>
+                <div className="vtech-row-desc">{f.desc}</div>
+                <div className="vtech-row-visual">
+                  {f.visual === "wave" && (
+                    <div className="vtech-vis-wave">
+                      {Array.from({length: 14}).map((_, j) => (
+                        <span key={j} style={{ animationDelay: `${j*0.07}s` }}/>
+                      ))}
+                    </div>
+                  )}
+                  {f.visual === "dot" && (
+                    <div className="vtech-vis-dot"><span/></div>
+                  )}
+                  {f.visual === "duo" && (
+                    <div className="vtech-vis-duo">
+                      <span className="d1"/>
+                      <span className="d2"/>
+                    </div>
+                  )}
+                  {f.visual === "globe" && (
+                    <div className="vtech-vis-globe">
+                      <span className="material-icons">language</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </FadeUp>
+          ))}
         </div>
       </div>
     </section>
@@ -343,4 +524,4 @@ function FlowBuilder({ t }) {
   );
 }
 
-Object.assign(window, { Differentiator, HowItWorks, FlowBuilder });
+Object.assign(window, { Differentiator, HowItWorks, FlowBuilder, VoiceTech });
