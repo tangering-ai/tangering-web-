@@ -488,54 +488,51 @@ function RescheduleView() {
   }, []);
 
   return (
-    <div className="resch-outer" ref={outerRef}>
-      {/* Glow */}
-      <div className="sol-map-glow sol-map-glow-1"></div>
-      <div className="sol-map-glow sol-map-glow-2"></div>
+    <div className="sol-map-immersive resch-outer" ref={outerRef}>
+      {/* Full-bleed map */}
+      <div className="sol-map-immersive-body" ref={mapDivRef}></div>
 
-      {/* Full map card */}
-      <div className="sol-map-card">
-        {/* Map full bleed */}
-        <div className="sol-map-body" ref={mapDivRef}>
-          {/* Top floating chips */}
-          <div className="sol-map-chip-status">
-            <div className={`sol-map-status-dot ${mapPhase === "updated" ? "confirmed" : "scanning"}`}></div>
-            <span>{mapPhase === "updated" ? "Address updated" : "Rescheduling..."}</span>
-          </div>
-          <div className="sol-map-chip-time">3:41 PM</div>
+      {/* Top status chip (same style as search bar in step 2) */}
+      <div className="sol-search resch-status">
+        <span className={`sol-map-status-dot ${mapPhase === "updated" ? "confirmed" : "scanning"}`}/>
+        <div className="sol-search-text">
+          {mapPhase === "updated" ? "Address updated to 580 Post St" : "Rescheduling delivery..."}
         </div>
+        {mapPhase !== "updated" ? (
+          <span className="sol-search-spinner"/>
+        ) : (
+          <svg viewBox="0 0 20 20" fill="none" width="18" height="18">
+            <circle cx="10" cy="10" r="9" fill="#22c55e"/>
+            <path d="M6 10l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        )}
+      </div>
 
-        {/* Bottom panel — sibling of body so it sits below the map */}
-        <div className={`sol-map-bottom-panel ${mapPhase === "updated" ? "visible" : ""}`}>
-          <div className="sol-map-confirm-row">
-            <div className="sol-map-confirm-icon">
-              <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
-                <circle cx="12" cy="12" r="10" fill="#22c55e"/>
-                <path d="M7.5 12l3 3L16.5 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className="sol-map-confirm-text">
-              <strong>580 Post St</strong>
-              <span>San Francisco, CA 94102</span>
-            </div>
-            <div className="sol-map-confirm-badge">Updated</div>
+      {/* Confirmation card — bottom, appears when updated */}
+      <div className={`sol-confirm-card ${mapPhase === "updated" ? "visible" : ""}`}>
+        <div className="sol-confirm-header">
+          <div className="sol-confirm-pin">
+            <span className="material-icons" style={{fontSize:16,color:"#fe5e32"}}>place</span>
           </div>
-          <div className="sol-map-panel-divider"></div>
-          <div className="sol-map-stats">
-            <div className="sol-map-stat">
-              <div className="sol-map-stat-label">Window</div>
-              <div className="sol-map-stat-val">3:00–5:00 PM</div>
-            </div>
-            <div className="sol-map-stat-sep"></div>
-            <div className="sol-map-stat">
-              <div className="sol-map-stat-label">ETA</div>
-              <div className="sol-map-stat-val sol-map-stat-orange">~22 min</div>
-            </div>
-            <div className="sol-map-stat-sep"></div>
-            <div className="sol-map-stat">
-              <div className="sol-map-stat-label">Courier</div>
-              <div className="sol-map-stat-val">Route #12</div>
-            </div>
+          <div className="sol-confirm-info">
+            <strong>580 Post St</strong>
+            <span>San Francisco, CA 94102</span>
+          </div>
+          <div className="sol-confirm-pill">Updated</div>
+        </div>
+        <div className="sol-confirm-divider"></div>
+        <div className="sol-confirm-stats">
+          <div className="sol-confirm-stat">
+            <span className="sol-confirm-stat-label">Window</span>
+            <span className="sol-confirm-stat-val">3:00 – 5:00 PM</span>
+          </div>
+          <div className="sol-confirm-stat">
+            <span className="sol-confirm-stat-label">ETA</span>
+            <span className="sol-confirm-stat-val accent">~22 min</span>
+          </div>
+          <div className="sol-confirm-stat">
+            <span className="sol-confirm-stat-label">Courier</span>
+            <span className="sol-confirm-stat-val">Route #12</span>
           </div>
         </div>
       </div>

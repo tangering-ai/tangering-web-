@@ -1076,8 +1076,8 @@ section { position: relative; }
 .sol-confirm-stat-val.accent { color: #fe5e32; }
 
 /* ── Unified map card (MapCard + RescheduleView) ── */
-.phone-stage .sol-map-outer,
-.phone-stage .resch-outer { width: 300px; }
+.phone-stage .sol-map-outer { width: 300px; }
+.phone-stage .resch-outer.sol-map-immersive { width: 380px; height: 620px; }
 .phone-stage .sol-map-card {
   width: 300px;
   height: auto;
@@ -1116,22 +1116,38 @@ section { position: relative; }
 .phone-stage .sol-map-bottom-panel .sol-map-stat-val { color: #111; }
 .phone-stage .sol-map-panel-divider { background: rgba(0,0,0,0.06); }
 
-/* RescheduleView floating chat — anchored to map card */
+/* RescheduleView floating chat — compact pill near top, no map cover */
 .phone-stage .resch-chat-float {
   position: absolute;
-  bottom: 200px;
-  right: -16px;
-  top: auto; left: auto;
-  width: 224px;
-  background: #1a1a1a;
+  top: 78px;
+  left: 50%;
+  transform: translateX(-50%);
+  right: auto; bottom: auto;
+  width: 280px;
+  max-width: calc(100% - 48px);
+  background: rgba(20,20,22,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 16px;
-  padding: 12px 14px;
+  padding: 10px 12px;
   box-shadow:
-    0 8px 32px rgba(0,0,0,0.32),
+    0 8px 32px rgba(0,0,0,0.18),
     inset 0 0 0 1px rgba(255,255,255,0.08);
   border: none;
-  z-index: 10;
+  z-index: 11;
 }
+
+/* Status chip uses same style as the search bar (slightly smaller pad) */
+.resch-status .sol-map-status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.resch-status .sol-map-status-dot.scanning {
+  background: #fe5e32;
+  box-shadow: 0 0 6px rgba(254,94,50,0.55);
+}
+.resch-status .sol-map-status-dot.confirmed { background: #22c55e; }
 
 /* ── Unified CRM card ── */
 .phone-stage .crm-outer {
