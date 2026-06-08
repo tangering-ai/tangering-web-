@@ -759,7 +759,6 @@ function CourierNotifyView() {
 function CRMUpdateView() {
   const outerRef = useRef(null);
   const [phase, setPhase] = useState(0); // 0=initial 1=updating 2=address 3=status 4=done
-  const [zoom, setZoom]   = useState(false);
 
   useEffect(() => {
     if (outerRef.current && typeof gsap !== "undefined") {
@@ -769,105 +768,88 @@ function CRMUpdateView() {
       );
     }
     const timers = [
-      setTimeout(() => setZoom(true),  300),
-      setTimeout(() => setPhase(1), 1200),
-      setTimeout(() => setPhase(2), 2200),
-      setTimeout(() => setPhase(3), 3300),
-      setTimeout(() => setPhase(4), 4500),
+      setTimeout(() => setPhase(1), 800),
+      setTimeout(() => setPhase(2), 1900),
+      setTimeout(() => setPhase(3), 3100),
+      setTimeout(() => setPhase(4), 4300),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const rows = [
-    { id: "#4520", customer: "Lisa Chen",      addr: "120 Mission St",      status: "Delivered",   amount: "$48",  highlight: false },
-    { id: "#4521", customer: "James Carter",   addr: phase >= 2 ? "580 Post St" : "742 Sutter St", status: phase >= 3 ? "Confirmed" : (phase >= 1 ? "Updating..." : "Scheduled"), amount: "$129", highlight: true },
-    { id: "#4522", customer: "Marcus Brown",   addr: "55 Hayes St",         status: "In transit",  amount: "$89",  highlight: false },
-    { id: "#4523", customer: "Sofia Martinez", addr: "300 Grove St",        status: "Scheduled",   amount: "$72",  highlight: false },
-    { id: "#4524", customer: "Eric Wang",      addr: "812 Folsom St",       status: "Scheduled",   amount: "$214", highlight: false },
-  ];
+  const isSyncing = phase >= 1 && phase < 4;
+  const isDone    = phase >= 4;
 
   return (
-    <div className="crm-outer" ref={outerRef}>
-      <div className={`crm-card ${zoom ? "crm-zoomed" : ""}`}>
-        {/* Window chrome */}
-        <div className="crm-chrome">
-          <div className="crm-dots">
-            <span style={{background:"#ff5f57"}}/><span style={{background:"#febc2e"}}/><span style={{background:"#28c840"}}/>
-          </div>
-          <div className="crm-url">
-            <span className="material-icons" style={{fontSize:13,color:"#8e8e93"}}>lock</span>
-            crm.tangering.io / orders
-          </div>
-          <div className="crm-sync">
-            <div className={`crm-sync-dot ${phase >= 1 && phase < 4 ? "syncing" : phase >= 4 ? "done" : ""}`}/>
-            <span>{phase >= 4 ? "Synced" : phase >= 1 ? "Syncing..." : "Live"}</span>
-          </div>
+    <div className="crmv2-outer" ref={outerRef}>
+      {/* Sync status pill (matches map/reschedule style) */}
+      <div className="sol-search crmv2-status">
+        <span className="material-icons" style={{fontSize:16,color:"#71717a"}}>{isDone ? "check_circle" : "sync"}</span>
+        <div className="sol-search-text">
+          {isDone ? "Synced to CRM · all systems updated" : isSyncing ? "Syncing order #4521..." : "Connected to crm.tangering.io"}
         </div>
+        {isSyncing && <span className="sol-search-spinner"/>}
+      </div>
 
-        {/* Header */}
-        <div className="crm-header">
+      {/* Big focused order card — the one being updated */}
+      <div className={`crmv2-card ${isSyncing ? "is-updating" : ""} ${isDone ? "is-done" : ""}`}>
+        <div className="crmv2-card-top">
           <div>
-            <div className="crm-title">Orders <span className="crm-count">5</span></div>
-            <div className="crm-sub">Updated by <strong>Tangering AI</strong> · just now</div>
+            <div className="crmv2-order-id">Order #4521</div>
+            <div className="crmv2-customer">James Carter</div>
           </div>
-          <div className="crm-toolbar">
-            <div className="crm-tool"><span className="material-icons" style={{fontSize:14}}>filter_list</span>Filter</div>
-            <div className="crm-tool"><span className="material-icons" style={{fontSize:14}}>sort</span>Sort</div>
-            <div className="crm-tool crm-tool-dark"><span className="material-icons" style={{fontSize:14}}>add</span>New</div>
+          <div className={`crmv2-pill ${isDone ? "ok" : isSyncing ? "sync" : "neutral"}`}>
+            {isSyncing && <span className="crmv2-spin"/>}
+            {isDone ? "Confirmed" : isSyncing ? "Updating" : "Scheduled"}
           </div>
         </div>
 
-        {/* Table */}
-        <div className="crm-table">
-          <div className="crm-row crm-row-head">
-            <div>Order</div><div>Customer</div><div>Address</div><div>Status</div><div>Amount</div>
+        {/* Address field — live update */}
+        <div className="crmv2-field">
+          <div className="crmv2-field-label">Delivery address</div>
+          <div className="crmv2-field-value">
+            <span className={`crmv2-addr-old ${phase >= 2 ? "fade-out" : ""}`}>742 Sutter St</span>
+            {phase >= 2 && (
+              <>
+                <span className="crmv2-arrow">→</span>
+                <span className="crmv2-addr-new">580 Post St</span>
+                <span className="crmv2-changed-tag">updated</span>
+              </>
+            )}
           </div>
-          {rows.map((r, i) => (
-            <div key={r.id} className={`crm-row ${r.highlight ? "crm-row-active" : ""}`}>
-              <div className="crm-cell-id">{r.id}</div>
-              <div>{r.customer}</div>
-              <div className={`crm-cell-addr ${r.highlight && phase >= 2 ? "crm-cell-changed" : ""}`}>
-                {r.addr}
-                {r.highlight && phase >= 2 && (
-                  <span className="crm-diff-tag">updated</span>
-                )}
-              </div>
-              <div>
-                <span className={`crm-status crm-status-${
-                  r.status === "Delivered"  ? "ok"  :
-                  r.status === "Confirmed"  ? "ok"  :
-                  r.status === "Updating..." ? "sync" :
-                  r.status === "In transit" ? "warn" : "neutral"}`}>
-                  {r.status === "Updating..." && <span className="crm-status-spin"/>}
-                  {r.status}
-                </span>
-              </div>
-              <div className="crm-cell-amt">{r.amount}</div>
-            </div>
-          ))}
         </div>
 
-        {/* Activity feed */}
-        <div className="crm-activity">
-          <div className="crm-act-title">
-            <span className="material-icons" style={{fontSize:14, color:"#fe5e32"}}>bolt</span>
-            Activity log
+        <div className="crmv2-row-split">
+          <div className="crmv2-field crmv2-field-half">
+            <div className="crmv2-field-label">Window</div>
+            <div className="crmv2-field-value-sm">3:00 – 5:00 PM</div>
           </div>
-          {[
-            { t: "Address updated", d: "742 Sutter St → 580 Post St", time: "just now", show: phase >= 2, color: "#fe5e32" },
-            { t: "Status confirmed", d: "Order #4521 → Confirmed",     time: "just now", show: phase >= 3, color: "#22c55e" },
-            { t: "Webhook fired",   d: "POST /api/orders/sync · 200",  time: "just now", show: phase >= 4, color: "#1a1a2e" },
-          ].filter(a => a.show).map((a, i) => (
-            <div key={i} className="crm-act-item">
-              <div className="crm-act-dot" style={{background: a.color}}/>
-              <div className="crm-act-text">
-                <strong>{a.t}</strong>
-                <span>{a.d}</span>
-              </div>
-              <div className="crm-act-time">{a.time}</div>
-            </div>
-          ))}
+          <div className="crmv2-field crmv2-field-half">
+            <div className="crmv2-field-label">Courier</div>
+            <div className="crmv2-field-value-sm">Route #12</div>
+          </div>
         </div>
+      </div>
+
+      {/* Activity feed — compact, glass */}
+      <div className="crmv2-activity">
+        <div className="crmv2-act-head">
+          <span className="material-icons" style={{fontSize:14, color:"#fe5e32"}}>bolt</span>
+          Activity
+        </div>
+        {[
+          { t: "Address updated",  d: "742 Sutter St → 580 Post St",  show: phase >= 2, color: "#fe5e32" },
+          { t: "Status confirmed", d: "Order #4521 → Confirmed",      show: phase >= 3, color: "#22c55e" },
+          { t: "Webhook fired",    d: "POST /api/orders/sync · 200",  show: phase >= 4, color: "#1a1a2e" },
+        ].filter(a => a.show).map((a, i) => (
+          <div key={i} className="crmv2-act-item">
+            <div className="crmv2-act-dot" style={{background: a.color}}/>
+            <div className="crmv2-act-text">
+              <strong>{a.t}</strong>
+              <span>{a.d}</span>
+            </div>
+            <div className="crmv2-act-time">just now</div>
+          </div>
+        ))}
       </div>
     </div>
   );

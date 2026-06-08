@@ -2497,7 +2497,194 @@ section { position: relative; }
 .wa-mic-btn .material-icons { font-size: 20px !important; color: white; }
 
 /* ══════════════════════════════════
-   CRM Updating Card — Step 5
+   CRM v2 — Focused order update
+══════════════════════════════════ */
+.phone-stage:has(.crmv2-outer) {
+  width: 420px;
+  height: 620px;
+  filter: none;
+}
+.crmv2-outer {
+  position: relative;
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+}
+.crmv2-status {
+  position: relative;
+  margin-bottom: 4px;
+  transition: all 0.4s ease;
+}
+.crmv2-status .sol-search-text { font-size: 13px; }
+/* Green tint when synced */
+.crmv2-outer:has(.crmv2-card.is-done) .crmv2-status {
+  background: rgba(34,197,94,0.12);
+  border: 1px solid rgba(34,197,94,0.3);
+  box-shadow: 0 8px 24px rgba(34,197,94,0.18);
+}
+.crmv2-outer:has(.crmv2-card.is-done) .crmv2-status .sol-search-text {
+  color: #16a34a;
+  font-weight: 700;
+}
+.crmv2-outer:has(.crmv2-card.is-done) .crmv2-status .material-icons {
+  color: #22c55e !important;
+}
+
+/* Focused order card */
+.crmv2-card {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow:
+    0 16px 40px rgba(15,23,42,0.1),
+    0 0 0 1px rgba(15,23,42,0.05);
+  position: relative;
+  transition: box-shadow 0.4s ease;
+}
+.crmv2-card.is-updating {
+  box-shadow:
+    0 16px 40px rgba(254,94,50,0.18),
+    0 0 0 1.5px rgba(254,94,50,0.35);
+}
+.crmv2-card.is-done {
+  box-shadow:
+    0 16px 40px rgba(34,197,94,0.16),
+    0 0 0 1.5px rgba(34,197,94,0.3);
+}
+.crmv2-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.crmv2-order-id {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fe5e32;
+  font-family: 'SF Mono', monospace;
+  letter-spacing: 0.03em;
+}
+.crmv2-customer {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+  letter-spacing: -0.02em;
+  margin-top: 4px;
+}
+.crmv2-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+.crmv2-pill.ok      { background: rgba(34,197,94,0.12);  color: #16a34a; }
+.crmv2-pill.sync    { background: rgba(254,94,50,0.12);  color: #fe5e32; }
+.crmv2-pill.neutral { background: rgba(0,0,0,0.05);      color: #525252; }
+.crmv2-spin {
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 1.8px solid currentColor;
+  border-top-color: transparent;
+  animation: spin 0.7s linear infinite;
+}
+
+/* Field rows */
+.crmv2-field {
+  border-top: 1px solid rgba(15,23,42,0.06);
+  padding-top: 14px;
+  margin-top: 14px;
+}
+.crmv2-field:first-of-type {
+  border-top: none; padding-top: 0; margin-top: 0;
+}
+.crmv2-row-split {
+  display: flex; gap: 24px;
+  border-top: 1px solid rgba(15,23,42,0.06);
+  padding-top: 14px;
+  margin-top: 14px;
+}
+.crmv2-field-half { flex: 1; border-top: none; padding-top: 0; margin-top: 0; }
+.crmv2-field-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+  margin-bottom: 6px;
+}
+.crmv2-field-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+  display: flex; align-items: center; gap: 10px;
+  flex-wrap: wrap;
+}
+.crmv2-field-value-sm {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+.crmv2-addr-old {
+  transition: all 0.45s ease;
+}
+.crmv2-addr-old.fade-out {
+  color: #a1a1aa;
+  text-decoration: line-through;
+  font-size: 13px;
+  font-weight: 500;
+}
+.crmv2-arrow { color: #fe5e32; font-weight: 700; }
+.crmv2-addr-new {
+  color: #1a1a2e;
+  font-weight: 700;
+  animation: crmv2-flash 0.7s ease both;
+}
+@keyframes crmv2-flash {
+  0%   { background: rgba(254,94,50,0.3); padding: 2px 6px; border-radius: 4px; transform: translateX(-4px); opacity: 0; }
+  60%  { opacity: 1; transform: none; }
+  100% { background: transparent; padding: 0; border-radius: 0; }
+}
+.crmv2-changed-tag {
+  font-size: 9.5px; font-weight: 800;
+  background: #fe5e32; color: white;
+  padding: 3px 7px; border-radius: 5px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  animation: hcc-pop 0.4s ease both;
+}
+
+/* Activity */
+.crmv2-activity {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(16px);
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 0 0 1px rgba(15,23,42,0.05);
+}
+.crmv2-act-head {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+.crmv2-act-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 5px 0;
+  animation: hcc-pop 0.4s ease both;
+}
+.crmv2-act-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.crmv2-act-text { flex: 1; display: flex; gap: 8px; align-items: baseline; }
+.crmv2-act-text strong { font-size: 12px; font-weight: 700; color: #1a1a2e; }
+.crmv2-act-text span   { font-size: 11px; color: #71717a; }
+.crmv2-act-time { font-size: 10px; color: #a1a1aa; }
+
+/* ══════════════════════════════════
+   CRM Updating Card — Step 5 (legacy)
 ══════════════════════════════════ */
 .crm-outer {
   position: relative;
