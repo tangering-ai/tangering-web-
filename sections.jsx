@@ -72,7 +72,7 @@ function Problem({ t }) {
     <section className="problem" data-screen-label="02 Problem" ref={sectionRef}>
       <div className="container">
         <FadeUp>
-          <div className="eyebrow" style={{ background: "rgba(255,255,255,0.08)", color: "white" }}>
+          <div className="eyebrow">
             <span className="pulse"></span>
             {t.problem.eyebrow}
           </div>
