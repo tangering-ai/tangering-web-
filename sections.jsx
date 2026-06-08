@@ -120,11 +120,48 @@ function Problem({ t }) {
   );
 }
 
+// ── Shared visual wrapper ────────────────────────────────────
+function PhoneStage({ children, glow }) {
+  return (
+    <div className="phone-stage" data-glow={glow}>
+      <div className="phone-stage-inner">{children}</div>
+    </div>
+  );
+}
+
+function glowForStep(active) {
+  if (active === 1) return "blue";    // map verify
+  if (active === 3) return "green";   // courier WA
+  return "orange";                    // call, reschedule, CRM
+}
+
+function renderStage(step) {
+  if (step === 1) return <MapCard />;
+  if (step === 2) return <RescheduleView />;
+  if (step === 3) return <CourierNotifyView />;
+  if (step === 4) return <CRMUpdateView />;
+  return <SolutionPhone step={step} />;
+}
+
 // Sticky storytelling: scroll position drives which phone variant shows
 function Solution({ t }) {
   const containerRef = useRef(null);
   const stepRefs = useRef([]);
   const [active, setActive] = useState(0);
+
+  // Fade transition between active steps
+  const [displayed, setDisplayed] = useState(0);
+  const [visible, setVisible]     = useState(true);
+
+  useEffect(() => {
+    if (active === displayed) return;
+    setVisible(false);
+    const t = setTimeout(() => {
+      setDisplayed(active);
+      setVisible(true);
+    }, 180);
+    return () => clearTimeout(t);
+  }, [active, displayed]);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -164,7 +201,11 @@ function Solution({ t }) {
 
         <div className="sticky-wrap" ref={containerRef}>
           <div className="sticky-phone">
-            {active === 1 ? <MapCard /> : active === 2 ? <RescheduleView /> : active === 3 ? <CourierNotifyView /> : <SolutionPhone step={active} />}
+            <PhoneStage glow={glowForStep(displayed)}>
+              <div className={`stage-fade ${visible ? "in" : "out"}`}>
+                {renderStage(displayed)}
+              </div>
+            </PhoneStage>
           </div>
 
           <div className="sticky-steps">
@@ -457,7 +498,7 @@ function RescheduleView() {
       <div className="sol-map-glow sol-map-glow-2"></div>
 
       {/* Full map card */}
-      <div className="sol-map-card" style={{width:310, height:560}}>
+      <div className="sol-map-card">
         {/* Map full bleed */}
         <div className="sol-map-body" ref={mapDivRef}>
           {/* Top floating chips */}
@@ -466,38 +507,38 @@ function RescheduleView() {
             <span>{mapPhase === "updated" ? "Address updated" : "Rescheduling..."}</span>
           </div>
           <div className="sol-map-chip-time">3:41 PM</div>
+        </div>
 
-          {/* Same bottom panel as step 2 — slides up on confirm */}
-          <div className={`sol-map-bottom-panel ${mapPhase === "updated" ? "visible" : ""}`}>
-            <div className="sol-map-confirm-row">
-              <div className="sol-map-confirm-icon">
-                <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
-                  <circle cx="12" cy="12" r="10" fill="#22c55e"/>
-                  <path d="M7.5 12l3 3L16.5 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <div className="sol-map-confirm-text">
-                <strong>580 Post St</strong>
-                <span>San Francisco, CA 94102</span>
-              </div>
-              <div className="sol-map-confirm-badge">Updated</div>
+        {/* Bottom panel — sibling of body so it sits below the map */}
+        <div className={`sol-map-bottom-panel ${mapPhase === "updated" ? "visible" : ""}`}>
+          <div className="sol-map-confirm-row">
+            <div className="sol-map-confirm-icon">
+              <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+                <circle cx="12" cy="12" r="10" fill="#22c55e"/>
+                <path d="M7.5 12l3 3L16.5 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </div>
-            <div className="sol-map-panel-divider"></div>
-            <div className="sol-map-stats">
-              <div className="sol-map-stat">
-                <div className="sol-map-stat-label">Window</div>
-                <div className="sol-map-stat-val">3:00–5:00 PM</div>
-              </div>
-              <div className="sol-map-stat-sep"></div>
-              <div className="sol-map-stat">
-                <div className="sol-map-stat-label">ETA</div>
-                <div className="sol-map-stat-val sol-map-stat-orange">~22 min</div>
-              </div>
-              <div className="sol-map-stat-sep"></div>
-              <div className="sol-map-stat">
-                <div className="sol-map-stat-label">Courier</div>
-                <div className="sol-map-stat-val">Route #12</div>
-              </div>
+            <div className="sol-map-confirm-text">
+              <strong>580 Post St</strong>
+              <span>San Francisco, CA 94102</span>
+            </div>
+            <div className="sol-map-confirm-badge">Updated</div>
+          </div>
+          <div className="sol-map-panel-divider"></div>
+          <div className="sol-map-stats">
+            <div className="sol-map-stat">
+              <div className="sol-map-stat-label">Window</div>
+              <div className="sol-map-stat-val">3:00–5:00 PM</div>
+            </div>
+            <div className="sol-map-stat-sep"></div>
+            <div className="sol-map-stat">
+              <div className="sol-map-stat-label">ETA</div>
+              <div className="sol-map-stat-val sol-map-stat-orange">~22 min</div>
+            </div>
+            <div className="sol-map-stat-sep"></div>
+            <div className="sol-map-stat">
+              <div className="sol-map-stat-label">Courier</div>
+              <div className="sol-map-stat-val">Route #12</div>
             </div>
           </div>
         </div>
@@ -647,7 +688,13 @@ function CourierNotifyView() {
               <span className="material-icons wa-back-icon">arrow_back_ios</span>
               <div className="wa-header-av">
                 <svg viewBox="0 0 40 40" width="40" height="40">
-                  <rect width="40" height="40" rx="20" fill="#1565C0"/>
+                  <defs>
+                    <linearGradient id="wa-av-grad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%"  stopColor="#fe5e32"/>
+                      <stop offset="100%" stopColor="#ff9b75"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="40" height="40" rx="20" fill="url(#wa-av-grad)"/>
                   <circle cx="20" cy="15" r="8" fill="rgba(255,255,255,0.92)"/>
                   <ellipse cx="20" cy="35" rx="14" ry="10" fill="rgba(255,255,255,0.92)"/>
                 </svg>
@@ -715,17 +762,164 @@ function CourierNotifyView() {
   );
 }
 
+// ── Step 5: CRM updating in real time ─────────────────────────
+function CRMUpdateView() {
+  const outerRef = useRef(null);
+  const [phase, setPhase] = useState(0); // 0=initial 1=updating 2=address 3=status 4=done
+  const [zoom, setZoom]   = useState(false);
+
+  useEffect(() => {
+    if (outerRef.current && typeof gsap !== "undefined") {
+      gsap.fromTo(outerRef.current,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", clearProps: "all" }
+      );
+    }
+    const timers = [
+      setTimeout(() => setZoom(true),  300),
+      setTimeout(() => setPhase(1), 1200),
+      setTimeout(() => setPhase(2), 2200),
+      setTimeout(() => setPhase(3), 3300),
+      setTimeout(() => setPhase(4), 4500),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const rows = [
+    { id: "#4520", customer: "Lisa Chen",      addr: "120 Mission St",      status: "Delivered",   amount: "$48",  highlight: false },
+    { id: "#4521", customer: "James Carter",   addr: phase >= 2 ? "580 Post St" : "742 Sutter St", status: phase >= 3 ? "Confirmed" : (phase >= 1 ? "Updating..." : "Scheduled"), amount: "$129", highlight: true },
+    { id: "#4522", customer: "Marcus Brown",   addr: "55 Hayes St",         status: "In transit",  amount: "$89",  highlight: false },
+    { id: "#4523", customer: "Sofia Martinez", addr: "300 Grove St",        status: "Scheduled",   amount: "$72",  highlight: false },
+    { id: "#4524", customer: "Eric Wang",      addr: "812 Folsom St",       status: "Scheduled",   amount: "$214", highlight: false },
+  ];
+
+  return (
+    <div className="crm-outer" ref={outerRef}>
+      <div className={`crm-card ${zoom ? "crm-zoomed" : ""}`}>
+        {/* Window chrome */}
+        <div className="crm-chrome">
+          <div className="crm-dots">
+            <span style={{background:"#ff5f57"}}/><span style={{background:"#febc2e"}}/><span style={{background:"#28c840"}}/>
+          </div>
+          <div className="crm-url">
+            <span className="material-icons" style={{fontSize:13,color:"#8e8e93"}}>lock</span>
+            crm.tangering.io / orders
+          </div>
+          <div className="crm-sync">
+            <div className={`crm-sync-dot ${phase >= 1 && phase < 4 ? "syncing" : phase >= 4 ? "done" : ""}`}/>
+            <span>{phase >= 4 ? "Synced" : phase >= 1 ? "Syncing..." : "Live"}</span>
+          </div>
+        </div>
+
+        {/* Header */}
+        <div className="crm-header">
+          <div>
+            <div className="crm-title">Orders <span className="crm-count">5</span></div>
+            <div className="crm-sub">Updated by <strong>Tangering AI</strong> · just now</div>
+          </div>
+          <div className="crm-toolbar">
+            <div className="crm-tool"><span className="material-icons" style={{fontSize:14}}>filter_list</span>Filter</div>
+            <div className="crm-tool"><span className="material-icons" style={{fontSize:14}}>sort</span>Sort</div>
+            <div className="crm-tool crm-tool-dark"><span className="material-icons" style={{fontSize:14}}>add</span>New</div>
+          </div>
+        </div>
+
+        {/* Table */}
+        <div className="crm-table">
+          <div className="crm-row crm-row-head">
+            <div>Order</div><div>Customer</div><div>Address</div><div>Status</div><div>Amount</div>
+          </div>
+          {rows.map((r, i) => (
+            <div key={r.id} className={`crm-row ${r.highlight ? "crm-row-active" : ""}`}>
+              <div className="crm-cell-id">{r.id}</div>
+              <div>{r.customer}</div>
+              <div className={`crm-cell-addr ${r.highlight && phase >= 2 ? "crm-cell-changed" : ""}`}>
+                {r.addr}
+                {r.highlight && phase >= 2 && (
+                  <span className="crm-diff-tag">updated</span>
+                )}
+              </div>
+              <div>
+                <span className={`crm-status crm-status-${
+                  r.status === "Delivered"  ? "ok"  :
+                  r.status === "Confirmed"  ? "ok"  :
+                  r.status === "Updating..." ? "sync" :
+                  r.status === "In transit" ? "warn" : "neutral"}`}>
+                  {r.status === "Updating..." && <span className="crm-status-spin"/>}
+                  {r.status}
+                </span>
+              </div>
+              <div className="crm-cell-amt">{r.amount}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Activity feed */}
+        <div className="crm-activity">
+          <div className="crm-act-title">
+            <span className="material-icons" style={{fontSize:14, color:"#fe5e32"}}>bolt</span>
+            Activity log
+          </div>
+          {[
+            { t: "Address updated", d: "742 Sutter St → 580 Post St", time: "just now", show: phase >= 2, color: "#fe5e32" },
+            { t: "Status confirmed", d: "Order #4521 → Confirmed",     time: "just now", show: phase >= 3, color: "#22c55e" },
+            { t: "Webhook fired",   d: "POST /api/orders/sync · 200",  time: "just now", show: phase >= 4, color: "#1a1a2e" },
+          ].filter(a => a.show).map((a, i) => (
+            <div key={i} className="crm-act-item">
+              <div className="crm-act-dot" style={{background: a.color}}/>
+              <div className="crm-act-text">
+                <strong>{a.t}</strong>
+                <span>{a.d}</span>
+              </div>
+              <div className="crm-act-time">{a.time}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── iPhone 17 Solution Phone ──────────────────────────────────
+const CALL_AUDIO_URL = "https://media.vocaroo.com/mp3/1kEa2KjGICxl";
+
 function SolutionPhone({ step }) {
   const [tick, setTick] = useState(step * 5);
+  const [audioOn, setAudioOn] = useState(false);
   const txRef = useRef(null);
+  const audioRef = useRef(null);
 
+  // Timer
   useEffect(() => {
     setTick(step * 5);
     if (step === 4) return;
     const iv = setInterval(() => setTick(t => t + 1), 1000);
     return () => clearInterval(iv);
   }, [step]);
+
+  // Auto-play audio when step 0 (call) is active
+  useEffect(() => {
+    if (!audioRef.current) return;
+    if (step === 0) {
+      audioRef.current.currentTime = 0;
+      const playPromise = audioRef.current.play();
+      if (playPromise) {
+        playPromise.then(() => setAudioOn(true)).catch(() => setAudioOn(false));
+      }
+    } else {
+      audioRef.current.pause();
+      setAudioOn(false);
+    }
+  }, [step]);
+
+  // Track when audio ends
+  useEffect(() => {
+    const a = audioRef.current;
+    if (!a) return;
+    const onEnd = () => setAudioOn(false);
+    a.addEventListener("ended", onEnd);
+    return () => a.removeEventListener("ended", onEnd);
+  }, []);
 
   useEffect(() => {
     if (txRef.current) txRef.current.scrollTop = txRef.current.scrollHeight;
@@ -809,6 +1003,12 @@ function SolutionPhone({ step }) {
                 <p className="ip17-ios-duration">{isEnded ? "llamada terminada" : timerStr}</p>
               </div>
 
+              {/* Hidden audio — plays during step 0 (no visible UI inside phone) */}
+              {step === 0 && (
+                <audio ref={audioRef} src={CALL_AUDIO_URL} preload="auto" playsInline
+                       style={{display:'none'}}/>
+              )}
+
               {/* Spacer */}
               <div className="ip17-ios-spacer">
                 {isEnded && (
@@ -843,9 +1043,6 @@ function SolutionPhone({ step }) {
                   <svg viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08A.996.996 0 010 12.37c0-.28.11-.53.29-.71C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28a11.27 11.27 0 00-2.67-1.85c-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/></svg>
                 </button>
               </div>
-
-              {/* Home indicator */}
-              <div className="ip17-ios-home"></div>
             </div>
           )}
         </div>
