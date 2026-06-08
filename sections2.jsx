@@ -278,6 +278,7 @@ function HowItWorks({ t }) {
     <section className="how4" data-screen-label="07 How it works" ref={ref}>
       <div className="container">
         <FadeUp className="how4-head">
+          <div className="eyebrow"><span className="pulse"></span>Omni-channel</div>
           <h2>True omni-channel integration.</h2>
           <p className="how4-sub">
             Plug Tangering into the tools you already use. One AI agent across every
@@ -401,15 +402,12 @@ function VoiceTech() {
         <div className="vtech-hero">
           <div className="vtech-hero-content">
             <FadeUp>
-              <div className="vtech-eyebrow">
-                <span className="vtech-eyebrow-line"></span>
-                THE VOICE BEHIND TANGERING
-              </div>
+              <div className="eyebrow"><span className="pulse"></span>The voice behind Tangering</div>
             </FadeUp>
             <FadeUp delay={120}>
               <h2 className="vtech-h2">
-                Voices customers
-                <br/><em className="vtech-accent">actually pick up.</em>
+                Natural voice.
+                <br/><em className="vtech-accent">In your customer's language.</em>
               </h2>
             </FadeUp>
             <FadeUp delay={240}>
@@ -473,52 +471,78 @@ function VoiceTech() {
 }
 
 function FlowBuilder({ t }) {
-  const [ref, inView] = useInView({ threshold: 0.3 });
-  return (
-    <section className={`flow ${inView ? "in" : ""}`} data-screen-label="08 Flow builder" ref={ref}>
-      <div className="container">
-        <FadeUp className="flow-head">
-          <div className="eyebrow" style={{ background: "rgba(255,255,255,0.08)", color: "white" }}>
-            <span className="pulse"></span>
-            {t.flow.eyebrow}
-          </div>
-          <h2>{t.flow.h2}</h2>
-          <p className="lead">{t.flow.sub}</p>
-        </FadeUp>
+  const [ref, inView] = useInView({ threshold: 0.2, once: false });
+  const [open, setOpen] = useState(0);
 
-        <FadeUp delay={200}>
-          <div className="flow-canvas">
-            <svg className="flow-svg" viewBox="0 0 1000 220" preserveAspectRatio="none">
-              <path d="M 140 60 C 200 60, 220 60, 280 60" />
-              <path d="M 420 60 C 480 60, 500 60, 560 60" />
-              <path d="M 700 60 C 760 60, 780 60, 840 60" />
-            </svg>
-            <div className="flow-nodes">
-              {[
-                { t: t.flow.n1t, d: t.flow.n1d, ico: "⚡" },
-                { t: t.flow.n2t, d: t.flow.n2d, ico: "📞" },
-                { t: t.flow.n3t, d: t.flow.n3d, ico: "?" },
-                { t: t.flow.n4t, d: t.flow.n4d, ico: "↗" },
-              ].map((n, i) => (
-                <div key={i} className="flow-node">
-                  <div className="ico">{n.ico}</div>
-                  <div className="type">{n.t}</div>
-                  <div className="title">{n.d}</div>
-                  <div className="meta">
-                    <span className="d"></span> {t.flow.meta}
+  const items = [
+    {
+      title: "Drag-and-drop builder",
+      desc: "Compose calls visually: triggers, branches, hand-offs. Anyone on your ops team can ship a new flow in an afternoon.",
+    },
+    {
+      title: "Decisions, not scripts",
+      desc: "Set conditions on real customer responses — confirm, reschedule, escalate — without writing a single line of code.",
+    },
+    {
+      title: "Version control & live testing",
+      desc: "Test every change against past calls before going live. Roll back any version with one click.",
+    },
+    {
+      title: "Built-in integrations",
+      desc: "Pull data from your CRM, write back to your ERP, fire webhooks. All inside the same canvas.",
+    },
+  ];
+
+  return (
+    <section className="flow2" data-screen-label="08 Flow builder" ref={ref}>
+      <div className="container">
+        <div className="flow2-grid">
+          {/* Left — title + accordion */}
+          <div className="flow2-left">
+            <FadeUp>
+              <div className="eyebrow"><span className="pulse"></span>No-code builder</div>
+            </FadeUp>
+            <FadeUp delay={120}>
+              <h2 className="flow2-h2">
+                Build flows
+                <br/><em className="flow2-accent">without writing a line.</em>
+              </h2>
+            </FadeUp>
+
+            <div className="flow2-acc">
+              {items.map((it, i) => (
+                <FadeUp key={i} delay={200 + i * 80}>
+                  <div className={`flow2-acc-item ${open === i ? "is-open" : ""}`}
+                       onClick={() => setOpen(i)}>
+                    <div className="flow2-acc-head">
+                      <span className="flow2-acc-title">{it.title}</span>
+                      <span className="flow2-acc-toggle">
+                        <span className="material-icons">
+                          {open === i ? "remove" : "add"}
+                        </span>
+                      </span>
+                    </div>
+                    {open === i && (
+                      <div className="flow2-acc-body">{it.desc}</div>
+                    )}
                   </div>
-                </div>
+                </FadeUp>
               ))}
             </div>
-
-            <div className="flow-toolbar">
-              <div className="flow-tool">{t.flow.tools1}</div>
-              <div className="flow-tool">{t.flow.tools2}</div>
-              <div className="flow-tool">{t.flow.tools3}</div>
-              <div className="flow-tool">{t.flow.tools4}</div>
-            </div>
           </div>
-        </FadeUp>
+
+          {/* Right — video card */}
+          <FadeUp delay={200} className="flow2-right">
+            <div className="flow2-video-card">
+              <div className="flow2-video-glow"></div>
+              <video
+                className="flow2-video"
+                src="assets/flow-builder.mov"
+                autoPlay loop muted playsInline
+              />
+            </div>
+          </FadeUp>
+        </div>
       </div>
     </section>
   );

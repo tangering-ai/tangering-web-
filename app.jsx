@@ -24,9 +24,8 @@ function App() {
       <UseCases t={t} />
       <Differentiator t={t} />
       <HowItWorks t={t} />
-      <VoiceTech />
       <FlowBuilder t={t} />
-      <AudioSamples t={t} />
+      <VoiceTech />
       <FinalCTA t={t} />
       <Footer t={t} />
     </>
