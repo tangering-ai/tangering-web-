@@ -293,33 +293,41 @@ const CALL_EVENTS = [
   ],
 ];
 
-// ── Real map card — dynamic address verification ──────────────
+// ── Map step — immersive map + search + confirmation card ─────
 function MapCard() {
-  const divRef     = useRef(null);
-  const mapRef     = useRef(null);
-  const cardRef    = useRef(null);
-  const overlayRef = useRef(null);
-  const [phase, setPhase] = useState(0); // 0=scanning 1=confirmed
+  const divRef    = useRef(null);
+  const mapRef    = useRef(null);
+  const cardRef   = useRef(null);
+  const [phase, setPhase] = useState(0); // 0=typing 1=looking 2=confirmed
+  const [typed, setTyped] = useState("");
+  const FULL_ADDRESS = "742 Sutter St, San Francisco, CA";
 
-  // GSAP entrance + phase timers
+  // Typing animation + phase timers
   useEffect(() => {
     if (cardRef.current && typeof gsap !== "undefined") {
       gsap.fromTo(cardRef.current,
-        { opacity: 0, scale: 0.9, y: 28, filter: "blur(10px)" },
-        { opacity: 1, scale: 1,   y: 0,  filter: "blur(0px)",
-          duration: 0.65, ease: "power3.out" }
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", clearProps: "all" }
       );
     }
-    setPhase(0);
-    const t = setTimeout(() => setPhase(1), 1400);
-    return () => clearTimeout(t);
+    // Type address character by character
+    let i = 0;
+    setTyped("");
+    const typer = setInterval(() => {
+      i++;
+      setTyped(FULL_ADDRESS.slice(0, i));
+      if (i >= FULL_ADDRESS.length) clearInterval(typer);
+    }, 55);
+
+    const t1 = setTimeout(() => setPhase(1), FULL_ADDRESS.length * 55 + 300);
+    const t2 = setTimeout(() => setPhase(2), FULL_ADDRESS.length * 55 + 1400);
+    return () => { clearInterval(typer); clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
-  // Leaflet
+  // Leaflet — full bleed, no borders
   useEffect(() => {
     const L = window.L;
     if (!L || mapRef.current) return;
-    // 742 Sutter St, San Francisco, CA 94109 — exact coords
     const lat = 37.78769, lng = -122.41845;
     const map = L.map(divRef.current, {
       center: [lat, lng], zoom: 17,
@@ -327,79 +335,67 @@ function MapCard() {
       scrollWheelZoom: false, dragging: false, doubleClickZoom: false,
       keyboard: false,
     });
-    // Gray toned map style
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
       { maxZoom: 19 }).addTo(map);
-    // Animated pin
     const icon = L.divIcon({
       className: '',
       html: `<div class="map-live-pin"><div class="map-live-ring"></div><div class="map-live-dot"></div><div class="map-live-shadow"></div></div>`,
       iconSize: [40, 40], iconAnchor: [20, 20],
     });
     L.marker([lat, lng], { icon }).addTo(map);
-    // Force correct size after render
     setTimeout(() => map.invalidateSize(), 100);
     mapRef.current = map;
     return () => { map.remove(); mapRef.current = null; };
   }, []);
 
   return (
-    <div className="sol-map-outer" ref={cardRef}>
-      {/* Colorful glow behind card for glass effect */}
-      <div className="sol-map-glow sol-map-glow-1"></div>
-      <div className="sol-map-glow sol-map-glow-2"></div>
+    <div className="sol-map-immersive" ref={cardRef}>
+      {/* Full-bleed map, no card */}
+      <div className="sol-map-immersive-body" ref={divRef}></div>
 
-      <div className="sol-map-card">
-        {/* Map — full bleed */}
-        <div className="sol-map-body" ref={divRef}>
-          {phase === 0 && <div className="sol-map-scan-line"></div>}
-
-          {/* Floating status chip — top left */}
-          <div className="sol-map-chip-status">
-            <div className={`sol-map-status-dot ${phase === 1 ? "confirmed" : "scanning"}`}></div>
-            <span>{phase === 1 ? "Address confirmed" : "Verifying..."}</span>
-          </div>
-
-          {/* Floating time chip — top right */}
-          <div className="sol-map-chip-time">3:41 PM</div>
+      {/* Top search bar with typing */}
+      <div className="sol-search">
+        <span className="material-icons sol-search-icon">search</span>
+        <div className="sol-search-text">
+          {typed}
+          {phase < 2 && <span className="sol-search-caret">|</span>}
         </div>
+        {phase === 1 && (
+          <span className="sol-search-spinner"/>
+        )}
+        {phase === 2 && (
+          <svg viewBox="0 0 20 20" fill="none" width="18" height="18">
+            <circle cx="10" cy="10" r="9" fill="#22c55e"/>
+            <path d="M6 10l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        )}
+      </div>
 
-        {/* Glass bottom panel — slides up when confirmed */}
-        <div className={`sol-map-bottom-panel ${phase === 1 ? "visible" : ""}`}>
-          {/* Address row */}
-          <div className="sol-map-confirm-row">
-            <div className="sol-map-confirm-icon">
-              <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
-                <circle cx="12" cy="12" r="10" fill="#22c55e"/>
-                <path d="M7.5 12l3 3L16.5 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className="sol-map-confirm-text">
-              <strong>742 Sutter St</strong>
-              <span>San Francisco, CA 94109</span>
-            </div>
-            <div className="sol-map-confirm-badge">Verified</div>
+      {/* Confirmation card — appears when phase 2 */}
+      <div className={`sol-confirm-card ${phase === 2 ? "visible" : ""}`}>
+        <div className="sol-confirm-header">
+          <div className="sol-confirm-pin">
+            <span className="material-icons" style={{fontSize:16,color:"#fe5e32"}}>place</span>
           </div>
-
-          {/* Divider */}
-          <div className="sol-map-panel-divider"></div>
-
-          {/* Stats row */}
-          <div className="sol-map-stats">
-            <div className="sol-map-stat">
-              <div className="sol-map-stat-label">Window</div>
-              <div className="sol-map-stat-val">3:00–5:00 PM</div>
-            </div>
-            <div className="sol-map-stat-sep"></div>
-            <div className="sol-map-stat">
-              <div className="sol-map-stat-label">ETA</div>
-              <div className="sol-map-stat-val sol-map-stat-orange">~18 min</div>
-            </div>
-            <div className="sol-map-stat-sep"></div>
-            <div className="sol-map-stat">
-              <div className="sol-map-stat-label">Courier</div>
-              <div className="sol-map-stat-val">Route #12</div>
-            </div>
+          <div className="sol-confirm-info">
+            <strong>742 Sutter St</strong>
+            <span>San Francisco, CA 94109</span>
+          </div>
+          <div className="sol-confirm-pill">Verified</div>
+        </div>
+        <div className="sol-confirm-divider"></div>
+        <div className="sol-confirm-stats">
+          <div className="sol-confirm-stat">
+            <span className="sol-confirm-stat-label">Window</span>
+            <span className="sol-confirm-stat-val">3:00 – 5:00 PM</span>
+          </div>
+          <div className="sol-confirm-stat">
+            <span className="sol-confirm-stat-label">ETA</span>
+            <span className="sol-confirm-stat-val accent">~18 min</span>
+          </div>
+          <div className="sol-confirm-stat">
+            <span className="sol-confirm-stat-label">Courier</span>
+            <span className="sol-confirm-stat-val">Route #12</span>
           </div>
         </div>
       </div>

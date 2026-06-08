@@ -916,6 +916,165 @@ section { position: relative; }
   inset: 6px;
 }
 
+/* ══════════════════════════════════
+   Immersive map step — full bleed
+══════════════════════════════════ */
+.phone-stage:has(.sol-map-immersive) {
+  width: 380px;
+  height: 620px;
+  filter: none;          /* no drop-shadow — would create a gray halo at faded edges */
+}
+.sol-map-immersive {
+  position: relative;
+  width: 380px;
+  height: 620px;
+}
+/* Soft vignette on the MAP only — search bar & confirm card sit above and unaffected */
+.sol-map-immersive-body {
+  -webkit-mask-image: radial-gradient(ellipse 80% 75% at center, #000 50%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 75% at center, #000 50%, transparent 100%);
+}
+.sol-map-immersive-body {
+  position: absolute; inset: 0;
+  /* The map itself fades to alpha 0 at the edges — no gray, just bg */
+  -webkit-mask-image: radial-gradient(ellipse 65% 60% at center,
+    #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse 65% 60% at center,
+    #000 45%, transparent 100%);
+  filter: none;
+  opacity: 1;
+}
+.sol-map-immersive-body .leaflet-container {
+  width: 100%; height: 100%;
+  background: transparent !important;
+}
+.sol-map-immersive-body .leaflet-tile { background: transparent; }
+
+/* Top search bar — glass, borderless */
+.sol-search {
+  position: absolute;
+  top: 24px; left: 24px; right: 24px;
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(22px) saturate(1.5);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow:
+    0 8px 24px rgba(15,23,42,0.06),
+    0 0 0 1px rgba(15,23,42,0.04);
+  z-index: 10;
+  animation: hcc-pop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.sol-search-icon { font-size: 18px !important; color: #71717a; flex-shrink: 0; }
+.sol-search-text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a2e;
+  font-family: 'SF Pro Text', -apple-system, sans-serif;
+  white-space: nowrap; overflow: hidden;
+}
+.sol-search-caret {
+  display: inline-block;
+  margin-left: 2px;
+  color: #fe5e32;
+  font-weight: 300;
+  animation: sol-caret 0.8s steps(1) infinite;
+}
+@keyframes sol-caret { 50% { opacity: 0; } }
+.sol-search-spinner {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 1.8px solid rgba(254,94,50,0.25);
+  border-top-color: #fe5e32;
+  animation: spin 0.7s linear infinite;
+}
+
+/* Confirmation card — glass, borderless, floats over faded map */
+.sol-confirm-card {
+  position: absolute;
+  bottom: 24px; left: 24px; right: 24px;
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow:
+    0 12px 32px rgba(15,23,42,0.08),
+    0 0 0 1px rgba(15,23,42,0.04);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.55s cubic-bezier(0.34,1.4,0.64,1);
+  z-index: 10;
+}
+.sol-confirm-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sol-confirm-header {
+  display: flex; align-items: center; gap: 12px;
+}
+.sol-confirm-pin {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(254,94,50,0.12);
+  border: 1px solid rgba(254,94,50,0.22);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sol-confirm-info { flex: 1; min-width: 0; }
+.sol-confirm-info strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a2e;
+  letter-spacing: -0.01em;
+}
+.sol-confirm-info span {
+  display: block;
+  font-size: 12px;
+  color: #71717a;
+  margin-top: 2px;
+}
+.sol-confirm-pill {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #16a34a;
+  background: rgba(34,197,94,0.12);
+  border: 1px solid rgba(34,197,94,0.25);
+  padding: 5px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.sol-confirm-divider {
+  height: 1px;
+  background: rgba(15,23,42,0.06);
+  margin: 14px 0;
+}
+.sol-confirm-stats {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px;
+}
+.sol-confirm-stat {
+  display: flex; flex-direction: column; gap: 3px;
+}
+.sol-confirm-stat-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #a1a1aa;
+}
+.sol-confirm-stat-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+.sol-confirm-stat-val.accent { color: #fe5e32; }
+
 /* ── Unified map card (MapCard + RescheduleView) ── */
 .phone-stage .sol-map-outer,
 .phone-stage .resch-outer { width: 300px; }
