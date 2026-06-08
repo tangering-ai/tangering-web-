@@ -901,12 +901,18 @@
 }
 /* Logos que necesitan más tamaño */
 .hero-brand img[alt*="Amarilo"],
-.hero-brand img[alt*="GNP"],
 .hero-brand img[alt*="Servientrega"] {
   height: 58px;
   max-height: 58px;
   width: auto;
   max-width: 200px;
+}
+/* GNP — un poco más grande */
+.hero-brand img[alt*="GNP"] {
+  height: 114px;
+  max-height: 114px;
+  width: auto;
+  max-width: 270px;
 }
 .hero-brand:hover { opacity: 0.9; }
 
