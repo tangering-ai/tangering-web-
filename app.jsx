@@ -16,6 +16,7 @@ function App() {
 
   return (
     <>
+      <ParallaxBoot />
       <Nav lang={lang} setLang={setLang} t={t} />
       <Hero t={t} />
       <Problem t={t} />

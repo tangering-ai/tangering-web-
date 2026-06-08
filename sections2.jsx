@@ -483,7 +483,7 @@ function FlowBuilder({ t }) {
     {
       title: "Real-time decisions on every call",
       desc: "Set conditions on real customer responses — confirm, reschedule, escalate, book — and watch the agent act on them live without a single line of code.",
-      video: "assets/flow-builder.mov",
+      video: "assets/flow-builder-2.mov",
       gradient: "ag2",
     },
     {

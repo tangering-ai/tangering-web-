@@ -137,8 +137,82 @@ function useSceneLoop(scenes = 4, durations = [5500, 5500, 4500, 4500]) {
   return [i, durations[i]];
 }
 
+// Global parallax — applies scrub-tied Y translation to elements
+// marked with [data-parallax] (background layer, slow drift) and
+// every section h2 (subtle headline drift).
+function ParallaxBoot() {
+  useEffect(() => {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // Drift every section heading slightly up as it scrolls past
+      gsap.utils.toArray("section h2").forEach((h) => {
+        gsap.fromTo(h,
+          { y: 36 },
+          {
+            y: -36,
+            ease: "none",
+            scrollTrigger: {
+              trigger: h,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.6,
+            },
+          }
+        );
+      });
+
+      // Card grids: subtle staggered Y based on scroll
+      gsap.utils.toArray(".uc-grid, .how4-stair, .flow3-grid, .crm-table, .proof-right").forEach((grid) => {
+        const cards = grid.children;
+        gsap.utils.toArray(cards).forEach((card, i) => {
+          gsap.fromTo(card,
+            { y: 32 + (i % 2) * 18 },
+            {
+              y: 0,
+              ease: "none",
+              scrollTrigger: {
+                trigger: grid,
+                start: "top bottom",
+                end: "center center",
+                scrub: 0.4,
+              },
+            }
+          );
+        });
+      });
+
+      // Decorative parallax layers
+      gsap.utils.toArray("[data-parallax]").forEach((el) => {
+        const speed = parseFloat(el.dataset.parallax) || 0.3;
+        gsap.fromTo(el,
+          { yPercent: -speed * 30 },
+          {
+            yPercent: speed * 30,
+            ease: "none",
+            scrollTrigger: {
+              trigger: el,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        );
+      });
+
+      ScrollTrigger.refresh();
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return null;
+}
+
 window.useInView = useInView;
 window.WordReveal = WordReveal;
 window.CountUp = CountUp;
 window.FadeUp = FadeUp;
 window.useSceneLoop = useSceneLoop;
+window.ParallaxBoot = ParallaxBoot;
