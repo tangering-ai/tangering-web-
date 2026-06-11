@@ -543,4 +543,101 @@ function FlowBuilder({ t }) {
   );
 }
 
-Object.assign(window, { Differentiator, HowItWorks, FlowBuilder, VoiceTech });
+function Security({ t }) {
+  const items = [
+    {
+      title: "Compliance & data privacy",
+      desc: "SOC 2 Type II, GDPR and HIPAA-ready. Every call, transcript and event is encrypted in transit and at rest — and we sign DPAs out of the box.",
+      icon: "verified_user",
+      badge: "SOC 2",
+      gradient: "sec-g1",
+    },
+    {
+      title: "Single sign-on",
+      desc: "Plug Tangering into your identity provider — Okta, Azure AD, Google Workspace — and let your security team manage access from one place.",
+      icon: "vpn_key",
+      gradient: "sec-g2",
+    },
+    {
+      title: "Automatic PII redaction",
+      desc: "Card numbers, IDs and addresses get masked in real time across audio, transcripts and webhooks. Configure what to redact per use case.",
+      icon: "lock",
+      bubbles: true,
+      gradient: "sec-g3",
+    },
+    {
+      title: "Role-based access",
+      desc: "Granular roles down to the module — operations, QA, finance, admin. Audit who saw, changed or exported what, anytime.",
+      icon: "settings_accessibility",
+      gradient: "sec-g4",
+    },
+    {
+      title: "Built for scale",
+      desc: "Battle-tested infrastructure that has already processed +1M last-mile calls. Burst to thousands of concurrent conversations without a degraded experience.",
+      icon: "rocket_launch",
+      gradient: "sec-g5",
+    },
+    {
+      title: "Private deployment",
+      desc: "Need everything inside your own VPC? We offer dedicated and on-prem deployments for regulated industries and large enterprise accounts.",
+      icon: "cloud_done",
+      gradient: "sec-g6",
+    },
+  ];
+
+  return (
+    <section className="security" data-screen-label="11 Security">
+      <div className="container">
+        <div className="security-head">
+          <FadeUp className="security-head-left">
+            <span className="eyebrow"><span className="dot" /> Trust & security</span>
+            <h2 className="security-h2">
+              Enterprise-grade <span className="security-accent">by design.</span>
+            </h2>
+          </FadeUp>
+          <FadeUp className="security-head-right" delay={120}>
+            <p>
+              From data privacy to global resilience, Tangering meets the security standards
+              required to run mission-critical voice and messaging at production scale.
+            </p>
+          </FadeUp>
+        </div>
+
+        <div className="security-carousel-wrap">
+          <div className="security-carousel">
+            {items.map((it, i) => (
+              <div key={i} className="security-card">
+                <div className="security-card-text">
+                  <h3 className="security-card-title">{it.title}</h3>
+                  <p className="security-card-desc">{it.desc}</p>
+                </div>
+                <div className={`security-card-visual ${it.gradient}`}>
+                  {it.badge ? (
+                    <div className="security-badge">{it.badge}</div>
+                  ) : it.bubbles ? (
+                    <div className="security-bubbles">
+                      <div className="sec-bubble"><span className="material-icons">lock</span> [Credit Card]…</div>
+                      <div className="sec-bubble"><span className="material-icons">lock</span> [Patient ID]…</div>
+                      <div className="sec-bubble"><span className="material-icons">lock</span> [Password]…</div>
+                    </div>
+                  ) : (
+                    <div className="security-icon">
+                      <span className="material-icons">{it.icon}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="security-carousel-hint">
+            <span className="material-icons">arrow_back</span>
+            <span>Scroll to see more</span>
+            <span className="material-icons">arrow_forward</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, { Differentiator, HowItWorks, FlowBuilder, VoiceTech, Security });

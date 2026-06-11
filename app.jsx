@@ -27,6 +27,7 @@ function App() {
       <HowItWorks t={t} />
       <FlowBuilder t={t} />
       <VoiceTech />
+      <Security t={t} />
       <FinalCTA t={t} />
       <Footer t={t} />
     </>
