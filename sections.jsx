@@ -50,7 +50,7 @@ function Problem({ t }) {
     gsap.registerPlugin(ScrollTrigger);
     const section = sectionRef.current;
 
-    // Cards entrance — bounce stagger
+    // Cards entrance, bounce stagger
     const cards = section.querySelectorAll(".problem-card");
     gsap.from(cards, {
       opacity: 0, y: 70, scale: 0.92,
@@ -195,7 +195,7 @@ function Solution({ t }) {
             <span className="pulse"></span>
             {t.solution.eyebrow}
           </div>
-          <h2>{t.solution.h2}</h2>
+          <h2>One call. <em>Five steps.</em> Zero friction.</h2>
           <p className="lead">{t.solution.sub}</p>
         </FadeUp>
 
@@ -232,31 +232,31 @@ function Solution({ t }) {
 
 // All transcript lines accumulated per step
 const CALL_TRANSCRIPT = [
-  // step 0 — agent opens the call
+  // step 0, agent opens the call
   [
     { agent: true,  msg: "Hi James! I'm Sarah, an AI assistant from Envios.com." },
     { agent: false, msg: "Hello?" },
     { agent: true,  msg: "I'm calling about your order #4521 scheduled for delivery today." },
   ],
-  // step 1 — identity verification
+  // step 1, identity verification
   [
-    { agent: false, msg: "Oh right, yes — what do you need?" },
+    { agent: false, msg: "Oh right, yes, what do you need?" },
     { agent: true,  msg: "Just a couple of quick details. Am I speaking with James Carter?" },
     { agent: false, msg: "Yes, that's me." },
   ],
-  // step 2 — address confirmation
+  // step 2, address confirmation
   [
     { agent: true,  msg: "Can you confirm your delivery address? We have 742 Elm Street." },
-    { agent: false, msg: "Yes, that's correct — 742 Elm Street." },
+    { agent: false, msg: "Yes, that's correct, 742 Elm Street." },
     { agent: true,  msg: "Perfect. Your delivery window is confirmed for 3–5 PM today." },
   ],
-  // step 3 — courier notified
+  // step 3, courier notified
   [
     { agent: false, msg: "That works perfectly for me." },
     { agent: true,  msg: "Your courier has been notified. You'll get a text 20 min before arrival." },
     { agent: false, msg: "Great, thank you so much!" },
   ],
-  // step 4 — wrap up
+  // step 4, wrap up
   [
     { agent: true,  msg: "You're all set, James! Have a great day. Goodbye!" },
     { agent: false, msg: "Thanks, bye!" },
@@ -289,11 +289,11 @@ const CALL_EVENTS = [
   [
     { color: "#38bdf8", label: "[CRM] Record synced · order #4521" },
     { color: "#f472b6", label: "[HOOK] Webhook fired → ERP" },
-    { color: "#beef62", label: "[DONE] Confirmed — 0 humans involved" },
+    { color: "#beef62", label: "[DONE] Confirmed, 0 humans involved" },
   ],
 ];
 
-// ── Map step — immersive map + search + confirmation card ─────
+// ── Map step, immersive map + search + confirmation card ─────
 function MapCard() {
   const divRef    = useRef(null);
   const mapRef    = useRef(null);
@@ -324,7 +324,7 @@ function MapCard() {
     return () => { clearInterval(typer); clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
-  // Leaflet — full bleed, no borders
+  // Leaflet, full bleed, no borders
   useEffect(() => {
     const L = window.L;
     if (!L || mapRef.current) return;
@@ -371,7 +371,7 @@ function MapCard() {
         )}
       </div>
 
-      {/* Confirmation card — appears when phase 2 */}
+      {/* Confirmation card, appears when phase 2 */}
       <div className={`sol-confirm-card ${phase === 2 ? "visible" : ""}`}>
         <div className="sol-confirm-header">
           <div className="sol-confirm-pin">
@@ -403,10 +403,10 @@ function MapCard() {
   );
 }
 
-// ── Step 3: Reschedule — map + conversation side by side ─────
+// ── Step 3: Reschedule, map + conversation side by side ─────
 const RESCHEDULE_CHAT = [
   { from: "agent", text: "Hi James! Confirming delivery to 742 Sutter St today 3–5 PM.", delay: 400 },
-  { from: "user",  text: "Actually I moved last week — new address is 580 Post St.", delay: 1800 },
+  { from: "user",  text: "Actually I moved last week, new address is 580 Post St.", delay: 1800 },
   { from: "agent", text: "Got it! Updating your delivery address right now...", delay: 3200 },
   { from: "agent", text: "Done. Confirmed to 580 Post St, SF. Same window: 3–5 PM.", delay: 4600, confirm: true },
 ];
@@ -508,7 +508,7 @@ function RescheduleView() {
         )}
       </div>
 
-      {/* Confirmation card — bottom, appears when updated */}
+      {/* Confirmation card, bottom, appears when updated */}
       <div className={`sol-confirm-card ${mapPhase === "updated" ? "visible" : ""}`}>
         <div className="sol-confirm-header">
           <div className="sol-confirm-pin">
@@ -537,7 +537,7 @@ function RescheduleView() {
         </div>
       </div>
 
-      {/* Floating chat card — hero style */}
+      {/* Floating chat card, hero style */}
       <div className="resch-chat-float">
         {/* Agent chip */}
         <div className="hcc-agent-chip" style={{marginBottom:10}}>
@@ -595,7 +595,7 @@ function RescheduleView() {
 
 // ── Step 4: Courier WhatsApp notification ──────────────────────
 const COURIER_MSGS = [
-  { delay: 600,  side: "out", text: "📦 New delivery assigned — Order #4521", time: "3:41" },
+  { delay: 600,  side: "out", text: "📦 New delivery assigned, Order #4521", time: "3:41" },
   { delay: 1800, side: "out", text: "📍 Updated address: 580 Post St, San Francisco CA 94102", time: "3:41" },
   { delay: 3000, side: "out", text: "👤 Customer: James Carter · +1 (555) 012-4567", time: "3:42" },
   { delay: 4100, side: "out", text: "🕐 Window: today 3:00–5:00 PM", time: "3:42" },
@@ -650,7 +650,7 @@ function CourierNotifyView() {
 
           {/* WhatsApp UI */}
           <div className="wa-app">
-            {/* Status bar — same row as island */}
+            {/* Status bar, same row as island */}
             <div className="wa-status-bar">
               <span className="wa-time">9:40</span>
               <div className="wa-status-right">
@@ -790,7 +790,7 @@ function CRMUpdateView() {
         {isSyncing && <span className="sol-search-spinner"/>}
       </div>
 
-      {/* Big focused order card — the one being updated */}
+      {/* Big focused order card, the one being updated */}
       <div className={`crmv2-card ${isSyncing ? "is-updating" : ""} ${isDone ? "is-done" : ""}`}>
         <div className="crmv2-card-top">
           <div>
@@ -803,7 +803,7 @@ function CRMUpdateView() {
           </div>
         </div>
 
-        {/* Address field — live update */}
+        {/* Address field, live update */}
         <div className="crmv2-field">
           <div className="crmv2-field-label">Delivery address</div>
           <div className="crmv2-field-value">
@@ -830,7 +830,7 @@ function CRMUpdateView() {
         </div>
       </div>
 
-      {/* Activity feed — compact, glass */}
+      {/* Activity feed, compact, glass */}
       <div className="crmv2-activity">
         <div className="crmv2-act-head">
           <span className="material-icons" style={{fontSize:14, color:"#fe5e32"}}>bolt</span>
@@ -919,7 +919,7 @@ function SolutionPhone({ step }) {
         <div className="ip17-screen">
           <div className="ip17-island"></div>
 
-          {/* Step 0 — Incoming */}
+          {/* Step 0, Incoming */}
           {isIncoming && (
             <div className="ip17-incoming">
               <p className="ip17-incoming-label">Llamada entrante</p>
@@ -940,9 +940,9 @@ function SolutionPhone({ step }) {
             </div>
           )}
 
-          {/* Step 2 — standalone map card (real Leaflet map) */}
+          {/* Step 2, standalone map card (real Leaflet map) */}
 
-          {/* Steps 1, 3-4 — Active / Ended — iOS native call UI */}
+          {/* Steps 1, 3-4, Active / Ended, iOS native call UI */}
           {!isIncoming && !isMap && (
             <div className="ip17-ios-call">
               {/* Status bar */}
@@ -978,7 +978,7 @@ function SolutionPhone({ step }) {
                 <p className="ip17-ios-duration">{isEnded ? "llamada terminada" : timerStr}</p>
               </div>
 
-              {/* Hidden audio — plays during step 0 (no visible UI inside phone) */}
+              {/* Hidden audio, plays during step 0 (no visible UI inside phone) */}
               {step === 0 && (
                 <audio ref={audioRef} src={CALL_AUDIO_URL} preload="auto" playsInline
                        style={{display:'none'}}/>
@@ -1012,7 +1012,7 @@ function SolutionPhone({ step }) {
                 ))}
               </div>
 
-              {/* End call button — separate, centered */}
+              {/* End call button, separate, centered */}
               <div className="ip17-ios-end-wrap">
                 <button className="ip17-ios-end-btn">
                   <svg viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08A.996.996 0 010 12.37c0-.28.11-.53.29-.71C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28a11.27 11.27 0 00-2.67-1.85c-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/></svg>
@@ -1054,7 +1054,7 @@ function CallModal({ step }) {
         {/* Tangering avatar */}
         <img src="assets/icono-tangering.png" className="cm-av cm-av-agent" alt=""/>
 
-        {/* waveform — flex:1 fills the middle */}
+        {/* waveform, flex:1 fills the middle */}
         <div className="cm-wave">
           {BARS.map((h, i) => (
             <div key={i} className="cm-bar" style={{
@@ -1455,7 +1455,7 @@ function SolutionStage({ step }) {
   );
 }
 
-// Odometer — each digit animates individually when it changes
+// Odometer, each digit animates individually when it changes
 function OdoCounter({ count }) {
   const formatted = count.toLocaleString("es-CO"); // e.g. "1.842.395"
   return (
@@ -1595,7 +1595,7 @@ function UseCases({ t }) {
           </div>
         </FadeUp>
         <FadeUp delay={100}>
-          <h2 style={{ marginTop: 24 }}>{t.uc.h2}</h2>
+          <h2 style={{ marginTop: 24 }}>Build the agents <em>your operation</em> needs.</h2>
         </FadeUp>
         <FadeUp delay={200}>
           <p className="lead" style={{ marginTop: 20, maxWidth: 540 }}>{t.uc.sub}</p>

@@ -10,7 +10,7 @@ function Differentiator({ t }) {
             <span className="pulse"></span>
             {t.diff.eyebrow}
           </div>
-          <h2>{t.diff.h2}</h2>
+          <h2>An operation <em>that scales</em> itself.</h2>
           <p className="lead">{t.diff.sub}</p>
         </FadeUp>
 
@@ -102,7 +102,7 @@ function IPhone17Call({ play }) {
     let alive = true;
 
     const run = async () => {
-      // 1 — ringing
+      // 1, ringing
       setPhase("ringing");
       if (typeof gsap !== "undefined") {
         gsap.fromTo(phoneRef.current,
@@ -114,7 +114,7 @@ function IPhone17Call({ play }) {
       await new Promise(r => setTimeout(r, 1800));
       if (!alive) return;
 
-      // 2 — active call
+      // 2, active call
       setPhase("active");
       setSeconds(0);
       timerRef.current = setInterval(() => setSeconds(s => s + 1), 1000);
@@ -127,7 +127,7 @@ function IPhone17Call({ play }) {
         }, delay);
       });
 
-      // 3 — confirmed
+      // 3, confirmed
       await new Promise(r => setTimeout(r, 10500));
       if (!alive) return;
       clearInterval(timerRef.current);
@@ -260,7 +260,7 @@ function HowItWorks({ t }) {
     {
       title: "WhatsApp",
       icon: "chat",
-      desc: "Reach customers on the channel they actually answer — text or voice notes.",
+      desc: "Reach customers on the channel they actually answer, text or voice notes.",
     },
     {
       title: "CRM",
@@ -279,10 +279,10 @@ function HowItWorks({ t }) {
       <div className="container">
         <FadeUp className="how4-head">
           <div className="eyebrow"><span className="pulse"></span>Omni-channel</div>
-          <h2>True omni-channel integration.</h2>
+          <h2>True omni-channel <em>integration.</em></h2>
           <p className="how4-sub">
             Plug Tangering into the tools you already use. One AI agent across every
-            channel — without ripping out a thing.
+            channel, without ripping out a thing.
           </p>
         </FadeUp>
 
@@ -380,17 +380,17 @@ function VoiceTech() {
     },
     {
       title: "Reads the room.",
-      desc: "Detects frustration, hesitation or urgency in real time and shifts tone — calm when needed, firm when it matters.",
+      desc: "Detects frustration, hesitation or urgency in real time and shifts tone, calm when needed, firm when it matters.",
       visual: "duo",
     },
     {
       title: "Trained on last-mile.",
-      desc: "Speaks the vocabulary of your operation: addresses, delivery windows, exceptions, payment promises — without scripting every edge case.",
+      desc: "Speaks the vocabulary of your operation: addresses, delivery windows, exceptions, payment promises, without scripting every edge case.",
       visual: "dot",
     },
     {
       title: "Remembers every attempt.",
-      desc: "Picks up where the last call ended. If it's the third try today, your customer hears it — not a fresh start every time.",
+      desc: "Picks up where the last call ended. If it's the third try today, your customer hears it, not a fresh start every time.",
       visual: "wave",
     },
   ];
@@ -412,7 +412,7 @@ function VoiceTech() {
             </FadeUp>
             <FadeUp delay={240}>
               <p className="vtech-sub">
-                A voice agent built specifically for last-mile — not a generic chatbot reading a script. It speaks your customer's language, understands logistics, and knows what to do when things go off-plan.
+                A voice agent built specifically for last-mile, not a generic chatbot reading a script. It speaks your customer's language, understands logistics, and knows what to do when things go off-plan.
               </p>
             </FadeUp>
             <FadeUp delay={360}>
@@ -476,13 +476,13 @@ function FlowBuilder({ t }) {
   const features = [
     {
       title: "Drag-and-drop builder",
-      desc: "Compose conversational flows with a no-code editor. Triggers, branches and hand-offs in minutes — anyone on your ops team can ship a new flow in an afternoon.",
+      desc: "Compose conversational flows with a no-code editor. Triggers, branches and hand-offs in minutes, anyone on your ops team can ship a new flow in an afternoon.",
       video: "assets/flow-builder.mov",
       gradient: "ag",
     },
     {
       title: "Real-time decisions on every call",
-      desc: "Set conditions on real customer responses — confirm, reschedule, escalate, book — and watch the agent act on them live without a single line of code.",
+      desc: "Set conditions on real customer responses, confirm, reschedule, escalate, book, and watch the agent act on them live without a single line of code.",
       video: "assets/flow-builder-2.mov",
       gradient: "ag2",
     },
@@ -510,7 +510,7 @@ function FlowBuilder({ t }) {
             <p>
               Handle everything from a simple delivery confirmation to a complex
               multi-step reschedule. Tangering's no-code studio lets your team
-              design, test and launch new agents in weeks — not months.
+              design, test and launch new agents in weeks, not months.
             </p>
           </FadeUp>
         </div>
@@ -546,15 +546,14 @@ function FlowBuilder({ t }) {
 function Security({ t }) {
   const items = [
     {
-      title: "Compliance & data privacy",
-      desc: "SOC 2 Type II, GDPR and HIPAA-ready. Every call, transcript and event is encrypted in transit and at rest — and we sign DPAs out of the box.",
+      title: "Data privacy by default",
+      desc: "Every call, transcript and event is encrypted in transit and at rest. We sign DPAs out of the box and align with GDPR and Latin-American data protection regulations.",
       icon: "verified_user",
-      badge: "SOC 2",
       gradient: "sec-g1",
     },
     {
       title: "Single sign-on",
-      desc: "Plug Tangering into your identity provider — Okta, Azure AD, Google Workspace — and let your security team manage access from one place.",
+      desc: "Plug Tangering into your identity provider, Okta, Azure AD, Google Workspace, and let your security team manage access from one place.",
       icon: "vpn_key",
       gradient: "sec-g2",
     },
@@ -567,7 +566,7 @@ function Security({ t }) {
     },
     {
       title: "Role-based access",
-      desc: "Granular roles down to the module — operations, QA, finance, admin. Audit who saw, changed or exported what, anytime.",
+      desc: "Granular roles down to the module, operations, QA, finance, admin. Audit who saw, changed or exported what, anytime.",
       icon: "settings_accessibility",
       gradient: "sec-g4",
     },
@@ -603,40 +602,68 @@ function Security({ t }) {
           </FadeUp>
         </div>
 
-        <div className="security-carousel-wrap">
-          <div className="security-carousel">
-            {items.map((it, i) => (
-              <div key={i} className="security-card">
-                <div className="security-card-text">
-                  <h3 className="security-card-title">{it.title}</h3>
-                  <p className="security-card-desc">{it.desc}</p>
-                </div>
-                <div className={`security-card-visual ${it.gradient}`}>
-                  {it.badge ? (
-                    <div className="security-badge">{it.badge}</div>
-                  ) : it.bubbles ? (
-                    <div className="security-bubbles">
-                      <div className="sec-bubble"><span className="material-icons">lock</span> [Credit Card]…</div>
-                      <div className="sec-bubble"><span className="material-icons">lock</span> [Patient ID]…</div>
-                      <div className="sec-bubble"><span className="material-icons">lock</span> [Password]…</div>
-                    </div>
-                  ) : (
-                    <div className="security-icon">
-                      <span className="material-icons">{it.icon}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="security-carousel-hint">
-            <span className="material-icons">arrow_back</span>
-            <span>Scroll to see more</span>
-            <span className="material-icons">arrow_forward</span>
-          </div>
-        </div>
+        <SecurityCarousel items={items} />
       </div>
     </section>
+  );
+}
+
+function SecurityCarousel({ items }) {
+  const trackRef = useRef(null);
+  const [page, setPage] = useState(1);
+  const pages = items.length;
+
+  const scrollByCards = (dir) => {
+    const t = trackRef.current;
+    if (!t) return;
+    const card = t.querySelector(".security-tile");
+    const step = card ? card.getBoundingClientRect().width + 18 : t.clientWidth * 0.4;
+    t.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const t = trackRef.current;
+    if (!t) return;
+    const onScroll = () => {
+      const card = t.querySelector(".security-tile");
+      if (!card) return;
+      const w = card.getBoundingClientRect().width + 18;
+      const i = Math.round(t.scrollLeft / w) + 1;
+      setPage(Math.min(Math.max(i, 1), pages));
+    };
+    t.addEventListener("scroll", onScroll, { passive: true });
+    return () => t.removeEventListener("scroll", onScroll);
+  }, [pages]);
+
+  return (
+    <div className="security-carousel-v2">
+      <div className="security-track" ref={trackRef}>
+        {items.map((it, i) => (
+          <div key={i} className="security-tile">
+            <div className="security-tile-top">
+              <div className="security-tile-icon">
+                <span className="material-icons">{it.icon}</span>
+              </div>
+              <span className="security-tile-num">{String(i + 1).padStart(2, "0")} / {String(pages).padStart(2, "0")}</span>
+            </div>
+            <div className="security-tile-spacer" />
+            <h3 className="security-tile-title">{it.title}</h3>
+            <p className="security-tile-desc">{it.desc}</p>
+            {it.badge && (
+              <div className="security-tile-tag">
+                <span className="material-icons">verified</span>
+                {it.badge}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="flow3-carousel-hint">
+        <span className="material-icons">arrow_back</span>
+        <span>Scroll to see more</span>
+        <span className="material-icons">arrow_forward</span>
+      </div>
+    </div>
   );
 }
 

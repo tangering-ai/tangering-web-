@@ -1,4 +1,4 @@
-// Hero v2 — Cinematic frame with hyper-realistic scenes
+// Hero v2, Cinematic frame with hyper-realistic scenes
 
 function Nav({ lang, setLang, t }) {
   return (
@@ -83,7 +83,7 @@ function Iphone({ children, statusDark = false, statusTime = "9:41", showHome = 
   );
 }
 
-// === Scene 1 — Natural chat card (no phone) ===
+// === Scene 1, Natural chat card (no phone) ===
 function SceneWhatsApp({ t, sceneActive }) {
   // All 3 messages shown simultaneously, with subtle delivered ticks animating in
   return (
@@ -191,7 +191,7 @@ function SceneWhatsApp({ t, sceneActive }) {
   );
 }
 
-// === Scene 2 — Realistic Tangering platform ===
+// === Scene 2, Realistic Tangering platform ===
 function SceneDashboard({ t, sceneActive }) {
   const [lineCount, setLineCount] = useState(0);
   const [varCount, setVarCount] = useState(0);
@@ -462,7 +462,7 @@ function SceneDashboard({ t, sceneActive }) {
               {vars.slice(0, varCount).map((v, i) => (
                 <div key={i} className={`dr-var ${v.empty ? "empty" : ""}`}>
                   <span className="k">{v.k}</span>
-                  <span className="v">{v.v || "—"}</span>
+                  <span className="v">{v.v || ", "}</span>
                 </div>
               ))}
             </div>
@@ -485,7 +485,7 @@ function SceneDashboard({ t, sceneActive }) {
   );
 }
 
-// === Scene 3 — Lock-screen push to courier ===
+// === Scene 3, Lock-screen push to courier ===
 function SceneCourier({ t, sceneActive }) {
   return (
     <div style={{ width: "100%", height: "100%", position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -511,7 +511,7 @@ function SceneCourier({ t, sceneActive }) {
   );
 }
 
-// === Scene 4 — Outro with countdown ===
+// === Scene 4, Outro with countdown ===
 function SceneOutro({ t, sceneActive }) {
   const [n, setN] = useState(12);
   useEffect(() => {
@@ -583,7 +583,7 @@ function CinematicFrame({ t }) {
   return (
     <section ref={sectionRef} className="cinematic-parallax">
       <div className="cinematic-sticky">
-        {/* Person silhouette backdrop — placeholder for real photo */}
+        {/* Person silhouette backdrop, placeholder for real photo */}
         <div
           className="hero-person"
           style={{
@@ -707,7 +707,7 @@ function TruckHero({ t }) {
       .to(".vhero-live-inline", { opacity: 1, duration: 0.5, ease: "power2.out" }, "-=0.3")
       .to(".vhero-right", { opacity: 1, x: 0, duration: 0.9, ease: "power3.out" }, 0.45);
 
-    // Parallax — video drifts down as user scrolls
+    // Parallax, video drifts down as user scrolls
     gsap.to(".vhero-bg", {
       y: 120,
       ease: "none",
@@ -725,7 +725,7 @@ function TruckHero({ t }) {
     };
   }, []);
 
-  // Sequential card reveal — story unfolds step by step then loops
+  // Sequential card reveal, story unfolds step by step then loops
   useEffect(() => {
     let alive = true;
     const sequence = async () => {
@@ -826,6 +826,7 @@ function TruckHero({ t }) {
             { n: "Visa",          src: "assets/logos/visa.png" },
             { n: "Salesforce",    src: "assets/logos/salesforce.png" },
             { n: "Servientrega",  src: "assets/logos/servientrega.png" },
+            { n: "Blue Express",  src: "assets/logos/blue-express.jpg" },
             { n: "Carvajal",      src: "assets/logos/carvajal.png" },
             { n: "Amarilo",       src: "assets/logos/amarilo.png" },
             { n: "GNP BPO",       src: "assets/logos/gnp-bpo.png" },
@@ -836,6 +837,7 @@ function TruckHero({ t }) {
             { n: "Visa2",         src: "assets/logos/visa.png" },
             { n: "Salesforce2",   src: "assets/logos/salesforce.png" },
             { n: "Servientrega2", src: "assets/logos/servientrega.png" },
+            { n: "BlueExpress2",  src: "assets/logos/blue-express.jpg" },
             { n: "Carvajal2",     src: "assets/logos/carvajal.png" },
             { n: "Amarilo2",      src: "assets/logos/amarilo.png" },
             { n: "GNP2",          src: "assets/logos/gnp-bpo.png" },
