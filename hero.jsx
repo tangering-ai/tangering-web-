@@ -824,27 +824,21 @@ function TruckHero({ t }) {
       <div className="hero-brands-track">
           {[
             { n: "Visa",          src: "assets/logos/visa.png" },
-            { n: "Salesforce",    src: "assets/logos/salesforce.png" },
             { n: "Servientrega",  src: "assets/logos/servientrega.png" },
             { n: "Blue Express",  src: "assets/logos/blue-express.jpg" },
             { n: "Wingo",         src: "assets/logos/wingo.jpg" },
             { n: "Carvajal",      src: "assets/logos/carvajal.png" },
             { n: "Amarilo",       src: "assets/logos/amarilo.png" },
             { n: "GNP BPO",       src: "assets/logos/gnp-bpo.png" },
-            { n: "GEA",           src: "assets/logos/gea.png" },
-            { n: "Grupo Argos",   src: "assets/logos/grupo-argos.png" },
             { n: "Interagua",     src: "assets/logos/interagua.png" },
             // duplicate set for seamless loop
             { n: "Visa2",         src: "assets/logos/visa.png" },
-            { n: "Salesforce2",   src: "assets/logos/salesforce.png" },
             { n: "Servientrega2", src: "assets/logos/servientrega.png" },
             { n: "BlueExpress2",  src: "assets/logos/blue-express.jpg" },
             { n: "Wingo2",        src: "assets/logos/wingo.jpg" },
             { n: "Carvajal2",     src: "assets/logos/carvajal.png" },
             { n: "Amarilo2",      src: "assets/logos/amarilo.png" },
             { n: "GNP2",          src: "assets/logos/gnp-bpo.png" },
-            { n: "GEA2",          src: "assets/logos/gea.png" },
-            { n: "GrupoArgos2",   src: "assets/logos/grupo-argos.png" },
             { n: "Interagua2",    src: "assets/logos/interagua.png" },
           ].map((b, i) => (
             <div key={i} className="hero-brand">
