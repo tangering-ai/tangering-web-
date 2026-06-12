@@ -1,21 +1,23 @@
 // Hero v2, Cinematic frame with hyper-realistic scenes
 
 function Nav({ lang, setLang, t }) {
+  const q = `?lang=${lang}`;
+  const setLangPersist = (l) => { try { localStorage.setItem("tang_lang", l); } catch(e){}; setLang(l); };
   return (
     <nav className="nav">
       <a href="#" className="nav-logo">
         <img src="assets/logo-tangering.png" alt="Tangering" className="nav-logo-img" />
       </a>
       <div className="nav-links">
-        <a href="product.html">{t.nav.product}</a>
+        <a href={`product.html${q}`}>{t.nav.product}</a>
         <a href="#cases">{t.nav.cases}</a>
-        <a href="pricing.html">{t.nav.pricing}</a>
-        <a href="about.html">{t.nav.contact}</a>
+        <a href={`pricing.html${q}`}>{t.nav.pricing}</a>
+        <a href={`about.html${q}`}>{t.nav.contact}</a>
       </div>
       <div className="nav-right">
         <div className="lang-toggle">
-          <button className={lang === "es" ? "active" : ""} onClick={() => setLang("es")}>ES</button>
-          <button className={lang === "en" ? "active" : ""} onClick={() => setLang("en")}>EN</button>
+          <button className={lang === "es" ? "active" : ""} onClick={() => setLangPersist("es")}>ES</button>
+          <button className={lang === "en" ? "active" : ""} onClick={() => setLangPersist("en")}>EN</button>
         </div>
         <a
           className="btn btn-dark"

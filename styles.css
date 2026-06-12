@@ -6104,11 +6104,165 @@ section h2 i {
 .prod-page { background: #f5f5f7; }
 
 .prod-hero {
-  text-align: center;
-  padding: 80px 24px 60px;
-  max-width: 920px;
-  margin: 0 auto;
+  position: relative;
+  padding: 160px 24px 120px;
+  margin: 0;
+  max-width: none;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 90% 100% at 100% 0%, rgba(254,94,50,0.20), transparent 55%),
+    radial-gradient(ellipse 80% 90% at 0% 100%, rgba(236,187,233,0.28), transparent 55%),
+    radial-gradient(ellipse 60% 60% at 50% 120%, rgba(197,233,74,0.16), transparent 60%),
+    linear-gradient(160deg, #fff8f5 0%, #f5f5f7 60%, #ffffff 100%);
 }
+.prod-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(15,23,42,0.05) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  opacity: 0.5;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 100% 80% at center, #000 20%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 80% at center, #000 20%, transparent 95%);
+}
+.prod-hero::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: -1px;
+  transform: translateX(-50%);
+  width: 110%;
+  height: 120px;
+  background: linear-gradient(180deg, transparent 0%, #ffffff 100%);
+  pointer-events: none;
+}
+.prod-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 56px;
+  align-items: center;
+}
+@media (max-width: 980px) {
+  .prod-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+.prod-hero-text { text-align: left; }
+.prod-hero-text .eyebrow { margin-bottom: 24px; }
+.prod-hero-text h1 {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(44px, 6vw, 76px);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  margin: 0 0 24px 0;
+  color: var(--dark);
+}
+.prod-hero-text h1 em { font-style: italic; font-weight: 400; color: #fe5e32; }
+.prod-hero-text p.lead {
+  margin: 0 0 36px 0;
+  max-width: 520px;
+  font-size: 19px;
+  line-height: 1.5;
+  color: rgba(15,23,42,0.7);
+}
+.prod-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-start; align-items: center; }
+.prod-hero-ctas .btn { padding: 14px 24px; font-size: 15.5px; }
+.prod-hero-ctas .btn-dark {
+  box-shadow: 0 1px 2px rgba(15,23,42,0.2), 0 14px 32px rgba(15,23,42,0.18);
+}
+.prod-hero-ctas .btn-dark:hover { transform: translateY(-1px); }
+
+.prod-hero-mini {
+  margin-top: 26px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px;
+  color: rgba(15,23,42,0.55);
+}
+.prod-hero-mini .dot-live {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34,197,94,0.18);
+  animation: tang-pulse 2s ease-in-out infinite;
+}
+@keyframes tang-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(34,197,94,0.18); }
+  50%      { box-shadow: 0 0 0 8px rgba(34,197,94,0.05); }
+}
+
+/* Browser-chrome framed media */
+.prod-hero-media {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0f172a;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,0.08),
+    0 32px 64px -12px rgba(15,23,42,0.28),
+    0 0 0 1px rgba(15,23,42,0.06);
+  aspect-ratio: 16/10;
+  transform: perspective(1400px) rotateY(-2.5deg) rotateX(1.5deg);
+  transition: transform 0.6s var(--ease, cubic-bezier(.2,.7,.2,1));
+}
+.prod-hero-media:hover { transform: perspective(1400px) rotateY(-1deg) rotateX(0.5deg); }
+.prod-hero-media::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 32px;
+  background: #1a1a2e;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  z-index: 2;
+}
+.prod-hero-media::after {
+  content: '';
+  position: absolute;
+  top: 11px; left: 14px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 18px 0 0 #febc2e, 36px 0 0 #28c840;
+  z-index: 3;
+}
+.prod-hero-media video,
+.prod-hero-media img {
+  position: absolute;
+  top: 32px; right: 0; bottom: 0;
+  left: auto;
+  /* Zoom in & pan right so the sidebar of the app is cropped out
+     and only the agent editor canvas is visible. */
+  width: 135%;
+  height: calc(100% - 32px);
+  object-fit: cover;
+  object-position: right center;
+  display: block;
+}
+
+/* Floating accent shapes around the video */
+.prod-hero-media-wrap {
+  position: relative;
+}
+.prod-hero-media-wrap::before,
+.prod-hero-media-wrap::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+.prod-hero-media-wrap::before {
+  width: 220px; height: 220px;
+  background: rgba(254,94,50,0.35);
+  top: -40px; right: -40px;
+}
+.prod-hero-media-wrap::after {
+  width: 260px; height: 260px;
+  background: rgba(236,187,233,0.5);
+  bottom: -60px; left: -50px;
+}
+.prod-hero-media-wrap > .prod-hero-media { position: relative; z-index: 1; }
 .prod-hero .eyebrow { margin-bottom: 24px; }
 .prod-hero h1 {
   font-family: 'Overused Grotesk', sans-serif;
@@ -6230,4 +6384,61 @@ section h2 i {
   font-size: 14px;
   width: 100%;
   border: 1px solid rgba(15,23,42,0.04);
+}
+
+/* ================================
+   Product page — clean section system
+   ================================ */
+.prod-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 110px 24px;
+}
+.prod-section.alt {
+  background: #ffffff;
+  max-width: none;
+  padding: 0;
+}
+.prod-section.alt > .prod-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 110px 24px;
+}
+@media (max-width: 900px) {
+  .prod-section, .prod-section.alt > .prod-section-inner { padding: 70px 24px; }
+}
+.prod-section-head {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 64px;
+}
+.prod-section-head .eyebrow { margin-bottom: 22px; }
+.prod-section-head h2 {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin: 0 0 18px 0;
+  color: var(--dark);
+}
+.prod-section-head h2 em {
+  font-style: italic; font-weight: 400; color: #fe5e32;
+}
+.prod-section-head p.lead {
+  margin: 0 auto;
+  max-width: 580px;
+}
+
+/* Override prod-row paddings now that sections handle vertical rhythm */
+.prod-row {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 24px;
+}
+.prod-row.alt { padding: 0; }
+.prod-row.alt > .prod-row-inner { padding: 100px 24px; }
+@media (max-width: 900px) {
+  .prod-row { padding: 70px 24px; }
+  .prod-row.alt > .prod-row-inner { padding: 70px 24px; }
 }

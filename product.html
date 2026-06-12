@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tangering — Producto</title>
+  <title>Tangering — Product</title>
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=20260612n" />
-  <link rel="stylesheet" href="hero-v2.css?v=20260612n" />
+  <link rel="stylesheet" href="styles.css?v=20260612v" />
+  <link rel="stylesheet" href="hero-v2.css?v=20260612v" />
 </head>
 <body>
 <div class="prod-page">
@@ -18,51 +18,61 @@
       <img src="assets/logo-tangering.png" alt="Tangering" class="nav-logo-img" />
     </a>
     <div class="nav-links">
-      <a href="product.html">Producto</a>
-      <a href="landing.html#cases">Casos</a>
-      <a href="pricing.html">Precios</a>
-      <a href="about.html">Contacto</a>
+      <a href="product.html" data-i18n-link>Product</a>
+      <a href="landing.html#cases" data-i18n-link>Cases</a>
+      <a href="pricing.html" data-i18n-link>Pricing</a>
+      <a href="about.html" data-i18n-link>Contact</a>
     </div>
     <div class="nav-right">
       <div class="lang-toggle">
-        <button class="active">ES</button>
-        <button>EN</button>
+        <button data-set-lang="es">ES</button>
+        <button class="active" data-set-lang="en">EN</button>
       </div>
-      <a class="btn btn-dark" href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank">Agendar demo</a>
+      <a class="btn btn-dark" href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" data-i18n="cta.book">Book a demo</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="prod-hero">
-    <span class="eyebrow"><span class="pulse"></span> Producto</span>
-    <h1>Todo lo que necesitas para que tus agentes <em>operen solos.</em></h1>
-    <p class="lead">Desde crear el agente hasta revisar su rendimiento, Tangering cubre cada paso de tu operación de comunicaciones.</p>
-    <div class="prod-hero-ctas">
-      <a class="btn btn-dark" href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank">Empezar gratis</a>
-      <a class="btn" href="#how-it-works">Ver cómo funciona</a>
-    </div>
-    <div class="prod-hero-visual">
-      <div class="product-screenshot-placeholder"><span>Editor de Agentes</span></div>
+    <div class="prod-hero-inner">
+      <div class="prod-hero-text">
+        <span class="eyebrow"><span class="pulse"></span> <span data-i18n="hero.eyebrow">Product</span></span>
+        <h1 data-i18n="hero.h1">Everything you need so your agents <em>run on their own.</em></h1>
+        <p class="lead" data-i18n="hero.sub">From building the agent to reviewing performance, Tangering covers every step of your communications operation.</p>
+        <div class="prod-hero-ctas">
+          <a class="btn btn-dark" href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" data-i18n="hero.cta1">Start free</a>
+          <a class="btn btn-ghost" href="#how-it-works" data-i18n="hero.cta2">See how it works</a>
+        </div>
+        <div class="prod-hero-mini">
+          <span class="dot-live"></span>
+          <span data-i18n="hero.mini">+1M conversations running on Tangering right now</span>
+        </div>
+      </div>
+      <div class="prod-hero-media-wrap">
+        <div class="prod-hero-media">
+          <video id="prod-hero-video" src="assets/flow-builder.mov" autoplay loop muted playsinline></video>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- KEY BENEFITS — 3 cards -->
-  <section class="prod-row alt">
-    <div class="prod-row-inner" style="display:block;">
-      <div style="text-align:center; max-width:760px; margin:0 auto 48px;">
-        <span class="eyebrow"><span class="pulse"></span> Para tu operación</span>
-        <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Una sola plataforma <em>para todo.</em></h2>
-        <p class="lead" style="margin:0 auto; max-width:560px;">Crea, monitorea y mide tus agentes de IA sin saltar entre herramientas. Tangering reemplaza el stack de comunicaciones, no lo suma.</p>
+  <!-- KEY BENEFITS -->
+  <section class="prod-section alt">
+    <div class="prod-section-inner">
+      <div class="prod-section-head">
+        <span class="eyebrow"><span class="pulse"></span> <span data-i18n="ben.eyebrow">For your operation</span></span>
+        <h2 data-i18n="ben.h2">One platform <em>for everything.</em></h2>
+        <p class="lead" data-i18n="ben.sub">Build, monitor and measure your AI agents without jumping between tools. Tangering replaces the communications stack, it doesn't add to it.</p>
       </div>
-      <div class="security-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="security-grid">
         <div class="security-tile">
           <div class="security-tile-top">
             <div class="security-tile-icon"><span class="material-icons">smart_toy</span></div>
             <span class="security-tile-num">01</span>
           </div>
           <div class="security-tile-spacer"></div>
-          <h3 class="security-tile-title">Sin código</h3>
-          <p class="security-tile-desc">Construye agentes de voz y WhatsApp con un chat guiado. Tu equipo de operaciones lanza nuevos flujos en una tarde.</p>
+          <h3 class="security-tile-title" data-i18n="ben.c1t">No code</h3>
+          <p class="security-tile-desc" data-i18n="ben.c1d">Build voice and WhatsApp agents through a guided chat. Your ops team ships new flows in an afternoon.</p>
         </div>
         <div class="security-tile">
           <div class="security-tile-top">
@@ -70,8 +80,8 @@
             <span class="security-tile-num">02</span>
           </div>
           <div class="security-tile-spacer"></div>
-          <h3 class="security-tile-title">En tiempo real</h3>
-          <p class="security-tile-desc">Cada conversación, cada métrica, cada excepción, visible al instante. Sin esperar a un reporte semanal.</p>
+          <h3 class="security-tile-title" data-i18n="ben.c2t">Real time</h3>
+          <p class="security-tile-desc" data-i18n="ben.c2d">Every conversation, every metric, every exception, visible the moment it happens. No waiting for a weekly report.</p>
         </div>
         <div class="security-tile">
           <div class="security-tile-top">
@@ -79,211 +89,211 @@
             <span class="security-tile-num">03</span>
           </div>
           <div class="security-tile-spacer"></div>
-          <h3 class="security-tile-title">Conecta todo</h3>
-          <p class="security-tile-desc">CRM, ERP, WhatsApp Business, troncal SIP. Tangering se enchufa a tu stack sin reemplazarlo.</p>
+          <h3 class="security-tile-title" data-i18n="ben.c3t">Connects everything</h3>
+          <p class="security-tile-desc" data-i18n="ben.c3d">CRM, ERP, WhatsApp Business, SIP trunk. Tangering plugs into your stack without replacing it.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS — 3 numbered steps -->
-  <section class="prod-row" id="how-it-works">
-    <div style="grid-column:1 / -1; text-align:center; max-width:760px; margin:0 auto 32px;">
-      <span class="eyebrow"><span class="pulse"></span> Cómo funciona</span>
-      <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Tres pasos. <em>Cero fricción.</em></h2>
-      <p class="lead" style="margin:0 auto; max-width:560px;">Describe el proceso, conecta tus sistemas y deja al agente operar. Tu primera campaña corre en menos de una semana.</p>
+  <!-- HOW IT WORKS -->
+  <section class="prod-section" id="how-it-works">
+    <div class="prod-section-head">
+      <span class="eyebrow"><span class="pulse"></span> <span data-i18n="how.eyebrow">How it works</span></span>
+      <h2 data-i18n="how.h2">Three steps. <em>Zero friction.</em></h2>
+      <p class="lead" data-i18n="how.sub">Describe the process, connect your systems and let the agent operate. Your first campaign goes live in under a week.</p>
     </div>
-    <div class="feature-bullets" style="grid-column:1 / -1; max-width:1200px; margin:0 auto; padding:0;">
+    <div class="feature-bullets" style="margin: 0; padding: 0;">
       <div class="bullet-card">
-        <p class="num">Paso 01</p>
-        <h3>Crea el agente</h3>
-        <p>Cuéntale al Copiloto qué quieres automatizar. Tangering genera la voz, el flujo y las reglas, y tú las ajustas con clicks.</p>
-        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span>Chat de configuración del agente</span></div></div>
+        <p class="num" data-i18n="how.s1n">Step 01</p>
+        <h3 data-i18n="how.s1t">Build the agent</h3>
+        <p data-i18n="how.s1d">Tell the Copilot what you want to automate. Tangering generates the voice, the flow and the rules — you fine-tune them with clicks.</p>
+        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span data-i18n="how.s1v">Agent setup chat</span></div></div>
       </div>
       <div class="bullet-card">
-        <p class="num">Paso 02</p>
-        <h3>Conecta tus datos</h3>
-        <p>Engancha tu CRM, ERP o sistema de pedidos vía API o webhook. El agente lee y escribe en tiempo real.</p>
-        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span>Panel de integraciones</span></div></div>
+        <p class="num" data-i18n="how.s2n">Step 02</p>
+        <h3 data-i18n="how.s2t">Connect your data</h3>
+        <p data-i18n="how.s2d">Plug in your CRM, ERP or order system via API or webhook. The agent reads and writes in real time.</p>
+        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span data-i18n="how.s2v">Integrations panel</span></div></div>
       </div>
       <div class="bullet-card">
-        <p class="num">Paso 03</p>
-        <h3>Lanza y observa</h3>
-        <p>Tu agente empieza a llamar, escribir y resolver. Tú ves todo desde el panel de monitoreo, con alertas cuando algo necesita tu atención.</p>
-        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span>Dashboard de operación en vivo</span></div></div>
+        <p class="num" data-i18n="how.s3n">Step 03</p>
+        <h3 data-i18n="how.s3t">Launch and observe</h3>
+        <p data-i18n="how.s3d">Your agent starts calling, messaging and resolving. You see everything from the monitoring panel, with alerts when something needs your attention.</p>
+        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span data-i18n="how.s3v">Live operations dashboard</span></div></div>
       </div>
     </div>
   </section>
 
-  <!-- DEEP DIVE 1 — Agentes (white bg) -->
+  <!-- DEEP DIVE 1 — Agents -->
   <section class="prod-row alt" id="agentes">
     <div class="prod-row-inner">
       <div class="prod-row-text">
-        <span class="eyebrow"><span class="pulse"></span> Agentes</span>
-        <h2>Tu agente listo <em>en minutos,</em> no en semanas.</h2>
-        <p class="lead">Describe el proceso que quieres automatizar. Tangering lo convierte en un agente configurado, con voz, flujo y reglas, sin código.</p>
+        <span class="eyebrow"><span class="pulse"></span> <span data-i18n="d1.eyebrow">Agents</span></span>
+        <h2 data-i18n="d1.h2">Your agent ready <em>in minutes,</em> not weeks.</h2>
+        <p class="lead" data-i18n="d1.sub">Describe the process you want to automate. Tangering turns it into a configured agent, with voice, flow and rules, no code required.</p>
         <ul class="prod-bullets">
-          <li>Crea agentes de voz y WhatsApp con un chat guiado</li>
-          <li>Conecta herramientas externas: CRM, webhooks, APIs</li>
-          <li>Edita cualquier parte del agente con el Copiloto de IA</li>
+          <li data-i18n="d1.b1">Build voice and WhatsApp agents with a guided chat</li>
+          <li data-i18n="d1.b2">Connect external tools: CRM, webhooks, APIs</li>
+          <li data-i18n="d1.b3">Edit any part of the agent with the AI Copilot</li>
         </ul>
       </div>
       <div class="prod-row-visual">
-        <div class="product-screenshot-placeholder"><span>Editor de Agentes con Copiloto</span></div>
-        <p class="prod-row-aside">No necesitas saber de tecnología para construir un agente que suene profesional y ejecute procesos complejos.</p>
+        <div class="product-screenshot-placeholder"><span data-i18n="d1.visual">Agent Editor with Copilot</span></div>
+        <p class="prod-row-aside" data-i18n="d1.aside">You don't need to be technical to build an agent that sounds professional and runs complex processes.</p>
       </div>
     </div>
   </section>
 
-  <!-- DEEP DIVE 2 — Campañas (reverse) -->
+  <!-- DEEP DIVE 2 — Campaigns -->
   <section class="prod-row reverse">
     <div class="prod-row-text">
-      <span class="eyebrow"><span class="pulse"></span> Campañas</span>
-      <h2>Llama a mil clientes <em>como si fueran</em> uno.</h2>
-      <p class="lead">Carga tu lista, define el horario y deja que el agente haga el trabajo. Cada llamada confirmada, cada respuesta registrada, automáticamente.</p>
+      <span class="eyebrow"><span class="pulse"></span> <span data-i18n="d2.eyebrow">Campaigns</span></span>
+      <h2 data-i18n="d2.h2">Call a thousand customers <em>like they were</em> one.</h2>
+      <p class="lead" data-i18n="d2.sub">Upload your list, set the schedule and let the agent do the work. Every call confirmed, every response logged, automatically.</p>
       <ul class="prod-bullets">
-        <li>Campañas de voz saliente o canales híbridos (voz + WhatsApp)</li>
-        <li>Priorización de contactos y reintentos automáticos</li>
-        <li>Resultados en tiempo real mientras las llamadas ocurren</li>
+        <li data-i18n="d2.b1">Outbound voice campaigns or hybrid (voice + WhatsApp)</li>
+        <li data-i18n="d2.b2">Contact prioritization and automatic retries</li>
+        <li data-i18n="d2.b3">Real-time results as calls happen</li>
       </ul>
     </div>
     <div class="prod-row-visual">
-      <div class="product-screenshot-placeholder"><span>Lista de campañas activas</span></div>
-      <p class="prod-row-aside">Un agente haciendo 10,000 llamadas al día no comete errores, no se cansa y no llama fuera de horario.</p>
+      <div class="product-screenshot-placeholder"><span data-i18n="d2.visual">Active campaigns list</span></div>
+      <p class="prod-row-aside" data-i18n="d2.aside">An agent running 10,000 calls a day doesn't make mistakes, doesn't get tired and doesn't call outside business hours.</p>
     </div>
   </section>
 
-  <!-- DEEP DIVE 3 — Telefonía (white bg) -->
+  <!-- DEEP DIVE 3 — Telephony -->
   <section class="prod-row alt">
     <div class="prod-row-inner">
       <div class="prod-row-text">
-        <span class="eyebrow"><span class="pulse"></span> Telefonía</span>
-        <h2>Usa tu infraestructura <em>o la nuestra.</em></h2>
-        <p class="lead">Si ya tienes una troncal SIP, conéctala en minutos. Si no, usa los números de Tangering y empieza a llamar hoy mismo.</p>
+        <span class="eyebrow"><span class="pulse"></span> <span data-i18n="d3.eyebrow">Telephony</span></span>
+        <h2 data-i18n="d3.h2">Use your infrastructure <em>or ours.</em></h2>
+        <p class="lead" data-i18n="d3.sub">If you already have a SIP trunk, plug it in in minutes. If not, use Tangering's numbers and start calling today.</p>
         <ul class="prod-bullets">
-          <li>Conecta tu troncal SIP existente sin fricción</li>
-          <li>Compra números locales directamente desde la plataforma</li>
-          <li>Soporte para llamadas entrantes y salientes en el mismo número</li>
+          <li data-i18n="d3.b1">Connect your existing SIP trunk without friction</li>
+          <li data-i18n="d3.b2">Buy local numbers directly from the platform</li>
+          <li data-i18n="d3.b3">Inbound and outbound calls on the same number</li>
         </ul>
       </div>
       <div class="prod-row-visual">
-        <div class="product-screenshot-placeholder"><span>Pantalla de Números Telefónicos</span></div>
-        <p class="prod-row-aside">Sin contratos de telefonía separados, sin integraciones complicadas, sin llamar a tu equipo de IT.</p>
+        <div class="product-screenshot-placeholder"><span data-i18n="d3.visual">Phone Numbers screen</span></div>
+        <p class="prod-row-aside" data-i18n="d3.aside">No separate telephony contracts, no complex integrations, no calls to your IT team.</p>
       </div>
     </div>
   </section>
 
-  <!-- DEEP DIVE 4 — Monitoreo (reverse) -->
+  <!-- DEEP DIVE 4 — Monitoring -->
   <section class="prod-row reverse">
     <div class="prod-row-text">
-      <span class="eyebrow"><span class="pulse"></span> Monitoreo</span>
-      <h2>Ve cada conversación <em>mientras</em> ocurre.</h2>
-      <p class="lead">Escucha llamadas en vivo, lee mensajes en tiempo real y toma el control cuando un cliente necesita atención humana, sin que el cliente lo note.</p>
+      <span class="eyebrow"><span class="pulse"></span> <span data-i18n="d4.eyebrow">Monitoring</span></span>
+      <h2 data-i18n="d4.h2">See every conversation <em>while</em> it happens.</h2>
+      <p class="lead" data-i18n="d4.sub">Listen to live calls, read messages in real time and take over when a customer needs a human, without the customer noticing.</p>
       <ul class="prod-bullets">
-        <li>Panel de llamadas y mensajes activos en tiempo real</li>
-        <li>Toma el control de cualquier conversación con un click</li>
-        <li>Alertas automáticas cuando una conversación requiere atención</li>
+        <li data-i18n="d4.b1">Real-time panel of active calls and messages</li>
+        <li data-i18n="d4.b2">Take over any conversation with one click</li>
+        <li data-i18n="d4.b3">Automatic alerts when a conversation needs attention</li>
       </ul>
     </div>
     <div class="prod-row-visual">
-      <div class="product-screenshot-placeholder"><span>Panel de llamadas en tiempo real</span></div>
-      <p class="prod-row-aside">Tu equipo interviene solo cuando importa. El agente maneja el resto.</p>
+      <div class="product-screenshot-placeholder"><span data-i18n="d4.visual">Live calls dashboard</span></div>
+      <p class="prod-row-aside" data-i18n="d4.aside">Your team only steps in when it matters. The agent handles the rest.</p>
     </div>
   </section>
 
-  <!-- DEEP DIVE 5 — Transferencias (white bg) -->
+  <!-- DEEP DIVE 5 — Transfers -->
   <section class="prod-row alt">
     <div class="prod-row-inner">
       <div class="prod-row-text">
-        <span class="eyebrow"><span class="pulse"></span> Transferencias</span>
-        <h2>El agente sabe <em>cuándo pasarle</em> a un humano.</h2>
-        <p class="lead">Define las condiciones. Cuando el cliente lo necesite, el agente transfiere la llamada al área correcta, con todo el contexto de la conversación.</p>
+        <span class="eyebrow"><span class="pulse"></span> <span data-i18n="d5.eyebrow">Transfers</span></span>
+        <h2 data-i18n="d5.h2">The agent knows <em>when to pass</em> to a human.</h2>
+        <p class="lead" data-i18n="d5.sub">Set the conditions. When the customer needs it, the agent transfers the call to the right team, with the full conversation context.</p>
         <ul class="prod-bullets">
-          <li>Transferencias condicionales según intención del cliente</li>
-          <li>Transfiere a extensiones SIP, números telefónicos o agentes internos</li>
-          <li>El agente informa al cliente antes de transferir, sin cortes abruptos</li>
+          <li data-i18n="d5.b1">Conditional transfers based on customer intent</li>
+          <li data-i18n="d5.b2">Transfer to SIP extensions, phone numbers or internal agents</li>
+          <li data-i18n="d5.b3">The agent briefs the customer before transferring, no abrupt cuts</li>
         </ul>
       </div>
       <div class="prod-row-visual">
-        <div class="product-screenshot-placeholder"><span>Flujo de transferencia en el canvas</span></div>
-        <p class="prod-row-aside">Sin que el cliente tenga que repetir lo que ya explicó.</p>
+        <div class="product-screenshot-placeholder"><span data-i18n="d5.visual">Transfer flow in the canvas</span></div>
+        <p class="prod-row-aside" data-i18n="d5.aside">Without the customer having to repeat what they already explained.</p>
       </div>
     </div>
   </section>
 
-  <!-- DEEP DIVE 6 — Métricas (reverse) -->
+  <!-- DEEP DIVE 6 — Metrics -->
   <section class="prod-row reverse">
     <div class="prod-row-text">
-      <span class="eyebrow"><span class="pulse"></span> Métricas</span>
-      <h2>El dashboard que tu operación necesita, <em>no el</em> genérico.</h2>
-      <p class="lead">Configura tu espacio de métricas con los indicadores que realmente importan para tu operación. Tasa de entrega, intentos, conversiones, tiempo de respuesta.</p>
+      <span class="eyebrow"><span class="pulse"></span> <span data-i18n="d6.eyebrow">Metrics</span></span>
+      <h2 data-i18n="d6.h2">The dashboard your operation needs, <em>not the</em> generic one.</h2>
+      <p class="lead" data-i18n="d6.sub">Configure your metrics workspace with the indicators that actually matter for your operation. Delivery rate, attempts, conversions, response time.</p>
       <ul class="prod-bullets">
-        <li>Dashboard personalizable con las métricas que defines tú</li>
-        <li>Análisis con IA: el Copiloto responde tus preguntas operacionales</li>
-        <li>Comparación por agente, campaña, período y canal</li>
+        <li data-i18n="d6.b1">Customizable dashboard with the metrics you define</li>
+        <li data-i18n="d6.b2">AI analysis: the Copilot answers your operational questions</li>
+        <li data-i18n="d6.b3">Compare by agent, campaign, period and channel</li>
       </ul>
     </div>
     <div class="prod-row-visual">
-      <div class="product-screenshot-placeholder"><span>Dashboard de métricas personalizado</span></div>
-      <p class="prod-row-aside">¿Cuántas entregas fallaron esta semana por cliente no disponible? Pregúntale al Copiloto, te responde en segundos.</p>
+      <div class="product-screenshot-placeholder"><span data-i18n="d6.visual">Custom metrics dashboard</span></div>
+      <p class="prod-row-aside" data-i18n="d6.aside">How many deliveries failed this week because the customer was unavailable? Ask the Copilot, it answers in seconds.</p>
     </div>
   </section>
 
-  <!-- DEEP DIVE 7 — Reportes (white bg) -->
+  <!-- DEEP DIVE 7 — Reports -->
   <section class="prod-row alt">
     <div class="prod-row-inner">
       <div class="prod-row-text">
-        <span class="eyebrow"><span class="pulse"></span> Reportes</span>
-        <h2>Cada llamada documentada. <em>Lista</em> para tu equipo.</h2>
-        <p class="lead">Genera reportes con la información exacta que necesitas: transcripción, resultado, datos capturados, duración. Exporta y comparte con quien lo necesite.</p>
+        <span class="eyebrow"><span class="pulse"></span> <span data-i18n="d7.eyebrow">Reports</span></span>
+        <h2 data-i18n="d7.h2">Every call documented. <em>Ready</em> for your team.</h2>
+        <p class="lead" data-i18n="d7.sub">Generate reports with the exact information you need: transcript, outcome, captured data, duration. Export and share with whoever needs it.</p>
         <ul class="prod-bullets">
-          <li>Reportes configurables por agente, campaña y rango de fechas</li>
-          <li>Elige exactamente qué columnas incluir en cada reporte</li>
-          <li>Datos extraídos por IA: intención, monto prometido, calificación</li>
+          <li data-i18n="d7.b1">Reports configurable by agent, campaign and date range</li>
+          <li data-i18n="d7.b2">Pick exactly which columns to include in each report</li>
+          <li data-i18n="d7.b3">AI-extracted data: intent, promised amount, rating</li>
         </ul>
       </div>
       <div class="prod-row-visual">
-        <div class="product-screenshot-placeholder"><span>Pantalla de creación de reporte</span></div>
-        <p class="prod-row-aside">Tu equipo tiene la información para mejorar cada semana, no cada trimestre.</p>
+        <div class="product-screenshot-placeholder"><span data-i18n="d7.visual">Report creation screen</span></div>
+        <p class="prod-row-aside" data-i18n="d7.aside">Your team has the information to improve every week, not every quarter.</p>
       </div>
     </div>
   </section>
 
-  <!-- DEEP DIVE 8 — Integraciones (reverse) -->
+  <!-- DEEP DIVE 8 — Integrations -->
   <section class="prod-row reverse">
     <div class="prod-row-text">
-      <span class="eyebrow"><span class="pulse"></span> Integraciones</span>
-      <h2>Se conecta <em>con lo que</em> ya usas.</h2>
-      <p class="lead">CRM, sistema de pedidos, ERP, WhatsApp Business. Tangering se integra vía API o webhook, sin reemplazar lo que ya funciona en tu operación.</p>
+      <span class="eyebrow"><span class="pulse"></span> <span data-i18n="d8.eyebrow">Integrations</span></span>
+      <h2 data-i18n="d8.h2">Connects <em>with what</em> you already use.</h2>
+      <p class="lead" data-i18n="d8.sub">CRM, order system, ERP, WhatsApp Business. Tangering integrates via API or webhook, without replacing what already works in your operation.</p>
       <ul class="prod-bullets">
-        <li>API REST documentada para integrar cualquier sistema</li>
-        <li>Webhooks en tiempo real al finalizar cada conversación</li>
-        <li>Integración nativa con WhatsApp Business API</li>
+        <li data-i18n="d8.b1">Documented REST API to integrate any system</li>
+        <li data-i18n="d8.b2">Real-time webhooks at the end of every conversation</li>
+        <li data-i18n="d8.b3">Native WhatsApp Business API integration</li>
       </ul>
     </div>
     <div class="prod-row-visual">
-      <div class="product-screenshot-placeholder"><span>Diagrama de integraciones</span></div>
-      <p class="prod-row-aside">Tu equipo técnico lo conecta en horas, no en semanas.</p>
+      <div class="product-screenshot-placeholder"><span data-i18n="d8.visual">Integrations diagram</span></div>
+      <p class="prod-row-aside" data-i18n="d8.aside">Your tech team wires it in hours, not weeks.</p>
     </div>
   </section>
 
-  <!-- USE CASES — 4 card grid -->
-  <section class="prod-row alt">
-    <div class="prod-row-inner" style="display:block;">
-      <div style="text-align:center; max-width:760px; margin:0 auto 48px;">
-        <span class="eyebrow"><span class="pulse"></span> Casos de uso</span>
-        <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Construye los agentes que <em>tu operación</em> necesita.</h2>
-        <p class="lead" style="margin:0 auto; max-width:560px;">Uno por cada punto de contacto. Cada uno trabaja por su cuenta, mantiene tus comunicaciones vivas y reporta a tu CRM.</p>
+  <!-- USE CASES -->
+  <section class="prod-section alt">
+    <div class="prod-section-inner">
+      <div class="prod-section-head">
+        <span class="eyebrow"><span class="pulse"></span> <span data-i18n="uc.eyebrow">Use cases</span></span>
+        <h2 data-i18n="uc.h2">Build the agents <em>your operation</em> needs.</h2>
+        <p class="lead" data-i18n="uc.sub">One per touchpoint. Each one runs on its own, keeps your communications alive and reports back to your CRM.</p>
       </div>
-      <div class="security-grid" style="grid-template-columns:repeat(2,1fr); max-width:1100px; margin:0 auto;">
+      <div class="security-grid" style="grid-template-columns: repeat(2,1fr); max-width:1000px; margin:0 auto;">
         <div class="security-tile">
           <div class="security-tile-top">
             <div class="security-tile-icon"><span class="material-icons">local_shipping</span></div>
             <span class="security-tile-num">01</span>
           </div>
           <div class="security-tile-spacer"></div>
-          <h3 class="security-tile-title">Confirmaciones de entrega</h3>
-          <p class="security-tile-desc">Verifica dirección, disponibilidad y ventana de entrega antes de que el mensajero salga del centro de distribución.</p>
+          <h3 class="security-tile-title" data-i18n="uc.c1t">Delivery confirmations</h3>
+          <p class="security-tile-desc" data-i18n="uc.c1d">Verify address, availability and delivery window before the courier leaves the distribution center.</p>
         </div>
         <div class="security-tile">
           <div class="security-tile-top">
@@ -291,8 +301,8 @@
             <span class="security-tile-num">02</span>
           </div>
           <div class="security-tile-spacer"></div>
-          <h3 class="security-tile-title">Torre de control</h3>
-          <p class="security-tile-desc">Visibilidad en tiempo real de cada envío, agente y excepción. Mantén tu operación fluyendo sin supervisión manual.</p>
+          <h3 class="security-tile-title" data-i18n="uc.c2t">Control tower</h3>
+          <p class="security-tile-desc" data-i18n="uc.c2d">Real-time visibility over every shipment, agent and exception. Keep your operation flowing without manual oversight.</p>
         </div>
         <div class="security-tile">
           <div class="security-tile-top">
@@ -300,8 +310,8 @@
             <span class="security-tile-num">03</span>
           </div>
           <div class="security-tile-spacer"></div>
-          <h3 class="security-tile-title">Soporte 24/7</h3>
-          <p class="security-tile-desc">Responde dudas, rastrea pedidos y gestiona devoluciones en cualquier idioma, todo el día, todos los días.</p>
+          <h3 class="security-tile-title" data-i18n="uc.c3t">24/7 support</h3>
+          <p class="security-tile-desc" data-i18n="uc.c3d">Answer questions, track orders and manage returns in any language, around the clock, every day.</p>
         </div>
         <div class="security-tile">
           <div class="security-tile-top">
@@ -309,42 +319,190 @@
             <span class="security-tile-num">04</span>
           </div>
           <div class="security-tile-spacer"></div>
-          <h3 class="security-tile-title">Excepciones</h3>
-          <p class="security-tile-desc">Resuelve cliente no localizable, dirección incorrecta y entregas fallidas de forma automática, sin escalamiento humano.</p>
+          <h3 class="security-tile-title" data-i18n="uc.c4t">Exceptions</h3>
+          <p class="security-tile-desc" data-i18n="uc.c4d">Resolve unreachable customers, wrong addresses and failed deliveries automatically, no human escalation needed.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- STATS STRIP -->
-  <section class="prod-row">
-    <div style="grid-column:1 / -1; text-align:center; max-width:720px; margin:0 auto 40px;">
-      <span class="eyebrow"><span class="pulse"></span> Impacto</span>
-      <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Números de <em>operaciones</em> reales.</h2>
+  <!-- STATS -->
+  <section class="prod-section">
+    <div class="prod-section-head">
+      <span class="eyebrow"><span class="pulse"></span> <span data-i18n="st.eyebrow">Impact</span></span>
+      <h2 data-i18n="st.h2">Numbers from <em>real</em> operations.</h2>
     </div>
-    <div class="about-stats" style="grid-column:1 / -1; max-width:1100px;">
-      <div class="stat"><p class="v">+1M</p><p class="l">llamadas procesadas</p></div>
-      <div class="stat"><p class="v">−35%</p><p class="l">menos entregas fallidas</p></div>
-      <div class="stat"><p class="v">97%</p><p class="l">precisión en confirmaciones</p></div>
-      <div class="stat"><p class="v">1.8s</p><p class="l">tiempo de respuesta</p></div>
+    <div class="about-stats" style="max-width:1100px; margin: 0 auto;">
+      <div class="stat"><p class="v">+1M</p><p class="l" data-i18n="st.s1">calls processed</p></div>
+      <div class="stat"><p class="v">−35%</p><p class="l" data-i18n="st.s2">fewer failed deliveries</p></div>
+      <div class="stat"><p class="v">97%</p><p class="l" data-i18n="st.s3">confirmation accuracy</p></div>
+      <div class="stat"><p class="v">1.8s</p><p class="l" data-i18n="st.s4">response time</p></div>
     </div>
   </section>
 
   <!-- FINAL CTA -->
   <section class="page-cta">
-    <h2>Tu operación no debería depender <em>de cuántas personas</em> tienes disponibles.</h2>
-    <p>30 minutos. Te mostramos Tangering corriendo sobre tu operación, con tus números.</p>
+    <h2 data-i18n="cta.h2">Your operation shouldn't depend <em>on how many people</em> you have available.</h2>
+    <p data-i18n="cta.sub">30 minutes. We show you Tangering running on your operation, with your numbers.</p>
     <div class="btn-row">
-      <a href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" class="btn-primary">Agendar demo →</a>
-      <a href="landing.html#cases" class="btn-ghost">Explorar casos de uso</a>
+      <a href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" class="btn-primary" data-i18n="cta.b1">Book a demo →</a>
+      <a href="landing.html#cases" class="btn-ghost" data-i18n="cta.b2">Explore use cases</a>
     </div>
   </section>
 
   <footer class="page-foot">
-    <span>&copy; 2026 Tangering. All rights reserved.</span>
-    <span>Made with care in Latin America.</span>
+    <span data-i18n="foot.l">&copy; 2026 Tangering. All rights reserved.</span>
+    <span data-i18n="foot.r">Made with care in Latin America.</span>
   </footer>
 
 </div>
+
+<script>
+(function () {
+  const I18N_ES = {
+    "cta.book": "Agendar demo",
+    "hero.eyebrow": "Producto",
+    "hero.h1": "Todo lo que necesitas para que tus agentes <em>operen solos.</em>",
+    "hero.sub": "Desde crear el agente hasta revisar su rendimiento, Tangering cubre cada paso de tu operación de comunicaciones.",
+    "hero.cta1": "Empezar gratis",
+    "hero.cta2": "Ver cómo funciona",
+    "hero.visual": "Editor de Agentes",
+    "hero.mini": "+1M conversaciones corriendo en Tangering ahora mismo",
+    "ben.eyebrow": "Para tu operación",
+    "ben.h2": "Una sola plataforma <em>para todo.</em>",
+    "ben.sub": "Crea, monitorea y mide tus agentes de IA sin saltar entre herramientas. Tangering reemplaza el stack de comunicaciones, no lo suma.",
+    "ben.c1t": "Sin código",
+    "ben.c1d": "Construye agentes de voz y WhatsApp con un chat guiado. Tu equipo de operaciones lanza nuevos flujos en una tarde.",
+    "ben.c2t": "En tiempo real",
+    "ben.c2d": "Cada conversación, cada métrica, cada excepción, visible al instante. Sin esperar a un reporte semanal.",
+    "ben.c3t": "Conecta todo",
+    "ben.c3d": "CRM, ERP, WhatsApp Business, troncal SIP. Tangering se enchufa a tu stack sin reemplazarlo.",
+    "how.eyebrow": "Cómo funciona",
+    "how.h2": "Tres pasos. <em>Cero fricción.</em>",
+    "how.sub": "Describe el proceso, conecta tus sistemas y deja al agente operar. Tu primera campaña corre en menos de una semana.",
+    "how.s1n": "Paso 01", "how.s1t": "Crea el agente",
+    "how.s1d": "Cuéntale al Copiloto qué quieres automatizar. Tangering genera la voz, el flujo y las reglas, y tú las ajustas con clicks.",
+    "how.s1v": "Chat de configuración del agente",
+    "how.s2n": "Paso 02", "how.s2t": "Conecta tus datos",
+    "how.s2d": "Engancha tu CRM, ERP o sistema de pedidos vía API o webhook. El agente lee y escribe en tiempo real.",
+    "how.s2v": "Panel de integraciones",
+    "how.s3n": "Paso 03", "how.s3t": "Lanza y observa",
+    "how.s3d": "Tu agente empieza a llamar, escribir y resolver. Tú ves todo desde el panel de monitoreo, con alertas cuando algo necesita tu atención.",
+    "how.s3v": "Dashboard de operación en vivo",
+    "d1.eyebrow": "Agentes", "d1.h2": "Tu agente listo <em>en minutos,</em> no en semanas.",
+    "d1.sub": "Describe el proceso que quieres automatizar. Tangering lo convierte en un agente configurado, con voz, flujo y reglas, sin código.",
+    "d1.b1": "Crea agentes de voz y WhatsApp con un chat guiado",
+    "d1.b2": "Conecta herramientas externas: CRM, webhooks, APIs",
+    "d1.b3": "Edita cualquier parte del agente con el Copiloto de IA",
+    "d1.visual": "Editor de Agentes con Copiloto",
+    "d1.aside": "No necesitas saber de tecnología para construir un agente que suene profesional y ejecute procesos complejos.",
+    "d2.eyebrow": "Campañas", "d2.h2": "Llama a mil clientes <em>como si fueran</em> uno.",
+    "d2.sub": "Carga tu lista, define el horario y deja que el agente haga el trabajo. Cada llamada confirmada, cada respuesta registrada, automáticamente.",
+    "d2.b1": "Campañas de voz saliente o canales híbridos (voz + WhatsApp)",
+    "d2.b2": "Priorización de contactos y reintentos automáticos",
+    "d2.b3": "Resultados en tiempo real mientras las llamadas ocurren",
+    "d2.visual": "Lista de campañas activas",
+    "d2.aside": "Un agente haciendo 10,000 llamadas al día no comete errores, no se cansa y no llama fuera de horario.",
+    "d3.eyebrow": "Telefonía", "d3.h2": "Usa tu infraestructura <em>o la nuestra.</em>",
+    "d3.sub": "Si ya tienes una troncal SIP, conéctala en minutos. Si no, usa los números de Tangering y empieza a llamar hoy mismo.",
+    "d3.b1": "Conecta tu troncal SIP existente sin fricción",
+    "d3.b2": "Compra números locales directamente desde la plataforma",
+    "d3.b3": "Soporte para llamadas entrantes y salientes en el mismo número",
+    "d3.visual": "Pantalla de Números Telefónicos",
+    "d3.aside": "Sin contratos de telefonía separados, sin integraciones complicadas, sin llamar a tu equipo de IT.",
+    "d4.eyebrow": "Monitoreo", "d4.h2": "Ve cada conversación <em>mientras</em> ocurre.",
+    "d4.sub": "Escucha llamadas en vivo, lee mensajes en tiempo real y toma el control cuando un cliente necesita atención humana, sin que el cliente lo note.",
+    "d4.b1": "Panel de llamadas y mensajes activos en tiempo real",
+    "d4.b2": "Toma el control de cualquier conversación con un click",
+    "d4.b3": "Alertas automáticas cuando una conversación requiere atención",
+    "d4.visual": "Panel de llamadas en tiempo real",
+    "d4.aside": "Tu equipo interviene solo cuando importa. El agente maneja el resto.",
+    "d5.eyebrow": "Transferencias", "d5.h2": "El agente sabe <em>cuándo pasarle</em> a un humano.",
+    "d5.sub": "Define las condiciones. Cuando el cliente lo necesite, el agente transfiere la llamada al área correcta, con todo el contexto de la conversación.",
+    "d5.b1": "Transferencias condicionales según intención del cliente",
+    "d5.b2": "Transfiere a extensiones SIP, números telefónicos o agentes internos",
+    "d5.b3": "El agente informa al cliente antes de transferir, sin cortes abruptos",
+    "d5.visual": "Flujo de transferencia en el canvas",
+    "d5.aside": "Sin que el cliente tenga que repetir lo que ya explicó.",
+    "d6.eyebrow": "Métricas", "d6.h2": "El dashboard que tu operación necesita, <em>no el</em> genérico.",
+    "d6.sub": "Configura tu espacio de métricas con los indicadores que realmente importan para tu operación. Tasa de entrega, intentos, conversiones, tiempo de respuesta.",
+    "d6.b1": "Dashboard personalizable con las métricas que defines tú",
+    "d6.b2": "Análisis con IA: el Copiloto responde tus preguntas operacionales",
+    "d6.b3": "Comparación por agente, campaña, período y canal",
+    "d6.visual": "Dashboard de métricas personalizado",
+    "d6.aside": "¿Cuántas entregas fallaron esta semana por cliente no disponible? Pregúntale al Copiloto, te responde en segundos.",
+    "d7.eyebrow": "Reportes", "d7.h2": "Cada llamada documentada. <em>Lista</em> para tu equipo.",
+    "d7.sub": "Genera reportes con la información exacta que necesitas: transcripción, resultado, datos capturados, duración. Exporta y comparte con quien lo necesite.",
+    "d7.b1": "Reportes configurables por agente, campaña y rango de fechas",
+    "d7.b2": "Elige exactamente qué columnas incluir en cada reporte",
+    "d7.b3": "Datos extraídos por IA: intención, monto prometido, calificación",
+    "d7.visual": "Pantalla de creación de reporte",
+    "d7.aside": "Tu equipo tiene la información para mejorar cada semana, no cada trimestre.",
+    "d8.eyebrow": "Integraciones", "d8.h2": "Se conecta <em>con lo que</em> ya usas.",
+    "d8.sub": "CRM, sistema de pedidos, ERP, WhatsApp Business. Tangering se integra vía API o webhook, sin reemplazar lo que ya funciona en tu operación.",
+    "d8.b1": "API REST documentada para integrar cualquier sistema",
+    "d8.b2": "Webhooks en tiempo real al finalizar cada conversación",
+    "d8.b3": "Integración nativa con WhatsApp Business API",
+    "d8.visual": "Diagrama de integraciones",
+    "d8.aside": "Tu equipo técnico lo conecta en horas, no en semanas.",
+    "uc.eyebrow": "Casos de uso", "uc.h2": "Construye los agentes que <em>tu operación</em> necesita.",
+    "uc.sub": "Uno por cada punto de contacto. Cada uno trabaja por su cuenta, mantiene tus comunicaciones vivas y reporta a tu CRM.",
+    "uc.c1t": "Confirmaciones de entrega", "uc.c1d": "Verifica dirección, disponibilidad y ventana de entrega antes de que el mensajero salga del centro de distribución.",
+    "uc.c2t": "Torre de control", "uc.c2d": "Visibilidad en tiempo real de cada envío, agente y excepción. Mantén tu operación fluyendo sin supervisión manual.",
+    "uc.c3t": "Soporte 24/7", "uc.c3d": "Responde dudas, rastrea pedidos y gestiona devoluciones en cualquier idioma, todo el día, todos los días.",
+    "uc.c4t": "Excepciones", "uc.c4d": "Resuelve cliente no localizable, dirección incorrecta y entregas fallidas de forma automática, sin escalamiento humano.",
+    "st.eyebrow": "Impacto", "st.h2": "Números de <em>operaciones</em> reales.",
+    "st.s1": "llamadas procesadas",
+    "st.s2": "menos entregas fallidas",
+    "st.s3": "precisión en confirmaciones",
+    "st.s4": "tiempo de respuesta",
+    "cta.h2": "Tu operación no debería depender <em>de cuántas personas</em> tienes disponibles.",
+    "cta.sub": "30 minutos. Te mostramos Tangering corriendo sobre tu operación, con tus números.",
+    "cta.b1": "Agendar demo →",
+    "cta.b2": "Explorar casos de uso",
+    "foot.l": "© 2026 Tangering. Todos los derechos reservados.",
+    "foot.r": "Hecho con cariño en Latinoamérica."
+  };
+
+  const NAV_LINKS_ES = { "Product": "Producto", "Cases": "Casos", "Pricing": "Precios", "Contact": "Contacto" };
+
+  function getLang() {
+    const url = new URLSearchParams(location.search);
+    return url.get("lang") || localStorage.getItem("tang_lang") || "en";
+  }
+  function applyLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (lang === "es" && I18N_ES[key]) {
+        el.innerHTML = I18N_ES[key];
+      }
+    });
+    document.querySelectorAll("[data-i18n-link]").forEach(a => {
+      const txt = a.textContent.trim();
+      if (lang === "es" && NAV_LINKS_ES[txt]) a.textContent = NAV_LINKS_ES[txt];
+    });
+    document.querySelectorAll(".lang-toggle button").forEach(b => {
+      b.classList.toggle("active", b.dataset.setLang === lang);
+    });
+    localStorage.setItem("tang_lang", lang);
+  }
+  document.addEventListener("click", e => {
+    const btn = e.target.closest("[data-set-lang]");
+    if (btn) applyLang(btn.dataset.setLang);
+  });
+  applyLang(getLang());
+
+  // Loop only the first ~7s of the hero video (the prompt-typing portion)
+  const v = document.getElementById("prod-hero-video");
+  if (v) {
+    const CLIP_END = 7;
+    v.addEventListener("timeupdate", () => {
+      if (v.currentTime >= CLIP_END) { v.currentTime = 0; v.play(); }
+    });
+    v.addEventListener("loadedmetadata", () => { v.currentTime = 0; });
+  }
+})();
+</script>
 </body>
 </html>

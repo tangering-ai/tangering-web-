@@ -1,7 +1,11 @@
 // Main app
 
 function App() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState(() => {
+    const url = new URLSearchParams(location.search).get("lang");
+    if (url === "es" || url === "en") return url;
+    try { return localStorage.getItem("tang_lang") || "en"; } catch(e) { return "en"; }
+  });
   const t = window.I18N[lang];
 
   // Inject Overused Grotesk (Fontshare) once
