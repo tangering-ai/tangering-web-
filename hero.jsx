@@ -7,7 +7,7 @@ function Nav({ lang, setLang, t }) {
         <img src="assets/logo-tangering.png" alt="Tangering" className="nav-logo-img" />
       </a>
       <div className="nav-links">
-        <a href="#solution">{t.nav.product}</a>
+        <a href="product.html">{t.nav.product}</a>
         <a href="#cases">{t.nav.cases}</a>
         <a href="pricing.html">{t.nav.pricing}</a>
         <a href="about.html">{t.nav.contact}</a>
