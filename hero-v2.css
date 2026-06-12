@@ -896,14 +896,9 @@
   width: auto;
   object-fit: contain;
   display: block;
-  /* Brightness 1.2 pushes near-whites past 255 so they fully blend out on multiply,
-     while the mid-tones still flatten to a uniform grey. */
-  filter: grayscale(1) brightness(1.2) contrast(1.4);
-  mix-blend-mode: multiply;
+  /* Source PNGs now have transparent backgrounds — flatten ink to grey */
+  filter: grayscale(1) brightness(0.85) contrast(1.6);
   background: transparent;
-  /* Tight mask crops out the white card edges baked into each PNG */
-  -webkit-mask-image: radial-gradient(ellipse 55% 45% at center, #000 60%, transparent 100%);
-          mask-image: radial-gradient(ellipse 55% 45% at center, #000 60%, transparent 100%);
   transform-origin: center;
 }
 /* Modest per-logo scaling — bring stacked/padded logos closer to the

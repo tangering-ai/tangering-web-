@@ -825,8 +825,8 @@ function TruckHero({ t }) {
           {[
             { n: "Visa",          src: "assets/logos/visa.png" },
             { n: "Servientrega",  src: "assets/logos/servientrega.png" },
-            { n: "Blue Express",  src: "assets/logos/blue-express.jpg" },
-            { n: "Wingo",         src: "assets/logos/wingo.jpg" },
+            { n: "Blue Express",  src: "assets/logos/blue-express.png" },
+            { n: "Wingo",         src: "assets/logos/wingo.png" },
             { n: "Carvajal",      src: "assets/logos/carvajal.png" },
             { n: "Amarilo",       src: "assets/logos/amarilo.png" },
             { n: "GNP BPO",       src: "assets/logos/gnp-bpo.png" },
@@ -834,8 +834,8 @@ function TruckHero({ t }) {
             // duplicate set for seamless loop
             { n: "Visa2",         src: "assets/logos/visa.png" },
             { n: "Servientrega2", src: "assets/logos/servientrega.png" },
-            { n: "BlueExpress2",  src: "assets/logos/blue-express.jpg" },
-            { n: "Wingo2",        src: "assets/logos/wingo.jpg" },
+            { n: "BlueExpress2",  src: "assets/logos/blue-express.png" },
+            { n: "Wingo2",        src: "assets/logos/wingo.png" },
             { n: "Carvajal2",     src: "assets/logos/carvajal.png" },
             { n: "Amarilo2",      src: "assets/logos/amarilo.png" },
             { n: "GNP2",          src: "assets/logos/gnp-bpo.png" },
