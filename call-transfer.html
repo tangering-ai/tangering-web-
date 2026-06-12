@@ -7,11 +7,12 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=20260612i" />
-  <link rel="stylesheet" href="hero-v2.css?v=20260612i" />
+  <link rel="stylesheet" href="styles.css?v=20260612m" />
+  <link rel="stylesheet" href="hero-v2.css?v=20260612m" />
 </head>
 <body>
-<div class="page-wrap">
+<div class="prod-page">
+
   <nav class="nav">
     <a href="landing.html" class="nav-logo">
       <img src="assets/logo-tangering.png" alt="Tangering" class="nav-logo-img" />
@@ -31,75 +32,260 @@
     </div>
   </nav>
 
-  <section class="page-hero">
-    <span class="eyebrow"><span class="dot"></span> Feature, Call transfer</span>
+  <!-- HERO -->
+  <section class="prod-hero">
+    <span class="eyebrow"><span class="pulse"></span> Feature, Call transfer</span>
     <h1>Hand off <em>without</em> dropping the ball.</h1>
-    <p class="sub">When a conversation needs a human, Tangering hands it over warm — with full context, intent and history — so the agent on the other end picks up exactly where the AI left off.</p>
+    <p class="lead">When a conversation needs a human, Tangering transfers it warm, with full context, customer intent and conversation history, so the agent on the other end picks up exactly where the AI left off.</p>
+    <div class="prod-hero-ctas">
+      <a class="btn btn-dark" href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank">Book a demo</a>
+      <a class="btn" href="#how-it-works">See how it works</a>
+    </div>
+    <div class="prod-hero-visual">
+      <div class="product-screenshot-placeholder"><span>Live transfer flow preview</span></div>
+    </div>
   </section>
 
-  <div class="feature-visual">
-    <div class="feature-canvas">
-      <div class="transfer-flow">
-        <div class="transfer-node">
-          <div class="icon-bubble"><span class="material-icons">graphic_eq</span></div>
-          <h4>AI agent</h4>
-          <p>Detects intent &amp; flags need for human</p>
+  <!-- KEY BENEFITS — 3 cards (reuses security tile pattern) -->
+  <section class="prod-row alt">
+    <div class="prod-row-inner" style="display:block;">
+      <div style="text-align:center; max-width:760px; margin:0 auto 48px;">
+        <span class="eyebrow"><span class="pulse"></span> Why it matters</span>
+        <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Built for <em>operations,</em> not call centers.</h2>
+        <p class="lead" style="margin:0 auto; max-width:560px;">Every transfer is briefed, routed by skill and logged automatically. Your team stops re-explaining and starts resolving.</p>
+      </div>
+      <div class="security-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">summarize</span></div>
+            <span class="security-tile-num">01</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Warm by default</h3>
+          <p class="security-tile-desc">The agent on the other end gets the summary, transcript and CRM fields before the call connects. No cold pickups.</p>
         </div>
-        <div class="transfer-arrow"><span class="material-icons">arrow_forward</span></div>
-        <div class="transfer-node">
-          <div class="icon-bubble"><span class="material-icons">summarize</span></div>
-          <h4>Context packet</h4>
-          <p>Summary, transcript, customer fields</p>
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">route</span></div>
+            <span class="security-tile-num">02</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Skill-based routing</h3>
+          <p class="security-tile-desc">Route by language, region, account size or shift. Plug into your existing ACD, Slack groups or internal queue.</p>
         </div>
-        <div class="transfer-arrow"><span class="material-icons">arrow_forward</span></div>
-        <div class="transfer-node">
-          <div class="icon-bubble"><span class="material-icons">support_agent</span></div>
-          <h4>Human takes over</h4>
-          <p>Briefed before the line connects</p>
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">history_edu</span></div>
+            <span class="security-tile-num">03</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Full audit trail</h3>
+          <p class="security-tile-desc">Every transfer is logged with intent, route, wait time and resolution. Find the bottleneck before it shows up in NPS.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="feature-bullets">
-    <div class="bullet-card">
-      <p class="num">01 — Warm transfer</p>
-      <h3>Brief before you bridge.</h3>
-      <p>Before the call routes, the human gets a summarized brief: who's calling, what they need, what's been promised, and what's already in the CRM.</p>
+  <!-- HOW IT WORKS — 3 numbered steps -->
+  <section class="prod-row" id="how-it-works">
+    <div style="grid-column:1 / -1; text-align:center; max-width:760px; margin:0 auto 32px;">
+      <span class="eyebrow"><span class="pulse"></span> How it works</span>
+      <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Three steps. <em>No dropped calls.</em></h2>
+      <p class="lead" style="margin:0 auto; max-width:560px;">From AI conversation to human handoff in under two seconds, with the customer never repeating themselves.</p>
     </div>
-    <div class="bullet-card">
-      <p class="num">02 — Smart routing</p>
-      <h3>The right human, not just any.</h3>
-      <p>Route by language, skill, region or shift. Tangering pulls from your existing queue, ACD or Slack groups so you keep the rules you already have.</p>
+    <div class="feature-bullets" style="grid-column:1 / -1; max-width:1200px; margin:0 auto; padding:0;">
+      <div class="bullet-card">
+        <p class="num">Step 01</p>
+        <h3>Agent detects intent</h3>
+        <p>Tangering listens, classifies and decides whether the conversation can be resolved end-to-end or needs human escalation, in milliseconds.</p>
+        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span>Intent classifier UI</span></div></div>
+      </div>
+      <div class="bullet-card">
+        <p class="num">Step 02</p>
+        <h3>Context packet builds</h3>
+        <p>Summary, transcript, customer fields, last interactions and the reason for transfer get packaged automatically before the bridge starts.</p>
+        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span>Context packet preview</span></div></div>
+      </div>
+      <div class="bullet-card">
+        <p class="num">Step 03</p>
+        <h3>Human picks up briefed</h3>
+        <p>The right agent gets the brief on screen and joins the live call seamlessly. The AI introduces the handoff so the customer never has to repeat.</p>
+        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span>Agent handoff screen</span></div></div>
+      </div>
     </div>
-    <div class="bullet-card">
-      <p class="num">03 — Live handoff</p>
-      <h3>Zero awkward repeats.</h3>
-      <p>The customer doesn't have to re-explain. The human picks up with the AI on the line for a beat, then takes over cleanly.</p>
-    </div>
-    <div class="bullet-card">
-      <p class="num">04 — Full audit trail</p>
-      <h3>Every transfer, every reason.</h3>
-      <p>Track which intents trigger transfers, which agents resolve them, and how long the handoff actually takes — per route, per shift, per customer.</p>
-    </div>
-    <div class="bullet-card">
-      <p class="num">05 — Cost guardrails</p>
-      <h3>Only transfer when it pays off.</h3>
-      <p>Set thresholds so the AI handles low-risk paths end-to-end and only escalates when the lifetime value justifies the human minutes.</p>
-    </div>
-    <div class="bullet-card">
-      <p class="num">06 — Real-time CRM write-back</p>
-      <h3>The human's notes land where you work.</h3>
-      <p>Salesforce, HubSpot, Zendesk, custom TMS, the post-call summary writes back automatically to the system of record.</p>
-    </div>
-  </div>
+  </section>
 
+  <!-- DEEP DIVE: WARM TRANSFER (text left, visual right, white bg) -->
+  <section class="prod-row alt">
+    <div class="prod-row-inner">
+      <div class="prod-row-text">
+        <span class="eyebrow"><span class="pulse"></span> Warm transfer</span>
+        <h2>Brief <em>before</em> you bridge.</h2>
+        <p class="lead">Before the call routes, the human gets a structured brief: who's calling, what they need, what's been promised and what's already on the CRM.</p>
+        <ul class="prod-bullets">
+          <li>Auto-generated call summary in under 1 second</li>
+          <li>Full conversation transcript with timestamps</li>
+          <li>CRM fields, order history and previous tickets</li>
+          <li>Reason-for-transfer flagged by the AI</li>
+        </ul>
+      </div>
+      <div class="prod-row-visual">
+        <div class="product-screenshot-placeholder"><span>Warm transfer brief panel</span></div>
+        <p class="prod-row-aside">The agent reads 10 seconds of context and saves the customer 3 minutes of re-explaining.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEEP DIVE: ROUTING (visual left, text right) -->
+  <section class="prod-row reverse">
+    <div class="prod-row-text">
+      <span class="eyebrow"><span class="pulse"></span> Smart routing</span>
+      <h2>The right human, <em>not just</em> any human.</h2>
+      <p class="lead">Route by language, skill, region or shift. Tangering plugs into your existing queue, ACD or Slack groups so you keep the rules you already trust.</p>
+      <ul class="prod-bullets">
+        <li>Skill-based routing with custom rules</li>
+        <li>SIP extensions, mobile numbers or internal agents</li>
+        <li>Time-of-day and follow-the-sun strategies</li>
+        <li>Overflow into partner BPOs when your team is saturated</li>
+      </ul>
+    </div>
+    <div class="prod-row-visual">
+      <div class="product-screenshot-placeholder"><span>Routing rules editor</span></div>
+      <p class="prod-row-aside">Build the rules once. Tangering applies them across every channel, voice, WhatsApp, SMS.</p>
+    </div>
+  </section>
+
+  <!-- DEEP DIVE: LIVE HANDOFF (text left, white bg) -->
+  <section class="prod-row alt">
+    <div class="prod-row-inner">
+      <div class="prod-row-text">
+        <span class="eyebrow"><span class="pulse"></span> Live handoff</span>
+        <h2>Zero <em>awkward</em> repeats.</h2>
+        <p class="lead">The customer doesn't have to re-explain. The human picks up on the live call with the AI still on the line for a beat, then takes over cleanly.</p>
+        <ul class="prod-bullets">
+          <li>Three-way bridge for the handoff moment</li>
+          <li>AI introduces the human and steps out gracefully</li>
+          <li>Optional whisper-only mode for agent coaching</li>
+          <li>Sub-second latency on bridge connect</li>
+        </ul>
+      </div>
+      <div class="prod-row-visual">
+        <div class="product-screenshot-placeholder"><span>Live bridge timeline</span></div>
+        <p class="prod-row-aside">The handoff feels like the same conversation continuing, not a transfer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEEP DIVE: GUARDRAILS (visual left) -->
+  <section class="prod-row reverse">
+    <div class="prod-row-text">
+      <span class="eyebrow"><span class="pulse"></span> Cost guardrails</span>
+      <h2>Only transfer <em>when it</em> pays off.</h2>
+      <p class="lead">Set thresholds so the AI handles low-risk paths end-to-end and only escalates when the lifetime value justifies the human minutes.</p>
+      <ul class="prod-bullets">
+        <li>Per-intent transfer thresholds</li>
+        <li>Customer LTV-aware routing</li>
+        <li>SLA-based escalation rules</li>
+        <li>Real-time cost-per-resolution analytics</li>
+      </ul>
+    </div>
+    <div class="prod-row-visual">
+      <div class="product-screenshot-placeholder"><span>Guardrails configurator</span></div>
+      <p class="prod-row-aside">A transfer is a real cost. Spend it on the customers who matter most.</p>
+    </div>
+  </section>
+
+  <!-- USE CASES — 4-card grid -->
+  <section class="prod-row alt">
+    <div class="prod-row-inner" style="display:block;">
+      <div style="text-align:center; max-width:760px; margin:0 auto 48px;">
+        <span class="eyebrow"><span class="pulse"></span> Use cases</span>
+        <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Built for the moments <em>that matter most.</em></h2>
+        <p class="lead" style="margin:0 auto; max-width:560px;">Wherever a conversation outgrows the AI, Tangering hands it off without losing context or customer trust.</p>
+      </div>
+      <div class="security-grid" style="grid-template-columns:repeat(2,1fr); max-width:1100px; margin:0 auto;">
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">local_shipping</span></div>
+            <span class="security-tile-num">Logistics</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Failed delivery rescue</h3>
+          <p class="security-tile-desc">When the AI can't reach the recipient, it transfers to an ops agent with the full delivery history and last contact attempt logged.</p>
+        </div>
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">payments</span></div>
+            <span class="security-tile-num">Fintech</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Payment negotiation</h3>
+          <p class="security-tile-desc">If the customer wants to negotiate beyond the AI's authority, Tangering routes to a senior collector with the proposed terms pre-loaded.</p>
+        </div>
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">medical_services</span></div>
+            <span class="security-tile-num">Healthcare</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Care escalation</h3>
+          <p class="security-tile-desc">Triage intent flagged by the AI gets a live nurse on the call instantly, with all symptoms and history briefed in advance.</p>
+        </div>
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">support_agent</span></div>
+            <span class="security-tile-num">Support</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Complex tickets</h3>
+          <p class="security-tile-desc">When a customer issue spans systems or needs approval, the AI hands off to a tier-2 agent with every conversation thread attached.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section class="prod-row">
+    <div style="grid-column:1 / -1; text-align:center; max-width:720px; margin:0 auto 40px;">
+      <span class="eyebrow"><span class="pulse"></span> Impact</span>
+      <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Numbers from <em>real</em> operations.</h2>
+    </div>
+    <div class="about-stats" style="grid-column:1 / -1; max-width:1100px;">
+      <div class="stat"><p class="v">1.3s</p><p class="l">avg time to bridge a human</p></div>
+      <div class="stat"><p class="v">+42%</p><p class="l">first-contact resolution rate</p></div>
+      <div class="stat"><p class="v">−68%</p><p class="l">customer repeats in transcripts</p></div>
+      <div class="stat"><p class="v">100%</p><p class="l">of transfers audit-logged</p></div>
+    </div>
+  </section>
+
+  <!-- INTEGRATIONS / COMPATIBILITY -->
+  <section class="prod-row alt">
+    <div class="prod-row-inner">
+      <div class="prod-row-text">
+        <span class="eyebrow"><span class="pulse"></span> Integrations</span>
+        <h2>Works with <em>your stack,</em> not against it.</h2>
+        <p class="lead">Tangering doesn't replace your telephony, CRM or workforce tools. It connects to them and lets your team keep operating the way it already does.</p>
+        <ul class="prod-bullets">
+          <li>SIP trunks and any modern carrier</li>
+          <li>Salesforce, HubSpot, Zendesk and custom TMS</li>
+          <li>Slack, Microsoft Teams and Google Workspace</li>
+          <li>Webhook + REST API for everything else</li>
+        </ul>
+      </div>
+      <div class="prod-row-visual">
+        <div class="product-screenshot-placeholder"><span>Integration topology</span></div>
+        <p class="prod-row-aside">Most customers wire transfers into their existing CRM in under an afternoon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
   <section class="page-cta">
     <h2>See it <em>handing off</em> live.</h2>
     <p>30 minutes. Real calls. Your CRM hooked up. Our FDE walks you through the live transfer flow on your own touchpoints.</p>
     <div class="btn-row">
       <a href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" class="btn-primary">Book a demo</a>
-      <a href="landing.html" class="btn-ghost">Back to home</a>
+      <a href="product.html" class="btn-ghost">Explore the product</a>
     </div>
   </section>
 
@@ -107,6 +293,7 @@
     <span>&copy; 2026 Tangering. All rights reserved.</span>
     <span>Made with care in Latin America.</span>
   </footer>
+
 </div>
 </body>
 </html>

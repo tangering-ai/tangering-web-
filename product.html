@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=20260612l" />
-  <link rel="stylesheet" href="hero-v2.css?v=20260612l" />
+  <link rel="stylesheet" href="styles.css?v=20260612n" />
+  <link rel="stylesheet" href="hero-v2.css?v=20260612n" />
 </head>
 <body>
 <div class="prod-page">
@@ -32,21 +32,90 @@
     </div>
   </nav>
 
-  <!-- SECCIÓN 0 — Hero -->
+  <!-- HERO -->
   <section class="prod-hero">
     <span class="eyebrow"><span class="pulse"></span> Producto</span>
     <h1>Todo lo que necesitas para que tus agentes <em>operen solos.</em></h1>
     <p class="lead">Desde crear el agente hasta revisar su rendimiento, Tangering cubre cada paso de tu operación de comunicaciones.</p>
     <div class="prod-hero-ctas">
       <a class="btn btn-dark" href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank">Empezar gratis</a>
-      <a class="btn" href="#agentes">Ver demo en vivo</a>
+      <a class="btn" href="#how-it-works">Ver cómo funciona</a>
     </div>
     <div class="prod-hero-visual">
       <div class="product-screenshot-placeholder"><span>Editor de Agentes</span></div>
     </div>
   </section>
 
-  <!-- SECCIÓN 1 — Agentes -->
+  <!-- KEY BENEFITS — 3 cards -->
+  <section class="prod-row alt">
+    <div class="prod-row-inner" style="display:block;">
+      <div style="text-align:center; max-width:760px; margin:0 auto 48px;">
+        <span class="eyebrow"><span class="pulse"></span> Para tu operación</span>
+        <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Una sola plataforma <em>para todo.</em></h2>
+        <p class="lead" style="margin:0 auto; max-width:560px;">Crea, monitorea y mide tus agentes de IA sin saltar entre herramientas. Tangering reemplaza el stack de comunicaciones, no lo suma.</p>
+      </div>
+      <div class="security-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">smart_toy</span></div>
+            <span class="security-tile-num">01</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Sin código</h3>
+          <p class="security-tile-desc">Construye agentes de voz y WhatsApp con un chat guiado. Tu equipo de operaciones lanza nuevos flujos en una tarde.</p>
+        </div>
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">monitoring</span></div>
+            <span class="security-tile-num">02</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">En tiempo real</h3>
+          <p class="security-tile-desc">Cada conversación, cada métrica, cada excepción, visible al instante. Sin esperar a un reporte semanal.</p>
+        </div>
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">hub</span></div>
+            <span class="security-tile-num">03</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Conecta todo</h3>
+          <p class="security-tile-desc">CRM, ERP, WhatsApp Business, troncal SIP. Tangering se enchufa a tu stack sin reemplazarlo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS — 3 numbered steps -->
+  <section class="prod-row" id="how-it-works">
+    <div style="grid-column:1 / -1; text-align:center; max-width:760px; margin:0 auto 32px;">
+      <span class="eyebrow"><span class="pulse"></span> Cómo funciona</span>
+      <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Tres pasos. <em>Cero fricción.</em></h2>
+      <p class="lead" style="margin:0 auto; max-width:560px;">Describe el proceso, conecta tus sistemas y deja al agente operar. Tu primera campaña corre en menos de una semana.</p>
+    </div>
+    <div class="feature-bullets" style="grid-column:1 / -1; max-width:1200px; margin:0 auto; padding:0;">
+      <div class="bullet-card">
+        <p class="num">Paso 01</p>
+        <h3>Crea el agente</h3>
+        <p>Cuéntale al Copiloto qué quieres automatizar. Tangering genera la voz, el flujo y las reglas, y tú las ajustas con clicks.</p>
+        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span>Chat de configuración del agente</span></div></div>
+      </div>
+      <div class="bullet-card">
+        <p class="num">Paso 02</p>
+        <h3>Conecta tus datos</h3>
+        <p>Engancha tu CRM, ERP o sistema de pedidos vía API o webhook. El agente lee y escribe en tiempo real.</p>
+        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span>Panel de integraciones</span></div></div>
+      </div>
+      <div class="bullet-card">
+        <p class="num">Paso 03</p>
+        <h3>Lanza y observa</h3>
+        <p>Tu agente empieza a llamar, escribir y resolver. Tú ves todo desde el panel de monitoreo, con alertas cuando algo necesita tu atención.</p>
+        <div style="margin-top:18px;"><div class="product-screenshot-placeholder" style="aspect-ratio: 16/9;"><span>Dashboard de operación en vivo</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEEP DIVE 1 — Agentes (white bg) -->
   <section class="prod-row alt" id="agentes">
     <div class="prod-row-inner">
       <div class="prod-row-text">
@@ -66,7 +135,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 2 — Campañas -->
+  <!-- DEEP DIVE 2 — Campañas (reverse) -->
   <section class="prod-row reverse">
     <div class="prod-row-text">
       <span class="eyebrow"><span class="pulse"></span> Campañas</span>
@@ -84,7 +153,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 3 — Telefonía -->
+  <!-- DEEP DIVE 3 — Telefonía (white bg) -->
   <section class="prod-row alt">
     <div class="prod-row-inner">
       <div class="prod-row-text">
@@ -104,7 +173,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 4 — Monitoreo -->
+  <!-- DEEP DIVE 4 — Monitoreo (reverse) -->
   <section class="prod-row reverse">
     <div class="prod-row-text">
       <span class="eyebrow"><span class="pulse"></span> Monitoreo</span>
@@ -122,7 +191,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 5 — Transferencias -->
+  <!-- DEEP DIVE 5 — Transferencias (white bg) -->
   <section class="prod-row alt">
     <div class="prod-row-inner">
       <div class="prod-row-text">
@@ -142,7 +211,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 6 — Métricas -->
+  <!-- DEEP DIVE 6 — Métricas (reverse) -->
   <section class="prod-row reverse">
     <div class="prod-row-text">
       <span class="eyebrow"><span class="pulse"></span> Métricas</span>
@@ -160,7 +229,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 7 — Reportes -->
+  <!-- DEEP DIVE 7 — Reportes (white bg) -->
   <section class="prod-row alt">
     <div class="prod-row-inner">
       <div class="prod-row-text">
@@ -180,7 +249,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 8 — Integraciones -->
+  <!-- DEEP DIVE 8 — Integraciones (reverse) -->
   <section class="prod-row reverse">
     <div class="prod-row-text">
       <span class="eyebrow"><span class="pulse"></span> Integraciones</span>
@@ -198,9 +267,71 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 9 — CTA final -->
+  <!-- USE CASES — 4 card grid -->
+  <section class="prod-row alt">
+    <div class="prod-row-inner" style="display:block;">
+      <div style="text-align:center; max-width:760px; margin:0 auto 48px;">
+        <span class="eyebrow"><span class="pulse"></span> Casos de uso</span>
+        <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Construye los agentes que <em>tu operación</em> necesita.</h2>
+        <p class="lead" style="margin:0 auto; max-width:560px;">Uno por cada punto de contacto. Cada uno trabaja por su cuenta, mantiene tus comunicaciones vivas y reporta a tu CRM.</p>
+      </div>
+      <div class="security-grid" style="grid-template-columns:repeat(2,1fr); max-width:1100px; margin:0 auto;">
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">local_shipping</span></div>
+            <span class="security-tile-num">01</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Confirmaciones de entrega</h3>
+          <p class="security-tile-desc">Verifica dirección, disponibilidad y ventana de entrega antes de que el mensajero salga del centro de distribución.</p>
+        </div>
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">dashboard</span></div>
+            <span class="security-tile-num">02</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Torre de control</h3>
+          <p class="security-tile-desc">Visibilidad en tiempo real de cada envío, agente y excepción. Mantén tu operación fluyendo sin supervisión manual.</p>
+        </div>
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">support_agent</span></div>
+            <span class="security-tile-num">03</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Soporte 24/7</h3>
+          <p class="security-tile-desc">Responde dudas, rastrea pedidos y gestiona devoluciones en cualquier idioma, todo el día, todos los días.</p>
+        </div>
+        <div class="security-tile">
+          <div class="security-tile-top">
+            <div class="security-tile-icon"><span class="material-icons">error_outline</span></div>
+            <span class="security-tile-num">04</span>
+          </div>
+          <div class="security-tile-spacer"></div>
+          <h3 class="security-tile-title">Excepciones</h3>
+          <p class="security-tile-desc">Resuelve cliente no localizable, dirección incorrecta y entregas fallidas de forma automática, sin escalamiento humano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section class="prod-row">
+    <div style="grid-column:1 / -1; text-align:center; max-width:720px; margin:0 auto 40px;">
+      <span class="eyebrow"><span class="pulse"></span> Impacto</span>
+      <h2 style="font-family:'Overused Grotesk',sans-serif; font-size:clamp(32px,4.4vw,56px); line-height:1.08; letter-spacing:-0.02em; font-weight:600; margin:18px 0 14px;">Números de <em>operaciones</em> reales.</h2>
+    </div>
+    <div class="about-stats" style="grid-column:1 / -1; max-width:1100px;">
+      <div class="stat"><p class="v">+1M</p><p class="l">llamadas procesadas</p></div>
+      <div class="stat"><p class="v">−35%</p><p class="l">menos entregas fallidas</p></div>
+      <div class="stat"><p class="v">97%</p><p class="l">precisión en confirmaciones</p></div>
+      <div class="stat"><p class="v">1.8s</p><p class="l">tiempo de respuesta</p></div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
   <section class="page-cta">
-    <span class="eyebrow" style="background:rgba(255,255,255,0.1); color:#fff; margin-bottom:18px;"><span class="pulse"></span> Empieza hoy</span>
     <h2>Tu operación no debería depender <em>de cuántas personas</em> tienes disponibles.</h2>
     <p>30 minutos. Te mostramos Tangering corriendo sobre tu operación, con tus números.</p>
     <div class="btn-row">
