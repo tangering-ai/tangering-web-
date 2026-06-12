@@ -126,36 +126,58 @@ function AudioSamples({ t }) {
 
 function FinalCTA({ t }) {
   return (
-    <section className="final" data-screen-label="10 Final CTA">
-      <div className="container final-inner">
-        <FadeUp>
-          <div className="eyebrow" style={{ background: "rgba(255,255,255,0.08)", color: "white" }}>
-            <span className="pulse"></span>
-            {t.cta.eyebrow}
-          </div>
-        </FadeUp>
-        <FadeUp delay={100}>
-          <h2 style={{ marginTop: 28 }}>
-            {t.cta.h2a}{" "}
-            <span className="accent">{t.cta.h2b}</span>
-          </h2>
-        </FadeUp>
-        <FadeUp delay={200}>
-          <p className="lead">{t.cta.sub}</p>
-        </FadeUp>
-        <FadeUp delay={300}>
-          <div className="final-ctas">
-            <a
-              className="btn btn-primary"
-              href="https://calendar.app.google/rSZM4ebTrNXp7bzk9"
-              target="_blank"
-              rel="noopener"
-            >
-              {t.cta.b1} <span>→</span>
-            </a>
-            <a className="btn btn-light" href="#cases">
-              {t.cta.b2}
-            </a>
+    <section className="final final-promo" data-screen-label="10 Final CTA">
+      <div className="container final-promo-inner">
+        <div className="final-promo-text">
+          <FadeUp>
+            <div className="eyebrow" style={{ background: "rgba(255,255,255,0.10)", color: "white" }}>
+              <span className="pulse"></span>
+              {t.cta.eyebrow}
+            </div>
+          </FadeUp>
+          <FadeUp delay={100}>
+            <h2>
+              {t.cta.h2a}{" "}
+              <span className="accent">{t.cta.h2b}</span>
+            </h2>
+          </FadeUp>
+          <FadeUp delay={200}>
+            <p className="lead">{t.cta.sub}</p>
+          </FadeUp>
+          <FadeUp delay={300}>
+            <div className="final-ctas">
+              <a
+                className="btn btn-primary"
+                href="https://calendar.app.google/rSZM4ebTrNXp7bzk9"
+                target="_blank"
+                rel="noopener"
+              >
+                {t.cta.b1} <span>→</span>
+              </a>
+              <a className="btn btn-light" href="#cases">
+                {t.cta.b2}
+              </a>
+            </div>
+          </FadeUp>
+          <FadeUp delay={400}>
+            <div className="final-promo-stats">
+              <div><strong>30 min</strong><span>Demo</span></div>
+              <div><strong>+1M</strong><span>Calls</span></div>
+              <div><strong>−35%</strong><span>Failed</span></div>
+            </div>
+          </FadeUp>
+        </div>
+        <FadeUp delay={150} className="final-promo-visual">
+          <div className="final-promo-image">
+            <img src="assets/final-cta-portrait.png" alt="Tangering customer" />
+            <div className="final-promo-badge">
+              <span className="material-icons">verified</span>
+              Live deployment
+            </div>
+            <div className="final-promo-quote">
+              <p>"We went from 38% failed deliveries to 6% in three weeks."</p>
+              <span>— Ops Lead, LATAM logistics</span>
+            </div>
           </div>
         </FadeUp>
       </div>
