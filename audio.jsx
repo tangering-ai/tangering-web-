@@ -126,11 +126,13 @@ function AudioSamples({ t }) {
 
 function FinalCTA({ t }) {
   return (
-    <section className="final final-promo" data-screen-label="10 Final CTA">
-      <div className="container final-promo-inner">
-        <div className="final-promo-text">
+    <section className="final final-banner" data-screen-label="10 Final CTA">
+      <img className="final-banner-bg" src="assets/final-cta-portrait.png" alt="" />
+      <div className="final-banner-overlay" />
+      <div className="container final-banner-inner">
+        <div className="final-banner-text">
           <FadeUp>
-            <div className="eyebrow" style={{ background: "rgba(255,255,255,0.10)", color: "white" }}>
+            <div className="eyebrow" style={{ background: "rgba(255,255,255,0.12)", color: "#fff", borderColor: "rgba(255,255,255,0.18)" }}>
               <span className="pulse"></span>
               {t.cta.eyebrow}
             </div>
@@ -159,27 +161,7 @@ function FinalCTA({ t }) {
               </a>
             </div>
           </FadeUp>
-          <FadeUp delay={400}>
-            <div className="final-promo-stats">
-              <div><strong>30 min</strong><span>Demo</span></div>
-              <div><strong>+1M</strong><span>Calls</span></div>
-              <div><strong>−35%</strong><span>Failed</span></div>
-            </div>
-          </FadeUp>
         </div>
-        <FadeUp delay={150} className="final-promo-visual">
-          <div className="final-promo-image">
-            <img src="assets/final-cta-portrait.png" alt="Tangering customer" />
-            <div className="final-promo-badge">
-              <span className="material-icons">verified</span>
-              Live deployment
-            </div>
-            <div className="final-promo-quote">
-              <p>"We went from 38% failed deliveries to 6% in three weeks."</p>
-              <span>— Ops Lead, LATAM logistics</span>
-            </div>
-          </div>
-        </FadeUp>
       </div>
     </section>
   );

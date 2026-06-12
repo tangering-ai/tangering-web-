@@ -424,7 +424,7 @@ function VoiceTech() {
           <FadeUp delay={160} className="vtech-hero-photo-col">
             <div className="vtech-photo">
               <img
-                src="https://images.unsplash.com/photo-1573497019418-b400bb3ab074?w=900&h=1100&fit=crop&auto=format"
+                src="assets/voice-portrait.png"
                 alt="Person on a Tangering AI call"
               />
             </div>
