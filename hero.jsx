@@ -9,8 +9,8 @@ function Nav({ lang, setLang, t }) {
       <div className="nav-links">
         <a href="#solution">{t.nav.product}</a>
         <a href="#cases">{t.nav.cases}</a>
-        <a href="#diff">{t.nav.pricing}</a>
-        <a href="#footer">{t.nav.contact}</a>
+        <a href="pricing.html">{t.nav.pricing}</a>
+        <a href="about.html">{t.nav.contact}</a>
       </div>
       <div className="nav-right">
         <div className="lang-toggle">
