@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=20260612v" />
-  <link rel="stylesheet" href="hero-v2.css?v=20260612v" />
+  <link rel="stylesheet" href="styles.css?v=20260612x" />
+  <link rel="stylesheet" href="hero-v2.css?v=20260612x" />
 </head>
 <body>
 <div class="prod-page">
@@ -501,6 +501,104 @@
       if (v.currentTime >= CLIP_END) { v.currentTime = 0; v.play(); }
     });
     v.addEventListener("loadedmetadata", () => { v.currentTime = 0; });
+  }
+
+  // (Copilot chat simulation disabled — using real video instead)
+  const cpBody = null;
+  if (cpBody) {
+    const SCRIPT_EN = [
+      { type: "input", text: "I need an agent that confirms deliveries the day before" },
+      { type: "user",  html: "I need an agent that confirms deliveries the day before, asks for address, time window and lets the customer reschedule." },
+      { type: "typing", ms: 1100 },
+      { type: "ai",    html: "Got it. I'll build a <b>voice + WhatsApp</b> agent that confirms address, schedules the window and handles reschedules. Setting it up now." },
+      { type: "card",  data: [
+          ["Channel", "Voice + WhatsApp"],
+          ["Language", "Spanish (LATAM)"],
+          ["Fallback", "Human handoff"],
+      ]},
+      { type: "ai",    html: "Ready. Want me to <b>plug it into your CRM</b> and start a 20-call test campaign?" },
+      { type: "input", text: "Yes — connect Salesforce and run the test" },
+      { type: "user",  html: "Yes, connect Salesforce and run the test." },
+    ];
+    const SCRIPT_ES = [
+      { type: "input", text: "Necesito un agente que confirme entregas el día anterior" },
+      { type: "user",  html: "Necesito un agente que confirme entregas el día anterior, pregunte dirección, ventana horaria y permita reagendar." },
+      { type: "typing", ms: 1100 },
+      { type: "ai",    html: "Listo. Construyo un agente de <b>voz + WhatsApp</b> que confirma dirección, agenda la ventana y maneja reagendas. Configurando ahora." },
+      { type: "card",  data: [
+          ["Canal", "Voz + WhatsApp"],
+          ["Idioma", "Español (LATAM)"],
+          ["Fallback", "Transferir a humano"],
+      ]},
+      { type: "ai",    html: "Listo. ¿Quieres que lo <b>conecte a tu CRM</b> y lance una campaña de prueba con 20 llamadas?" },
+      { type: "input", text: "Sí — conecta Salesforce y corre la prueba" },
+      { type: "user",  html: "Sí, conecta Salesforce y corre la prueba." },
+    ];
+
+    const typeAt = (el, text, speed = 28) => new Promise(resolve => {
+      el.textContent = "";
+      let i = 0;
+      const tick = () => {
+        if (i <= text.length) { el.textContent = text.slice(0, i++); setTimeout(tick, speed); }
+        else resolve();
+      };
+      tick();
+    });
+
+    const addMsg = (cls, html) => {
+      const el = document.createElement("div");
+      el.className = `cp-msg ${cls}`;
+      el.innerHTML = `<div class="av ${cls === "ai" ? "ai" : "you"}">${cls === "ai" ? "T" : "U"}</div><div class="bubble">${html}</div>`;
+      cpBody.appendChild(el);
+      cpBody.scrollTop = cpBody.scrollHeight;
+    };
+    const addTyping = () => {
+      const el = document.createElement("div");
+      el.className = "cp-typing";
+      el.innerHTML = `<span></span><span></span><span></span>`;
+      cpBody.appendChild(el);
+      cpBody.scrollTop = cpBody.scrollHeight;
+      return el;
+    };
+    const addCard = (data) => {
+      const el = document.createElement("div");
+      el.className = "cp-card";
+      el.innerHTML = `<div class="row" style="font-weight:600;font-size:12.5px;color:var(--dark);"><span>New agent</span><span class="v"><span class="dot"></span>Configured</span></div>` +
+        data.map(([k,v]) => `<div class="row"><span class="k">${k}</span><span class="v">${v}</span></div>`).join("");
+      cpBody.appendChild(el);
+      cpBody.scrollTop = cpBody.scrollHeight;
+    };
+
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+
+    const runScript = async () => {
+      cpBody.innerHTML = "";
+      const lang = document.documentElement.lang === "es" ? "es" : "en";
+      const SCRIPT = lang === "es" ? SCRIPT_ES : SCRIPT_EN;
+      for (const step of SCRIPT) {
+        if (step.type === "input") {
+          await typeAt(cpInput, step.text, 30);
+          await wait(500);
+        } else if (step.type === "user") {
+          addMsg("user", step.html);
+          cpInput.textContent = (lang === "es" ? "Describe lo que quieres que haga tu agente…" : "Describe what you want your agent to do…");
+          await wait(700);
+        } else if (step.type === "typing") {
+          const t = addTyping();
+          await wait(step.ms);
+          t.remove();
+        } else if (step.type === "ai") {
+          addMsg("ai", step.html);
+          await wait(900);
+        } else if (step.type === "card") {
+          addCard(step.data);
+          await wait(900);
+        }
+      }
+      await wait(2500);
+      runScript();
+    };
+    runScript();
   }
 })();
 </script>
