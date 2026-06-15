@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=20260612z" />
-  <link rel="stylesheet" href="hero-v2.css?v=20260612z" />
+  <link rel="stylesheet" href="styles.css?v=20260612t2" />
+  <link rel="stylesheet" href="hero-v2.css?v=20260612t2" />
 </head>
 <body>
 <div class="prod-page">
@@ -49,9 +49,9 @@
         </div>
       </div>
       <div class="prod-hero-media-wrap">
-        <div class="prod-hero-media">
-          <video id="prod-hero-video" src="assets/flow-builder.mov" autoplay loop muted playsinline></video>
-        </div>
+        <div class="prod-hero-media"></div>
+        <video id="prod-hero-video" src="assets/hero-agent-creation.mov" autoplay loop muted playsinline></video>
+        <div class="hero-fade-overlay"></div>
       </div>
     </div>
   </section>
@@ -500,15 +500,8 @@
   });
   applyLang(getLang());
 
-  // Loop only the first ~7s of the hero video (the prompt-typing portion)
-  const v = document.getElementById("prod-hero-video");
-  if (v) {
-    const CLIP_END = 7;
-    v.addEventListener("timeupdate", () => {
-      if (v.currentTime >= CLIP_END) { v.currentTime = 0; v.play(); }
-    });
-    v.addEventListener("loadedmetadata", () => { v.currentTime = 0; });
-  }
+  // Hero video plays full length on loop (native loop attribute)
+  // — no clipping needed for the dedicated agent-creation recording.
 
   // (Copilot chat simulation disabled — using real video instead)
   const cpBody = null;

@@ -1515,9 +1515,9 @@ function SocialProof({ t }) {
   }, []);
 
   const results = [
-    { num: 35, prefix: "−", suffix: "%", desc: t.proof.t1d, co: t.proof.t1w, color: "#fe5e32" },
-    { num: 28, prefix: "+", suffix: "%", desc: t.proof.t2d, co: t.proof.t2w, color: "#22c55e" },
-    { num: 3,  prefix: "",  suffix: "×", desc: t.proof.t3d, co: t.proof.t3w, color: "var(--dark)" },
+    { text: t.proof.t1n, desc: t.proof.t1d, co: t.proof.t1w, color: "#22c55e" },
+    { text: t.proof.t2n, desc: t.proof.t2d, co: t.proof.t2w, color: "#fe5e32" },
+    { text: t.proof.t3n, desc: t.proof.t3d, co: t.proof.t3w, color: "var(--dark)" },
   ];
 
   return (
@@ -1561,7 +1561,7 @@ function SocialProof({ t }) {
               <FadeUp key={i} delay={i * 80} className="proof-metric" style={{ "--mc": r.color }}>
                 <div className="proof-metric-row">
                   <div className="proof-metric-num" style={{ color: r.color }}>
-                    <CountUp to={r.num} prefix={r.prefix} suffix={r.suffix} duration={1800} />
+                    {r.text ? r.text : <CountUp to={r.num} prefix={r.prefix} suffix={r.suffix} duration={1800} />}
                   </div>
                   <div className="proof-metric-body">
                     <p className="proof-metric-desc">{r.desc}</p>
@@ -1620,4 +1620,51 @@ function UseCases({ t }) {
   );
 }
 
-Object.assign(window, { Problem, Solution, SocialProof, UseCases });
+function LiveResults({ t }) {
+  return (
+    <section className="live-results" data-screen-label="04b Live results">
+      <div className="container">
+        <FadeUp className="live-head">
+          <span className="eyebrow eyebrow-accent"><span className="pulse"></span> Customers love it</span>
+          <h2>
+            Live results, <em>and our biggest</em> US logo moving.
+          </h2>
+        </FadeUp>
+
+        <div className="live-grid">
+          <FadeUp delay={120}>
+            <div className="live-card live-card-teal">
+              <div className="live-card-label">BLUE EXPRESS</div>
+              <p className="live-card-meta">Our agent Bea, live</p>
+              <div className="live-card-metric">
+                <span className="from">78%</span>
+                <span className="arrow material-icons">arrow_forward</span>
+                <span className="to">80.8%</span>
+              </div>
+              <p className="live-card-metric-label">pickup rate</p>
+              <p className="live-card-copy">+2.8 points of first-attempt pickup, every point is a redelivery they never have to pay for.</p>
+            </div>
+          </FadeUp>
+
+          <FadeUp delay={200}>
+            <div className="live-card live-card-orange">
+              <div className="live-card-label">ESTES FINAL MILE</div>
+              <p className="live-card-meta">Largest private last-mile operator in the US</p>
+              <div className="live-card-status">
+                <div className="status-check"><span className="material-icons">check</span></div>
+                <span>Technical POC passed</span>
+              </div>
+              <div className="live-card-next">
+                <span className="next-label">NEXT</span>
+                <strong>Full end-to-end POC</strong>
+                <p>Starts next week, momentum, not just status.</p>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, { Problem, Solution, SocialProof, UseCases, LiveResults });

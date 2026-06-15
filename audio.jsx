@@ -126,24 +126,37 @@ function AudioSamples({ t }) {
 
 function FinalCTA({ t }) {
   return (
-    <section className="final final-banner" data-screen-label="10 Final CTA">
-      <img className="final-banner-bg" src="assets/final-cta-portrait.png" alt="" />
-      <div className="final-banner-overlay" />
-      <div className="container final-banner-inner">
-        <div className="final-banner-text">
-          <FadeUp>
-            <div className="eyebrow" style={{ background: "rgba(255,255,255,0.12)", color: "#fff", borderColor: "rgba(255,255,255,0.18)" }}>
-              <span className="pulse"></span>
-              {t.cta.eyebrow}
+    <section className="final final-split" data-screen-label="10 Final CTA">
+      <div className="container final-split-inner">
+        <FadeUp className="final-split-visual">
+          <div className="final-split-photo">
+            <img src="assets/final-cta-portrait.png?v=20260612R" alt="Tangering customer" />
+            <div className="final-split-stat-card">
+              <div className="stat-card-label">EN PRODUCCIÓN HOY</div>
+              <div className="stat-card-row">Pickup rate</div>
+              <div className="stat-card-value">80%</div>
+              <div className="stat-card-tags">
+                <span className="tag tag-up">↗ +2.8 pts</span>
+                <span className="tag tag-muted">Blue Express</span>
+              </div>
+            </div>
+          </div>
+        </FadeUp>
+
+        <div className="final-split-text">
+          <FadeUp delay={80}>
+            <div className="final-split-eyebrow">
+              <span className="line"></span>
+              <span>REAL RESULTS. REAL OPERATION.</span>
             </div>
           </FadeUp>
-          <FadeUp delay={100}>
+          <FadeUp delay={140}>
             <h2>
               {t.cta.h2a}{" "}
               <span className="accent">{t.cta.h2b}</span>
             </h2>
           </FadeUp>
-          <FadeUp delay={200}>
+          <FadeUp delay={220}>
             <p className="lead">{t.cta.sub}</p>
           </FadeUp>
           <FadeUp delay={300}>
@@ -159,6 +172,13 @@ function FinalCTA({ t }) {
               <a className="btn btn-light" href="#cases">
                 {t.cta.b2}
               </a>
+            </div>
+          </FadeUp>
+          <FadeUp delay={380}>
+            <div className="final-split-stats">
+              <div><strong>30 min</strong><span>To go live</span></div>
+              <div><strong>+1M</strong><span>Calls processed</span></div>
+              <div><strong>$0</strong><span>Setup fee</span></div>
             </div>
           </FadeUp>
         </div>
