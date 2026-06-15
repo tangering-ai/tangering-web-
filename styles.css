@@ -7782,6 +7782,19 @@ section h2 i {
   object-fit: contain;
   object-position: center bottom;
 }
+
+/* Connects everything (card 03) — fill the visual area without bars */
+.prod-section .security-track > .security-tile:nth-child(3) .security-tile-visual {
+  background: #ffffff;
+}
+.prod-section .security-track > .security-tile:nth-child(3) .security-tile-visual .prod-mock-screen {
+  background: #ffffff;
+}
+.prod-section .security-track > .security-tile:nth-child(3) .security-tile-visual video,
+.prod-section .security-track > .security-tile:nth-child(3) .security-tile-visual img {
+  object-fit: cover;
+  object-position: center center;
+}
 .prod-section .security-tile .security-tile-top {
   justify-content: flex-start;
   gap: 14px;
