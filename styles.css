@@ -6198,10 +6198,11 @@ section h2 i {
     #fe5e32 50%,
     #ff7c6e 78%,
     #ecbbe9 100%);
-  box-shadow:
-    0 1px 2px rgba(15,23,42,0.08),
-    0 32px 64px -12px rgba(254,94,50,0.25),
-    0 0 0 1px rgba(15,23,42,0.04);
+  box-shadow: none;
+  border: none;
+  outline: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 28%, #000 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 28%, #000 100%);
 }
 .prod-hero-media::before {
   content: '';
@@ -6241,13 +6242,52 @@ section h2 i {
   outline: none;
 }
 @media (max-width: 980px) {
-  .prod-hero-media { max-width: 280px; aspect-ratio: 3/5; margin: 0 auto; }
+  /* Hero stacks but keeps the same right-anchored composition */
+  .prod-hero { padding: 110px 24px 80px; }
+  .prod-hero-text h1 { font-size: clamp(36px, 8vw, 56px); }
+
+  .prod-hero-media-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 11/9;
+    max-width: 460px;
+    margin: 40px auto 0;
+    overflow: visible;
+  }
+
+  /* Gradient card still pokes out to the right */
+  .prod-hero-media {
+    position: absolute;
+    top: 50%;
+    right: -40px;
+    left: auto;
+    transform: translateY(-50%);
+    width: 60%;
+    max-width: 360px;
+    aspect-ratio: 2/3;
+  }
+
+  /* Video still anchored right, overlapping the gradient on its right side */
   .prod-hero-media-wrap > video,
   .prod-hero-media-wrap > img,
   .prod-hero-media video,
   .prod-hero-media img {
-    right: 50%; transform: translate(50%, -50%);
-    width: 110%; max-width: 480px;
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    left: auto;
+    transform: translateY(-50%);
+    width: 80%;
+    max-width: 460px;
+    aspect-ratio: 1/1;
+  }
+}
+@media (max-width: 640px) {
+  .prod-hero-media-wrap { aspect-ratio: 9/8; margin-top: 32px; }
+  .prod-hero-media { right: -28px; width: 58%; max-width: 280px; }
+  .prod-hero-media-wrap > video,
+  .prod-hero-media-wrap > img {
+    right: -6px; width: 82%; max-width: 360px;
   }
 }
 
@@ -7675,4 +7715,111 @@ section h2 i {
   color: rgba(255,255,255,0.55);
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+/* Product page — One platform carousel: horizontal cards
+   Layout: text on the left half, big mock filling the right half. */
+.prod-section .security-tile {
+  flex: 0 0 78%;
+  max-width: 760px;
+  min-height: 340px;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+}
+.prod-section .security-tile .security-tile-text {
+  flex: 1 1 50%;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+}
+.prod-section .security-tile .security-tile-visual {
+  flex: 1 1 50%;
+  position: relative;
+  overflow: hidden;
+  background: #0f172a;
+}
+.prod-section .security-tile .security-tile-visual > div {
+  position: absolute !important;
+  inset: 0 !important;
+  margin: 0 !important;
+}
+.prod-section .security-tile .security-tile-visual .prod-mock {
+  border-radius: 0;
+  aspect-ratio: auto !important;
+  width: 100%;
+  height: 100%;
+}
+.prod-section .security-tile .security-tile-visual .prod-mock::before,
+.prod-section .security-tile .security-tile-visual .prod-mock::after { content: none; }
+.prod-section .security-tile .security-tile-visual .prod-mock-screen {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  background: #0f172a;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.55);
+}
+.prod-section .security-tile .security-tile-visual video,
+.prod-section .security-tile .security-tile-visual img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+/* Real time (card 02) — full recording width, white fill above, anchored to bottom */
+.prod-section .security-track > .security-tile:nth-child(2) .security-tile-visual {
+  background: #ffffff;
+}
+.prod-section .security-track > .security-tile:nth-child(2) .security-tile-visual .prod-mock-screen {
+  background: #ffffff;
+}
+.prod-section .security-track > .security-tile:nth-child(2) .security-tile-visual video,
+.prod-section .security-track > .security-tile:nth-child(2) .security-tile-visual img {
+  object-fit: contain;
+  object-position: center bottom;
+}
+.prod-section .security-tile .security-tile-top {
+  justify-content: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.prod-section .security-tile .security-tile-icon {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(254,94,50,0.12), rgba(254,94,50,0.04));
+  border: 1px solid rgba(254,94,50,0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+.prod-section .security-tile .security-tile-icon .material-icons {
+  font-size: 22px !important;
+  line-height: 1 !important;
+  color: #fe5e32 !important;
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
+.prod-section .security-tile .security-tile-spacer { display: none; }
+.prod-section .security-tile .security-tile-desc { margin-bottom: 0; margin-top: auto; }
+
+@media (max-width: 720px) {
+  .prod-section .security-tile {
+    flex-direction: column;
+    flex-basis: 86%;
+    min-height: 0;
+  }
+  .prod-section .security-tile .security-tile-visual {
+    aspect-ratio: 16/10;
+    width: 100%;
+  }
 }
