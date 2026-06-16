@@ -1580,10 +1580,26 @@ function SocialProof({ t }) {
 
 function UseCases({ t }) {
   const cases = [
-    { num: t.uc.c1n, title: t.uc.c1t, desc: t.uc.c1d, accent: "var(--orange)" },
-    { num: t.uc.c2n, title: t.uc.c2t, desc: t.uc.c2d, accent: "var(--dark)" },
-    { num: t.uc.c3n, title: t.uc.c3t, desc: t.uc.c3d, accent: "#6b9c30" },
-    { num: t.uc.c4n, title: t.uc.c4t, desc: t.uc.c4d, accent: "#c66a99" },
+    {
+      num: t.uc.c1n, title: t.uc.c1t, desc: t.uc.c1d, accent: "var(--orange)",
+      chips: ["Voice", "WhatsApp", "TMS sync"],
+      detail: "Voice or WhatsApp the day before delivery. Captures special instructions, locks the time window and writes the confirmed address straight to your TMS — no manual logging."
+    },
+    {
+      num: t.uc.c2n, title: t.uc.c2t, desc: t.uc.c2d, accent: "var(--dark)",
+      chips: ["Live panel", "Take-over", "Smart alerts"],
+      detail: "Listen-in on any live call, jump into a WhatsApp thread with one click, or set automatic alerts so the team only intervenes when a conversation actually needs them."
+    },
+    {
+      num: t.uc.c3n, title: t.uc.c3t, desc: t.uc.c3d, accent: "#6b9c30",
+      chips: ["Voice", "WhatsApp", "SMS"],
+      detail: "Same agent answers voice, WhatsApp and SMS. Tracks orders, opens returns, resolves doubts in your customer's language and hands off to a human only when judgment is required."
+    },
+    {
+      num: t.uc.c4n, title: t.uc.c4t, desc: t.uc.c4d, accent: "#c66a99",
+      chips: ["Smart retries", "CRM write-back", "Auto reschedule"],
+      detail: "Smart backoff across channels until the customer responds. Fixes the address on the CRM in real time, reschedules the delivery and notifies the courier — without a single human escalation."
+    },
   ];
   return (
     <section className="usecases" id="cases" data-screen-label="05 Use cases">
@@ -1609,8 +1625,11 @@ function UseCases({ t }) {
                 <div className="uc-content">
                   <div className="uc-title">{c.title}</div>
                   <div className="uc-desc">{c.desc}</div>
+                  <div className="uc-chips">
+                    {c.chips.map((chip, j) => <span key={j}>{chip}</span>)}
+                  </div>
+                  <div className="uc-detail"><p>{c.detail}</p></div>
                 </div>
-                <div className="uc-arrow">↗</div>
               </div>
             </FadeUp>
           ))}
