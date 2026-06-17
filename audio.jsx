@@ -126,61 +126,31 @@ function AudioSamples({ t }) {
 
 function FinalCTA({ t }) {
   return (
-    <section className="final final-split" data-screen-label="10 Final CTA">
-      <div className="container final-split-inner">
-        <FadeUp className="final-split-visual">
-          <div className="final-split-photo">
-            <img src="assets/final-cta-portrait.png?v=20260612R" alt="Tangering customer" />
-            <div className="final-split-stat-card">
-              <div className="stat-card-label">EN PRODUCCIÓN HOY</div>
-              <div className="stat-card-row">Pickup rate</div>
-              <div className="stat-card-value">80%</div>
-              <div className="stat-card-tags">
-                <span className="tag tag-up">↗ +2.8 pts</span>
-                <span className="tag tag-muted">Blue Express</span>
-              </div>
-            </div>
-          </div>
-        </FadeUp>
-
-        <div className="final-split-text">
-          <FadeUp delay={80}>
-            <div className="final-split-eyebrow">
-              <span className="line"></span>
-              <span>REAL RESULTS. REAL OPERATION.</span>
-            </div>
-          </FadeUp>
-          <FadeUp delay={140}>
-            <h2>
-              {t.cta.h2a}{" "}
-              <span className="accent">{t.cta.h2b}</span>
-            </h2>
-          </FadeUp>
-          <FadeUp delay={220}>
-            <p className="lead">{t.cta.sub}</p>
-          </FadeUp>
-          <FadeUp delay={300}>
-            <div className="final-ctas">
-              <a
-                className="btn btn-primary"
-                href="https://calendar.app.google/rSZM4ebTrNXp7bzk9"
-                target="_blank"
-                rel="noopener"
-              >
-                {t.cta.b1} <span>→</span>
+    <section className="sub-banner" data-screen-label="10 Final CTA">
+      <div className="sub-banner-blob sub-banner-blob-a"></div>
+      <div className="sub-banner-blob sub-banner-blob-b"></div>
+      <div className="sub-banner-blob sub-banner-blob-c"></div>
+      <div className="sub-banner-blob sub-banner-blob-d"></div>
+      <div className="sub-banner-inner">
+        <div className="sub-banner-content">
+          <span className="sub-banner-eyebrow"><span className="sub-banner-dot"></span> {t.cta.eyebrow}</span>
+          <h2 className="sub-banner-headline">
+            <span className="sub-banner-line">{t.cta.h2a}</span>
+            <span className="sub-banner-line"><em>{t.cta.h2b}</em></span>
+          </h2>
+          <div className="sub-banner-bottom">
+            <div className="sub-banner-actions">
+              <a href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" rel="noopener" className="sub-banner-primary">
+                {t.cta.b1}
+                <span className="material-icons">arrow_forward</span>
               </a>
-              <a className="btn btn-light" href="#cases">
+              <a href="#cases" className="sub-banner-secondary">
                 {t.cta.b2}
+                <span className="material-icons">arrow_outward</span>
               </a>
             </div>
-          </FadeUp>
-          <FadeUp delay={380}>
-            <div className="final-split-stats">
-              <div><strong>30 min</strong><span>To go live</span></div>
-              <div><strong>+1M</strong><span>Calls processed</span></div>
-              <div><strong>$0</strong><span>Setup fee</span></div>
-            </div>
-          </FadeUp>
+            <p className="sub-banner-sub">{t.cta.sub}</p>
+          </div>
         </div>
       </div>
     </section>

@@ -128,7 +128,7 @@ a { color: inherit; text-decoration: none; }
   background: var(--dark);
   color: white;
 }
-.btn-dark:hover { background: #000; }
+.btn-dark:hover { background: var(--orange); color: #fff; }
 .btn-ghost {
   color: var(--dark);
   border: 1px solid rgba(0,0,0,0.12);
@@ -8349,38 +8349,38 @@ section h2 i {
 .sub-banner {
   position: relative;
   overflow: hidden;
-  background: #303030;
+  /* Tangering brand gradient: green → orange → lilac */
+  background:
+    linear-gradient(100deg,
+      #c5e94a 0%,
+      #ffa53d 10%,
+      #fe5e32 50%,
+      #ff7c6e 90%,
+      #ecbbe9 100%);
   color: #ffffff;
   isolation: isolate;
   transition: background 0.6s ease;
 }
-/* Grain texture overlay — premium dark finish */
+/* Brand grain texture — same recipe as flow2-video-card */
 .sub-banner::before {
   content: '';
   position: absolute; inset: 0;
   background-image:
-    radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1.4px),
-    radial-gradient(circle, rgba(0,0,0,0.25) 1px, transparent 1.4px);
+    radial-gradient(circle, rgba(255,255,255,0.16) 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1.4px);
   background-size: 3px 3px, 4px 4px;
   background-position: 0 0, 1.5px 1.5px;
-  opacity: 0.55;
+  opacity: 0.5;
   mix-blend-mode: overlay;
   pointer-events: none;
   z-index: 1;
 }
-/* Animated brand-color aurora that intensifies on hover */
+/* Soft dark vignette behind the text so white copy reads on lime/lila ends */
 .sub-banner::after {
   content: '';
-  position: absolute; inset: -20%;
+  position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 40% 50% at 20% 40%, rgba(254,94,50,0.55), transparent 65%),
-    radial-gradient(ellipse 40% 50% at 80% 60%, rgba(236,187,233,0.40), transparent 65%),
-    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(197,233,74,0.30), transparent 65%),
-    radial-gradient(ellipse 35% 40% at 90% 10%, rgba(255,165,61,0.35), transparent 65%);
-  opacity: 0.45;
-  filter: blur(20px);
-  transition: opacity 0.7s ease, transform 0.9s ease, filter 0.7s ease;
-  animation: subBannerDrift 14s ease-in-out infinite;
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,0,0,0.18), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -8408,34 +8408,7 @@ section h2 i {
 .sub-banner-blob-b { animation: subBlobB 13s ease-in-out infinite; }
 .sub-banner-blob-c { animation: subBlobC 9s ease-in-out infinite; }
 .sub-banner-blob-d { animation: subBlobD 12s ease-in-out infinite; }
-.sub-banner-blob-a {
-  width: 480px; height: 480px;
-  background: rgba(254,94,50,0.55);
-  top: -140px; left: -160px;
-  opacity: 0.55;
-  animation-delay: -0s;
-}
-.sub-banner-blob-b {
-  width: 480px; height: 480px;
-  background: rgba(236,187,233,0.50);
-  bottom: -140px; right: -160px;
-  opacity: 0.55;
-  animation-delay: -3s;
-}
-.sub-banner-blob-c {
-  width: 380px; height: 380px;
-  background: rgba(197,233,74,0.40);
-  bottom: -120px; left: 28%;
-  opacity: 0.55;
-  animation-delay: -6s;
-}
-.sub-banner-blob-d {
-  width: 320px; height: 320px;
-  background: rgba(255,165,61,0.40);
-  top: -100px; right: 20%;
-  opacity: 0.55;
-  animation-delay: -8s;
-}
+.sub-banner-blob { display: none; }
 .sub-banner:hover .sub-banner-blob {
   opacity: 1;
   filter: blur(60px);
@@ -8468,12 +8441,13 @@ section h2 i {
   z-index: 2;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 140px 56px 140px;
+  padding: 110px 56px 110px;
   text-align: left;
 }
 .sub-banner-content {
-  max-width: 1100px;
+  max-width: 100%;
 }
+.sub-banner-headline { max-width: 1100px; }
 .sub-banner-bottom {
   margin-top: 56px;
   display: flex;
@@ -8481,8 +8455,8 @@ section h2 i {
   justify-content: space-between;
   gap: 40px;
   flex-wrap: wrap;
+  width: 100%;
 }
-.sub-banner-bottom .sub-banner-sub { margin: 0; max-width: 380px; }
 .sub-banner-bottom .sub-banner-form { margin: 0; }
 @media (max-width: 900px) {
   .sub-banner-inner { padding: 100px 28px; }
@@ -8494,8 +8468,8 @@ section h2 i {
   gap: 10px;
   padding: 8px 16px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.30);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   font-family: 'Overused Grotesk', sans-serif;
@@ -8503,7 +8477,7 @@ section h2 i {
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.85);
+  color: #ffffff;
   margin-bottom: 36px;
 }
 .sub-banner-dot {
@@ -8517,17 +8491,25 @@ section h2 i {
   0%, 100% { box-shadow: 0 0 0 4px rgba(254,94,50,0.25); }
   50%      { box-shadow: 0 0 0 8px rgba(254,94,50,0.08); }
 }
-.sub-banner-headline {
-  margin: 8px 0 0;
-  font-family: 'Overused Grotesk', sans-serif;
-  font-size: clamp(48px, 6.4vw, 104px);
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  font-weight: 500;
-  color: #ffffff;
-  text-shadow: 0 2px 40px rgba(0,0,0,0.35);
+.sub-banner .sub-banner-headline,
+section.sub-banner .sub-banner-headline {
+  margin: 8px 0 0 !important;
+  font-family: 'Overused Grotesk', sans-serif !important;
+  font-size: clamp(36px, 4.6vw, 76px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.025em !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.45);
+  max-width: 980px;
 }
-.sub-banner-headline em { font-style: italic; font-weight: 400; }
+.sub-banner .sub-banner-headline em,
+section.sub-banner .sub-banner-headline em {
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
 .sub-banner-line {
   display: block;
   opacity: 0;
@@ -8544,12 +8526,7 @@ section h2 i {
   display: inline-block;
   font-style: italic;
   font-weight: 400;
-  background: linear-gradient(90deg, #fe5e32 0%, #ff8c4a 45%, #ecbbe9 100%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: subBannerGradient 6s ease-in-out infinite;
+  color: #ffffff;
 }
 @keyframes subBannerGradient {
   0%, 100% { background-position: 0% 50%; }
@@ -8565,6 +8542,16 @@ section h2 i {
   transform: translateY(12px);
   animation: subBannerLineIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.55s forwards;
 }
+.sub-banner-bottom .sub-banner-sub {
+  max-width: 480px;
+  font-size: 20px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.95);
+  font-weight: 500;
+  text-align: right;
+  margin-left: auto;
+}
+.sub-banner-accent { color: #ffffff; font-weight: 600; }
 .sub-banner-form {
   display: flex;
   align-items: center;
@@ -8673,40 +8660,42 @@ section h2 i {
   gap: 10px;
   padding: 16px 26px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #fe5e32, #ff8c4a);
-  color: #ffffff;
+  background: #ffffff;
+  color: #303030;
   font-family: 'Overused Grotesk', sans-serif;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
-  box-shadow: 0 1px 2px rgba(254,94,50,0.4), 0 18px 36px rgba(254,94,50,0.32);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.10), 0 18px 36px rgba(0,0,0,0.18);
   transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 .sub-banner-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 1px 2px rgba(254,94,50,0.4), 0 24px 48px rgba(254,94,50,0.42);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 24px 48px rgba(0,0,0,0.26);
 }
 .sub-banner-primary .material-icons {
   font-size: 18px !important;
-  color: #ffffff !important;
+  color: #303030 !important;
 }
 .sub-banner-secondary {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   padding: 16px 24px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.14);
   color: #ffffff;
   font-family: 'Overused Grotesk', sans-serif;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
-  border: 1px solid rgba(255,255,255,0.20);
+  border: 1px solid rgba(255,255,255,0.28);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: background 0.2s var(--ease);
 }
-.sub-banner-secondary:hover { background: rgba(255,255,255,0.18); }
+.sub-banner-secondary:hover { background: rgba(255,255,255,0.28); }
+.sub-banner-secondary .material-icons { font-size: 18px !important; color: #ffffff !important; }
 @media (max-width: 900px) {
   .sub-banner-inner { padding: 90px 24px 90px; }
   .sub-banner-headline { font-size: clamp(34px, 9vw, 56px); }
