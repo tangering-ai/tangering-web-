@@ -863,55 +863,83 @@
 }
 .hero-brands-headline .accent { color: var(--orange); }
 
-/* Scrolling track — duplicated logos for seamless loop */
+/* Scrolling track — duplicated logos for seamless infinite loop */
 .hero-brands-track {
   display: flex;
-  gap: 0;
+  gap: 56px;
   width: max-content;
   animation: brands-marquee 28s linear infinite;
   mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  padding-right: 56px; /* keep the gap consistent across the seam when the track loops */
 }
 @keyframes brands-marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-/* keep marquee running on hover */
+/* Static row variant — no duplicates, evenly distributed across the container */
+.hero-brands-track.hero-brands-static {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 0;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  justify-content: space-between;
+  animation: none;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+.hero-brands-static .hero-brand {
+  flex: 1 1 0;
+  min-width: 140px;
+  padding: 0 8px;
+}
 
 .hero-brand {
   flex-shrink: 0;
-  padding: 0 72px;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.55;
-  transition: opacity 0.3s ease;
-  width: 220px;
+  width: 200px; /* fixed slot so center-to-center spacing stays constant */
   height: 110px;
 }
 .hero-brand img {
-  height: 56px;
-  max-height: 56px;
+  height: 64px;
+  max-height: 64px;
   max-width: 200px;
   width: auto;
   object-fit: contain;
   display: block;
-  /* Source PNGs now have transparent backgrounds — flatten ink to grey */
-  filter: grayscale(1) brightness(0.85) contrast(1.6);
+  /* Force every logo to a deep solid grey-black. brightness(0) flattens any
+     coloured ink to black; multiply drops the white PNG background into the
+     page so square/padded PNGs render as silhouettes, not boxes. */
+  filter: brightness(0);
+  opacity: 0.62;
+  mix-blend-mode: multiply;
   background: transparent;
   transform-origin: center;
 }
-/* Modest per-logo scaling — bring stacked/padded logos closer to the
-   "text only" baseline (Wingo / Visa) without going dramatic. */
-.hero-brand img[alt*="GNP"]                                            { transform: scale(1.45); }
-.hero-brand img[alt*="Blue Express"], .hero-brand img[alt*="BlueExpress"] { transform: scale(1.45); }
-.hero-brand img[alt*="Carvajal"]                                       { transform: scale(1.25); }
-.hero-brand img[alt*="Interagua"]                                      { transform: scale(1.15); }
-.hero-brand img[alt*="Servientrega"]                                   { transform: scale(1.05); }
-.hero-brand img[alt*="Amarilo"]                                        { transform: scale(1.0);  }
-.hero-brand img[alt*="Wingo"]                                          { transform: scale(1.0);  }
-.hero-brand img[alt*="Visa"]                                           { transform: scale(1.0);  }
-.hero-brand:hover { opacity: 0.9; }
+/* Per-logo scaling — equalize the visible MARK (ignoring PNG whitespace).
+   Logos in tighter PNGs scale ≈1.0; square/padded PNGs scale up. */
+/* Carvajal is the visual baseline — bring everything to match its mark height */
+.hero-brand img[alt*="Blue Express"], .hero-brand img[alt*="BlueExpress"] { transform: scale(2.10); }
+.hero-brand img[alt*="GNP"]                                            { transform: scale(2.10); }
+.hero-brand img[alt*="Servientrega"]                                   { transform: scale(1.60); }
+.hero-brand img[alt*="Amarilo"]                                        { transform: scale(1.45); }
+.hero-brand img[alt*="Wingo"]                                          { transform: scale(1.35); }
+.hero-brand img[alt*="Interagua"]                                      { transform: scale(1.10); }
+.hero-brand img[alt*="Carvajal"]                                       { transform: scale(0.95); }
+.hero-brand img[alt*="Visa"]                                           { transform: scale(0.75); }
+
+/* Tighten the slots for Amarilo / Wingo / Visa so they don't sit so far apart */
+.hero-brand:has(img[alt*="Amarilo"]),
+.hero-brand:has(img[alt*="Wingo"]),
+.hero-brand:has(img[alt*="Visa"]) {
+  width: 150px;
+}
+/* Marquee never pauses; no per-logo hover state */
 
 /* Orbit cards — float around the truck (positioned inside truck-stage which is absolute) */
 .orbit-card {

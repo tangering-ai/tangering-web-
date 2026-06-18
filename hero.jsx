@@ -824,29 +824,26 @@ function TruckHero({ t }) {
         </div>
       </div>
       <div className="hero-brands-track">
-          {[
-            { n: "Visa",          src: "assets/logos/visa.png" },
-            { n: "Servientrega",  src: "assets/logos/servientrega.png" },
-            { n: "Blue Express",  src: "assets/logos/blue-express.png" },
-            { n: "Wingo",         src: "assets/logos/wingo.png" },
-            { n: "Carvajal",      src: "assets/logos/carvajal.png" },
-            { n: "Amarilo",       src: "assets/logos/amarilo.png" },
-            { n: "GNP BPO",       src: "assets/logos/gnp-bpo.png" },
-            { n: "Interagua",     src: "assets/logos/interagua.png" },
-            // duplicate set for seamless loop
-            { n: "Visa2",         src: "assets/logos/visa.png" },
-            { n: "Servientrega2", src: "assets/logos/servientrega.png" },
-            { n: "BlueExpress2",  src: "assets/logos/blue-express.png" },
-            { n: "Wingo2",        src: "assets/logos/wingo.png" },
-            { n: "Carvajal2",     src: "assets/logos/carvajal.png" },
-            { n: "Amarilo2",      src: "assets/logos/amarilo.png" },
-            { n: "GNP2",          src: "assets/logos/gnp-bpo.png" },
-            { n: "Interagua2",    src: "assets/logos/interagua.png" },
-          ].map((b, i) => (
-            <div key={i} className="hero-brand">
-              <img src={b.src} alt={b.n} />
-            </div>
-          ))}
+          {(() => {
+            const logos = [
+              // Alternating wide wordmarks ↔ compact / square marks for visual rhythm
+              { n: "Visa",          src: "assets/logos/visa.png" },
+              { n: "GNP BPO",       src: "assets/logos/gnp-bpo.png" },
+              { n: "Carvajal",      src: "assets/logos/carvajal.png" },
+              { n: "Blue Express",  src: "assets/logos/blue-express.png" },
+              { n: "Servientrega",  src: "assets/logos/servientrega.png" },
+              { n: "Interagua",     src: "assets/logos/interagua.png" },
+              { n: "Amarilo",       src: "assets/logos/amarilo.png" },
+              { n: "Wingo",         src: "assets/logos/wingo.png" },
+            ];
+            // Duplicate the set so the marquee can loop seamlessly. The copy is
+            // marked aria-hidden so screen readers and tests don't see repeats.
+            return [...logos, ...logos.map(l => ({ ...l, dup: true }))].map((b, i) => (
+              <div key={i} className="hero-brand" aria-hidden={b.dup ? "true" : undefined}>
+                <img src={b.src} alt={b.n} />
+              </div>
+            ));
+          })()}
         </div>
     </section>
     </>
