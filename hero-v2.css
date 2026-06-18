@@ -866,12 +866,13 @@
 /* Scrolling track — duplicated logos for seamless infinite loop */
 .hero-brands-track {
   display: flex;
-  gap: 56px;
+  align-items: center;
+  gap: 96px; /* visual gap between adjacent logos (item boxes hug content) */
   width: max-content;
   animation: brands-marquee 28s linear infinite;
   mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
-  padding-right: 56px; /* keep the gap consistent across the seam when the track loops */
+  padding-right: 96px; /* keep the gap consistent across the seam when the track loops */
 }
 @keyframes brands-marquee {
   from { transform: translateX(0); }
@@ -902,43 +903,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px; /* fixed slot so center-to-center spacing stays constant */
-  height: 110px;
+  width: auto; /* layout box hugs the image so visual gap == track gap */
+  height: 140px;
 }
 .hero-brand img {
-  height: 64px;
-  max-height: 64px;
-  max-width: 200px;
   width: auto;
   object-fit: contain;
   display: block;
-  /* Force every logo to a deep solid grey-black. brightness(0) flattens any
-     coloured ink to black; multiply drops the white PNG background into the
-     page so square/padded PNGs render as silhouettes, not boxes. */
+  /* Force every logo to a deep solid grey. brightness(0) flattens coloured
+     ink to black; multiply drops the white PNG background into the page so
+     square/padded PNGs render as silhouettes, not boxes. */
   filter: brightness(0);
   opacity: 0.62;
   mix-blend-mode: multiply;
   background: transparent;
-  transform-origin: center;
 }
-/* Per-logo scaling — equalize the visible MARK (ignoring PNG whitespace).
-   Logos in tighter PNGs scale ≈1.0; square/padded PNGs scale up. */
-/* Carvajal is the visual baseline — bring everything to match its mark height */
-.hero-brand img[alt*="Blue Express"], .hero-brand img[alt*="BlueExpress"] { transform: scale(2.10); }
-.hero-brand img[alt*="GNP"]                                            { transform: scale(2.10); }
-.hero-brand img[alt*="Servientrega"]                                   { transform: scale(1.60); }
-.hero-brand img[alt*="Amarilo"]                                        { transform: scale(1.45); }
-.hero-brand img[alt*="Wingo"]                                          { transform: scale(1.35); }
-.hero-brand img[alt*="Interagua"]                                      { transform: scale(1.10); }
-.hero-brand img[alt*="Carvajal"]                                       { transform: scale(0.95); }
-.hero-brand img[alt*="Visa"]                                           { transform: scale(0.75); }
+/* Per-logo intrinsic height — matches the previous transform-scale visual
+   sizes but uses real height so the layout box hugs the image and the
+   marquee gap is visually uniform between every pair. */
+.hero-brand img[alt*="Visa"]                                              { height: 48px; }
+.hero-brand img[alt*="Carvajal"]                                          { height: 60px; }
+.hero-brand img[alt*="Interagua"]                                         { height: 70px; }
+.hero-brand img[alt*="Wingo"]                                             { height: 86px; }
+.hero-brand img[alt*="Amarilo"]                                           { height: 92px; }
+.hero-brand img[alt*="Servientrega"]                                      { height: 100px; }
+.hero-brand img[alt*="GNP"]                                               { height: 130px; }
+.hero-brand img[alt*="Blue Express"], .hero-brand img[alt*="BlueExpress"] { height: 130px; }
 
-/* Tighten the slots for Amarilo / Wingo / Visa so they don't sit so far apart */
-.hero-brand:has(img[alt*="Amarilo"]),
-.hero-brand:has(img[alt*="Wingo"]),
-.hero-brand:has(img[alt*="Visa"]) {
-  width: 150px;
-}
 /* Marquee never pauses; no per-logo hover state */
 
 /* Orbit cards — float around the truck (positioned inside truck-stage which is absolute) */

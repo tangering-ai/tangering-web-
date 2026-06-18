@@ -595,13 +595,13 @@ function RescheduleView() {
 
 // ── Step 4: Courier WhatsApp notification ──────────────────────
 const COURIER_MSGS = [
-  { delay: 600,  side: "out", text: "📦 New delivery assigned, Order #4521", time: "3:41" },
-  { delay: 1800, side: "out", text: "📍 Updated address: 580 Post St, San Francisco CA 94102", time: "3:41" },
-  { delay: 3000, side: "out", text: "👤 Customer: James Carter · +1 (555) 012-4567", time: "3:42" },
-  { delay: 4100, side: "out", text: "🕐 Window: today 3:00–5:00 PM", time: "3:42" },
-  { delay: 5100, side: "out", text: "⚠️ Side entrance on Larkin St. Ring apt 3B.", time: "3:42" },
-  { delay: 6100, side: "out", text: "✅ Customer confirmed delivery. Route updated in your app.", time: "3:42", confirm: true },
-  { delay: 7500, side: "in",  text: "Got it, on my way! 👍", time: "3:43" },
+  { delay: 600,  side: "out", text: "Hola 👋 Tienes una entrega lista — Pedido #4521", time: "3:41" },
+  { delay: 1900, side: "in",  text: "Listo, ¿cuál es la dirección?", time: "3:41" },
+  { delay: 3100, side: "out", text: "📍 580 Post St, San Francisco — apto 3B", time: "3:42" },
+  { delay: 4300, side: "out", text: "🕐 Ventana de hoy: 3:00 – 5:00 PM", time: "3:42" },
+  { delay: 5500, side: "out", text: "⚠️ Entrada lateral por Larkin St, timbre 3B", time: "3:42" },
+  { delay: 6900, side: "in",  text: "Recibido, ya voy en camino 👍", time: "3:43" },
+  { delay: 8200, side: "out", text: "✅ El cliente acaba de confirmar la entrega.", time: "3:43", confirm: true },
 ];
 
 function CourierNotifyView() {
