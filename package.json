@@ -1,0 +1,8 @@
+{
+  "name": "tangering-web",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  }
+}
