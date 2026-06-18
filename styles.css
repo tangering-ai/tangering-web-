@@ -8752,6 +8752,7 @@ section.sub-banner .sub-banner-headline em {
   .tg-call-fab-label { display: none; }
 }
 
+.tg-call-backdrop[hidden] { display: none !important; }
 .tg-call-backdrop {
   position: fixed; inset: 0;
   z-index: 9100;
