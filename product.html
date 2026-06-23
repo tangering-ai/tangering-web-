@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=20260614w" />
-  <link rel="stylesheet" href="hero-v2.css?v=20260614w" />
+  <link rel="stylesheet" href="styles.css?v=20260622m" />
+  <link rel="stylesheet" href="hero-v2.css?v=20260622m" />
 </head>
 <body>
 <div class="prod-page">
@@ -20,7 +20,6 @@
     <div class="nav-links">
       <a href="product.html" data-i18n-link>Product</a>
       <a href="landing.html#cases" data-i18n-link>Cases</a>
-      <a href="pricing.html" data-i18n-link>Pricing</a>
       <a href="about.html" data-i18n-link>Contact</a>
     </div>
     <div class="nav-right">
@@ -32,26 +31,32 @@
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="prod-hero">
-    <div class="prod-hero-inner">
-      <div class="prod-hero-text">
-        <span class="eyebrow"><span class="pulse"></span> <span data-i18n="hero.eyebrow">Product</span></span>
-        <h1 data-i18n="hero.h1">Everything you need so your agents <em>run on their own.</em></h1>
-        <p class="lead" data-i18n="hero.sub">From building the agent to reviewing performance, Tangering covers every step of your communications operation.</p>
-        <div class="prod-hero-ctas">
-          <a class="btn btn-dark" href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" data-i18n="hero.cta1">Start free</a>
-          <a class="btn btn-ghost" href="#how-it-works" data-i18n="hero.cta2">See how it works</a>
+  <!-- HERO — full-bleed video background, same recipe as the home -->
+  <section class="vhero vhero-product" data-screen-label="01 Product hero">
+    <div class="vhero-media">
+      <div class="vhero-bg">
+        <video src="assets/product-hero-bg.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="vhero-overlay"></div>
+      <div class="vhero-grain"></div>
+    </div>
+
+    <div class="vhero-content container">
+      <div class="vhero-left">
+        <div class="eyebrow vhero-eyebrow">
+          <span class="pulse"></span>
+          <span data-i18n="hero.eyebrow">Product</span>
         </div>
-        <div class="prod-hero-mini">
-          <span class="dot-live"></span>
+        <h1 class="vhero-h1" data-i18n="hero.h1">Everything you need so your agents <em>run on their own.</em></h1>
+        <p class="lead vhero-sub" data-i18n="hero.sub">From building the agent to reviewing performance, Tangering covers every step of your communications operation.</p>
+        <div class="hero-ctas vhero-ctas">
+          <a class="btn btn-primary" href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" data-i18n="hero.cta1">Start free <span>→</span></a>
+          <a class="btn btn-glass" href="#how-it-works" data-i18n="hero.cta2">See how it works</a>
+        </div>
+        <div class="vhero-live-inline">
+          <span class="vhero-live-dot"></span>
           <span data-i18n="hero.mini">+1M conversations running on Tangering right now</span>
         </div>
-      </div>
-      <div class="prod-hero-media-wrap">
-        <div class="prod-hero-media"></div>
-        <video id="prod-hero-video" src="assets/hero-agent-creation.mov" autoplay loop muted playsinline></video>
-        <div class="hero-fade-overlay"></div>
       </div>
     </div>
   </section>
@@ -132,10 +137,14 @@
               <div style="margin-top:20px;"><div class="prod-mock prod-mock--sm" style="aspect-ratio:16/10;"><div class="prod-mock-screen"><video src="assets/analytics-card.mov" autoplay loop muted playsinline></video></div></div></div></div>
           </div>
         </div>
-        <div class="flow3-carousel-hint">
-          <span class="material-icons">arrow_back</span>
+        <div class="flow3-carousel-hint" data-carousel-hint-for=".security-carousel-v2 .security-track">
+          <button type="button" class="carousel-arrow" aria-label="Previous" data-carousel-dir="-1">
+            <span class="material-icons">arrow_back</span>
+          </button>
           <span>Scroll to see more</span>
-          <span class="material-icons">arrow_forward</span>
+          <button type="button" class="carousel-arrow" aria-label="Next" data-carousel-dir="1">
+            <span class="material-icons">arrow_forward</span>
+          </button>
         </div>
       </div>
     </div>
@@ -301,17 +310,23 @@
   </section>
 
   <!-- STATS -->
-  <section class="prod-section">
+  <section class="prod-section prod-stats">
     <div class="prod-section-head">
       <span class="eyebrow"><span class="pulse"></span> <span data-i18n="st.eyebrow">Impact</span></span>
-      <h2 data-i18n="st.h2">Numbers from <em>real</em> operations.</h2>
+      <h2 data-i18n="st.h2">
+        Over 1 million calls later,<br/>
+        <em>here's what changed.</em>
+      </h2>
     </div>
-    <div class="about-stats" style="max-width:1100px; margin: 0 auto;">
-      <div class="stat"><p class="v">+1M</p><p class="l" data-i18n="st.s1">calls processed</p></div>
-      <div class="stat"><p class="v accent">−35%</p><p class="l" data-i18n="st.s2">fewer failed deliveries</p></div>
+    <div class="about-stats prod-stats-grid">
+      <div class="stat"><p class="v accent">−35%</p><p class="l" data-i18n="st.s1">fewer failed deliveries</p></div>
+      <div class="stat"><p class="v accent">+28%</p><p class="l" data-i18n="st.s2">more first-attempt deliveries</p></div>
       <div class="stat"><p class="v accent">97%</p><p class="l" data-i18n="st.s3">confirmation accuracy</p></div>
-      <div class="stat"><p class="v">1.8s</p><p class="l" data-i18n="st.s4">response time</p></div>
     </div>
+    <p class="prod-stats-attribution" data-i18n="st.attr">
+      Measured in under 90 days.<br/>
+      Servientrega · Inter Rapidísimo · Grupo Argos
+    </p>
   </section>
 
   <!-- FINAL CTA — dark immersive banner -->
@@ -360,7 +375,6 @@
             <li><a href="landing.html#cases">Use cases</a></li>
             <li><a href="product.html">Product</a></li>
             <li><a href="call-transfer.html">Call transfer</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
           </ul>
         </div>
         <div>
@@ -629,6 +643,7 @@
 })();
 </script>
 
-  <script src="call-agent.js?v=20260614w"></script>
+  <script src="call-agent.js?v=20260622m"></script>
+  <script src="carousel-arrows.js?v=20260622m"></script>
 </body>
 </html>

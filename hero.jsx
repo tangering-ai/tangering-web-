@@ -11,7 +11,6 @@ function Nav({ lang, setLang, t }) {
       <div className="nav-links">
         <a href={`product.html${q}`}>{t.nav.product}</a>
         <a href="#cases">{t.nav.cases}</a>
-        <a href={`pricing.html${q}`}>{t.nav.pricing}</a>
         <a href={`about.html${q}`}>{t.nav.contact}</a>
       </div>
       <div className="nav-right">

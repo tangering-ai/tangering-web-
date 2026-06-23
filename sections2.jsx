@@ -516,30 +516,58 @@ function FlowBuilder({ t }) {
         </div>
 
         {/* Horizontal carousel of feature cards */}
-        <div className="flow3-carousel-wrap">
-          <div className="flow3-carousel">
-            {features.map((f, i) => (
-              <div key={i} className="flow3-feature">
-                <div className={`flow3-video-card flow3-grad-${f.gradient}`}>
-                  <video
-                    className="flow3-video"
-                    src={f.video}
-                    autoPlay loop muted playsInline
-                  />
-                </div>
-                <h3 className="flow3-feature-title">{f.title}</h3>
-                <p className="flow3-feature-desc">{f.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="flow3-carousel-hint">
-            <span className="material-icons">arrow_back</span>
-            <span>Scroll to see more</span>
-            <span className="material-icons">arrow_forward</span>
-          </div>
-        </div>
+        <Flow3Carousel features={features} />
       </div>
     </section>
+  );
+}
+
+function Flow3Carousel({ features }) {
+  const trackRef = useRef(null);
+  const scrollByCards = (dir) => {
+    const t = trackRef.current;
+    if (!t) return;
+    const card = t.querySelector(".flow3-feature");
+    const step = card ? card.getBoundingClientRect().width + 28 : t.clientWidth * 0.8;
+    t.scrollBy({ left: dir * step, behavior: "auto" });
+  };
+  // Translate vertical wheel into horizontal scroll on desktop
+  useEffect(() => {
+    const t = trackRef.current;
+    if (!t) return;
+    const onWheel = (e) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      const maxScroll = t.scrollWidth - t.clientWidth;
+      if ((e.deltaY < 0 && t.scrollLeft <= 0) || (e.deltaY > 0 && t.scrollLeft >= maxScroll)) return;
+      e.preventDefault();
+      t.scrollBy({ left: e.deltaY, behavior: "auto" });
+    };
+    t.addEventListener("wheel", onWheel, { passive: false });
+    return () => t.removeEventListener("wheel", onWheel);
+  }, []);
+  return (
+    <div className="flow3-carousel-wrap">
+      <div className="flow3-carousel" ref={trackRef}>
+        {features.map((f, i) => (
+          <div key={i} className="flow3-feature">
+            <div className={`flow3-video-card flow3-grad-${f.gradient}`}>
+              <video className="flow3-video" src={f.video} autoPlay loop muted playsInline />
+            </div>
+            <h3 className="flow3-feature-title">{f.title}</h3>
+            <p className="flow3-feature-desc">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div className="flow3-carousel-hint">
+        <button type="button" className="carousel-arrow" aria-label="Previous" onClick={() => scrollByCards(-1)}>
+          <span className="material-icons">arrow_back</span>
+        </button>
+        <span>Scroll to see more</span>
+        <button type="button" className="carousel-arrow" aria-label="Next" onClick={() => scrollByCards(1)}>
+          <span className="material-icons">arrow_forward</span>
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -618,7 +646,7 @@ function SecurityCarousel({ items }) {
     if (!t) return;
     const card = t.querySelector(".security-tile");
     const step = card ? card.getBoundingClientRect().width + 18 : t.clientWidth * 0.4;
-    t.scrollBy({ left: dir * step, behavior: "smooth" });
+    t.scrollBy({ left: dir * step, behavior: "auto" });
   };
 
   useEffect(() => {
@@ -631,8 +659,19 @@ function SecurityCarousel({ items }) {
       const i = Math.round(t.scrollLeft / w) + 1;
       setPage(Math.min(Math.max(i, 1), pages));
     };
+    const onWheel = (e) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      const maxScroll = t.scrollWidth - t.clientWidth;
+      if ((e.deltaY < 0 && t.scrollLeft <= 0) || (e.deltaY > 0 && t.scrollLeft >= maxScroll)) return;
+      e.preventDefault();
+      t.scrollBy({ left: e.deltaY, behavior: "auto" });
+    };
     t.addEventListener("scroll", onScroll, { passive: true });
-    return () => t.removeEventListener("scroll", onScroll);
+    t.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      t.removeEventListener("scroll", onScroll);
+      t.removeEventListener("wheel", onWheel);
+    };
   }, [pages]);
 
   return (
@@ -659,9 +698,13 @@ function SecurityCarousel({ items }) {
         ))}
       </div>
       <div className="flow3-carousel-hint">
-        <span className="material-icons">arrow_back</span>
+        <button type="button" className="carousel-arrow" aria-label="Previous" onClick={() => scrollByCards(-1)}>
+          <span className="material-icons">arrow_back</span>
+        </button>
         <span>Scroll to see more</span>
-        <span className="material-icons">arrow_forward</span>
+        <button type="button" className="carousel-arrow" aria-label="Next" onClick={() => scrollByCards(1)}>
+          <span className="material-icons">arrow_forward</span>
+        </button>
       </div>
     </div>
   );

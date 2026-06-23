@@ -3413,3 +3413,30 @@
   .hero-v2-metrics { gap: 30px; }
   .hero-v2-metrics .m .v { font-size: 26px; }
 }
+
+/* ============================================================
+   Product hero — match the rest of the product page's grid.
+   Every other product section uses max-width 1200px + 24px horizontal
+   padding; the home's .container uses 1280px + 32px. Align the hero
+   to the page so the headline starts on the same vertical edge as the
+   sections below.
+   ============================================================ */
+.vhero-product .vhero-content {
+  width: 100%;            /* without .vhero-right the flex container collapsed to content width — force full width so .container's max-width + margin: 0 auto actually centers it like every other section */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+.vhero-product .vhero-left {
+  flex: 0 1 auto;
+  max-width: 720px;
+}
+.vhero-product .vhero-h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--orange);
+}
+@media (max-width: 700px) {
+  .vhero-product .vhero-content { padding-left: 20px; padding-right: 20px; }
+}
