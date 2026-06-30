@@ -2,15 +2,15 @@
 
 function Nav({ lang, setLang, t }) {
   const q = `?lang=${lang}`;
-  const setLangPersist = (l) => { try { localStorage.setItem("tang_lang", l); } catch(e){}; setLang(l); };
+  const setLangPersist = (l) => { setLang(l); };
   return (
     <nav className="nav">
       <a href="#" className="nav-logo">
         <img src="assets/logo-tangering.png" alt="Tangering" className="nav-logo-img" />
       </a>
       <div className="nav-links">
+        <a href={`landing.html${q}`} className="active">{t.nav.home || (lang === 'es' ? 'Inicio' : 'Home')}</a>
         <a href={`product.html${q}`}>{t.nav.product}</a>
-        <a href="#cases">{t.nav.cases}</a>
         <a href={`about.html${q}`}>{t.nav.contact}</a>
       </div>
       <div className="nav-right">
@@ -819,7 +819,7 @@ function TruckHero({ t }) {
     <section className="hero-brands">
       <div className="container">
         <div className="hero-brands-headline">
-          +<span className="accent">1 Million</span> calls <span className="accent" style={{ fontStyle: "italic", fontWeight: 400 }}>for them</span>
+          +<span className="accent">{t.hero.brandsCount}</span> {t.hero.brandsCalls} <span className="accent" style={{ fontStyle: "italic", fontWeight: 400 }}>{t.hero.brandsTail}</span>
         </div>
       </div>
       <div className="hero-brands-track">
@@ -1049,7 +1049,7 @@ function HeroChatCard({ t }) {
               <img src="assets/icono-tangering.png" alt="" className="hcc-av-img" />
             </div>
             <div className="hcc-bubble agent">
-              {t.hero.wa.cm1 || "Hi James 👋 this is Sarah, from Envios.com"}
+              {t.hero.cm1 || "Hi James 👋 this is Sarah, from Envios.com"}
               <span className="hcc-time">3:42</span>
             </div>
           </div>
@@ -1059,7 +1059,7 @@ function HeroChatCard({ t }) {
           <div className="hcc-row" key="r2">
             <div className="hcc-av-sm invisible"></div>
             <div className="hcc-bubble agent">
-              {t.hero.wa.cm2 || "Your order #4521 is scheduled for today 3–5pm. Can you confirm: 742 Elm Street?"}
+              {t.hero.cm2 || "Your order #4521 is scheduled for today 3–5pm. Can you confirm: 742 Elm Street?"}
               <span className="hcc-time">3:42</span>
             </div>
           </div>
@@ -1076,7 +1076,7 @@ function HeroChatCard({ t }) {
           <div className="hcc-row client" key="r3">
             <div className="hcc-av-sm client"><PersonIcon /></div>
             <div className="hcc-bubble client">
-              {t.hero.wa.cm3 || "Yes! That address is correct 👍"}
+              {t.hero.cm3 || "Yes! That address is correct 👍"}
               <span className="hcc-time">
                 3:43
                 <svg className="hcc-tick" width="14" height="9" viewBox="0 0 14 9" fill="rgba(255,255,255,0.45)">
@@ -1092,7 +1092,7 @@ function HeroChatCard({ t }) {
           <div className="hcc-row" key="r4">
             <div className="hcc-av-sm invisible"></div>
             <div className="hcc-bubble agent">
-              {t.hero.wa.cm4 || "Perfect! You'll get a notification 15 min before arrival 📦"}
+              {t.hero.cm4 || "Perfect! You'll get a notification 15 min before arrival 📦"}
               <span className="hcc-time">3:43</span>
             </div>
           </div>
@@ -1109,7 +1109,7 @@ function HeroChatCard({ t }) {
           <div className="hcc-row client" key="r5">
             <div className="hcc-av-sm client"><PersonIcon /></div>
             <div className="hcc-bubble client">
-              {t.hero.wa.cm5 || "Great, I'll be home. Thanks, Sarah!"}
+              {t.hero.cm5 || "Great, I'll be home. Thanks, Sarah!"}
               <span className="hcc-time">
                 3:43
                 <svg className="hcc-tick" width="14" height="9" viewBox="0 0 14 9" fill={phase >= 8 ? "#beef62" : "rgba(255,255,255,0.45)"}>

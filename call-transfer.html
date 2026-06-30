@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tangering — Call transfer</title>
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=20260622m" />
-  <link rel="stylesheet" href="hero-v2.css?v=20260622m" />
+  <link rel="stylesheet" href="styles.css?v=202606225" />
+  <link rel="stylesheet" href="hero-v2.css?v=202606225" />
 </head>
 <body>
 <div class="prod-page">
@@ -18,14 +17,14 @@
       <img src="assets/logo-tangering.png" alt="Tangering" class="nav-logo-img" />
     </a>
     <div class="nav-links">
-      <a href="product.html">Product</a>
-      <a href="landing.html#cases">Cases</a>
-      <a href="about.html">Contact</a>
+      <a href="landing.html">Home</a>
+      <a href="product.html" class="active">Product</a>
+      <a href="about.html">About us</a>
     </div>
     <div class="nav-right">
       <div class="lang-toggle">
-        <button>ES</button>
-        <button class="active">EN</button>
+        <button data-set-lang="es">ES</button>
+        <button data-set-lang="en" class="active">EN</button>
       </div>
       <a class="btn btn-dark" href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank">Book a demo</a>
     </div>
@@ -300,7 +299,6 @@
         <div>
           <h4>Product</h4>
           <ul>
-            <li><a href="landing.html#cases">Use cases</a></li>
             <li><a href="product.html">Product</a></li>
             <li><a href="call-transfer.html">Call transfer</a></li>
           </ul>
@@ -316,12 +314,15 @@
       </div>
       <div class="foot-bottom">
         <span>© 2026 Tangering. All rights reserved.</span>
-        <span>Made with care in Latin America.</span>
+        <span>Built for enterprise operations.</span>
       </div>
     </div>
   </footer>
 
 </div>
-  <script src="call-agent.js?v=20260622m"></script>
+  <script src="call-agent.js?v=202606225"></script>
+  <script src="strip-dashes.js?v=202606225"></script>
+  <script src="lang-toggle.js?v=202606225"></script>
+  <script src="nav-mobile.js?v=202606225"></script>
 </body>
 </html>

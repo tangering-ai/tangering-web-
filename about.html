@@ -1,98 +1,184 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tangering — About us</title>
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=20260622m" />
-  <link rel="stylesheet" href="hero-v2.css?v=20260622m" />
+  <link rel="stylesheet" href="styles.css?v=202606225" />
+  <link rel="stylesheet" href="hero-v2.css?v=202606225" />
 </head>
 <body>
-<div class="page-wrap">
+<div class="prod-page">
+
   <nav class="nav">
     <a href="landing.html" class="nav-logo">
       <img src="assets/logo-tangering.png" alt="Tangering" class="nav-logo-img" />
     </a>
     <div class="nav-links">
+      <a href="landing.html">Home</a>
       <a href="product.html">Product</a>
-      <a href="landing.html#cases">Cases</a>
-      <a href="about.html">Contact</a>
+      <a href="about.html" class="active">About us</a>
     </div>
     <div class="nav-right">
       <div class="lang-toggle">
-        <button>ES</button>
-        <button class="active">EN</button>
+        <button data-set-lang="es">ES</button>
+        <button data-set-lang="en" class="active">EN</button>
       </div>
       <a class="btn btn-dark" href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank">Book a demo</a>
     </div>
   </nav>
 
-  <section class="page-hero">
-    <span class="eyebrow"><span class="dot"></span> About us</span>
-    <h1>We build the AI <em>that runs</em> the last mile.</h1>
-    <p class="sub">Tangering started inside a logistics operation, not a research lab. Every line of our product is shaped by the same operators who used to make those calls themselves.</p>
+  <!-- HERO — full-bleed video background, same recipe as product -->
+  <section class="vhero vhero-product" data-screen-label="01 About hero">
+    <div class="vhero-media">
+      <div class="vhero-bg">
+        <video src="assets/about-hero-bg.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="vhero-overlay"></div>
+      <div class="vhero-grain"></div>
+    </div>
+
+    <div class="vhero-content container">
+      <div class="vhero-left">
+        <div class="eyebrow vhero-eyebrow">
+          <span class="pulse"></span>
+          <span>About us</span>
+        </div>
+        <h1 class="vhero-h1">We build the AI <em>that runs</em> the last mile.</h1>
+        <p class="lead vhero-sub">Tangering started inside a logistics operation, not a research lab. Every line of our product is shaped by the same operators who used to make those calls themselves, now running for large companies worldwide.</p>
+        <div class="hero-ctas vhero-ctas">
+          <a class="btn btn-primary" href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank">Book a demo <span>→</span></a>
+          <a class="btn btn-glass" href="#values">What we believe</a>
+        </div>
+        <div class="vhero-live-inline">
+          <span class="vhero-live-dot"></span>
+          <span>+1M conversations running on Tangering right now</span>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="about-story">
-    <p>For most of Latin America, the last mile is still answered by a person with a headset. We watched ops teams burn out, customers go uncontacted, and shipments fail not because the truck broke down, but because nobody picked up the phone.</p>
-    <p>So we built an AI Operating System that talks to every customer, in their language, the moment it matters. Today, Tangering handles confirmations, exceptions, support and operations across logistics, real estate, utilities and insurance, keeping millions of conversations alive 24/7.</p>
-    <p>We're a small team obsessed with one number: deliveries that land on the first attempt. Everything else, the voice, the flows, the integrations, exists to move that number up.</p>
+  <!-- OUR STORY -->
+  <section class="prod-section alt about-story-section">
+    <div class="prod-section-inner">
+      <div class="prod-section-head">
+        <span class="eyebrow"><span class="pulse"></span> <span>Our story</span></span>
+        <h2>Started in the <em>warehouse</em>, not the lab.</h2>
+        <p class="lead">We work with large companies where the last mile is still answered by a person with a headset. Ops teams burning out, customers going uncontacted, shipments failing because nobody picked up the phone.</p>
+      </div>
+
+      <div class="about-story-grid">
+        <div class="about-story-col">
+          <span class="about-story-step">01</span>
+          <h3>The problem we kept seeing.</h3>
+          <p>At enterprise scale, last mile operations still depend on humans dialing one customer at a time. That's why deliveries fail, not because the truck broke down, but because nobody picked up.</p>
+        </div>
+        <div class="about-story-col">
+          <span class="about-story-step">02</span>
+          <h3>What we built.</h3>
+          <p>An AI Operating System that talks to every customer, in their language, the moment it matters. Confirmations, exceptions, support and operations across logistics, real estate, utilities and insurance, keeping millions of conversations alive 24/7.</p>
+        </div>
+        <div class="about-story-col">
+          <span class="about-story-step">03</span>
+          <h3>What we measure.</h3>
+          <p>One number obsesses us: deliveries that land on the first attempt. The voice, the flows, the integrations all exist to move that number up.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <div class="about-stats">
-    <div class="stat"><p class="v">+1M</p><p class="l">last-mile calls processed</p></div>
-    <div class="stat"><p class="v">−35%</p><p class="l">reduction in failed deliveries</p></div>
-    <div class="stat"><p class="v">97%</p><p class="l">accuracy on confirmation calls</p></div>
-    <div class="stat"><p class="v">24/7</p><p class="l">live across 8 countries</p></div>
-  </div>
-
-  <section class="page-hero" style="padding-bottom: 32px;">
-    <span class="eyebrow"><span class="dot"></span> What we believe</span>
-    <h1 style="font-size: clamp(32px, 4.4vw, 56px);">A product opinion, <em>not</em> a chatbot.</h1>
+  <!-- STATS -->
+  <section class="prod-section prod-stats">
+    <div class="prod-section-head">
+      <span class="eyebrow"><span class="pulse"></span> <span>Impact</span></span>
+      <h2>
+        Built by operators,<br/>
+        <em>measured by operations.</em>
+      </h2>
+    </div>
+    <div class="about-stats prod-stats-grid">
+      <div class="stat"><p class="v accent">+1M</p><p class="l">last mile calls processed</p></div>
+      <div class="stat"><p class="v accent">−35%</p><p class="l">reduction in failed deliveries</p></div>
+      <div class="stat"><p class="v accent">24/7</p><p class="l">live for enterprise operations</p></div>
+    </div>
+    <p class="prod-stats-attribution">
+      Across logistics, real estate, utilities and insurance.<br/>
+      Servientrega · Inter Rapidísimo · Grupo Argos
+    </p>
   </section>
 
-  <div class="values-grid">
-    <div class="value-card">
-      <div class="icon"><span class="material-icons">bolt</span></div>
-      <h3>Speed beats polish.</h3>
-      <p>A 1.8s response saves a delivery; a perfectly worded 8s response loses it. We obsess over latency on every channel.</p>
+  <!-- WHAT WE BELIEVE -->
+  <section class="prod-section alt" id="values">
+    <div class="prod-section-inner">
+      <div class="prod-section-head">
+        <span class="eyebrow"><span class="pulse"></span> <span>What we believe</span></span>
+        <h2>A product opinion, <em>not a chatbot.</em></h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="icon"><span class="material-icons">bolt</span></div>
+          <h3>Speed beats polish.</h3>
+          <p>A 1.8s response saves a delivery; a perfectly worded 8s response loses it. We obsess over latency on every channel.</p>
+        </div>
+        <div class="value-card">
+          <div class="icon"><span class="material-icons">precision_manufacturing</span></div>
+          <h3>Operators ship operators.</h3>
+          <p>Our customers don't need an SDK; they need a control tower. We build for the ops manager, not the integration engineer.</p>
+        </div>
+        <div class="value-card">
+          <div class="icon"><span class="material-icons">verified_user</span></div>
+          <h3>Trust is the platform.</h3>
+          <p>Encrypted in transit and at rest, redacted by default, deployable in your VPC. Compliance is not a roadmap item.</p>
+        </div>
+        <div class="value-card">
+          <div class="icon"><span class="material-icons">groups</span></div>
+          <h3>Built for enterprise scale.</h3>
+          <p>Native Spanish, Portuguese and English voices. Carrier-agnostic. Country quirks baked in. We did not translate someone else's product, we built ours from scratch for the operations that actually run at scale.</p>
+        </div>
+        <div class="value-card">
+          <div class="icon"><span class="material-icons">trending_up</span></div>
+          <h3>Outcomes over outputs.</h3>
+          <p>We don't sell minutes or seats. We sell deliveries that land, customers who answered, exceptions that closed.</p>
+        </div>
+        <div class="value-card">
+          <div class="icon"><span class="material-icons">handshake</span></div>
+          <h3>Partners, not vendors.</h3>
+          <p>Every Growth account gets a dedicated success engineer. We win when your KPIs win, not when the contract renews.</p>
+        </div>
+      </div>
     </div>
-    <div class="value-card">
-      <div class="icon"><span class="material-icons">precision_manufacturing</span></div>
-      <h3>Operators ship operators.</h3>
-      <p>Our customers don't need an SDK; they need a control tower. We build for the ops manager, not the integration engineer.</p>
-    </div>
-    <div class="value-card">
-      <div class="icon"><span class="material-icons">verified_user</span></div>
-      <h3>Trust is the platform.</h3>
-      <p>Encrypted in transit and at rest, redacted by default, deployable in your VPC. Compliance is not a roadmap item.</p>
-    </div>
-    <div class="value-card">
-      <div class="icon"><span class="material-icons">groups</span></div>
-      <h3>Built in LATAM, for LATAM.</h3>
-      <p>Spanish-first voice. Local carriers. Country-specific quirks baked in. We didn't translate a US product; we built ours from scratch.</p>
-    </div>
-    <div class="value-card">
-      <div class="icon"><span class="material-icons">trending_up</span></div>
-      <h3>Outcomes over outputs.</h3>
-      <p>We don't sell minutes or seats. We sell deliveries that land, customers who answered, exceptions that closed.</p>
-    </div>
-    <div class="value-card">
-      <div class="icon"><span class="material-icons">handshake</span></div>
-      <h3>Partners, not vendors.</h3>
-      <p>Every Growth account gets a dedicated success engineer. We win when your KPIs win, not when the contract renews.</p>
-    </div>
-  </div>
+  </section>
 
-  <section class="page-cta">
-    <h2>Want to <em>build with us?</em></h2>
-    <p>We're hiring engineers, applied ML and forward-deployed ops in Bogotá, Medellín &amp; Buenos Aires.</p>
-    <div class="btn-row">
-      <a href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" class="btn-primary">Book a demo</a>
-      <a href="mailto:hi@tangering.ai" class="btn-ghost">Email careers</a>
+  <!-- FINAL CTA — same sub-banner as product -->
+  <section class="sub-banner">
+    <div class="sub-banner-blob sub-banner-blob-a"></div>
+    <div class="sub-banner-blob sub-banner-blob-b"></div>
+    <div class="sub-banner-blob sub-banner-blob-c"></div>
+    <div class="sub-banner-blob sub-banner-blob-d"></div>
+    <div class="sub-banner-inner">
+      <div class="sub-banner-content">
+        <span class="sub-banner-eyebrow"><span class="sub-banner-dot"></span> Let's talk</span>
+        <h2 class="sub-banner-headline">
+          <span class="sub-banner-line">Put the AI behind</span>
+          <span class="sub-banner-line"><em>the last mile</em></span>
+          <span class="sub-banner-line">into your operation.</span>
+        </h2>
+        <div class="sub-banner-bottom">
+          <div class="sub-banner-actions">
+            <a href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" class="sub-banner-primary">
+              Book a demo
+              <span class="material-icons">arrow_forward</span>
+            </a>
+            <a href="product.html" class="sub-banner-secondary">
+              Explore product
+              <span class="material-icons">arrow_outward</span>
+            </a>
+          </div>
+          <p class="sub-banner-sub">30 minutes. We show you Tangering running on <span class="sub-banner-accent">your operation</span>, with <span class="sub-banner-accent">your numbers</span>.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -108,7 +194,6 @@
         <div>
           <h4>Product</h4>
           <ul>
-            <li><a href="landing.html#cases">Use cases</a></li>
             <li><a href="product.html">Product</a></li>
             <li><a href="call-transfer.html">Call transfer</a></li>
           </ul>
@@ -116,7 +201,7 @@
         <div>
           <h4>Company</h4>
           <ul>
-            <li><a href="about.html">About</a></li>
+            <li><a href="about.html" class="active">About us</a></li>
             <li><a href="https://www.linkedin.com/company/tangering/" target="_blank" rel="noopener">LinkedIn</a></li>
             <li><a href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" rel="noopener">Book a demo</a></li>
           </ul>
@@ -124,11 +209,14 @@
       </div>
       <div class="foot-bottom">
         <span>© 2026 Tangering. All rights reserved.</span>
-        <span>Made with care in Latin America.</span>
+        <span>Built for enterprise operations.</span>
       </div>
     </div>
   </footer>
 </div>
-  <script src="call-agent.js?v=20260622m"></script>
+  <script src="call-agent.js?v=202606225"></script>
+  <script src="strip-dashes.js?v=202606225"></script>
+  <script src="lang-toggle.js?v=202606225"></script>
+  <script src="nav-mobile.js?v=202606225"></script>
 </body>
 </html>

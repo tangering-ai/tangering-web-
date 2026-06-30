@@ -5,7 +5,7 @@ window.I18N = {
       product: "Producto",
       cases: "Casos",
       pricing: "Precios",
-      contact: "Contacto",
+      contact: "Quiénes somos",
       demo: "Agendar demo",
     },
     hero: {
@@ -129,6 +129,9 @@ window.I18N = {
       cm4: "¡Perfecto! Recibirás una notificación 15 min antes de la llegada 📦",
       cm5: "Genial, estaré en casa. ¡Gracias, Sarah!",
       liveTag: "1.842 entregas confirmándose ahora",
+      brandsCount: "1 millón",
+      brandsCalls: "llamadas",
+      brandsTail: "para ellos",
     },
     problem: {
       eyebrow: "El problema",
@@ -311,7 +314,7 @@ window.I18N = {
       product: "Product",
       cases: "Cases",
       pricing: "Pricing",
-      contact: "Contact",
+      contact: "About us",
       demo: "Book a demo",
     },
     hero: {
@@ -434,6 +437,9 @@ window.I18N = {
       cm3: "Yes! That address is correct 👍",
       cm4: "Perfect! You'll get a notification 15 min before arrival 📦",
       cm5: "Great, I'll be home. Thanks, Sarah!",
+      brandsCount: "1 Million",
+      brandsCalls: "calls",
+      brandsTail: "for them",
       liveTag: "1,842 deliveries being confirmed now",
     },
     problem: {
@@ -610,7 +616,7 @@ window.I18N = {
       l6: "LinkedIn",
       l7: "Book a demo",
       copy: "© 2025 Tangering. All rights reserved.",
-      built: "Made with care in Latin America.",
+      built: "Built for enterprise operations.",
     },
   },
 };

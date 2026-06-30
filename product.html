@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tangering — Product</title>
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=20260622m" />
-  <link rel="stylesheet" href="hero-v2.css?v=20260622m" />
+  <link rel="stylesheet" href="styles.css?v=202606225" />
+  <link rel="stylesheet" href="hero-v2.css?v=202606225" />
 </head>
 <body>
 <div class="prod-page">
@@ -18,9 +17,9 @@
       <img src="assets/logo-tangering.png" alt="Tangering" class="nav-logo-img" />
     </a>
     <div class="nav-links">
-      <a href="product.html" data-i18n-link>Product</a>
-      <a href="landing.html#cases" data-i18n-link>Cases</a>
-      <a href="about.html" data-i18n-link>Contact</a>
+      <a href="landing.html" data-i18n-link>Home</a>
+      <a href="product.html" class="active" data-i18n-link>Product</a>
+      <a href="about.html" data-i18n-link>About us</a>
     </div>
     <div class="nav-right">
       <div class="lang-toggle">
@@ -349,10 +348,6 @@
               Book a demo
               <span class="material-icons">arrow_forward</span>
             </a>
-            <a href="landing.html#cases" class="sub-banner-secondary">
-              Explore use cases
-              <span class="material-icons">arrow_outward</span>
-            </a>
           </div>
           <p class="sub-banner-sub">30 minutes. We show you Tangering running on <span class="sub-banner-accent">your operation</span>, with <span class="sub-banner-accent">your numbers</span>.</p>
         </div>
@@ -372,7 +367,6 @@
         <div>
           <h4>Product</h4>
           <ul>
-            <li><a href="landing.html#cases">Use cases</a></li>
             <li><a href="product.html">Product</a></li>
             <li><a href="call-transfer.html">Call transfer</a></li>
           </ul>
@@ -388,7 +382,7 @@
       </div>
       <div class="foot-bottom">
         <span>© 2026 Tangering. All rights reserved.</span>
-        <span>Made with care in Latin America.</span>
+        <span>Built for enterprise operations.</span>
       </div>
     </div>
   </footer>
@@ -553,7 +547,7 @@
       { type: "ai",    html: "Got it. I'll build a <b>voice + WhatsApp</b> agent that confirms address, schedules the window and handles reschedules. Setting it up now." },
       { type: "card",  data: [
           ["Channel", "Voice + WhatsApp"],
-          ["Language", "Spanish (LATAM)"],
+          ["Language", "Spanish, English, Portuguese"],
           ["Fallback", "Human handoff"],
       ]},
       { type: "ai",    html: "Ready. Want me to <b>plug it into your CRM</b> and start a 20-call test campaign?" },
@@ -567,7 +561,7 @@
       { type: "ai",    html: "Listo. Construyo un agente de <b>voz + WhatsApp</b> que confirma dirección, agenda la ventana y maneja reagendas. Configurando ahora." },
       { type: "card",  data: [
           ["Canal", "Voz + WhatsApp"],
-          ["Idioma", "Español (LATAM)"],
+          ["Idioma", "Español, inglés, portugués"],
           ["Fallback", "Transferir a humano"],
       ]},
       { type: "ai",    html: "Listo. ¿Quieres que lo <b>conecte a tu CRM</b> y lance una campaña de prueba con 20 llamadas?" },
@@ -643,7 +637,9 @@
 })();
 </script>
 
-  <script src="call-agent.js?v=20260622m"></script>
-  <script src="carousel-arrows.js?v=20260622m"></script>
+  <script src="call-agent.js?v=202606225"></script>
+  <script src="carousel-arrows.js?v=202606225"></script>
+  <script src="strip-dashes.js?v=202606225"></script>
+  <script src="nav-mobile.js?v=202606225"></script>
 </body>
 </html>

@@ -1,5 +1,9 @@
 // Differentiator, HowItWorks, FlowBuilder
 
+// Tiny lang detector — returns true when t is the Spanish bundle. Used for
+// strings that aren't worth a full i18n key (one-off card arrays, etc.).
+const isEs = (t) => window.I18N && t === window.I18N.es;
+
 function Differentiator({ t }) {
   const [ref, inView] = useInView({ threshold: 0.3 });
   return (
@@ -10,7 +14,7 @@ function Differentiator({ t }) {
             <span className="pulse"></span>
             {t.diff.eyebrow}
           </div>
-          <h2>An operation <em>that scales</em> itself.</h2>
+          <h2 dangerouslySetInnerHTML={{ __html: t.diff.h2.replace(/that scales|escala sola/, '<em>$&</em>') }} />
           <p className="lead">{t.diff.sub}</p>
         </FadeUp>
 
@@ -251,38 +255,29 @@ function IPhone17Call({ play }) {
 function HowItWorks({ t }) {
   const [ref, inView] = useInView({ threshold: 0.2, once: false });
 
-  const channels = [
-    {
-      title: "Voice",
-      icon: "call",
-      desc: "Deliver natural, human-like phone conversations at scale through your SIP.",
-    },
-    {
-      title: "WhatsApp",
-      icon: "chat",
-      desc: "Reach customers on the channel they actually answer, text or voice notes.",
-    },
-    {
-      title: "CRM",
-      icon: "swap_horiz",
-      desc: "Two-way sync with Salesforce, HubSpot or your in-house CRM.",
-    },
-    {
-      title: "API",
-      icon: "code",
-      desc: "Build custom flows with our webhooks and REST API in any language.",
-    },
+  const es = isEs(t);
+  const channels = es ? [
+    { title: "Voz",      icon: "call",        desc: "Conversaciones telefónicas naturales, a escala, a través de tu SIP." },
+    { title: "WhatsApp", icon: "chat",         desc: "Llega a tus clientes por el canal que realmente contestan: texto o notas de voz." },
+    { title: "CRM",      icon: "swap_horiz",   desc: "Sincronización bidireccional con Salesforce, HubSpot o tu CRM interno." },
+    { title: "API",      icon: "code",         desc: "Construye flujos a medida con nuestros webhooks y REST API en cualquier lenguaje." },
+  ] : [
+    { title: "Voice",    icon: "call",         desc: "Deliver natural, human-like phone conversations at scale through your SIP." },
+    { title: "WhatsApp", icon: "chat",         desc: "Reach customers on the channel they actually answer, text or voice notes." },
+    { title: "CRM",      icon: "swap_horiz",   desc: "Two-way sync with Salesforce, HubSpot or your in-house CRM." },
+    { title: "API",      icon: "code",         desc: "Build custom flows with our webhooks and REST API in any language." },
   ];
 
   return (
     <section className="how4" data-screen-label="07 How it works" ref={ref}>
       <div className="container">
         <FadeUp className="how4-head">
-          <div className="eyebrow"><span className="pulse"></span>Omni-channel</div>
-          <h2>True omni-channel <em>integration.</em></h2>
+          <div className="eyebrow"><span className="pulse"></span>{es ? "Omnicanal" : "Omni-channel"}</div>
+          <h2>{es ? <>Verdadera <em>integración</em> omnicanal.</> : <>True omni-channel <em>integration.</em></>}</h2>
           <p className="how4-sub">
-            Plug Tangering into the tools you already use. One AI agent across every
-            channel, without ripping out a thing.
+            {es
+              ? "Conecta Tangering a las herramientas que ya usas. Un solo agente IA en cada canal, sin arrancar nada de tu stack."
+              : "Plug Tangering into the tools you already use. One AI agent across every channel, without ripping out a thing."}
           </p>
         </FadeUp>
 
@@ -369,30 +364,20 @@ function VoicePlayer() {
 }
 
 // ── Voice Tech / Highlights section ─────────────────────────────
-function VoiceTech() {
+function VoiceTech({ t }) {
   const [ref, inView] = useInView({ threshold: 0.2, once: false });
+  const es = isEs(t);
 
-  const features = [
-    {
-      title: "Sounds local, not robotic.",
-      desc: "Native Latam Spanish and US English with regional accents. Customers don't hang up on day one.",
-      visual: "globe",
-    },
-    {
-      title: "Reads the room.",
-      desc: "Detects frustration, hesitation or urgency in real time and shifts tone, calm when needed, firm when it matters.",
-      visual: "duo",
-    },
-    {
-      title: "Trained on last-mile.",
-      desc: "Speaks the vocabulary of your operation: addresses, delivery windows, exceptions, payment promises, without scripting every edge case.",
-      visual: "dot",
-    },
-    {
-      title: "Remembers every attempt.",
-      desc: "Picks up where the last call ended. If it's the third try today, your customer hears it, not a fresh start every time.",
-      visual: "wave",
-    },
+  const features = es ? [
+    { title: "Suena local, no robótico.",     desc: "Español latam nativo e inglés americano con acentos regionales. Los clientes no cuelgan en el primer día.", visual: "globe" },
+    { title: "Lee la situación.",              desc: "Detecta frustración, duda o urgencia en tiempo real y ajusta el tono: calmado cuando hace falta, firme cuando importa.", visual: "duo" },
+    { title: "Entrenado en última milla.",    desc: "Habla el vocabulario de tu operación: direcciones, ventanas de entrega, excepciones, promesas de pago, sin tener que guionar cada caso.", visual: "dot" },
+    { title: "Recuerda cada intento.",        desc: "Retoma donde quedó la última llamada. Si es el tercer intento del día, el cliente lo nota, no empieza de cero cada vez.", visual: "wave" },
+  ] : [
+    { title: "Sounds local, not robotic.",    desc: "Native Spanish, Portuguese and English with regional accents. Customers don't hang up on day one.", visual: "globe" },
+    { title: "Reads the room.",               desc: "Detects frustration, hesitation or urgency in real time and shifts tone, calm when needed, firm when it matters.", visual: "duo" },
+    { title: "Trained on last-mile.",         desc: "Speaks the vocabulary of your operation: addresses, delivery windows, exceptions, payment promises, without scripting every edge case.", visual: "dot" },
+    { title: "Remembers every attempt.",      desc: "Picks up where the last call ended. If it's the third try today, your customer hears it, not a fresh start every time.", visual: "wave" },
   ];
 
   return (
@@ -402,21 +387,23 @@ function VoiceTech() {
         <div className="vtech-hero">
           <div className="vtech-hero-content">
             <FadeUp>
-              <div className="eyebrow"><span className="pulse"></span>The voice behind Tangering</div>
+              <div className="eyebrow"><span className="pulse"></span>{es ? "La voz detrás de Tangering" : "The voice behind Tangering"}</div>
             </FadeUp>
             <FadeUp delay={120}>
               <h2 className="vtech-h2">
-                Natural voice.
-                <br/><em className="vtech-accent">In your customer's language.</em>
+                {es ? "Voz natural." : "Natural voice."}
+                <br/><em className="vtech-accent">{es ? "En el idioma de tu cliente." : "In your customer's language."}</em>
               </h2>
             </FadeUp>
             <FadeUp delay={240}>
               <p className="vtech-sub">
-                A voice agent built specifically for last-mile, not a generic chatbot reading a script. It speaks your customer's language, understands logistics, and knows what to do when things go off-plan.
+                {es
+                  ? "Un agente de voz construido específicamente para última milla, no un chatbot genérico leyendo un guion. Habla el idioma de tu cliente, entiende logística y sabe qué hacer cuando algo se sale del plan."
+                  : "A voice agent built specifically for last-mile, not a generic chatbot reading a script. It speaks your customer's language, understands logistics, and knows what to do when things go off-plan."}
               </p>
             </FadeUp>
             <FadeUp delay={360}>
-              <div className="vtech-player-label">Hear one of our voices</div>
+              <div className="vtech-player-label">{es ? "Escucha una de nuestras voces" : "Hear one of our voices"}</div>
               <VoicePlayer/>
             </FadeUp>
           </div>
@@ -473,25 +460,15 @@ function VoiceTech() {
 function FlowBuilder({ t }) {
   const [ref, inView] = useInView({ threshold: 0.2, once: false });
 
-  const features = [
-    {
-      title: "Drag-and-drop builder",
-      desc: "Compose conversational flows with a no-code editor. Triggers, branches and hand-offs in minutes, anyone on your ops team can ship a new flow in an afternoon.",
-      video: "assets/flow-builder.mov",
-      gradient: "ag",
-    },
-    {
-      title: "Real-time decisions on every call",
-      desc: "Set conditions on real customer responses, confirm, reschedule, escalate, book, and watch the agent act on them live without a single line of code.",
-      video: "assets/flow-builder-2.mov",
-      gradient: "ag2",
-    },
-    {
-      title: "Version control & live testing",
-      desc: "Test every change against past calls before going live. Roll back any version in one click. Your ops team is never one bad deploy away from a broken call.",
-      video: "assets/flow-builder.mov",
-      gradient: "ag3",
-    },
+  const es = isEs(t);
+  const features = es ? [
+    { title: "Builder drag-and-drop",                  desc: "Diseña flujos conversacionales con un editor sin código. Triggers, ramas y handoffs en minutos: cualquiera en tu equipo puede lanzar un flujo nuevo en una tarde.", video: "assets/flow-builder.mov",   gradient: "ag" },
+    { title: "Decisiones en tiempo real",              desc: "Define condiciones sobre respuestas reales del cliente, confirma, reagenda, escala, reserva, y mira al agente actuar en vivo sin una sola línea de código.",     video: "assets/flow-builder-2.mov", gradient: "ag2" },
+    { title: "Versiones y pruebas en vivo",            desc: "Prueba cada cambio contra llamadas pasadas antes de publicar. Revierte cualquier versión con un click. Tu equipo nunca queda a un mal deploy de una llamada rota.", video: "assets/flow-builder.mov",   gradient: "ag3" },
+  ] : [
+    { title: "Drag-and-drop builder",                  desc: "Compose conversational flows with a no-code editor. Triggers, branches and hand-offs in minutes, anyone on your ops team can ship a new flow in an afternoon.",      video: "assets/flow-builder.mov",   gradient: "ag" },
+    { title: "Real-time decisions on every call",      desc: "Set conditions on real customer responses, confirm, reschedule, escalate, book, and watch the agent act on them live without a single line of code.",                  video: "assets/flow-builder-2.mov", gradient: "ag2" },
+    { title: "Version control & live testing",         desc: "Test every change against past calls before going live. Roll back any version in one click. Your ops team is never one bad deploy away from a broken call.",          video: "assets/flow-builder.mov",   gradient: "ag3" },
   ];
 
   return (
@@ -500,17 +477,17 @@ function FlowBuilder({ t }) {
         {/* Header: 2-col title + description */}
         <div className="flow3-head">
           <FadeUp className="flow3-head-left">
-            <div className="eyebrow"><span className="pulse"></span>No-code builder</div>
+            <div className="eyebrow"><span className="pulse"></span>{es ? "Builder sin código" : "No-code builder"}</div>
             <h2 className="flow3-h2">
-              Build flows
-              <br/><em className="flow3-accent">without writing a line.</em>
+              {es ? <>Construye flujos<br/><em className="flow3-accent">sin escribir una sola línea.</em></>
+                  : <>Build flows<br/><em className="flow3-accent">without writing a line.</em></>}
             </h2>
           </FadeUp>
           <FadeUp delay={140} className="flow3-head-right">
             <p>
-              Handle everything from a simple delivery confirmation to a complex
-              multi-step reschedule. Tangering's no-code studio lets your team
-              design, test and launch new agents in weeks, not months.
+              {es
+                ? "Resuelve desde una confirmación de entrega simple hasta una reagenda multi-paso compleja. El studio sin código de Tangering permite a tu equipo diseñar, probar y lanzar agentes nuevos en semanas, no meses."
+                : "Handle everything from a simple delivery confirmation to a complex multi-step reschedule. Tangering's no-code studio lets your team design, test and launch new agents in weeks, not months."}
             </p>
           </FadeUp>
         </div>
@@ -572,44 +549,21 @@ function Flow3Carousel({ features }) {
 }
 
 function Security({ t }) {
-  const items = [
-    {
-      title: "Data privacy by default",
-      desc: "Every call, transcript and event is encrypted in transit and at rest. We sign DPAs out of the box and align with GDPR and Latin-American data protection regulations.",
-      icon: "verified_user",
-      gradient: "sec-g1",
-    },
-    {
-      title: "Single sign-on",
-      desc: "Plug Tangering into your identity provider, Okta, Azure AD, Google Workspace, and let your security team manage access from one place.",
-      icon: "vpn_key",
-      gradient: "sec-g2",
-    },
-    {
-      title: "Automatic PII redaction",
-      desc: "Card numbers, IDs and addresses get masked in real time across audio, transcripts and webhooks. Configure what to redact per use case.",
-      icon: "lock",
-      bubbles: true,
-      gradient: "sec-g3",
-    },
-    {
-      title: "Role-based access",
-      desc: "Granular roles down to the module, operations, QA, finance, admin. Audit who saw, changed or exported what, anytime.",
-      icon: "settings_accessibility",
-      gradient: "sec-g4",
-    },
-    {
-      title: "Built for scale",
-      desc: "Battle-tested infrastructure that has already processed +1M last-mile calls. Burst to thousands of concurrent conversations without a degraded experience.",
-      icon: "rocket_launch",
-      gradient: "sec-g5",
-    },
-    {
-      title: "Private deployment",
-      desc: "Need everything inside your own VPC? We offer dedicated and on-prem deployments for regulated industries and large enterprise accounts.",
-      icon: "cloud_done",
-      gradient: "sec-g6",
-    },
+  const es = isEs(t);
+  const items = es ? [
+    { title: "Privacidad de datos por defecto", desc: "Cada llamada, transcripción y evento queda cifrado en tránsito y en reposo. Firmamos DPAs out-of-the-box y cumplimos con GDPR y normativas locales de protección de datos.", icon: "verified_user",       gradient: "sec-g1" },
+    { title: "Single sign-on",                  desc: "Conecta Tangering a tu proveedor de identidad — Okta, Azure AD, Google Workspace — y deja que tu equipo de seguridad gestione el acceso desde un solo lugar.",                          icon: "vpn_key",              gradient: "sec-g2" },
+    { title: "Redacción automática de PII",     desc: "Tarjetas, documentos y direcciones se enmascaran en tiempo real en audio, transcripciones y webhooks. Configura qué redactar según el caso de uso.",                                   icon: "lock", bubbles: true,  gradient: "sec-g3" },
+    { title: "Acceso por roles",                desc: "Roles granulares por módulo: operaciones, QA, finanzas, admin. Audita quién vio, cambió o exportó qué, en cualquier momento.",                                                          icon: "settings_accessibility", gradient: "sec-g4" },
+    { title: "Construido para escalar",         desc: "Infraestructura probada en batalla que ya procesó +1M de llamadas de última milla. Soporta picos de miles de conversaciones simultáneas sin degradar la experiencia.",                  icon: "rocket_launch",        gradient: "sec-g5" },
+    { title: "Despliegue privado",              desc: "¿Necesitas todo dentro de tu propia VPC? Ofrecemos despliegues dedicados y on-prem para industrias reguladas y cuentas enterprise.",                                                     icon: "cloud_done",           gradient: "sec-g6" },
+  ] : [
+    { title: "Data privacy by default",         desc: "Every call, transcript and event is encrypted in transit and at rest. We sign DPAs out of the box and align with GDPR and Latin-American data protection regulations.",                  icon: "verified_user",       gradient: "sec-g1" },
+    { title: "Single sign-on",                  desc: "Plug Tangering into your identity provider, Okta, Azure AD, Google Workspace, and let your security team manage access from one place.",                                                  icon: "vpn_key",              gradient: "sec-g2" },
+    { title: "Automatic PII redaction",         desc: "Card numbers, IDs and addresses get masked in real time across audio, transcripts and webhooks. Configure what to redact per use case.",                                                  icon: "lock", bubbles: true,  gradient: "sec-g3" },
+    { title: "Role-based access",               desc: "Granular roles down to the module, operations, QA, finance, admin. Audit who saw, changed or exported what, anytime.",                                                                    icon: "settings_accessibility", gradient: "sec-g4" },
+    { title: "Built for scale",                 desc: "Battle-tested infrastructure that has already processed +1M last-mile calls. Burst to thousands of concurrent conversations without a degraded experience.",                              icon: "rocket_launch",        gradient: "sec-g5" },
+    { title: "Private deployment",              desc: "Need everything inside your own VPC? We offer dedicated and on-prem deployments for regulated industries and large enterprise accounts.",                                                 icon: "cloud_done",           gradient: "sec-g6" },
   ];
 
   return (
@@ -617,15 +571,16 @@ function Security({ t }) {
       <div className="container">
         <div className="security-head">
           <FadeUp className="security-head-left">
-            <span className="eyebrow"><span className="dot" /> Trust & security</span>
+            <span className="eyebrow"><span className="dot" /> {es ? "Confianza y seguridad" : "Trust & security"}</span>
             <h2 className="security-h2">
-              Enterprise-grade <span className="security-accent">by design.</span>
+              {es ? <>Enterprise-grade <span className="security-accent">por diseño.</span></> : <>Enterprise-grade <span className="security-accent">by design.</span></>}
             </h2>
           </FadeUp>
           <FadeUp className="security-head-right" delay={120}>
             <p>
-              From data privacy to global resilience, Tangering meets the security standards
-              required to run mission-critical voice and messaging at production scale.
+              {es
+                ? "Desde la privacidad de datos hasta la resiliencia global, Tangering cumple con los estándares de seguridad necesarios para operar voz y mensajería críticas a escala de producción."
+                : "From data privacy to global resilience, Tangering meets the security standards required to run mission-critical voice and messaging at production scale."}
             </p>
           </FadeUp>
         </div>

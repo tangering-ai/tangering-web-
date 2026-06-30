@@ -1,5 +1,15 @@
 // Problem, Solution (sticky), SocialProof, UseCases
 
+// Read current UI language at render time. setLangPersist writes to
+// localStorage before calling setLang, so this stays in sync as long as
+// React re-renders these components when the parent App's lang state changes.
+function isEsLang() {
+  try {
+    const url = new URLSearchParams(location.search).get('lang');
+    return url === 'es';
+  } catch { return false; }
+}
+
 // Local phone (used by Solution section)
 function Phone({ children, className = "" }) {
   return (
@@ -231,38 +241,61 @@ function Solution({ t }) {
 }
 
 // All transcript lines accumulated per step
-const CALL_TRANSCRIPT = [
-  // step 0, agent opens the call
-  [
-    { agent: true,  msg: "Hi James! I'm Sarah, an AI assistant from Envios.com." },
-    { agent: false, msg: "Hello?" },
-    { agent: true,  msg: "I'm calling about your order #4521 scheduled for delivery today." },
-  ],
-  // step 1, identity verification
-  [
-    { agent: false, msg: "Oh right, yes, what do you need?" },
-    { agent: true,  msg: "Just a couple of quick details. Am I speaking with James Carter?" },
-    { agent: false, msg: "Yes, that's me." },
-  ],
-  // step 2, address confirmation
-  [
-    { agent: true,  msg: "Can you confirm your delivery address? We have 742 Elm Street." },
-    { agent: false, msg: "Yes, that's correct, 742 Elm Street." },
-    { agent: true,  msg: "Perfect. Your delivery window is confirmed for 3–5 PM today." },
-  ],
-  // step 3, courier notified
-  [
-    { agent: false, msg: "That works perfectly for me." },
-    { agent: true,  msg: "Your courier has been notified. You'll get a text 20 min before arrival." },
-    { agent: false, msg: "Great, thank you so much!" },
-  ],
-  // step 4, wrap up
-  [
-    { agent: true,  msg: "You're all set, James! Have a great day. Goodbye!" },
-    { agent: false, msg: "Thanks, bye!" },
-    { agent: null,  msg: "Call ended · 0:22" },
-  ],
-];
+function getCallTranscript(es) {
+  return es ? [
+    [
+      { agent: true,  msg: "¡Hola James! Soy Sarah, asistente de IA de Envíos.com." },
+      { agent: false, msg: "¿Aló?" },
+      { agent: true,  msg: "Te llamo por tu pedido #4521 programado para entrega hoy." },
+    ],
+    [
+      { agent: false, msg: "Ah sí, dime." },
+      { agent: true,  msg: "Solo confirmo un par de datos. ¿Hablo con James Carter?" },
+      { agent: false, msg: "Sí, soy yo." },
+    ],
+    [
+      { agent: true,  msg: "¿Confirmas tu dirección de entrega? Tenemos Calle 85 #12-45." },
+      { agent: false, msg: "Sí, es correcta, Calle 85 #12-45." },
+      { agent: true,  msg: "Perfecto. Tu ventana de entrega queda confirmada para hoy entre 3 y 5 PM." },
+    ],
+    [
+      { agent: false, msg: "Me viene perfecto." },
+      { agent: true,  msg: "Avisé al mensajero. Te llegará un mensaje 20 min antes de la llegada." },
+      { agent: false, msg: "¡Genial, muchas gracias!" },
+    ],
+    [
+      { agent: true,  msg: "¡Todo listo, James! Que tengas un buen día. ¡Hasta luego!" },
+      { agent: false, msg: "¡Gracias, chao!" },
+      { agent: null,  msg: "Llamada finalizada · 0:22" },
+    ],
+  ] : [
+    [
+      { agent: true,  msg: "Hi James! I'm Sarah, an AI assistant from Envios.com." },
+      { agent: false, msg: "Hello?" },
+      { agent: true,  msg: "I'm calling about your order #4521 scheduled for delivery today." },
+    ],
+    [
+      { agent: false, msg: "Oh right, yes, what do you need?" },
+      { agent: true,  msg: "Just a couple of quick details. Am I speaking with James Carter?" },
+      { agent: false, msg: "Yes, that's me." },
+    ],
+    [
+      { agent: true,  msg: "Can you confirm your delivery address? We have 742 Elm Street." },
+      { agent: false, msg: "Yes, that's correct, 742 Elm Street." },
+      { agent: true,  msg: "Perfect. Your delivery window is confirmed for 3–5 PM today." },
+    ],
+    [
+      { agent: false, msg: "That works perfectly for me." },
+      { agent: true,  msg: "Your courier has been notified. You'll get a text 20 min before arrival." },
+      { agent: false, msg: "Great, thank you so much!" },
+    ],
+    [
+      { agent: true,  msg: "You're all set, James! Have a great day. Goodbye!" },
+      { agent: false, msg: "Thanks, bye!" },
+      { agent: null,  msg: "Call ended · 0:22" },
+    ],
+  ];
+}
 
 // Backend events accumulated per step
 const CALL_EVENTS = [
@@ -404,12 +437,19 @@ function MapCard() {
 }
 
 // ── Step 3: Reschedule, map + conversation side by side ─────
-const RESCHEDULE_CHAT = [
-  { from: "agent", text: "Hi James! Confirming delivery to 742 Sutter St today 3–5 PM.", delay: 400 },
-  { from: "user",  text: "Actually I moved last week, new address is 580 Post St.", delay: 1800 },
-  { from: "agent", text: "Got it! Updating your delivery address right now...", delay: 3200 },
-  { from: "agent", text: "Done. Confirmed to 580 Post St, SF. Same window: 3–5 PM.", delay: 4600, confirm: true },
-];
+function getRescheduleChat(es) {
+  return es ? [
+    { from: "agent", text: "¡Hola James! Confirmando entrega en Calle 85 #12-45 hoy entre 3 y 5 PM.", delay: 400 },
+    { from: "user",  text: "Ah, en realidad me mudé la semana pasada. Mi nueva dirección es Calle 100 #20-30.", delay: 1800 },
+    { from: "agent", text: "¡Perfecto! Estoy actualizando tu dirección ahora mismo…", delay: 3200 },
+    { from: "agent", text: "Listo. Confirmado en Calle 100 #20-30, Bogotá. Misma ventana: 3–5 PM.", delay: 4600, confirm: true },
+  ] : [
+    { from: "agent", text: "Hi James! Confirming delivery to 742 Sutter St today 3–5 PM.", delay: 400 },
+    { from: "user",  text: "Actually I moved last week, new address is 580 Post St.", delay: 1800 },
+    { from: "agent", text: "Got it! Updating your delivery address right now...", delay: 3200 },
+    { from: "agent", text: "Done. Confirmed to 580 Post St, SF. Same window: 3–5 PM.", delay: 4600, confirm: true },
+  ];
+}
 
 function RescheduleView() {
   const outerRef    = useRef(null);
@@ -463,7 +503,7 @@ function RescheduleView() {
 
   // Chat sequence
   useEffect(() => {
-    const timers = RESCHEDULE_CHAT.map(({ delay, from, text, confirm }) =>
+    const timers = getRescheduleChat(isEsLang()).map(({ delay, from, text, confirm }) =>
       setTimeout(() => {
         setMessages(prev => [...prev, { from, text, confirm }]);
         if (confirm) {
@@ -594,15 +634,25 @@ function RescheduleView() {
 }
 
 // ── Step 4: Courier WhatsApp notification ──────────────────────
-const COURIER_MSGS = [
-  { delay: 600,  side: "out", text: "Hola 👋 Tienes una entrega lista — Pedido #4521", time: "3:41" },
-  { delay: 1900, side: "in",  text: "Listo, ¿cuál es la dirección?", time: "3:41" },
-  { delay: 3100, side: "out", text: "📍 580 Post St, San Francisco — apto 3B", time: "3:42" },
-  { delay: 4300, side: "out", text: "🕐 Ventana de hoy: 3:00 – 5:00 PM", time: "3:42" },
-  { delay: 5500, side: "out", text: "⚠️ Entrada lateral por Larkin St, timbre 3B", time: "3:42" },
-  { delay: 6900, side: "in",  text: "Recibido, ya voy en camino 👍", time: "3:43" },
-  { delay: 8200, side: "out", text: "✅ El cliente acaba de confirmar la entrega.", time: "3:43", confirm: true },
-];
+function getCourierMsgs(es) {
+  return es ? [
+    { delay: 600,  side: "out", text: "Hola 👋 Tienes una entrega lista — Pedido #4521", time: "3:41" },
+    { delay: 1900, side: "in",  text: "Listo, ¿cuál es la dirección?", time: "3:41" },
+    { delay: 3100, side: "out", text: "📍 Calle 100 #20-30, Bogotá — apto 3B", time: "3:42" },
+    { delay: 4300, side: "out", text: "🕐 Ventana de hoy: 3:00 – 5:00 PM", time: "3:42" },
+    { delay: 5500, side: "out", text: "⚠️ Entrada lateral, timbre 3B", time: "3:42" },
+    { delay: 6900, side: "in",  text: "Recibido, ya voy en camino 👍", time: "3:43" },
+    { delay: 8200, side: "out", text: "✅ El cliente acaba de confirmar la entrega.", time: "3:43", confirm: true },
+  ] : [
+    { delay: 600,  side: "out", text: "Hey 👋 New delivery ready — Order #4521", time: "3:41" },
+    { delay: 1900, side: "in",  text: "Got it, what's the address?", time: "3:41" },
+    { delay: 3100, side: "out", text: "📍 580 Post St, San Francisco — apt 3B", time: "3:42" },
+    { delay: 4300, side: "out", text: "🕐 Today's window: 3:00 – 5:00 PM", time: "3:42" },
+    { delay: 5500, side: "out", text: "⚠️ Side entrance on Larkin St, ring 3B", time: "3:42" },
+    { delay: 6900, side: "in",  text: "Got it, on my way 👍", time: "3:43" },
+    { delay: 8200, side: "out", text: "✅ Customer just confirmed the delivery.", time: "3:43", confirm: true },
+  ];
+}
 
 function CourierNotifyView() {
   const outerRef = useRef(null);
@@ -621,7 +671,7 @@ function CourierNotifyView() {
 
   useEffect(() => {
     const timers = [];
-    COURIER_MSGS.forEach((msg, idx) => {
+    getCourierMsgs(isEsLang()).forEach((msg, idx) => {
       if (msg.side === "out") {
         timers.push(setTimeout(() => setTyping("out"), msg.delay - 500));
       } else {
@@ -906,7 +956,7 @@ function SolutionPhone({ step }) {
   const mins = Math.floor(tick / 60);
   const secs = tick % 60;
   const timerStr = `${mins}:${String(secs).padStart(2, "0")}`;
-  const transcript = CALL_TRANSCRIPT.slice(0, step + 1).flat();
+  const transcript = getCallTranscript(isEsLang()).slice(0, step + 1).flat();
   const BARS = [3,6,11,18,24,18,12,20,14,8,22,15,9,19,11,6,16,10,4,14,8,22,15,9,6];
 
   return (
@@ -1041,7 +1091,7 @@ function CallModal({ step }) {
   const secs = tick % 60;
   const timerStr = `${mins}:${String(secs).padStart(2,"0")}`;
 
-  const transcript = CALL_TRANSCRIPT.slice(0, step + 1).flat();
+  const transcript = getCallTranscript(isEsLang()).slice(0, step + 1).flat();
 
   const BARS = [3,6,11,18,24,18,12,20,14,8,22,15,9,19,11,6,16,10,4];
 
@@ -1611,7 +1661,7 @@ function UseCases({ t }) {
           </div>
         </FadeUp>
         <FadeUp delay={100}>
-          <h2 style={{ marginTop: 24 }}>Build the agents <em>your operation</em> needs.</h2>
+          <h2 style={{ marginTop: 24 }} dangerouslySetInnerHTML={{ __html: t.uc.h2.replace(/your operation|tu operación/, '<em>$&</em>') }} />
         </FadeUp>
         <FadeUp delay={200}>
           <p className="lead" style={{ marginTop: 20, maxWidth: 540 }}>{t.uc.sub}</p>

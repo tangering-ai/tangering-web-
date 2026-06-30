@@ -25,15 +25,24 @@
     return trimmed;
   }
 
+  const lang = (() => {
+    const url = new URLSearchParams(location.search).get('lang');
+    return (url === 'es' || url === 'en') ? url : 'en';
+  })();
+  const es = lang === 'es';
+  const L = es
+    ? { label: 'Hablar con nuestra IA', aria: 'Hablar con nuestro agente de IA' }
+    : { label: 'Talk to our AI',         aria: 'Talk to our AI agent' };
+
   function buildDom() {
     const fab = document.createElement('button');
     fab.className = 'tg-call-fab';
     fab.type = 'button';
-    fab.setAttribute('aria-label', 'Talk to our AI agent');
+    fab.setAttribute('aria-label', L.aria);
     fab.innerHTML = `
       <span class="tg-call-fab-pulse"></span>
       <span class="material-icons">phone_in_talk</span>
-      <span class="tg-call-fab-label">Talk to our AI</span>
+      <span class="tg-call-fab-label">${L.label}</span>
     `;
 
     const backdrop = document.createElement('div');

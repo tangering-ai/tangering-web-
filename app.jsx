@@ -2,9 +2,13 @@
 
 function App() {
   const [lang, setLang] = useState(() => {
+    // Always default to English on a fresh load. Honour ?lang= only when
+    // explicitly present in the URL so language choice survives a single
+    // navigation but not persistent sessions.
     const url = new URLSearchParams(location.search).get("lang");
     if (url === "es" || url === "en") return url;
-    try { return localStorage.getItem("tang_lang") || "en"; } catch(e) { return "en"; }
+    try { localStorage.removeItem("tang_lang"); } catch(e) {}
+    return "en";
   });
   const t = window.I18N[lang];
 
@@ -30,7 +34,7 @@ function App() {
       <Differentiator t={t} />
       <HowItWorks t={t} />
       <FlowBuilder t={t} />
-      <VoiceTech />
+      <VoiceTech t={t} />
       <Security t={t} />
       <FinalCTA t={t} />
       <Footer t={t} />
