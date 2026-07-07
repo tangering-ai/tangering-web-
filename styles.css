@@ -9166,7 +9166,8 @@ section.sub-banner .sub-banner-headline em {
   .about-story-grid,
   .prod-stats-grid,
   .about-stats,
-  .foot-grid {
+  .foot-grid,
+  .problem-grid {
     display: flex !important;
     grid-template-columns: none !important;
     gap: 12px !important;
@@ -9190,7 +9191,8 @@ section.sub-banner .sub-banner-headline em {
   .about-story-grid::-webkit-scrollbar,
   .prod-stats-grid::-webkit-scrollbar,
   .about-stats::-webkit-scrollbar,
-  .foot-grid::-webkit-scrollbar { display: none; }
+  .foot-grid::-webkit-scrollbar,
+  .problem-grid::-webkit-scrollbar { display: none; }
 
   .uc-grid > *,
   .how4-stair > *,
@@ -9198,12 +9200,18 @@ section.sub-banner .sub-banner-headline em {
   .about-story-grid > *,
   .prod-stats-grid > *,
   .about-stats > *,
-  .foot-grid > * {
+  .foot-grid > *,
+  .problem-grid > * {
     flex: 0 0 78%;
     max-width: 320px;
     min-width: 240px;
     scroll-snap-align: start;
   }
+
+  /* Problem cards — tighter typography so numbers don't blow past card width */
+  .problem-card { padding: 28px 22px; }
+  .problem-card .num { font-size: clamp(44px, 12vw, 60px) !important; }
+  .problem-card .label { font-size: 14px; }
   /* Kill the vertical-stagger stair effect on mobile — everything sits flat */
   .how4-card { --offset: 0 !important; }
 
