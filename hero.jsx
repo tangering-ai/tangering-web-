@@ -840,6 +840,7 @@ function TruckHero({ t }) {
           +<span className="accent">{t.hero.brandsCount}</span> {t.hero.brandsCalls} <span className="accent" style={{ fontStyle: "italic", fontWeight: 400 }}>{t.hero.brandsTail}</span>
         </div>
       </div>
+      <div className="hero-brands-viewport">
       <div className="hero-brands-track">
           {(() => {
             const logos = [
@@ -861,6 +862,7 @@ function TruckHero({ t }) {
             ));
           })()}
         </div>
+      </div>
     </section>
     </>
   );
