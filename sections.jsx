@@ -60,20 +60,36 @@ function Problem({ t }) {
     gsap.registerPlugin(ScrollTrigger);
     const section = sectionRef.current;
 
-    // Cards entrance, bounce stagger
     const cards = section.querySelectorAll(".problem-card");
-    gsap.from(cards, {
-      opacity: 0, y: 70, scale: 0.92,
-      duration: 0.75, ease: "back.out(1.8)",
-      stagger: 0.14,
-      scrollTrigger: {
+    const isMobile = window.matchMedia("(max-width: 700px)").matches;
+
+    // Mobile: skip the entrance animation entirely — the smaller viewport
+    // means the cards are visible almost immediately, and any opacity/y/scale
+    // pre-state made them look "cut" before ScrollTrigger fired. Just wire the
+    // broken transition on scroll.
+    if (isMobile) {
+      gsap.set(cards, { opacity: 1, y: 0, scale: 1, clearProps: "all" });
+      ScrollTrigger.create({
         trigger: section.querySelector(".problem-grid"),
-        start: "top 82%",
-        toggleActions: "play none none reverse",
-        onEnter: () => setTimeout(() => setBroken(true), 2000),
+        start: "top 92%",
+        onEnter: () => setTimeout(() => setBroken(true), 1200),
         onLeaveBack: () => setBroken(false),
-      },
-    });
+      });
+    } else {
+      // Desktop keeps the bounce stagger entrance
+      gsap.from(cards, {
+        opacity: 0, y: 70, scale: 0.92,
+        duration: 0.75, ease: "back.out(1.8)",
+        stagger: 0.14,
+        scrollTrigger: {
+          trigger: section.querySelector(".problem-grid"),
+          start: "top 82%",
+          toggleActions: "play none none reverse",
+          onEnter: () => setTimeout(() => setBroken(true), 2000),
+          onLeaveBack: () => setBroken(false),
+        },
+      });
+    }
 
     return () => ScrollTrigger.getAll().forEach(st => st.kill());
   }, []);
