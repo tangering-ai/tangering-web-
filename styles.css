@@ -9153,3 +9153,93 @@ section.sub-banner .sub-banner-headline em {
   color: var(--muted);
   margin: 0;
 }
+
+/* ============================================================
+   Mobile responsive pass — card grids scroll horizontally, page
+   compresses so vertical scroll stays reasonable.
+   ============================================================ */
+@media (max-width: 700px) {
+  /* --- Horizontal-scroll card grids -------------------------------- */
+  .uc-grid,
+  .how4-stair,
+  .values-grid,
+  .about-story-grid,
+  .prod-stats-grid,
+  .about-stats,
+  .foot-grid {
+    display: flex !important;
+    grid-template-columns: none !important;
+    gap: 12px !important;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 16px 20px;
+    /* Bleed to viewport edges so cards touch the sides */
+    margin-left: -16px;
+    margin-right: -16px;
+    scroll-padding-left: 16px;
+    /* Soft edge fade so users see there's more to swipe */
+    mask-image: linear-gradient(90deg, transparent 0, black 16px, black calc(100% - 32px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, black 16px, black calc(100% - 32px), transparent 100%);
+  }
+  .uc-grid::-webkit-scrollbar,
+  .how4-stair::-webkit-scrollbar,
+  .values-grid::-webkit-scrollbar,
+  .about-story-grid::-webkit-scrollbar,
+  .prod-stats-grid::-webkit-scrollbar,
+  .about-stats::-webkit-scrollbar,
+  .foot-grid::-webkit-scrollbar { display: none; }
+
+  .uc-grid > *,
+  .how4-stair > *,
+  .values-grid > *,
+  .about-story-grid > *,
+  .prod-stats-grid > *,
+  .about-stats > *,
+  .foot-grid > * {
+    flex: 0 0 78%;
+    max-width: 320px;
+    min-width: 240px;
+    scroll-snap-align: start;
+  }
+  /* Kill the vertical-stagger stair effect on mobile — everything sits flat */
+  .how4-card { --offset: 0 !important; }
+
+  /* --- Vertical spacing compression -------------------------------- */
+  .prod-section,
+  .prod-section.alt > .prod-section-inner { padding: 56px 20px !important; }
+  .prod-section-head { margin-bottom: 32px !important; }
+  .prod-section-head h2 { font-size: clamp(28px, 8vw, 40px) !important; }
+  .prod-section-head p.lead { font-size: 15px !important; }
+
+  /* Home sections — trim padding */
+  .problem, .solution, .proof, .usecases, .diff, .flow3, .vtech, .security, .how4 {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+  }
+
+  /* --- Voice tech feature rows: also horizontal on mobile ---------- */
+  .vtech-rows {
+    display: flex !important;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 4px 16px 20px;
+    margin: 0 -16px;
+  }
+  .vtech-rows::-webkit-scrollbar { display: none; }
+  .vtech-row {
+    flex: 0 0 78%;
+    max-width: 320px;
+    min-width: 240px;
+    scroll-snap-align: start;
+    flex-direction: column !important;
+  }
+
+  /* --- Sub-banner tighter on mobile -------------------------------- */
+  .sub-banner-inner { padding: 64px 20px !important; min-height: auto !important; }
+  .sub-banner-headline { font-size: clamp(28px, 10vw, 44px) !important; }
+}
