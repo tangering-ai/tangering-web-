@@ -9166,8 +9166,7 @@ section.sub-banner .sub-banner-headline em {
   .about-story-grid,
   .prod-stats-grid,
   .about-stats,
-  .foot-grid,
-  .problem-grid {
+  .foot-grid {
     display: flex !important;
     grid-template-columns: none !important;
     gap: 12px !important;
@@ -9191,8 +9190,7 @@ section.sub-banner .sub-banner-headline em {
   .about-story-grid::-webkit-scrollbar,
   .prod-stats-grid::-webkit-scrollbar,
   .about-stats::-webkit-scrollbar,
-  .foot-grid::-webkit-scrollbar,
-  .problem-grid::-webkit-scrollbar { display: none; }
+  .foot-grid::-webkit-scrollbar { display: none; }
 
   .uc-grid > *,
   .how4-stair > *,
@@ -9200,18 +9198,27 @@ section.sub-banner .sub-banner-headline em {
   .about-story-grid > *,
   .prod-stats-grid > *,
   .about-stats > *,
-  .foot-grid > *,
-  .problem-grid > * {
+  .foot-grid > * {
     flex: 0 0 78%;
     max-width: 320px;
     min-width: 240px;
     scroll-snap-align: start;
   }
 
-  /* Problem cards — tighter typography so numbers don't blow past card width */
-  .problem-card { padding: 28px 22px; }
-  .problem-card .num { font-size: clamp(44px, 12vw, 60px) !important; }
-  .problem-card .label { font-size: 14px; }
+  /* Problem section: keep the 3 cards stacked vertically on mobile so all
+     three stay visible when the shake / "resolve" animation fires — a
+     horizontal scroll would break the narrative (user only sees one card
+     at a time). */
+  .problem-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+    gap: 12px !important;
+    margin-top: 40px !important;
+  }
+  .problem-card { padding: 22px 20px; }
+  .problem-card .num { font-size: clamp(40px, 12vw, 56px) !important; }
+  .problem-card .label { font-size: 14px; margin-top: 8px; }
   /* Kill the vertical-stagger stair effect on mobile — everything sits flat */
   .how4-card { --offset: 0 !important; }
 
