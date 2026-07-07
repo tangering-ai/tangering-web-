@@ -831,7 +831,6 @@ function TruckHero({ t }) {
               { n: "Carvajal",      src: "assets/logos/carvajal.png" },
               { n: "Blue Express",  src: "assets/logos/blue-express.png" },
               { n: "Servientrega",  src: "assets/logos/servientrega.png" },
-              { n: "Interagua",     src: "assets/logos/interagua.png" },
               { n: "Amarilo",       src: "assets/logos/amarilo.png" },
               { n: "Wingo",         src: "assets/logos/wingo.png" },
             ];
