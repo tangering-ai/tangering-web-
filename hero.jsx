@@ -820,15 +820,7 @@ function TruckHero({ t }) {
           </FadeUp>
         </div>
 
-        <div className={`vhero-right ${showChatMobile ? "is-open-mobile" : ""}`}>
-          <button
-            type="button"
-            className="vhero-chat-close"
-            onClick={() => setShowChatMobile(false)}
-            aria-label="Close"
-          >
-            <span className="material-icons">close</span>
-          </button>
+        <div className="vhero-right">
           <HeroChatCard t={t} />
         </div>
       </div>

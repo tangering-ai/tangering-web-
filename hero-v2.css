@@ -863,14 +863,12 @@
 }
 .hero-brands-headline .accent { color: var(--orange); }
 
-/* Viewport-sized wrapper: mask lives here so the fade is at the SCREEN edges
-   and stays put as the track scrolls underneath. Putting mask-image on the
-   track itself caused specific logos (inside the track's leftmost/rightmost 6%)
-   to always render half-faded, which looked like they were vanishing. */
+/* Viewport-sized wrapper: overflow:hidden clips the marquee at the screen
+   edges. Deliberately NO mask-image here — masks create a compositing layer
+   that fights with .hero-brand img's mix-blend-mode: multiply and made logos
+   partially or fully disappear (especially on narrow mobile viewports). */
 .hero-brands-viewport {
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
 }
 /* Scrolling track — duplicated logos for seamless infinite loop */
 .hero-brands-track {
