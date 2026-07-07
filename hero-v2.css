@@ -874,20 +874,22 @@
   transform: translateZ(0);
 }
 /* Scrolling track — canonical infinite marquee.
-   Recipe: two identical sets of items placed back-to-back with a gap between
-   every pair (including across the seam). Translate the track by exactly
-   the width of one set + one gap. When the animation restarts at 0 the
-   second set is now visually where the first set was — no jump, no gap. */
+   Filter lives on the TRACK (the animated element), not on individual imgs.
+   That way there's only one compositing layer (the transformed track), no
+   per-img layer to fight with clipping/scroll, and every logo renders as a
+   uniform dark grey. */
 .hero-brands-track {
   display: flex;
   align-items: center;
   gap: 96px;
   width: max-content;
-  padding-right: 96px; /* space AFTER item #14 so the seam gap matches */
+  padding-right: 96px;
   animation: brands-marquee 28s linear infinite;
   animation-play-state: running;
   will-change: transform;
   backface-visibility: hidden;
+  filter: grayscale(1) brightness(0.35) contrast(1.2);
+  opacity: 0.78;
 }
 @keyframes brands-marquee {
   from { transform: translate3d(0, 0, 0); }
