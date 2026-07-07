@@ -9245,78 +9245,11 @@ section.sub-banner .sub-banner-headline em {
 }
 
 /* ============================================================
-   Mobile-only: hide the hero chat card behind a "See interaction"
-   button; opens as a bottom-sheet overlay. Zero effect on desktop.
+   Mobile: hide the hero chat card entirely (no button, no overlay).
+   Desktop keeps the chat card exactly as designed.
    ============================================================ */
-.vhero-see-chat { display: none; }
-.vhero-chat-close { display: none; }
-
 @media (max-width: 900px) {
-  .vhero-see-chat {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 20px;
-    padding: 10px 16px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.14);
-    border: 1px solid rgba(255,255,255,0.28);
-    color: #ffffff;
-    font-family: 'Overused Grotesk', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: background 0.2s var(--ease);
-  }
-  .vhero-see-chat:hover { background: rgba(255,255,255,0.24); }
-  .vhero-see-chat .material-icons { font-size: 16px !important; color: #ffffff !important; }
-
-  /* Hide the chat card by default on mobile — reveals when the user taps */
-  .vhero-right {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    background: rgba(10, 8, 6, 0.72);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 24px 16px 24px;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(20px);
-    transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
-  }
-  .vhero-right.is-open-mobile {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-  .vhero-right .hcc {
-    width: 100%;
-    max-width: 420px;
-    max-height: 82vh;
-    overflow-y: auto;
-    scrollbar-width: none;
-  }
-  .vhero-right .hcc::-webkit-scrollbar { display: none; }
-  .vhero-chat-close {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 20px; right: 20px;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    border: 0;
-    background: rgba(255,255,255,0.16);
-    color: #ffffff;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-  .vhero-chat-close .material-icons { font-size: 20px !important; color: #ffffff !important; }
+  .vhero-right,
+  .vhero-see-chat,
+  .vhero-chat-close { display: none !important; }
 }
