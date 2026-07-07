@@ -832,28 +832,38 @@ function TruckHero({ t }) {
           +<span className="accent">{t.hero.brandsCount}</span> {t.hero.brandsCalls} <span className="accent" style={{ fontStyle: "italic", fontWeight: 400 }}>{t.hero.brandsTail}</span>
         </div>
       </div>
-      <div className="hero-brands-viewport">
       <div className="hero-brands-track">
-          {(() => {
-            const logos = [
-              // Alternating wide wordmarks ↔ compact / square marks for visual rhythm
-              { n: "Visa",          src: "assets/logos/visa.png" },
-              { n: "GNP BPO",       src: "assets/logos/gnp-bpo.png" },
-              { n: "Carvajal",      src: "assets/logos/carvajal.png" },
-              { n: "Blue Express",  src: "assets/logos/blue-express.png" },
-              { n: "Servientrega",  src: "assets/logos/servientrega.png" },
-              { n: "Amarilo",       src: "assets/logos/amarilo.png" },
-              { n: "Wingo",         src: "assets/logos/wingo.png" },
-            ];
-            // Duplicate the set so the marquee can loop seamlessly. The copy is
-            // marked aria-hidden so screen readers and tests don't see repeats.
-            return [...logos, ...logos.map(l => ({ ...l, dup: true }))].map((b, i) => (
-              <div key={i} className="hero-brand" aria-hidden={b.dup ? "true" : undefined}>
+        {(() => {
+          const logos = [
+            { n: "Visa",          src: "assets/logos/visa.png" },
+            { n: "GNP BPO",       src: "assets/logos/gnp-bpo.png" },
+            { n: "Carvajal",      src: "assets/logos/carvajal.png" },
+            { n: "Blue Express",  src: "assets/logos/blue-express.png" },
+            { n: "Servientrega",  src: "assets/logos/servientrega.png" },
+            { n: "Amarilo",       src: "assets/logos/amarilo.png" },
+            { n: "Wingo",         src: "assets/logos/wingo.png" },
+          ];
+          // Two SET blocks side-by-side. Each set self-contains its gaps and
+          // trailing space — the track animation shifts by exactly one set
+          // width, so when it resets to 0 the second set already sits where
+          // the first was. Zero seam.
+          const renderSet = (setKey, isDup) =>
+            logos.map((b, i) => (
+              <div
+                key={`${setKey}-${i}`}
+                className="hero-brand"
+                aria-hidden={isDup ? "true" : undefined}
+              >
                 <img src={b.src} alt={b.n} />
               </div>
             ));
-          })()}
-        </div>
+          return (
+            <>
+              <div className="hero-brands-set">{renderSet('a', false)}</div>
+              <div className="hero-brands-set" aria-hidden="true">{renderSet('b', true)}</div>
+            </>
+          );
+        })()}
       </div>
     </section>
     </>

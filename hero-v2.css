@@ -867,33 +867,33 @@
    edges. Deliberately NO mask-image here — masks create a compositing layer
    that fights with .hero-brand img's mix-blend-mode: multiply and made logos
    partially or fully disappear (especially on narrow mobile viewports). */
-.hero-brands-viewport {
-  overflow: hidden;
-  /* Isolate compositing so filters/opacity on children can't leak into the
-     parent layer and cause the marquee to visibly clip mid-frame. */
-  transform: translateZ(0);
-}
-/* Scrolling track — canonical infinite marquee.
-   Filter lives on the TRACK (the animated element), not on individual imgs.
-   That way there's only one compositing layer (the transformed track), no
-   per-img layer to fight with clipping/scroll, and every logo renders as a
-   uniform dark grey. */
+/* Canonical two-set marquee.
+   Structure:
+     .hero-brands (overflow: hidden) → visible viewport
+       .hero-brands-track (flex, animated)
+         .hero-brands-set  (7 logos + padding-right = gap)
+         .hero-brands-set  (identical duplicate, aria-hidden)
+   Each set is a self-contained flex row: 7 items + 6 internal gaps + a
+   trailing space equal to the gap. The track has NO gap between the sets,
+   so total track width = exactly 2× set width. translateX(-50%) therefore
+   shifts by one full set width and the duplicate lands pixel-perfect where
+   the original was. No math drift, no visible seam. */
 .hero-brands-track {
   display: flex;
+  width: max-content;
+  animation: brands-marquee 30s linear infinite;
+  will-change: transform;
+}
+.hero-brands-set {
+  display: flex;
+  flex: none;
   align-items: center;
   gap: 96px;
-  width: max-content;
   padding-right: 96px;
-  animation: brands-marquee 28s linear infinite;
-  animation-play-state: running;
-  will-change: transform;
-  backface-visibility: hidden;
-  filter: grayscale(1) brightness(0.35) contrast(1.2);
-  opacity: 0.78;
 }
 @keyframes brands-marquee {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-50%, 0, 0); }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 /* Static row variant — no duplicates, evenly distributed across the container */
 .hero-brands-track.hero-brands-static {
@@ -928,12 +928,14 @@
   object-fit: contain;
   display: block;
   background: transparent;
-  /* Deliberately NO filter / opacity / mix-blend-mode here. Every property
-     that promotes an image into its own compositing layer conflicts with
-     the parent track's transform animation and causes clipping glitches
-     (logos vanish at the left edge and pop back mid-scroll). Logos render
-     in their original colours — the section background is white so PNGs
-     with white backdrops disappear naturally. */
+}
+/* Grey styling lives on each SET (not on individual imgs, not on the
+   animated track). One filter per set = one composite layer per set —
+   both sets identical, so the seam is invisible AND every logo renders
+   in the same uniform dark grey. */
+.hero-brands-set {
+  filter: grayscale(1) brightness(0.35) contrast(1.2);
+  opacity: 0.78;
 }
 /* Per-logo intrinsic height — matches the previous transform-scale visual
    sizes but uses real height so the layout box hugs the image and the
