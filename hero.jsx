@@ -674,6 +674,7 @@ function Hero({ t }) {
 function TruckHero({ t }) {
   const [scrollY, setScrollY] = useState(0);
   const [step, setStep] = useState(0);
+  const [showChatMobile, setShowChatMobile] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
     onScroll();
@@ -807,10 +808,27 @@ function TruckHero({ t }) {
               <span className="vhero-live-dot"></span>
               {t.hero.liveTag}
             </div>
+            <button
+              type="button"
+              className="vhero-see-chat"
+              onClick={() => setShowChatMobile(true)}
+              aria-label="See interaction"
+            >
+              <span className="material-icons">chat</span>
+              {t === (window.I18N && window.I18N.es) ? "Ver interacción" : "See interaction"}
+            </button>
           </FadeUp>
         </div>
 
-        <div className="vhero-right">
+        <div className={`vhero-right ${showChatMobile ? "is-open-mobile" : ""}`}>
+          <button
+            type="button"
+            className="vhero-chat-close"
+            onClick={() => setShowChatMobile(false)}
+            aria-label="Close"
+          >
+            <span className="material-icons">close</span>
+          </button>
           <HeroChatCard t={t} />
         </div>
       </div>
