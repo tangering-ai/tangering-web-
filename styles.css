@@ -9306,14 +9306,23 @@ section.sub-banner .sub-banner-headline em {
       0 0 0 9px #2a2a2a;
   }
 
-  /* Any full-bleed step (map / reschedule / courier / CRM) also scales
-     down so it doesn't burst outside the phone frame */
+  /* Every step scene renders inside the SAME visual footprint — no size
+     jump when the auto-cycle flips scenes. The phone chassis is the
+     reference size (260×540); other layouts (map / reschedule / courier
+     / CRM) scale to sit inside that frame cleanly. */
   .sticky-phone .courier-outer,
   .sticky-phone .resch-outer,
   .sticky-phone .crm-outer,
-  .sticky-phone .map-outer { transform: scale(0.92); transform-origin: center; }
+  .sticky-phone .map-outer,
+  .sticky-phone .sol-phone-wrap,
+  .sticky-phone .ip17-wrap {
+    transform: scale(0.92);
+    transform-origin: center;
+  }
 
-  /* Kill any glow/ring pseudo-elements that decorate the phone stage */
+  /* Kill EVERY shadow around the phone stage on mobile. The .ip17-wrap
+     drop-shadow was the one hanging behind step 1. */
+  .sticky-phone .ip17-wrap { filter: none !important; }
   .sticky-phone .phone-stage::before,
   .sticky-phone .phone-stage::after,
   .sticky-phone .phone-stage-glow { display: none !important; }
