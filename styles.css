@@ -1565,6 +1565,13 @@ section { position: relative; }
   position: sticky;
   top: 120px;
 }
+/* Kill sticky on narrow viewports — sticky-left combined with a stacked
+   1-col layout made the odometer / headline hover over the right-column
+   metrics as the user scrolled. These !important overrides beat the base
+   rule regardless of source order. */
+@media (max-width: 960px) {
+  .proof-left { position: static !important; top: auto !important; }
+}
 
 /* counter block */
 .proof-counter-wrap {
