@@ -2708,21 +2708,20 @@ section { position: relative; }
   margin: 0 calc(50% - 50vw);
   padding-left: max(calc(50vw - 50%), 24px);
 }
+/* Outer viewport — hidden overflow so nothing can scroll the cards. The
+   inner .flow3-track is transform-animated by the arrow buttons in JS. */
 .flow3-carousel {
+  overflow: hidden;
+  padding-bottom: 28px;
+}
+.flow3-track {
   display: flex;
   gap: 28px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  padding: 0 max(calc(50vw - 50%), 24px) 28px 0;
-  scroll-padding-left: max(calc(50vw - 50%), 24px);
-  -webkit-overflow-scrolling: touch;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
-.flow3-carousel::-webkit-scrollbar { display: none; }
-
 .flow3-feature {
   flex: 0 0 calc(min(72vw, 880px));
-  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
 }
@@ -2793,9 +2792,12 @@ section { position: relative; }
 .flow3-video {
   position: relative; z-index: 2;
   width: 100%;
+  aspect-ratio: 16 / 10;
   height: auto;
+  object-fit: cover;
   display: block;
   border-radius: 12px;
+  background: #1a1a2e;
   box-shadow:
     0 20px 40px rgba(0,0,0,0.22),
     0 0 0 1px rgba(255,255,255,0.6);
@@ -9160,6 +9162,11 @@ section.sub-banner .sub-banner-headline em {
 }
 .carousel-arrow:hover .material-icons { color: #ffffff !important; }
 .carousel-arrow:active { transform: translateY(0); }
+.carousel-arrow[disabled] {
+  cursor: not-allowed;
+  opacity: 0.35;
+  pointer-events: none;
+}
 .carousel-arrow .material-icons { font-size: 18px !important; color: #fe5e32; }
 
 /* ============================================================

@@ -501,46 +501,77 @@ function FlowBuilder({ t }) {
 
 function Flow3Carousel({ features }) {
   const trackRef = useRef(null);
-  const scrollByCards = (dir) => {
-    const t = trackRef.current;
-    if (!t) return;
-    const card = t.querySelector(".flow3-feature");
-    const step = card ? card.getBoundingClientRect().width + 28 : t.clientWidth * 0.8;
-    t.scrollBy({ left: dir * step, behavior: "auto" });
+  const [index, setIndex] = useState(0);
+  const [maxIndex, setMaxIndex] = useState(features.length - 1);
+
+  // Recompute how many cards fit at once so arrows disable at the end
+  useEffect(() => {
+    const compute = () => {
+      const t = trackRef.current;
+      if (!t || !t.parentElement) return;
+      const card = t.querySelector(".flow3-feature");
+      if (!card) return;
+      const cardW = card.getBoundingClientRect().width + 28; // + gap
+      const visible = t.parentElement.clientWidth / cardW;
+      setMaxIndex(Math.max(0, features.length - Math.floor(visible)));
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, [features]);
+
+  const step = (dir) => {
+    setIndex((i) => Math.max(0, Math.min(maxIndex, i + dir)));
   };
-  // Translate vertical wheel into horizontal scroll on desktop
+
+  // Compute translateX in px so the transform is exact
+  const [offsetPx, setOffsetPx] = useState(0);
   useEffect(() => {
     const t = trackRef.current;
     if (!t) return;
-    const onWheel = (e) => {
-      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-      const maxScroll = t.scrollWidth - t.clientWidth;
-      if ((e.deltaY < 0 && t.scrollLeft <= 0) || (e.deltaY > 0 && t.scrollLeft >= maxScroll)) return;
-      e.preventDefault();
-      t.scrollBy({ left: e.deltaY, behavior: "auto" });
-    };
-    t.addEventListener("wheel", onWheel, { passive: false });
-    return () => t.removeEventListener("wheel", onWheel);
-  }, []);
+    const card = t.querySelector(".flow3-feature");
+    if (!card) return;
+    const cardW = card.getBoundingClientRect().width + 28;
+    setOffsetPx(index * cardW);
+  }, [index, features]);
+
   return (
     <div className="flow3-carousel-wrap">
-      <div className="flow3-carousel" ref={trackRef}>
-        {features.map((f, i) => (
-          <div key={i} className="flow3-feature">
-            <div className={`flow3-video-card flow3-grad-${f.gradient}`}>
-              <video className="flow3-video" src={f.video} autoPlay loop muted playsInline preload="metadata" />
+      <div className="flow3-carousel">
+        <div
+          ref={trackRef}
+          className="flow3-track"
+          style={{ transform: `translateX(-${offsetPx}px)` }}
+        >
+          {features.map((f, i) => (
+            <div key={i} className="flow3-feature">
+              <div className={`flow3-video-card flow3-grad-${f.gradient}`}>
+                <video className="flow3-video" src={f.video} autoPlay loop muted playsInline preload="metadata" />
+              </div>
+              <h3 className="flow3-feature-title">{f.title}</h3>
+              <p className="flow3-feature-desc">{f.desc}</p>
             </div>
-            <h3 className="flow3-feature-title">{f.title}</h3>
-            <p className="flow3-feature-desc">{f.desc}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <div className="flow3-carousel-hint">
-        <button type="button" className="carousel-arrow" aria-label="Previous" onClick={() => scrollByCards(-1)}>
+        <button
+          type="button"
+          className="carousel-arrow"
+          aria-label="Previous"
+          onClick={() => step(-1)}
+          disabled={index === 0}
+        >
           <span className="material-icons">arrow_back</span>
         </button>
-        <span>Scroll to see more</span>
-        <button type="button" className="carousel-arrow" aria-label="Next" onClick={() => scrollByCards(1)}>
+        <span>Use the arrows</span>
+        <button
+          type="button"
+          className="carousel-arrow"
+          aria-label="Next"
+          onClick={() => step(1)}
+          disabled={index >= maxIndex}
+        >
           <span className="material-icons">arrow_forward</span>
         </button>
       </div>
