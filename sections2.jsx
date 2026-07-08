@@ -466,7 +466,7 @@ function FlowBuilder({ t }) {
     { title: "Decisiones en tiempo real",              desc: "Define condiciones sobre respuestas reales del cliente, confirma, reagenda, escala, reserva, y mira al agente actuar en vivo sin una sola línea de código.",     video: "assets/flow-builder-2.mov", gradient: "ag2" },
     { title: "Versiones y pruebas en vivo",            desc: "Prueba cada cambio contra llamadas pasadas antes de publicar. Revierte cualquier versión con un click. Tu equipo nunca queda a un mal deploy de una llamada rota.", video: "assets/flow-builder.mov",   gradient: "ag3" },
   ] : [
-    { title: "Drag-and-drop builder",                  desc: "Compose conversational flows with a no-code editor. Triggers, branches and hand-offs in minutes, anyone on your ops team can ship a new flow in an afternoon.",      video: "assets/flow-builder.mov",   gradient: "ag" },
+    { title: "Drag-and-drop builder",                  desc: "Compose conversational flows with a no-code editor. Triggers, branches and hand-offs in minutes, anyone on your ops team can ship a new flow in an afternoon.",      video: "assets/flow-builder-en.mov",   gradient: "ag" },
     { title: "Real-time decisions on every call",      desc: "Set conditions on real customer responses, confirm, reschedule, escalate, book, and watch the agent act on them live without a single line of code.",                  video: "assets/flow-builder-2.mov", gradient: "ag2" },
     { title: "Version control & live testing",         desc: "Test every change against past calls before going live. Roll back any version in one click. Your ops team is never one bad deploy away from a broken call.",          video: "assets/flow-builder.mov",   gradient: "ag3" },
   ];
