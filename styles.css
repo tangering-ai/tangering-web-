@@ -9472,7 +9472,22 @@ section.sub-banner .sub-banner-headline em {
   /* Number underline extends since it's the "open" state */
   .uc-num::after { width: 38px !important; }
   /* No transform lift / no float animation on mobile */
-  .uc-card { transform: none !important; animation: none !important; }
+  .uc-card {
+    transform: none !important;
+    animation: none !important;
+    /* Homogeneous size across all 4 use case cards */
+    padding: 28px 24px !important;
+    min-height: 0 !important;
+    justify-content: flex-start !important;
+    border-radius: 20px !important;
+    width: 100%;
+  }
+  .uc-card .uc-content { margin-top: 20px !important; }
+  .uc-title { font-size: 22px !important; }
+  .uc-desc { font-size: 15px !important; margin-top: 10px !important; max-width: 100% !important; }
+  .uc-chips { margin-top: 16px !important; gap: 6px !important; }
+  .uc-chips span { padding: 4px 9px !important; font-size: 11.5px !important; }
+  .uc-detail > p { font-size: 14px !important; line-height: 1.5 !important; }
 }
 
 /* Mobile safety: no element can ever cause horizontal scroll on the page.
