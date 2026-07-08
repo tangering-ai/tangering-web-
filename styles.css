@@ -9211,7 +9211,7 @@ section.sub-banner .sub-banner-headline em {
    compresses so vertical scroll stays reasonable.
    ============================================================ */
 @media (max-width: 700px) {
-  /* --- Horizontal-scroll card grids -------------------------------- */
+  /* --- Card grids: vertical stack (no horizontal scroll) ---------- */
   .uc-grid,
   .how4-stair,
   .values-grid,
@@ -9219,39 +9219,27 @@ section.sub-banner .sub-banner-headline em {
   .prod-stats-grid,
   .about-stats {
     display: flex !important;
+    flex-direction: column !important;
     grid-template-columns: none !important;
     gap: 12px !important;
-    overflow-x: auto;
-    overflow-y: visible;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: 4px 16px 20px;
-    /* Bleed to viewport edges so cards touch the sides */
-    margin-left: -16px;
-    margin-right: -16px;
-    scroll-padding-left: 16px;
-    /* Soft edge fade so users see there's more to swipe */
-    mask-image: linear-gradient(90deg, transparent 0, black 16px, black calc(100% - 32px), transparent 100%);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, black 16px, black calc(100% - 32px), transparent 100%);
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+    padding: 0 !important;
+    margin: 24px 0 0 !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
   }
-  .uc-grid::-webkit-scrollbar,
-  .how4-stair::-webkit-scrollbar,
-  .values-grid::-webkit-scrollbar,
-  .about-story-grid::-webkit-scrollbar,
-  .prod-stats-grid::-webkit-scrollbar,
-  .about-stats::-webkit-scrollbar { display: none; }
-
   .uc-grid > *,
   .how4-stair > *,
   .values-grid > *,
   .about-story-grid > *,
   .prod-stats-grid > *,
   .about-stats > * {
-    flex: 0 0 78%;
-    max-width: 320px;
-    min-width: 240px;
-    scroll-snap-align: start;
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    scroll-snap-align: none !important;
+    width: 100% !important;
   }
 
   /* Footer stacks vertically on mobile — was accidentally in the
@@ -9485,4 +9473,11 @@ section.sub-banner .sub-banner-headline em {
   .uc-num::after { width: 38px !important; }
   /* No transform lift / no float animation on mobile */
   .uc-card { transform: none !important; animation: none !important; }
+}
+
+/* Mobile safety: no element can ever cause horizontal scroll on the page.
+   The marquee wrapper and any bleed-out sections stay clipped inside the
+   viewport. */
+@media (max-width: 900px) {
+  html, body { overflow-x: hidden !important; }
 }
