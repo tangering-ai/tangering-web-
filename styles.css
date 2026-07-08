@@ -1524,7 +1524,37 @@ section { position: relative; }
   align-items: start;
 }
 @media (max-width: 960px) {
-  .proof-layout { grid-template-columns: 1fr; gap: 60px; }
+  .proof-layout { grid-template-columns: 1fr; gap: 40px; }
+  /* Sticky-left collapses on narrow viewports so it doesn't stack on top of
+     the metrics column — was causing overlap between the counter, headline
+     and the first metric row on mobile. */
+  .proof-left { position: static; top: auto; gap: 24px; }
+}
+@media (max-width: 700px) {
+  .proof-layout { gap: 32px; }
+  .proof-left { gap: 20px; }
+  .proof-live-badge { margin-bottom: 12px; }
+  .odo-wrap { font-size: clamp(40px, 12vw, 64px); }
+  .proof-counter-label { font-size: 14px; margin-top: 12px; }
+  .proof-h2 { font-size: clamp(28px, 8vw, 40px); line-height: 1.08; }
+  .proof-sub { font-size: 15px; line-height: 1.55; }
+
+  /* Stack the number above the body — 46-68px number + 130px min-width was
+     eating the full narrow-viewport width and colliding with the description */
+  .proof-metric { padding: 20px 0; }
+  .proof-metric-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .proof-metric-num {
+    font-size: clamp(36px, 10vw, 48px);
+    min-width: 0;
+  }
+  .proof-metric-body { padding-top: 0; }
+  .proof-metric-desc { font-size: 14.5px; }
+  .proof-metric-co { margin-top: 8px; font-size: 11px; }
 }
 
 /* ── Left column ── */
