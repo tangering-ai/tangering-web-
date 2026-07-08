@@ -2745,7 +2745,10 @@ section { position: relative; }
   position: relative;
   border-radius: 28px;
   overflow: hidden;
-  padding: 48px;
+  padding: 40px;
+  /* Fixed 16:10 shape so all 3 cards line up regardless of their
+     videos being portrait/landscape/whatever aspect ratio */
+  aspect-ratio: 16 / 10;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2791,12 +2794,17 @@ section { position: relative; }
 }
 .flow3-video {
   position: relative; z-index: 2;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  height: auto;
-  object-fit: cover;
+  /* Show every video FULLY (contain), no crop. Portrait phone recordings
+     sit as a floating phone-mockup inside the gradient card; landscape
+     screen recordings fill horizontally. The card is 16/10; the video
+     scales to fit inside its 40px padding. */
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
   display: block;
-  border-radius: 12px;
+  border-radius: 18px;
   background: #1a1a2e;
   box-shadow:
     0 20px 40px rgba(0,0,0,0.22),
