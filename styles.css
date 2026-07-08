@@ -132,9 +132,7 @@ body.nav-open .nav-burger svg .ln2 { opacity: 0; }
 body.nav-open .nav-burger svg .ln3 { transform: translate(0, -5px) rotate(-45deg); }
 
 @media (max-width: 900px) {
-  /* Top bar keeps only the logo + burger. Everything else — links,
-     ES/EN toggle, and the Book a demo CTA — moves into the slide-down
-     panel that appears when the user taps the burger. */
+  /* --- Top bar (pill) stays compact ------------------------------ */
   .nav {
     top: 10px;
     left: 10px; right: 10px;
@@ -142,23 +140,30 @@ body.nav-open .nav-burger svg .ln3 { transform: translate(0, -5px) rotate(-45deg
     width: auto;
     max-width: none;
     gap: 10px;
-    padding: 10px 8px 10px 16px;
+    padding: 10px 10px 10px 18px;
     justify-content: space-between;
     align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 999px;
   }
   .nav-logo-img { height: 26px; }
-  .nav-burger { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; }
-
-  /* Everything except the logo and burger is hidden by default */
+  .nav-burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    color: var(--dark);
+  }
+  /* Hide everything except the logo + burger on mobile top bar */
   .nav-links,
   .nav-right { display: none; }
 
-  /* Dark backdrop while the menu is open */
+  /* --- Dark backdrop while the menu is open ---------------------- */
   .nav::after {
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(15,23,42,0.45);
+    background: rgba(15,23,42,0.35);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s var(--ease);
@@ -166,57 +171,65 @@ body.nav-open .nav-burger svg .ln3 { transform: translate(0, -5px) rotate(-45deg
   }
   body.nav-open .nav::after { opacity: 1; pointer-events: auto; }
 
-  /* Open state: reveal links + full right block (lang toggle + Book a demo) */
+  /* --- Dropdown panel ------------------------------------------- */
+  /* The pill stays a pill in the top bar; a separate white card
+     "drops down" underneath it containing links + ES/EN + Book a demo.
+     Rendered by turning .nav-links and .nav-right into fixed-position
+     siblings that visually stack into one card. */
   body.nav-open .nav-links,
-  body.nav-open .nav-right { display: flex; }
-
-  body.nav-open .nav {
-    flex-wrap: wrap;
-    background: rgba(255,255,255,0.98);
+  body.nav-open .nav-right {
+    display: flex;
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    background: #ffffff;
     box-shadow: 0 24px 60px rgba(0,0,0,0.18);
-    padding-bottom: 18px;
-    z-index: 110;
-    max-height: calc(100vh - 20px);
-    overflow-y: auto;
+    z-index: 100;
+    padding: 14px 16px;
+    animation: navDropIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
-  /* Links list — full-width column below the top bar */
+  /* Top block — the 3 nav links */
   body.nav-open .nav-links {
-    flex-basis: 100%;
-    order: 4;
+    top: 74px;
     flex-direction: column;
     align-items: stretch;
-    gap: 4px;
-    margin: 12px 8px 4px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(15,23,42,0.08);
+    gap: 2px;
+    border-radius: 20px 20px 0 0;
+    padding-bottom: 8px;
   }
   body.nav-open .nav-links a {
-    padding: 12px 14px;
+    padding: 14px 14px;
     border-radius: 12px;
     font-size: 16px;
     color: var(--dark);
+    font-weight: 500;
   }
   body.nav-open .nav-links a:hover { background: rgba(0,0,0,0.04); }
-  body.nav-open .nav-links a.active { background: rgba(254,94,50,0.10); color: var(--orange); }
+  body.nav-open .nav-links a.active { color: var(--orange); background: rgba(254,94,50,0.08); }
   body.nav-open .nav-links a.active::after { display: none; }
 
-  /* Right block — lang toggle + Book a demo, also full-width below links */
+  /* Bottom block — ES/EN + Book a demo, stacked immediately under the links */
   body.nav-open .nav-right {
-    flex-basis: 100%;
-    order: 5;
+    /* Sits directly under the .nav-links block. Total nav-links height ≈
+       3 items × ~50px + 22px padding + 14px top offset = ~186px.
+       Approximated with 74px + 190px = 264px — close enough that the
+       shadow makes it read as one continuous card. */
+    top: 264px;
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
-    margin: 4px 8px 0;
     padding-top: 12px;
-    border-top: 1px solid rgba(15,23,42,0.08);
+    padding-bottom: 18px;
+    border-radius: 0 0 20px 20px;
+    border-top: 1px solid rgba(0,0,0,0.06);
   }
   body.nav-open .lang-toggle {
     align-self: flex-start;
     padding: 4px;
+    margin-bottom: 4px;
   }
-  body.nav-open .lang-toggle button { padding: 6px 14px; font-size: 13px; }
+  body.nav-open .lang-toggle button { padding: 6px 16px; font-size: 13px; }
   body.nav-open .nav-right .btn-dark {
     display: inline-flex;
     text-align: center;
@@ -224,7 +237,12 @@ body.nav-open .nav-burger svg .ln3 { transform: translate(0, -5px) rotate(-45deg
     padding: 14px 20px;
     font-size: 15px;
     width: 100%;
+    border-radius: 999px;
   }
+}
+@keyframes navDropIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 600px) {
