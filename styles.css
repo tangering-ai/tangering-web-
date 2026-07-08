@@ -8422,7 +8422,9 @@ section h2 i {
 /* Pulsing corner dot removed */
 .uc-card::after { content: none; display: none; }
 
-/* Detail block — collapsed by default, expands on hover */
+/* Detail block — collapsed by default, expands on hover. The divider
+   line only appears when the detail is open; otherwise there's no visible
+   border between the description and the (hidden) detail. */
 .uc-detail {
   display: grid;
   grid-template-rows: 0fr;
@@ -8436,7 +8438,7 @@ section h2 i {
   font-size: 14.5px;
   line-height: 1.55;
   color: var(--muted);
-  border-top: 1px solid rgba(15,23,42,0.08);
+  border-top: 1px solid transparent;
   transition: padding 0.5s cubic-bezier(.2,.7,.2,1), color 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 .uc-card:hover .uc-detail {
@@ -9384,4 +9386,38 @@ section.sub-banner .sub-banner-headline em {
   }
   .step-body h3 { font-size: 20px; }
   .step-body p { font-size: 14.5px; max-width: 100%; }
+}
+
+/* ============================================================
+   Use Cases — mobile: show cards ALREADY open (accent bg + detail
+   visible) so users see all the content without hovering.
+   ============================================================ */
+@media (max-width: 700px) {
+  /* Force the accent overlay to full opacity so each card shows in its
+     own colour by default */
+  .uc-card::before { opacity: 1 !important; }
+  /* Text colours that were the hover-only "on colour" state */
+  .uc-card .uc-num,
+  .uc-card .uc-title,
+  .uc-card .uc-desc { color: white !important; }
+  /* Extra detail block open by default */
+  .uc-card .uc-detail {
+    grid-template-rows: 1fr !important;
+    margin-top: 22px !important;
+  }
+  .uc-card .uc-detail > p {
+    padding-top: 18px !important;
+    color: rgba(255,255,255,0.92) !important;
+    border-top-color: rgba(255,255,255,0.22) !important;
+  }
+  /* Chip styling that lived under :hover */
+  .uc-chips span {
+    background: rgba(255,255,255,0.18) !important;
+    border-color: rgba(255,255,255,0.30) !important;
+    color: #ffffff !important;
+  }
+  /* Number underline extends since it's the "open" state */
+  .uc-num::after { width: 38px !important; }
+  /* No transform lift / no float animation on mobile */
+  .uc-card { transform: none !important; animation: none !important; }
 }
