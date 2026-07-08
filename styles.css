@@ -2754,6 +2754,22 @@ section { position: relative; }
   justify-content: center;
   box-shadow: none;
 }
+/* EN-only override: portrait phone recordings fit to the card's full
+   inner height with NO black bands top/bottom. All 3 EN videos land
+   at the same rendered height (== first video's height) since the card
+   size is identical across the 3. */
+.flow3-carousel-wrap.is-en .flow3-video-card {
+  padding: 0;
+}
+.flow3-carousel-wrap.is-en .flow3-video {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
 /* Two distinct brand gradients — same Tangering palette */
 .flow3-grad-ag {
   background: linear-gradient(125deg,

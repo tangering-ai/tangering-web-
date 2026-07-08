@@ -493,13 +493,13 @@ function FlowBuilder({ t }) {
         </div>
 
         {/* Horizontal carousel of feature cards */}
-        <Flow3Carousel features={features} />
+        <Flow3Carousel features={features} lang={es ? 'es' : 'en'} />
       </div>
     </section>
   );
 }
 
-function Flow3Carousel({ features }) {
+function Flow3Carousel({ features, lang }) {
   const trackRef = useRef(null);
   const [index, setIndex] = useState(0);
   const [maxIndex, setMaxIndex] = useState(features.length - 1);
@@ -536,7 +536,7 @@ function Flow3Carousel({ features }) {
   }, [index, features]);
 
   return (
-    <div className="flow3-carousel-wrap">
+    <div className={`flow3-carousel-wrap ${lang === 'en' ? 'is-en' : 'is-es'}`}>
       <div className="flow3-carousel">
         <div
           ref={trackRef}
