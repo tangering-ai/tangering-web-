@@ -2754,21 +2754,16 @@ section { position: relative; }
   justify-content: center;
   box-shadow: none;
 }
-/* EN-only override: portrait phone recordings fit to the card's full
-   inner height with NO black bands top/bottom. All 3 EN videos land
-   at the same rendered height (== first video's height) since the card
-   size is identical across the 3. */
-.flow3-carousel-wrap.is-en .flow3-video-card {
-  padding: 0;
-}
+/* EN-only override: keep the brand gradient card backdrop, but make every
+   video render at the same height (fills the card's inner height) without
+   ever being cropped. Since all EN videos are portrait phone recordings,
+   they display as consistent phone-mock strips floating on the gradient. */
 .flow3-carousel-wrap.is-en .flow3-video {
   height: 100%;
   width: auto;
   max-width: 100%;
-  object-fit: cover;
-  border-radius: 0;
-  box-shadow: none;
-  background: transparent;
+  max-height: 100%;
+  object-fit: contain;
 }
 /* Two distinct brand gradients — same Tangering palette */
 .flow3-grad-ag {
