@@ -2754,15 +2754,14 @@ section { position: relative; }
   justify-content: center;
   box-shadow: none;
 }
-/* EN-only override: keep the brand gradient card backdrop, but size the
-   card taller so the portrait phone recordings breathe. Fixed height
-   (not aspect-ratio) means the video renders at the same rendered height
-   across all 3 cards regardless of individual video aspect. */
-.flow3-carousel-wrap.is-en .flow3-video-card {
-  aspect-ratio: auto;
+/* Both ES and EN: portrait phone recordings display at the same fixed
+   card height, contained (no cropping). All 6 videos land at the same
+   rendered height regardless of the individual video's aspect ratio. */
+.flow3-video-card {
+  aspect-ratio: auto !important;
   height: clamp(520px, 68vh, 720px);
 }
-.flow3-carousel-wrap.is-en .flow3-video {
+.flow3-video {
   height: 100%;
   width: auto;
   max-width: 100%;
@@ -2770,7 +2769,7 @@ section { position: relative; }
   object-fit: contain;
 }
 @media (max-width: 700px) {
-  .flow3-carousel-wrap.is-en .flow3-video-card {
+  .flow3-video-card {
     height: clamp(420px, 62vh, 560px);
   }
 }
