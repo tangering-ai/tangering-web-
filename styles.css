@@ -247,7 +247,8 @@ body.nav-open .nav-burger svg .ln3 { transform: translate(0, -5px) rotate(-45deg
 
 @media (max-width: 600px) {
   /* Hero copy tightening on phones */
-  .vhero-product .vhero-content { padding-top: 110px !important; padding-bottom: 64px !important; }
+  .vhero-product { min-height: 88vh !important; }
+  .vhero-product .vhero-content { padding-top: 140px !important; padding-bottom: 90px !important; }
   .vhero-h1 { letter-spacing: -0.035em; }
   .vhero-sub { font-size: 16px; }
   .vhero-ctas { gap: 8px; }

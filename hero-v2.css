@@ -331,11 +331,11 @@
 }
 
 @media (max-width: 920px) {
-  .vhero { min-height: auto; padding: 0 0 40px; }
+  .vhero { min-height: 92vh; padding: 0 0 40px; }
   .vhero-content {
     flex-direction: column;
-    padding-top: 100px;
-    padding-bottom: 40px;
+    padding-top: 130px;
+    padding-bottom: 80px;
     gap: 36px;
   }
   .vhero-left { flex: none; width: 100%; }

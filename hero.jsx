@@ -808,15 +808,6 @@ function TruckHero({ t }) {
               <span className="vhero-live-dot"></span>
               {t.hero.liveTag}
             </div>
-            <button
-              type="button"
-              className="vhero-see-chat"
-              onClick={() => setShowChatMobile(true)}
-              aria-label="See interaction"
-            >
-              <span className="material-icons">chat</span>
-              {t === (window.I18N && window.I18N.es) ? "Ver interacción" : "See interaction"}
-            </button>
           </FadeUp>
         </div>
 
