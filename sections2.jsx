@@ -528,7 +528,7 @@ function Flow3Carousel({ features }) {
         {features.map((f, i) => (
           <div key={i} className="flow3-feature">
             <div className={`flow3-video-card flow3-grad-${f.gradient}`}>
-              <video className="flow3-video" src={f.video} autoPlay loop muted playsInline />
+              <video className="flow3-video" src={f.video} autoPlay loop muted playsInline preload="metadata" />
             </div>
             <h3 className="flow3-feature-title">{f.title}</h3>
             <p className="flow3-feature-desc">{f.desc}</p>

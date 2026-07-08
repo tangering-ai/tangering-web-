@@ -9,7 +9,7 @@ function HeroVideo({ t, scrollY = 0 }) {
   return (
     <div className="vhero-media">
       <div className="vhero-bg" style={{ transform: `translateY(${bgShift}px) scale(1.08)` }}>
-        <video ref={bgRef} src="assets/video-a.mp4" autoPlay muted loop playsInline></video>
+        <video ref={bgRef} data-eager src="assets/video-a.mp4" autoPlay muted loop playsInline preload="metadata"></video>
       </div>
       <div className="vhero-overlay"></div>
       <div className="vhero-grain"></div>
