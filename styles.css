@@ -9274,24 +9274,56 @@ section.sub-banner .sub-banner-headline em {
     padding-bottom: 64px !important;
   }
 
-  /* --- Voice tech feature rows: also horizontal on mobile ---------- */
+  /* --- Voice tech feature rows: vertical stack on mobile ---------- */
   .vtech-rows {
     display: flex !important;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    padding: 4px 16px 20px;
-    margin: 0 -16px;
-  }
-  .vtech-rows::-webkit-scrollbar { display: none; }
-  .vtech-row {
-    flex: 0 0 78%;
-    max-width: 320px;
-    min-width: 240px;
-    scroll-snap-align: start;
     flex-direction: column !important;
+    gap: 0 !important;
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
   }
+  .vtech-row {
+    display: grid !important;
+    grid-template-columns: 44px 1fr !important;
+    grid-template-rows: auto auto !important;
+    column-gap: 16px !important;
+    row-gap: 6px !important;
+    padding: 20px 0 !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    scroll-snap-align: none !important;
+    align-items: center !important;
+  }
+  .vtech-row-visual {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    justify-content: flex-start !important;
+  }
+  .vtech-row-visual > * {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .vtech-row-title {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 17px !important;
+  }
+  .vtech-row-desc {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+  /* Hero of the section shrinks tight so the H2 fits without extra whitespace */
+  .vtech { padding: 60px 0 !important; }
+  .vtech-hero { margin-bottom: 40px !important; gap: 24px !important; }
+  .vtech-h2 { font-size: clamp(28px, 8vw, 40px) !important; }
+  .vtech-sub { font-size: 15px !important; }
+  .vtech-photo { max-width: 100%; }
 
   /* --- Sub-banner tighter on mobile -------------------------------- */
   .sub-banner-inner { padding: 64px 20px !important; min-height: auto !important; }
