@@ -9268,3 +9268,38 @@ section.sub-banner .sub-banner-headline em {
   .vhero-see-chat,
   .vhero-chat-close { display: none !important; }
 }
+
+/* ============================================================
+   Solution "One call. Five steps." — mobile auto-cycle layout
+   Only the active step's text is visible at a time; the phone
+   stage sits directly above it and both crossfade together as
+   the JS interval flips `active` every 2.8s.
+   ============================================================ */
+@media (max-width: 700px) {
+  .sticky-wrap { grid-template-columns: 1fr; gap: 24px; }
+  .sticky-phone {
+    position: relative;
+    top: auto;
+    height: 480px;
+  }
+  .sticky-steps {
+    position: relative;
+    display: block;
+    padding: 0;
+    min-height: 180px;
+  }
+  .sticky-steps .step {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    padding: 0 16px;
+    transition: opacity 0.4s var(--ease);
+  }
+  .sticky-steps .step.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .step-body h3 { font-size: 20px; }
+  .step-body p { font-size: 14.5px; max-width: 100%; }
+}

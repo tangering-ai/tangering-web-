@@ -190,19 +190,52 @@ function Solution({ t }) {
   }, [active, displayed]);
 
   useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting && e.intersectionRatio > 0.5) {
-            const idx = Number(e.target.dataset.idx);
-            setActive(idx);
-          }
-        });
-      },
-      { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.5, 1] }
-    );
-    stepRefs.current.forEach((el) => el && obs.observe(el));
-    return () => obs.disconnect();
+    const mq = window.matchMedia("(max-width: 700px)");
+
+    let obs = null;
+    let interval = null;
+
+    const setupDesktop = () => {
+      obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting && e.intersectionRatio > 0.5) {
+              const idx = Number(e.target.dataset.idx);
+              setActive(idx);
+            }
+          });
+        },
+        { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.5, 1] }
+      );
+      stepRefs.current.forEach((el) => el && obs.observe(el));
+    };
+
+    const setupMobile = () => {
+      // Auto-cycle the active step every 2.8s. The visual + text both track
+      // the same state so they advance together, without any scroll input.
+      setActive(0);
+      interval = setInterval(() => {
+        setActive((prev) => (prev + 1) % 5);
+      }, 2800);
+    };
+
+    const teardown = () => {
+      if (obs) { obs.disconnect(); obs = null; }
+      if (interval) { clearInterval(interval); interval = null; }
+    };
+
+    const apply = () => {
+      teardown();
+      if (mq.matches) setupMobile();
+      else setupDesktop();
+    };
+
+    apply();
+    mq.addEventListener("change", apply);
+    return () => {
+      mq.removeEventListener("change", apply);
+      teardown();
+    };
   }, []);
 
   const steps = [
