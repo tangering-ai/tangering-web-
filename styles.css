@@ -8635,6 +8635,19 @@ section h2 i {
 @media (max-width: 900px) {
   .sub-banner-inner { padding: 100px 28px; }
   .sub-banner-bottom { flex-direction: column; align-items: flex-start; gap: 28px; }
+  /* Mobile order: sub copy first (right under the headline), buttons after.
+     Also force text left-aligned — the desktop rule was right-aligning it. */
+  .sub-banner-bottom .sub-banner-sub {
+    order: -1 !important;
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+  }
+  .sub-banner-actions {
+    flex-wrap: wrap;
+    justify-content: flex-start !important;
+  }
 }
 .sub-banner-eyebrow {
   display: inline-flex;
@@ -9204,8 +9217,7 @@ section.sub-banner .sub-banner-headline em {
   .values-grid,
   .about-story-grid,
   .prod-stats-grid,
-  .about-stats,
-  .foot-grid {
+  .about-stats {
     display: flex !important;
     grid-template-columns: none !important;
     gap: 12px !important;
@@ -9228,20 +9240,41 @@ section.sub-banner .sub-banner-headline em {
   .values-grid::-webkit-scrollbar,
   .about-story-grid::-webkit-scrollbar,
   .prod-stats-grid::-webkit-scrollbar,
-  .about-stats::-webkit-scrollbar,
-  .foot-grid::-webkit-scrollbar { display: none; }
+  .about-stats::-webkit-scrollbar { display: none; }
 
   .uc-grid > *,
   .how4-stair > *,
   .values-grid > *,
   .about-story-grid > *,
   .prod-stats-grid > *,
-  .about-stats > *,
-  .foot-grid > * {
+  .about-stats > * {
     flex: 0 0 78%;
     max-width: 320px;
     min-width: 240px;
     scroll-snap-align: start;
+  }
+
+  /* Footer stacks vertically on mobile — was accidentally in the
+     horizontal-scroll bucket above. Reset to a proper vertical footer. */
+  .foot { padding: 40px 0 20px; }
+  .foot .container { padding: 0 20px; }
+  .foot-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 28px !important;
+    grid-template-columns: none !important;
+  }
+  .foot-grid > * {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+  .foot-desc { max-width: 100%; }
+  .foot-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 32px;
+    gap: 6px;
   }
 
   /* Problem section: keep the 3 cards stacked vertically on mobile so all
