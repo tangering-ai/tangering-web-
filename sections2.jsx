@@ -468,7 +468,7 @@ function FlowBuilder({ t }) {
   ] : [
     { title: "Drag-and-drop builder",                  desc: "Compose conversational flows with a no-code editor. Triggers, branches and hand-offs in minutes, anyone on your ops team can ship a new flow in an afternoon.",      video: "assets/flow-builder-en.mov",   gradient: "ag" },
     { title: "Real-time decisions on every call",      desc: "Set conditions on real customer responses, confirm, reschedule, escalate, book, and watch the agent act on them live without a single line of code.",                  video: "assets/flow-builder-2-en.mov", gradient: "ag2" },
-    { title: "Version control & live testing",         desc: "Test every change against past calls before going live. Roll back any version in one click. Your ops team is never one bad deploy away from a broken call.",          video: "assets/flow-builder.mov",   gradient: "ag3" },
+    { title: "Version control & live testing",         desc: "Test every change against past calls before going live. Roll back any version in one click. Your ops team is never one bad deploy away from a broken call.",          video: "assets/flow-builder-3-en.mov",   gradient: "ag3" },
   ];
 
   return (
