@@ -328,7 +328,7 @@ window.I18N = {
       m1: "delivery conversations",
       m1v: "2.5M+",
       m2: "fewer failed deliveries",
-      m2v: "up to −28%",
+      m2v: "Up to −28%",
       m3: "lift in delivery success",
       m3v: "+12 pt",
       sceneTag: "LIVE",
