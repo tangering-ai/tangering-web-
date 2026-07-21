@@ -765,9 +765,10 @@ function TruckHero({ t }) {
             </div>
           </FadeUp>
           <h1 className="vhero-h1">
-            <WordReveal as="span">{t.hero.h1a}</WordReveal>{" "}
-            <WordReveal as="span" className="accent" delay={300}>{t.hero.h1b}</WordReveal>{" "}
-            <WordReveal as="span" delay={700}>{t.hero.h1c}</WordReveal>
+            <WordReveal as="span">{t.hero.h1a}</WordReveal>
+            <br/>
+            <WordReveal as="span" className="accent" delay={300}>{t.hero.h1b}</WordReveal>
+            {t.hero.h1c ? <> <WordReveal as="span" delay={700}>{t.hero.h1c}</WordReveal></> : null}
           </h1>
           <FadeUp delay={400}>
             <p className="lead vhero-sub">{t.hero.sub}</p>
