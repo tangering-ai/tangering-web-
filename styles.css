@@ -9576,46 +9576,84 @@ section.sub-banner .sub-banner-headline em {
    SPINE — identity statement (typographic, no visuals)
    =========================================================== */
 .spine {
-  padding: clamp(80px, 12vw, 160px) 0;
-  background: #fff;
+  padding: clamp(96px, 14vw, 180px) 0;
   position: relative;
-  border-top: 1px solid rgba(0,0,0,0.06);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  overflow: hidden;
+  isolation: isolate;
+  /* Tangering brand gradient: green → orange → lilac */
+  background:
+    linear-gradient(100deg,
+      #c5e94a 0%,
+      #ffa53d 10%,
+      #fe5e32 50%,
+      #ff7c6e 90%,
+      #ecbbe9 100%);
+}
+/* Brand grain texture — same recipe as flow2-video-card */
+.spine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.16) 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1.4px);
+  background-size: 3px 3px, 4px 4px;
+  background-position: 0 0, 1.5px 1.5px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
 }
 .spine-inner {
   max-width: 1080px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 .spine-eyebrow {
   justify-content: center;
   margin-bottom: 32px;
+  color: #fff !important;
+  background: rgba(255,255,255,0.14) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.24) !important;
 }
+.spine-eyebrow .pulse { background: #fff !important; box-shadow: 0 0 0 4px rgba(255,255,255,0.28) !important; }
 .spine-h1 {
   font-family: 'Overused Grotesk', sans-serif;
-  font-size: clamp(32px, 4.6vw, 64px);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  font-weight: 500;
-  color: var(--dark);
-  max-width: 20ch;
+  line-height: 1.06 !important;
+  letter-spacing: -0.025em !important;
+  color: #fff !important;
+  max-width: 22ch;
   margin: 0 auto;
+  text-shadow: 0 2px 24px rgba(120,30,10,0.22);
+}
+.spine-h1 em,
+section .spine-h1 em {
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: #fff !important;
+  background: linear-gradient(90deg, #fff 0%, #fff5ec 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .spine-h2 {
-  margin-top: 32px;
+  margin: 32px auto 0;
   font-family: 'Overused Grotesk', sans-serif;
   font-size: clamp(18px, 1.9vw, 24px);
-  line-height: 1.45;
-  color: rgba(0,0,0,0.62);
+  line-height: 1.5;
+  color: rgba(255,255,255,0.94);
   max-width: 60ch;
-  margin-left: auto;
-  margin-right: auto;
   font-weight: 400;
 }
 .spine-h2 em {
   font-style: italic;
   font-weight: 500;
-  color: #fe5e32;
+  color: #fff;
+  border-bottom: 1px dashed rgba(255,255,255,0.55);
+  padding-bottom: 1px;
 }
 @media (max-width: 700px) {
   .spine { padding: 72px 0; }
