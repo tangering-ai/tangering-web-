@@ -28,6 +28,7 @@ function App() {
       <Nav lang={lang} setLang={setLang} t={t} />
       <Hero t={t} />
       <Problem t={t} />
+      <Spine t={t} />
       <Solution t={t} />
       <SocialProof t={t} />
       <UseCases t={t} />

@@ -150,6 +150,11 @@ window.I18N = {
       resolve1: "Tangering",
       resolve2: " resuelve ambos.",
     },
+    spine: {
+      eyebrow: "Quiénes somos",
+      h1: "Tangering es la capa de comunicación y evidencia con IA para la logística de última milla.",
+      h2: "Automatizamos las conversaciones de voz y texto detrás de cada entrega — y convertimos cada una en evidencia estructurada, vinculada al número de tracking.",
+    },
     solution: {
       eyebrow: "Cómo funciona",
       h2: "Una llamada. Cinco pasos. Cero fricción.",
@@ -459,6 +464,11 @@ window.I18N = {
       close: "And when the exception is the consignee's fault, nobody can prove it. So the carrier eats the cost.",
       resolve1: "Tangering",
       resolve2: " fixes both.",
+    },
+    spine: {
+      eyebrow: "Who we are",
+      h1: "Tangering is the AI communication and evidence layer for last-mile logistics.",
+      h2: "We automate the voice and text conversations underneath every delivery — and turn each one into structured evidence, tied to the tracking number.",
     },
     solution: {
       eyebrow: "How it works",

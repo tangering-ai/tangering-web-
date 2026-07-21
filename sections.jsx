@@ -147,6 +147,30 @@ function Problem({ t }) {
   );
 }
 
+// ── Spine — identity statement (typographic, no visuals) ─────
+function Spine({ t }) {
+  return (
+    <section className="spine" data-screen-label="03 Spine">
+      <div className="container spine-inner">
+        <FadeUp>
+          <div className="eyebrow spine-eyebrow">
+            <span className="pulse"></span>
+            {t.spine.eyebrow}
+          </div>
+        </FadeUp>
+        <FadeUp delay={120}>
+          <h2 className="spine-h1">
+            <WordReveal>{t.spine.h1}</WordReveal>
+          </h2>
+        </FadeUp>
+        <FadeUp delay={260}>
+          <p className="spine-h2">{t.spine.h2}</p>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
 // ── Shared visual wrapper ────────────────────────────────────
 function PhoneStage({ children, glow }) {
   return (

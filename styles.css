@@ -9571,3 +9571,49 @@ section.sub-banner .sub-banner-headline em {
 @media (max-width: 900px) {
   html, body { overflow-x: hidden !important; }
 }
+
+/* ===========================================================
+   SPINE — identity statement (typographic, no visuals)
+   =========================================================== */
+.spine {
+  padding: clamp(80px, 12vw, 160px) 0;
+  background: #fff;
+  position: relative;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.spine-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  text-align: center;
+}
+.spine-eyebrow {
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.spine-h1 {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(32px, 4.6vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  color: var(--dark);
+  max-width: 20ch;
+  margin: 0 auto;
+}
+.spine-h2 {
+  margin-top: 32px;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(18px, 1.9vw, 24px);
+  line-height: 1.45;
+  color: rgba(0,0,0,0.62);
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+}
+@media (max-width: 700px) {
+  .spine { padding: 72px 0; }
+  .spine-h1 { font-size: 32px; max-width: none; }
+  .spine-h2 { font-size: 17px; margin-top: 22px; }
+}
