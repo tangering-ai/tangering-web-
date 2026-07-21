@@ -31,6 +31,7 @@ function App() {
       <Spine t={t} />
       <Solution t={t} />
       <SocialProof t={t} />
+      <WhyItMatters t={t} />
       <UseCases t={t} />
       <Differentiator t={t} />
       <HowItWorks t={t} />

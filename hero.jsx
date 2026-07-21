@@ -11,6 +11,7 @@ function Nav({ lang, setLang, t }) {
       <div className="nav-links">
         <a href={`landing.html${q}`} className="active">{t.nav.home || (lang === 'es' ? 'Inicio' : 'Home')}</a>
         <a href={`product.html${q}`}>{t.nav.product}</a>
+        <a href={`/use-cases${q}`}>{t.nav.cases || (lang === 'es' ? 'Casos de uso' : 'Use Cases')}</a>
         <a href={`about.html${q}`}>{t.nav.contact}</a>
       </div>
       <div className="nav-right">
@@ -130,7 +131,7 @@ function SceneWhatsApp({ t, sceneActive }) {
           </div>
           <div className="chat-bubble them">
             <span className="chat-sender">Sarah</span>
-            {t.hero.wa.msg1 || "Hola María 👋 te escribo desde Envíos.com sobre tu pedido."}
+            {t.hero.wa.msg1 || "Hola María 👋 te escribo desde Envios.co sobre tu pedido."}
             <span className="chat-meta">3:42 PM</span>
           </div>
         </div>
@@ -818,46 +819,6 @@ function TruckHero({ t }) {
       </div>
     </section>
 
-    <section className="hero-brands">
-      <div className="container">
-        <div className="hero-brands-headline">
-          +<span className="accent">{t.hero.brandsCount}</span> {t.hero.brandsCalls} <span className="accent" style={{ fontStyle: "italic", fontWeight: 400 }}>{t.hero.brandsTail}</span>
-        </div>
-      </div>
-      <div className="hero-brands-track">
-        {(() => {
-          const logos = [
-            { n: "Visa",          src: "assets/logos/visa.png" },
-            { n: "GNP BPO",       src: "assets/logos/gnp-bpo.png" },
-            { n: "Carvajal",      src: "assets/logos/carvajal.png" },
-            { n: "Blue Express",  src: "assets/logos/blue-express.png" },
-            { n: "Servientrega",  src: "assets/logos/servientrega.png" },
-            { n: "Amarilo",       src: "assets/logos/amarilo.png" },
-            { n: "Wingo",         src: "assets/logos/wingo.png" },
-          ];
-          // Two SET blocks side-by-side. Each set self-contains its gaps and
-          // trailing space — the track animation shifts by exactly one set
-          // width, so when it resets to 0 the second set already sits where
-          // the first was. Zero seam.
-          const renderSet = (setKey, isDup) =>
-            logos.map((b, i) => (
-              <div
-                key={`${setKey}-${i}`}
-                className="hero-brand"
-                aria-hidden={isDup ? "true" : undefined}
-              >
-                <img src={b.src} alt={b.n} />
-              </div>
-            ));
-          return (
-            <>
-              <div className="hero-brands-set">{renderSet('a', false)}</div>
-              <div className="hero-brands-set" aria-hidden="true">{renderSet('b', true)}</div>
-            </>
-          );
-        })()}
-      </div>
-    </section>
     </>
   );
 }
@@ -1062,7 +1023,7 @@ function HeroChatCard({ t }) {
               <img src="assets/icono-tangering.png" alt="" className="hcc-av-img" />
             </div>
             <div className="hcc-bubble agent">
-              {t.hero.cm1 || "Hi James 👋 this is Sarah, from Envios.com"}
+              {t.hero.cm1 || "Hi James 👋 this is Sarah, from Envios.co"}
               <span className="hcc-time">3:42</span>
             </div>
           </div>

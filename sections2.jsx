@@ -76,7 +76,7 @@ function IPhone17Call({ play }) {
   const transcriptRef = useRef(null);
 
   const TRANSCRIPT = [
-    { delay: 500,  text: "Hola James 👋 soy Sarah, de Envíos.com" },
+    { delay: 500,  text: "Hola James 👋 soy Sarah, de Envios.co" },
     { delay: 2800, text: "Tu pedido #4521 está agendado para hoy 3–5pm." },
     { delay: 5200, text: "¿Puedes confirmar: 742 Elm Street?" },
     { delay: 7800, text: "Perfecto, llegará en 15 min. ¡Hasta pronto! 📦" },

@@ -114,24 +114,22 @@ function Problem({ t }) {
           <p className="lead">{t.problem.sub}</p>
         </FadeUp>
 
-        <div className="problem-grid">
+        <div className="problem-grid problem-grid-2">
           <div className={`problem-card ${broken ? "broken" : ""}`}>
-            <span className="num">$<CountUp to={t.problem.c1n} /></span>
-            <div className="label">{t.problem.c1}</div>
-          </div>
-          <div className={`problem-card ${broken ? "broken" : ""}`} style={{ animationDelay: "0.15s" }}>
             <span className="num">
               <CountUp to={t.problem.c2n} />
               <span className="unit">{t.problem.c2u}</span>
             </span>
             <div className="label">{t.problem.c2}</div>
+            <div className="problem-card-foot">{t.problem.benchmark}</div>
           </div>
-          <div className={`problem-card ${broken ? "broken" : ""}`} style={{ animationDelay: "0.3s" }}>
+          <div className={`problem-card ${broken ? "broken" : ""}`} style={{ animationDelay: "0.15s" }}>
             <span className="num">
               <CountUp to={t.problem.c3n} />
               <span className="unit">{t.problem.c3u}</span>
             </span>
             <div className="label">{t.problem.c3}</div>
+            <div className="problem-card-foot">{t.problem.benchmark}</div>
           </div>
         </div>
 
@@ -198,119 +196,46 @@ function renderStage(step) {
 
 // Sticky storytelling: scroll position drives which phone variant shows
 function Solution({ t }) {
-  const containerRef = useRef(null);
-  const stepRefs = useRef([]);
-  const [active, setActive] = useState(0);
-
-  // Fade transition between active steps
-  const [displayed, setDisplayed] = useState(0);
-  const [visible, setVisible]     = useState(true);
-
-  useEffect(() => {
-    if (active === displayed) return;
-    setVisible(false);
-    const t = setTimeout(() => {
-      setDisplayed(active);
-      setVisible(true);
-    }, 180);
-    return () => clearTimeout(t);
-  }, [active, displayed]);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 700px)");
-
-    let obs = null;
-    let interval = null;
-
-    const setupDesktop = () => {
-      obs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting && e.intersectionRatio > 0.5) {
-              const idx = Number(e.target.dataset.idx);
-              setActive(idx);
-            }
-          });
-        },
-        { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.5, 1] }
-      );
-      stepRefs.current.forEach((el) => el && obs.observe(el));
-    };
-
-    const setupMobile = () => {
-      // Auto-cycle the active step every 2.8s. The visual + text both track
-      // the same state so they advance together, without any scroll input.
-      setActive(0);
-      interval = setInterval(() => {
-        setActive((prev) => (prev + 1) % 5);
-      }, 2800);
-    };
-
-    const teardown = () => {
-      if (obs) { obs.disconnect(); obs = null; }
-      if (interval) { clearInterval(interval); interval = null; }
-    };
-
-    const apply = () => {
-      teardown();
-      if (mq.matches) setupMobile();
-      else setupDesktop();
-    };
-
-    apply();
-    mq.addEventListener("change", apply);
-    return () => {
-      mq.removeEventListener("change", apply);
-      teardown();
-    };
-  }, []);
-
   const steps = [
-    { title: t.solution.step1t, desc: t.solution.step1d },
-    { title: t.solution.step2t, desc: t.solution.step2d },
-    { title: t.solution.step3t, desc: t.solution.step3d },
-    { title: t.solution.step4t, desc: t.solution.step4d },
-    { title: t.solution.step5t, desc: t.solution.step5d },
+    { icon: "forum",         title: t.solution.step1t, desc: t.solution.step1d, tone: "lime"   },
+    { icon: "graphic_eq",    title: t.solution.step2t, desc: t.solution.step2d, tone: "orange" },
+    { icon: "fact_check",    title: t.solution.step3t, desc: t.solution.step3d, tone: "coral"  },
+    { icon: "workspace_premium", title: t.solution.step4t, desc: t.solution.step4d, tone: "lilac"  },
   ];
 
   return (
-    <section className="solution" id="solution" data-screen-label="03 Solution">
+    <section className="solution solution-evidence" id="solution" data-screen-label="03 Solution">
       <div className="container">
         <FadeUp className="solution-intro">
           <div className="eyebrow">
             <span className="pulse"></span>
             {t.solution.eyebrow}
           </div>
-          <h2>One call. <em>Five steps.</em> Zero friction.</h2>
-          <p className="lead">{t.solution.sub}</p>
+          <h2 className="ev-h2">
+            <WordReveal>{t.solution.h2}</WordReveal>
+            <br/>
+            <em className="ev-h2-accent"><WordReveal delay={300}>{t.solution.h2b}</WordReveal></em>
+          </h2>
         </FadeUp>
 
-        <div className="sticky-wrap" ref={containerRef}>
-          <div className="sticky-phone">
-            <PhoneStage glow={glowForStep(displayed)}>
-              <div className={`stage-fade ${visible ? "in" : "out"}`}>
-                {renderStage(displayed)}
-              </div>
-            </PhoneStage>
-          </div>
-
-          <div className="sticky-steps">
-            {steps.map((s, i) => (
-              <div
-                key={i}
-                ref={(el) => (stepRefs.current[i] = el)}
-                data-idx={i}
-                className={`step ${active === i ? "active" : ""}`}
-              >
-                <div className="step-num">{i + 1}</div>
-                <div className="step-body">
-                  <h3>{s.title}</h3>
-                  <p>{s.desc}</p>
+        <div className="ev-grid">
+          {steps.map((s, i) => (
+            <FadeUp key={i} delay={120 + i * 90}>
+              <div className={`ev-card ev-card-${s.tone}`}>
+                <div className="ev-card-num">0{i + 1}</div>
+                <div className="ev-card-icon">
+                  <span className="material-icons">{s.icon}</span>
                 </div>
+                <h3 className="ev-card-title">{s.title}</h3>
+                <p className="ev-card-desc">{s.desc}</p>
               </div>
-            ))}
-          </div>
+            </FadeUp>
+          ))}
         </div>
+
+        <FadeUp delay={200}>
+          <div className="ev-banner">{t.solution.banner}</div>
+        </FadeUp>
       </div>
     </section>
   );
@@ -320,7 +245,7 @@ function Solution({ t }) {
 function getCallTranscript(es) {
   return es ? [
     [
-      { agent: true,  msg: "¡Hola James! Soy Sarah, asistente de IA de Envíos.com." },
+      { agent: true,  msg: "¡Hola James! Soy Sarah, asistente de IA de Envios.co." },
       { agent: false, msg: "¿Aló?" },
       { agent: true,  msg: "Te llamo por tu pedido #4521 programado para entrega hoy." },
     ],
@@ -346,7 +271,7 @@ function getCallTranscript(es) {
     ],
   ] : [
     [
-      { agent: true,  msg: "Hi James! I'm Sarah, an AI assistant from Envios.com." },
+      { agent: true,  msg: "Hi James! I'm Sarah, an AI assistant from Envios.co." },
       { agent: false, msg: "Hello?" },
       { agent: true,  msg: "I'm calling about your order #4521 scheduled for delivery today." },
     ],
@@ -409,7 +334,7 @@ function MapCard() {
   const cardRef   = useRef(null);
   const [phase, setPhase] = useState(0); // 0=typing 1=looking 2=confirmed
   const [typed, setTyped] = useState("");
-  const FULL_ADDRESS = "742 Sutter St, San Francisco, CA";
+  const FULL_ADDRESS = "742 Elm Street, San Francisco, CA";
 
   // Typing animation + phase timers
   useEffect(() => {
@@ -487,7 +412,7 @@ function MapCard() {
             <span className="material-icons" style={{fontSize:16,color:"#fe5e32"}}>place</span>
           </div>
           <div className="sol-confirm-info">
-            <strong>742 Sutter St</strong>
+            <strong>742 Elm Street</strong>
             <span>San Francisco, CA 94109</span>
           </div>
           <div className="sol-confirm-pill">Verified</div>
@@ -520,10 +445,10 @@ function getRescheduleChat(es) {
     { from: "agent", text: "¡Perfecto! Estoy actualizando tu dirección ahora mismo…", delay: 3200 },
     { from: "agent", text: "Listo. Confirmado en Calle 100 #20-30, Bogotá. Misma ventana: 3–5 PM.", delay: 4600, confirm: true },
   ] : [
-    { from: "agent", text: "Hi James! Confirming delivery to 742 Sutter St today 3–5 PM.", delay: 400 },
-    { from: "user",  text: "Actually I moved last week, new address is 580 Post St.", delay: 1800 },
+    { from: "agent", text: "Hi James! Confirming delivery to 742 Elm Street today 3–5 PM.", delay: 400 },
+    { from: "user",  text: "Actually I moved last week, new address is 742 Elm Street.", delay: 1800 },
     { from: "agent", text: "Got it! Updating your delivery address right now...", delay: 3200 },
-    { from: "agent", text: "Done. Confirmed to 580 Post St, SF. Same window: 3–5 PM.", delay: 4600, confirm: true },
+    { from: "agent", text: "Done. Confirmed to 742 Elm Street, SF. Same window: 3–5 PM.", delay: 4600, confirm: true },
   ];
 }
 
@@ -612,7 +537,7 @@ function RescheduleView() {
       <div className="sol-search resch-status">
         <span className={`sol-map-status-dot ${mapPhase === "updated" ? "confirmed" : "scanning"}`}/>
         <div className="sol-search-text">
-          {mapPhase === "updated" ? "Address updated to 580 Post St" : "Rescheduling delivery..."}
+          {mapPhase === "updated" ? "Address updated to 742 Elm Street" : "Rescheduling delivery..."}
         </div>
         {mapPhase !== "updated" ? (
           <span className="sol-search-spinner"/>
@@ -631,7 +556,7 @@ function RescheduleView() {
             <span className="material-icons" style={{fontSize:16,color:"#fe5e32"}}>place</span>
           </div>
           <div className="sol-confirm-info">
-            <strong>580 Post St</strong>
+            <strong>742 Elm Street</strong>
             <span>San Francisco, CA 94102</span>
           </div>
           <div className="sol-confirm-pill">Updated</div>
@@ -722,7 +647,7 @@ function getCourierMsgs(es) {
   ] : [
     { delay: 600,  side: "out", text: "Hey 👋 New delivery ready — Order #4521", time: "3:41" },
     { delay: 1900, side: "in",  text: "Got it, what's the address?", time: "3:41" },
-    { delay: 3100, side: "out", text: "📍 580 Post St, San Francisco — apt 3B", time: "3:42" },
+    { delay: 3100, side: "out", text: "📍 742 Elm Street, San Francisco — apt 3B", time: "3:42" },
     { delay: 4300, side: "out", text: "🕐 Today's window: 3:00 – 5:00 PM", time: "3:42" },
     { delay: 5500, side: "out", text: "⚠️ Side entrance on Larkin St, ring 3B", time: "3:42" },
     { delay: 6900, side: "in",  text: "Got it, on my way 👍", time: "3:43" },
@@ -933,11 +858,11 @@ function CRMUpdateView() {
         <div className="crmv2-field">
           <div className="crmv2-field-label">Delivery address</div>
           <div className="crmv2-field-value">
-            <span className={`crmv2-addr-old ${phase >= 2 ? "fade-out" : ""}`}>742 Sutter St</span>
+            <span className={`crmv2-addr-old ${phase >= 2 ? "fade-out" : ""}`}>742 Elm Street</span>
             {phase >= 2 && (
               <>
                 <span className="crmv2-arrow">→</span>
-                <span className="crmv2-addr-new">580 Post St</span>
+                <span className="crmv2-addr-new">742 Elm Street</span>
                 <span className="crmv2-changed-tag">updated</span>
               </>
             )}
@@ -963,7 +888,7 @@ function CRMUpdateView() {
           Activity
         </div>
         {[
-          { t: "Address updated",  d: "742 Sutter St → 580 Post St",  show: phase >= 2, color: "#fe5e32" },
+          { t: "Address updated",  d: "742 Elm Street → 742 Elm Street",  show: phase >= 2, color: "#fe5e32" },
           { t: "Status confirmed", d: "Order #4521 → Confirmed",      show: phase >= 3, color: "#22c55e" },
           { t: "Webhook fired",    d: "POST /api/orders/sync · 200",  show: phase >= 4, color: "#1a1a2e" },
         ].filter(a => a.show).map((a, i) => (
@@ -1602,16 +1527,7 @@ function OdoCounter({ count }) {
 
 function SocialProof({ t }) {
   const [ref, inView] = useInView({ threshold: 0.1 });
-  const [count, setCount] = useState(1842391);
   const sectionRef = useRef(null);
-
-  useEffect(() => {
-    if (!inView) return;
-    const iv = setInterval(() => {
-      setCount(c => c + Math.floor(Math.random() * 3) + 1);
-    }, 1800);
-    return () => clearInterval(iv);
-  }, [inView]);
 
   // GSAP metrics stagger
   useEffect(() => {
@@ -1643,7 +1559,6 @@ function SocialProof({ t }) {
   const results = [
     { text: t.proof.t1n, desc: t.proof.t1d, co: t.proof.t1w, color: "#22c55e" },
     { text: t.proof.t2n, desc: t.proof.t2d, co: t.proof.t2w, color: "#fe5e32" },
-    { text: t.proof.t3n, desc: t.proof.t3d, co: t.proof.t3w, color: "var(--dark)" },
   ];
 
   return (
@@ -1663,10 +1578,8 @@ function SocialProof({ t }) {
             <FadeUp delay={60} className="proof-counter-wrap">
               <div className="proof-live-badge">
                 <span className="proof-live-dot"></span>
-                en producción ahora mismo
+                {t.proof.liveBadge}
               </div>
-              <OdoCounter count={count} />
-              <p className="proof-counter-label">{t.proof.counterLabel}</p>
             </FadeUp>
 
             <FadeUp delay={120}>
@@ -1704,31 +1617,65 @@ function SocialProof({ t }) {
   );
 }
 
+function WhyItMatters({ t }) {
+  return (
+    <section className="whyit" data-screen-label="05a Why it matters">
+      <div className="container">
+        <FadeUp>
+          <div className="eyebrow whyit-eyebrow">
+            <span className="pulse"></span>
+            {t.whyit.eyebrow}
+          </div>
+        </FadeUp>
+        <FadeUp delay={100}>
+          <h2 className="whyit-h2">
+            <WordReveal>{t.whyit.h2a}</WordReveal>
+            <br/>
+            <em><WordReveal delay={280}>{t.whyit.h2b}</WordReveal></em>
+          </h2>
+        </FadeUp>
+
+        <FadeUp delay={220}>
+          <div className="whyit-eq">
+            <div className="whyit-eq-cell">
+              <div className="whyit-eq-num">360M</div>
+              <div className="whyit-eq-label">{t.whyit.eqA}</div>
+            </div>
+            <div className="whyit-eq-op">×</div>
+            <div className="whyit-eq-cell">
+              <div className="whyit-eq-num">$60</div>
+              <div className="whyit-eq-label">{t.whyit.eqB}</div>
+            </div>
+            <div className="whyit-eq-op">=</div>
+            <div className="whyit-eq-cell whyit-eq-total">
+              <div className="whyit-eq-num">$21.6B</div>
+              <div className="whyit-eq-label">{t.whyit.eqC}</div>
+            </div>
+          </div>
+        </FadeUp>
+
+        <FadeUp delay={280}>
+          <div className="whyit-banner">{t.whyit.banner}</div>
+        </FadeUp>
+
+        <FadeUp delay={340}>
+          <p className="whyit-foot">{t.whyit.foot}</p>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
 function UseCases({ t }) {
-  const cases = [
-    {
-      num: t.uc.c1n, title: t.uc.c1t, desc: t.uc.c1d, accent: "var(--orange)",
-      chips: ["Voice", "WhatsApp", "TMS sync"],
-      detail: "Voice or WhatsApp the day before delivery. Captures special instructions, locks the time window and writes the confirmed address straight to your TMS — no manual logging."
-    },
-    {
-      num: t.uc.c2n, title: t.uc.c2t, desc: t.uc.c2d, accent: "var(--dark)",
-      chips: ["Live panel", "Take-over", "Smart alerts"],
-      detail: "Listen-in on any live call, jump into a WhatsApp thread with one click, or set automatic alerts so the team only intervenes when a conversation actually needs them."
-    },
-    {
-      num: t.uc.c3n, title: t.uc.c3t, desc: t.uc.c3d, accent: "#6b9c30",
-      chips: ["Voice", "WhatsApp", "SMS"],
-      detail: "Same agent answers voice, WhatsApp and SMS. Tracks orders, opens returns, resolves doubts in your customer's language and hands off to a human only when judgment is required."
-    },
-    {
-      num: t.uc.c4n, title: t.uc.c4t, desc: t.uc.c4d, accent: "#c66a99",
-      chips: ["Smart retries", "CRM write-back", "Auto reschedule"],
-      detail: "Smart backoff across channels until the customer responds. Fixes the address on the CRM in real time, reschedules the delivery and notifies the courier — without a single human escalation."
-    },
+  const items = [
+    { icon: "event_available",   title: t.uc.i1t, desc: t.uc.i1d },
+    { icon: "pin_drop",          title: t.uc.i2t, desc: t.uc.i2d },
+    { icon: "sync_problem",      title: t.uc.i3t, desc: t.uc.i3d },
+    { icon: "gavel",             title: t.uc.i4t, desc: t.uc.i4d, hero: true },
+    { icon: "support_agent",     title: t.uc.i5t, desc: t.uc.i5d },
   ];
   return (
-    <section className="usecases" id="cases" data-screen-label="05 Use cases">
+    <section className="usecases uc-menu" id="cases" data-screen-label="05 Use cases">
       <div className="container">
         <FadeUp>
           <div className="eyebrow">
@@ -1737,29 +1684,42 @@ function UseCases({ t }) {
           </div>
         </FadeUp>
         <FadeUp delay={100}>
-          <h2 style={{ marginTop: 24 }} dangerouslySetInnerHTML={{ __html: t.uc.h2.replace(/your operation|tu operación/, '<em>$&</em>') }} />
+          <h2 className="ucm-h2">
+            <WordReveal>{t.uc.h2a}</WordReveal>
+            <br/>
+            <em><WordReveal delay={220}>{t.uc.h2b}</WordReveal></em>
+          </h2>
         </FadeUp>
         <FadeUp delay={200}>
-          <p className="lead" style={{ marginTop: 20, maxWidth: 540 }}>{t.uc.sub}</p>
+          <p className="lead ucm-intro">{t.uc.intro}</p>
         </FadeUp>
 
-        <div className="uc-grid">
-          {cases.map((c, i) => (
-            <FadeUp key={i} delay={i * 80}>
-              <div className="uc-card" style={{ "--accent": c.accent }}>
-                <div className="uc-num">{c.num} / 04</div>
-                <div className="uc-content">
-                  <div className="uc-title">{c.title}</div>
-                  <div className="uc-desc">{c.desc}</div>
-                  <div className="uc-chips">
-                    {c.chips.map((chip, j) => <span key={j}>{chip}</span>)}
-                  </div>
-                  <div className="uc-detail"><p>{c.detail}</p></div>
+        <div className="ucm-list">
+          {items.map((it, i) => (
+            <FadeUp key={i} delay={100 + i * 70}>
+              <div className={`ucm-row ${it.hero ? "ucm-row-hero" : ""}`}>
+                <div className="ucm-row-icon">
+                  <span className="material-icons">{it.icon}</span>
+                </div>
+                <div className="ucm-row-body">
+                  <h3 className="ucm-row-title">
+                    {it.title}
+                    {it.hero && <span className="ucm-row-badge">{t.uc.heroBadge}</span>}
+                  </h3>
+                  <p className="ucm-row-desc">{it.desc}</p>
                 </div>
               </div>
             </FadeUp>
           ))}
         </div>
+
+        <FadeUp delay={600}>
+          <div className="ucm-cta-wrap">
+            <a href="/use-cases" className="ucm-cta">
+              {t.uc.ctaAll} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </FadeUp>
       </div>
     </section>
   );
@@ -1812,4 +1772,4 @@ function LiveResults({ t }) {
   );
 }
 
-Object.assign(window, { Problem, Solution, SocialProof, UseCases, LiveResults });
+Object.assign(window, { Problem, Solution, Spine, SocialProof, WhyItMatters, UseCases, LiveResults });
