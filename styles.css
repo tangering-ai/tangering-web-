@@ -9612,6 +9612,11 @@ section.sub-banner .sub-banner-headline em {
   margin-right: auto;
   font-weight: 400;
 }
+.spine-h2 em {
+  font-style: italic;
+  font-weight: 500;
+  color: #fe5e32;
+}
 @media (max-width: 700px) {
   .spine { padding: 72px 0; }
   .spine-h1 { font-size: 32px; max-width: none; }

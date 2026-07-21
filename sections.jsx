@@ -160,11 +160,13 @@ function Spine({ t }) {
         </FadeUp>
         <FadeUp delay={120}>
           <h2 className="spine-h1">
-            <WordReveal>{t.spine.h1}</WordReveal>
+            {t.spine.h1pre} <em>{t.spine.h1accent}</em> {t.spine.h1post}
           </h2>
         </FadeUp>
         <FadeUp delay={260}>
-          <p className="spine-h2">{t.spine.h2}</p>
+          <p className="spine-h2">
+            {t.spine.h2pre} <em>{t.spine.h2accent}</em>{t.spine.h2post}
+          </p>
         </FadeUp>
       </div>
     </section>

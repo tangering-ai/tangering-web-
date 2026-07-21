@@ -152,8 +152,12 @@ window.I18N = {
     },
     spine: {
       eyebrow: "Quiénes somos",
-      h1: "Tangering es la capa de comunicación y evidencia con IA para la logística de última milla.",
-      h2: "Automatizamos las conversaciones de voz y texto detrás de cada entrega — y convertimos cada una en evidencia estructurada, vinculada al número de tracking.",
+      h1pre: "Tangering es la",
+      h1accent: "capa de comunicación y evidencia con IA",
+      h1post: "para la logística de última milla.",
+      h2pre: "Automatizamos las conversaciones de voz y texto detrás de cada entrega. Y convertimos cada una en",
+      h2accent: "evidencia estructurada",
+      h2post: ", vinculada al número de tracking.",
     },
     solution: {
       eyebrow: "Cómo funciona",
@@ -467,8 +471,12 @@ window.I18N = {
     },
     spine: {
       eyebrow: "Who we are",
-      h1: "Tangering is the AI communication and evidence layer for last-mile logistics.",
-      h2: "We automate the voice and text conversations underneath every delivery — and turn each one into structured evidence, tied to the tracking number.",
+      h1pre: "Tangering is the",
+      h1accent: "AI communication and evidence layer",
+      h1post: "for last-mile logistics.",
+      h2pre: "We automate the voice and text conversations underneath every delivery. And turn each one into",
+      h2accent: "structured evidence",
+      h2post: ", tied to the tracking number.",
     },
     solution: {
       eyebrow: "How it works",
