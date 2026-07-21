@@ -9879,3 +9879,101 @@ section .spine-h1 em {
   .ucm-row-title { font-size: 17px; }
   .ucm-row-hero { padding: 22px 22px; }
 }
+
+/* ===========================================================
+   PROBLEM v2 — two-column layout, stat bars
+   =========================================================== */
+.problem-v2 { padding: clamp(90px, 12vw, 140px) 0; }
+.problem-v2 .prob-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(48px, 6vw, 88px);
+  align-items: center;
+}
+.prob-h2 {
+  margin-top: 24px !important;
+  max-width: 16ch;
+}
+.prob-h2-accent { color: var(--orange); font-style: italic; font-weight: 400; }
+.prob-sub { margin-top: 24px !important; max-width: 44ch; }
+.prob-close {
+  margin-top: 32px;
+  font-size: clamp(16px, 1.4vw, 18px);
+  line-height: 1.55;
+  color: rgba(0,0,0,0.7);
+  max-width: 44ch;
+  border-left: 3px solid var(--orange);
+  padding-left: 18px;
+}
+.prob-kicker {
+  margin-top: 36px;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--dark);
+}
+.prob-kicker .orange { color: var(--orange); }
+
+.prob-right { display: flex; flex-direction: column; gap: 20px; }
+.prob-stat {
+  padding: 30px 32px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 22px;
+  box-shadow: 0 12px 40px -14px rgba(0,0,0,0.14);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.prob-stat:hover {
+  transform: translateY(-3px);
+  border-color: rgba(254,94,50,0.35);
+  box-shadow: 0 20px 50px -14px rgba(254,94,50,0.22);
+}
+.prob-stat-num {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(56px, 6vw, 88px);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--dark);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.prob-stat-num .unit { color: var(--orange); font-size: 0.55em; }
+.prob-stat-bar {
+  margin-top: 20px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+.prob-stat-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ffa53d 0%, #fe5e32 100%);
+  transform: translateX(-100%);
+  animation: prob-bar-fill 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+@keyframes prob-bar-fill { to { transform: translateX(0); } }
+.prob-stat-label {
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(0,0,0,0.68);
+}
+.prob-stat-foot {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(0,0,0,0.1);
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(0,0,0,0.42);
+  letter-spacing: 0.02em;
+}
+@media (max-width: 900px) {
+  .problem-v2 .prob-layout { grid-template-columns: 1fr; gap: 40px; }
+  .prob-h2, .prob-sub, .prob-close { max-width: 100%; }
+  .prob-stat { padding: 24px; }
+}

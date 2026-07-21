@@ -95,51 +95,56 @@ function Problem({ t }) {
   }, []);
 
   return (
-    <section className="problem" data-screen-label="02 Problem" ref={sectionRef}>
+    <section className="problem problem-v2" data-screen-label="02 Problem" ref={sectionRef}>
       <div className="container">
-        <FadeUp>
-          <div className="eyebrow">
-            <span className="pulse"></span>
-            {t.problem.eyebrow}
+        <div className="prob-layout">
+          <div className="prob-left">
+            <FadeUp>
+              <div className="eyebrow">
+                <span className="pulse"></span>
+                {t.problem.eyebrow}
+              </div>
+            </FadeUp>
+            <h2 className="prob-h2">
+              <WordReveal>{t.problem.h2a}</WordReveal>
+              <br/>
+              <em className="prob-h2-accent"><WordReveal delay={280}>{t.problem.h2b}</WordReveal></em>
+            </h2>
+            <FadeUp delay={200}>
+              <p className="lead prob-sub">{t.problem.sub}</p>
+            </FadeUp>
+            <FadeUp delay={280}>
+              <p className="prob-close">{t.problem.close}</p>
+            </FadeUp>
+            <FadeUp delay={360} className="prob-kicker">
+              <span className="orange">{t.problem.resolve1}</span>
+              {t.problem.resolve2}
+            </FadeUp>
           </div>
-        </FadeUp>
-        <h2 style={{ marginTop: 24 }}>
-          <WordReveal>{t.problem.h2a}</WordReveal>
-          <br />
-          <WordReveal delay={300} className="accent" style={{ color: "var(--orange)" }}>
-            {t.problem.h2b}
-          </WordReveal>
-        </h2>
-        <FadeUp delay={200}>
-          <p className="lead">{t.problem.sub}</p>
-        </FadeUp>
 
-        <div className="problem-grid problem-grid-2">
-          <div className={`problem-card ${broken ? "broken" : ""}`}>
-            <span className="num">
-              <CountUp to={t.problem.c2n} />
-              <span className="unit">{t.problem.c2u}</span>
-            </span>
-            <div className="label">{t.problem.c2}</div>
-            <div className="problem-card-foot">{t.problem.benchmark}</div>
-          </div>
-          <div className={`problem-card ${broken ? "broken" : ""}`} style={{ animationDelay: "0.15s" }}>
-            <span className="num">
-              <CountUp to={t.problem.c3n} />
-              <span className="unit">{t.problem.c3u}</span>
-            </span>
-            <div className="label">{t.problem.c3}</div>
-            <div className="problem-card-foot">{t.problem.benchmark}</div>
+          <div className="prob-right">
+            <FadeUp delay={100}>
+              <div className={`prob-stat ${broken ? "broken" : ""}`}>
+                <div className="prob-stat-num">
+                  <CountUp to={t.problem.c2n} /><span className="unit">{t.problem.c2u}</span>
+                </div>
+                <div className="prob-stat-bar"><span style={{ width: "30%" }} /></div>
+                <div className="prob-stat-label">{t.problem.c2}</div>
+                <div className="prob-stat-foot">{t.problem.benchmark}</div>
+              </div>
+            </FadeUp>
+            <FadeUp delay={220}>
+              <div className={`prob-stat ${broken ? "broken" : ""}`}>
+                <div className="prob-stat-num">
+                  <CountUp to={t.problem.c3n} /><span className="unit">{t.problem.c3u}</span>
+                </div>
+                <div className="prob-stat-bar"><span style={{ width: "60%" }} /></div>
+                <div className="prob-stat-label">{t.problem.c3}</div>
+                <div className="prob-stat-foot">{t.problem.benchmark}</div>
+              </div>
+            </FadeUp>
           </div>
         </div>
-
-        <FadeUp delay={200}>
-          <p className="lead problem-close">{t.problem.close}</p>
-        </FadeUp>
-        <FadeUp className="problem-resolve">
-          <span className="orange">{t.problem.resolve1}</span>
-          {t.problem.resolve2}
-        </FadeUp>
       </div>
     </section>
   );
