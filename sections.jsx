@@ -135,12 +135,13 @@ function Problem({ t }) {
           </div>
         </div>
 
-        {broken && (
-          <FadeUp className="problem-resolve">
-            <span className="orange">{t.problem.resolve1}</span>
-            {t.problem.resolve2}
-          </FadeUp>
-        )}
+        <FadeUp delay={200}>
+          <p className="lead problem-close">{t.problem.close}</p>
+        </FadeUp>
+        <FadeUp className="problem-resolve">
+          <span className="orange">{t.problem.resolve1}</span>
+          {t.problem.resolve2}
+        </FadeUp>
       </div>
     </section>
   );

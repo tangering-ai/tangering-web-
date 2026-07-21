@@ -980,6 +980,7 @@ section { position: relative; }
   letter-spacing: -0.03em;
 }
 .problem-resolve .orange { color: var(--orange); }
+.problem-close { margin-top: 48px !important; max-width: 780px; text-align: center; margin-left: auto; margin-right: auto; }
 
 /* ===========================================================
    SOLUTION — sticky storytelling
