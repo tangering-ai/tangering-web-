@@ -10,7 +10,7 @@ window.I18N = {
     },
     hero: {
       eyebrow: "AI Operating System · Logística de última milla",
-      h1a: "El agente que nunca pierde una entrega —",
+      h1a: "El agente que nunca pierde una entrega",
       h1b: "y nunca pierde la evidencia.",
       h1c: "",
       sub: "Tangering ejecuta las conversaciones de voz y texto detrás de cada entrega, y convierte cada una en evidencia estructurada, con timestamp y vinculada al número de tracking. Menos entregas fallidas. Y por fin, el registro para disputar las que salen mal.",
@@ -319,7 +319,7 @@ window.I18N = {
     },
     hero: {
       eyebrow: "AI Operating System · Last-mile logistics",
-      h1a: "The agent that never misses a delivery —",
+      h1a: "The agent that never misses a delivery",
       h1b: "and never loses the proof.",
       h1c: "",
       sub: "Tangering runs the voice and text conversations behind every delivery, and turns each one into structured, timestamped evidence tied to the tracking number. Fewer failed deliveries. And finally, the record to dispute the ones that go wrong.",
