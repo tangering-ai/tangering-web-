@@ -1695,53 +1695,49 @@ function SocialProof({ t }) {
   ];
 
   return (
-    <section className="proof" data-screen-label="04 Social proof" ref={(el) => { ref.current = el; sectionRef.current = el; }}>
+    <section className="proof proof-v2" data-screen-label="04 Social proof" ref={(el) => { ref.current = el; sectionRef.current = el; }}>
       <div className="container">
         <div className="proof-layout">
 
           {/* ── Left column ── */}
           <div className="proof-left">
             <FadeUp>
-              <div className="eyebrow">
-                <span className="pulse"></span>
-                {t.proof.eyebrowt}
-              </div>
-            </FadeUp>
-
-            <FadeUp delay={60} className="proof-counter-wrap">
               <div className="proof-live-badge">
                 <span className="proof-live-dot"></span>
                 {t.proof.liveBadge}
               </div>
             </FadeUp>
-
+            <FadeUp delay={60}>
+              <div className="eyebrow">
+                <span className="pulse"></span>
+                {t.proof.eyebrowt}
+              </div>
+            </FadeUp>
             <FadeUp delay={120}>
               <h2 className="proof-h2">
-                {t.proof.h2a}<br/>
-                <em className="proof-em">{t.proof.h2b}</em>
+                {t.proof.h2a} <em className="proof-em">{t.proof.h2b}</em>
               </h2>
             </FadeUp>
-
             <FadeUp delay={180}>
               <p className="proof-sub">{t.proof.sub}</p>
             </FadeUp>
           </div>
 
-          {/* ── Right column: stacked metrics ── */}
+          {/* ── Right column: metric cards + attribution ── */}
           <div className="proof-right">
             {results.map((r, i) => (
-              <FadeUp key={i} delay={i * 80} className="proof-metric" style={{ "--mc": r.color }}>
-                <div className="proof-metric-row">
+              <FadeUp key={i} delay={i * 100}>
+                <div className="proof-metric-card" style={{ "--mc": r.color }}>
                   <div className="proof-metric-num" style={{ color: r.color }}>
                     {r.text ? r.text : <CountUp to={r.num} prefix={r.prefix} suffix={r.suffix} duration={1800} />}
                   </div>
-                  <div className="proof-metric-body">
-                    <p className="proof-metric-desc">{r.desc}</p>
-                    <div className="proof-metric-co">{r.co}</div>
-                  </div>
+                  <p className="proof-metric-desc">{r.desc}</p>
                 </div>
               </FadeUp>
             ))}
+            <FadeUp delay={280}>
+              <div className="proof-attribution">{results[0].co}</div>
+            </FadeUp>
           </div>
 
         </div>
