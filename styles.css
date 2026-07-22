@@ -9704,20 +9704,66 @@ section .spine-h1 em {
 }
 .ev-card-icon {
   margin-top: 14px;
-  width: 68px;
-  height: 68px;
-  border-radius: 20px;
+  position: relative;
+  width: 88px;
+  height: 88px;
+  border-radius: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.15), inset 0 -6px 12px rgba(0,0,0,0.15), inset 0 6px 12px rgba(255,255,255,0.35);
+  transform: perspective(600px) rotateX(12deg) rotateY(-8deg);
+  transform-origin: center;
+  transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: drop-shadow(0 22px 22px rgba(0,0,0,0.22));
 }
-.ev-card-icon .material-icons { font-size: 34px; }
-.ev-card-lime   .ev-card-icon { background: linear-gradient(135deg, #d4ef61 0%, #c5e94a 100%); color: #33470b; }
-.ev-card-orange .ev-card-icon { background: linear-gradient(135deg, #ffb455 0%, #ffa53d 100%); }
-.ev-card-coral  .ev-card-icon { background: linear-gradient(135deg, #ff7358 0%, #fe5e32 100%); }
-.ev-card-lilac  .ev-card-icon { background: linear-gradient(135deg, #f2c8ef 0%, #ecbbe9 100%); color: #6b1e60; }
+.ev-card:hover .ev-card-icon { transform: perspective(600px) rotateX(6deg) rotateY(-4deg) translateY(-4px) scale(1.04); }
+/* Top gloss highlight */
+.ev-card-icon::before {
+  content: '';
+  position: absolute;
+  top: 6px; left: 8px; right: 8px;
+  height: 42%;
+  border-radius: 20px 20px 40% 40% / 20px 20px 60% 60%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+  opacity: 0.85;
+}
+/* Inner rim (edge light + shadow) */
+.ev-card-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 -14px 22px rgba(0,0,0,0.25),
+    inset 0 12px 18px rgba(255,255,255,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.28);
+  pointer-events: none;
+}
+.ev-card-icon .material-icons {
+  position: relative;
+  z-index: 1;
+  font-size: 44px;
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,0.22));
+}
+.ev-card-lime   .ev-card-icon { background: radial-gradient(circle at 30% 24%, #f0ff9c 0%, #d4ef61 45%, #a6c72e 100%); color: #33470b; }
+.ev-card-orange .ev-card-icon { background: radial-gradient(circle at 30% 24%, #ffd699 0%, #ffb455 45%, #e0801f 100%); }
+.ev-card-coral  .ev-card-icon { background: radial-gradient(circle at 30% 24%, #ffa892 0%, #ff7358 45%, #d13a13 100%); }
+.ev-card-lilac  .ev-card-icon { background: radial-gradient(circle at 30% 24%, #ffe4fd 0%, #f2c8ef 45%, #c88bc4 100%); color: #6b1e60; }
+/* Floor shadow puddle */
+.ev-card-icon-shadow {
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 70%);
+  filter: blur(4px);
+  z-index: -1;
+}
 .ev-card-title {
   margin-top: 22px;
   font-family: 'Overused Grotesk', sans-serif;

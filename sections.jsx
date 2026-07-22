@@ -230,6 +230,7 @@ function Solution({ t }) {
                 <div className="ev-card-num">0{i + 1}</div>
                 <div className="ev-card-icon">
                   <span className="material-icons">{s.icon}</span>
+                  <span className="ev-card-icon-shadow" aria-hidden="true"></span>
                 </div>
                 <h3 className="ev-card-title">{s.title}</h3>
                 <p className="ev-card-desc">{s.desc}</p>
