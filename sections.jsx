@@ -199,90 +199,118 @@ function renderStage(step) {
   return <SolutionPhone step={step} />;
 }
 
-// 3D glossy jelly-style SVG icons — the four evidence-mechanism symbols.
-// Each renders a filled glyph with radial highlight, bottom rim glow and drop shadow.
+// True 3D-styled jelly icons for the four evidence-mechanism cards.
+// Each glyph is rendered in five stacked passes to fake real volume:
+//   1. offset "backside" underneath (deep base color) — reads as thickness
+//   2. offset lime rim behind — refracted underlight
+//   3. front body with radial gradient
+//   4. inner shadow (edge dimensionality)
+//   5. small hard specular highlight (glossy top-left dot)
 function JellyIcon3D({ variant }) {
   const id = `ji-${variant}`;
-  // Two color families in the brand: warm (orange/coral/lime) and cool (lilac).
   const isLilac = variant === "recover";
-  const grad = isLilac
-    ? { top: "#ffe4fd", mid: "#f2c8ef", low: "#c88bc4", deep: "#6b1e60", rim: "#ffb37e" }
-    : { top: "#ffd8a8", mid: "#ff8b5c", low: "#fe5e32", deep: "#a02614", rim: "#d4ef61" };
+  const c = isLilac
+    ? { top: "#ffedff", mid: "#f6c9f2", low: "#c07dbc", deep: "#5a1d55", rim: "#ffa76b", back: "#4a0f45" }
+    : { top: "#ffdcb0", mid: "#ff8f5c", low: "#f14a1f", deep: "#7a1a08", rim: "#d4ef61", back: "#5c1104" };
 
-  const glyphPaths = {
-    // 1. Communicate — chat bubble with two orbiting dots
-    communicate: (
-      <>
-        <path d="M18 40c0-11.5 9.3-20.8 20.8-20.8h30.4C80.7 19.2 90 28.5 90 40v14c0 11.5-9.3 20.8-20.8 20.8H50l-15 12.5v-12.5h-.2C23.3 74.8 18 65.5 18 54z" />
-        <circle cx="38" cy="47" r="4.5" fill="#fff" opacity="0.85"/>
-        <circle cx="54" cy="47" r="4.5" fill="#fff" opacity="0.85"/>
-        <circle cx="70" cy="47" r="4.5" fill="#fff" opacity="0.85"/>
-      </>
-    ),
-    // 2. Capture — document with lines + timestamp badge
-    capture: (
-      <>
-        <path d="M28 14h34l16 16v52c0 4.4-3.6 8-8 8H28c-4.4 0-8-3.6-8-8V22c0-4.4 3.6-8 8-8z" />
-        <path d="M62 14v14c0 2.2 1.8 4 4 4h12z" fill="rgba(255,255,255,0.28)"/>
-        <rect x="30" y="46" width="34" height="4" rx="2" fill="#fff" opacity="0.85"/>
-        <rect x="30" y="56" width="42" height="4" rx="2" fill="#fff" opacity="0.7"/>
-        <rect x="30" y="66" width="28" height="4" rx="2" fill="#fff" opacity="0.6"/>
-      </>
-    ),
-    // 3. Detect & certify — shield with check
-    detect: (
-      <>
-        <path d="M50 10 20 22v22c0 20.5 12.4 39.2 30 46 17.6-6.8 30-25.5 30-46V22z" />
-        <path d="M37 50 46 59 63 42" stroke="#fff" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.95"/>
-      </>
-    ),
-    // 4. Make it recoverable — upward arrow with rising column
-    recover: (
-      <>
-        <path d="M50 8 22 42h16v40c0 4.4 3.6 8 8 8h8c4.4 0 8-3.6 8-8V42h16z" />
-        <path d="M50 8 22 42h16v40c0 4.4 3.6 8 8 8h8c4.4 0 8-3.6 8-8V42h16z" fill={`url(#${id}-gloss)`} opacity="0.5"/>
-      </>
-    ),
+  const paths = {
+    communicate: "M15 42c0-12.7 10.3-23 23-23h34c12.7 0 23 10.3 23 23v15c0 12.7-10.3 23-23 23H52L34 96V80h-.5C22.3 80 15 69.7 15 57z",
+    capture:     "M28 12h33l19 19v53c0 5-4 9-9 9H28c-5 0-9-4-9-9V21c0-5 4-9 9-9z",
+    detect:      "M50 8 18 22v23c0 22 13.5 42 32 49 18.5-7 32-27 32-49V22z",
+    recover:     "M50 6 18 44h18v40c0 4.4 3.6 8 8 8h12c4.4 0 8-3.6 8-8V44h18z",
+  };
+  const overlay = {
+    communicate: <>
+      <circle cx="38" cy="49" r="4.5" fill="#fff" opacity="0.9"/>
+      <circle cx="54" cy="49" r="4.5" fill="#fff" opacity="0.9"/>
+      <circle cx="70" cy="49" r="4.5" fill="#fff" opacity="0.9"/>
+    </>,
+    capture: <>
+      <path d="M61 12v15c0 2.7 2.3 5 5 5h14z" fill="rgba(255,255,255,0.32)"/>
+      <rect x="30" y="46" width="32" height="4" rx="2" fill="#fff" opacity="0.9"/>
+      <rect x="30" y="56" width="42" height="4" rx="2" fill="#fff" opacity="0.75"/>
+      <rect x="30" y="66" width="26" height="4" rx="2" fill="#fff" opacity="0.6"/>
+    </>,
+    detect: <path d="M35 50 46 61 65 41" stroke="#fff" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.98"/>,
+    recover: null,
   };
 
   return (
-    <svg viewBox="0 0 100 108" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
+    <svg viewBox="0 0 100 112" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
       <defs>
-        <radialGradient id={`${id}-body`} cx="34%" cy="26%" r="82%">
-          <stop offset="0%" stopColor={grad.top}/>
-          <stop offset="42%" stopColor={grad.mid}/>
-          <stop offset="82%" stopColor={grad.low}/>
-          <stop offset="100%" stopColor={grad.deep}/>
+        {/* Front body: bright top-left → deep bottom-right */}
+        <radialGradient id={`${id}-front`} cx="30%" cy="22%" r="88%">
+          <stop offset="0%"  stopColor={c.top}/>
+          <stop offset="18%" stopColor={c.top} stopOpacity="0.92"/>
+          <stop offset="48%" stopColor={c.mid}/>
+          <stop offset="82%" stopColor={c.low}/>
+          <stop offset="100%" stopColor={c.deep}/>
         </radialGradient>
-        <linearGradient id={`${id}-rim`} x1="0" y1="1" x2="0" y2="0">
-          <stop offset="0%" stopColor={grad.rim} stopOpacity="0.9"/>
-          <stop offset="30%" stopColor={grad.rim} stopOpacity="0.4"/>
-          <stop offset="55%" stopColor={grad.rim} stopOpacity="0"/>
+        {/* Small hard specular blob — top-left glossy dot */}
+        <radialGradient id={`${id}-spec`} cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stopColor="#fff" stopOpacity="1"/>
+          <stop offset="45%" stopColor="#fff" stopOpacity="0.7"/>
+          <stop offset="100%" stopColor="#fff" stopOpacity="0"/>
+        </radialGradient>
+        {/* Wide soft gloss across the top half */}
+        <linearGradient id={`${id}-gloss`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stopColor="#fff" stopOpacity="0.55"/>
+          <stop offset="45%" stopColor="#fff" stopOpacity="0.1"/>
+          <stop offset="80%" stopColor="#fff" stopOpacity="0"/>
         </linearGradient>
-        <radialGradient id={`${id}-gloss`} cx="32%" cy="22%" r="38%">
-          <stop offset="0%" stopColor="rgba(255,255,255,0.95)"/>
-          <stop offset="55%" stopColor="rgba(255,255,255,0.28)"/>
-          <stop offset="100%" stopColor="rgba(255,255,255,0)"/>
-        </radialGradient>
-        <filter id={`${id}-shadow`} x="-20%" y="-10%" width="140%" height="130%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
-          <feOffset dx="0" dy="6"/>
-          <feComponentTransfer><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
-          <feComposite in2="SourceGraphic" operator="arithmetic" k2="-1" k3="1"/>
+        {/* Inner shadow — darken the deep edge */}
+        <filter id={`${id}-inner`} x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+          <feOffset dx="1.5" dy="3" result="off"/>
+          <feComposite in="off" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="inner"/>
+          <feColorMatrix in="inner" values="0 0 0 0 0.24  0 0 0 0 0.02  0 0 0 0 0  0 0 0 0.55 0"/>
+        </filter>
+        {/* Drop shadow — ambient/contact */}
+        <filter id={`${id}-drop`} x="-25%" y="-15%" width="150%" height="140%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+          <feOffset dx="0" dy="8"/>
+          <feComponentTransfer><feFuncA type="linear" slope="0.55"/></feComponentTransfer>
+          <feColorMatrix values="0 0 0 0 0.35  0 0 0 0 0.08  0 0 0 0 0.02  0 0 0 1 0"/>
+          <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
       </defs>
 
-      {/* soft floor shadow */}
-      <ellipse cx="50" cy="102" rx="30" ry="4" fill="rgba(0,0,0,0.22)" filter="blur(2px)"/>
+      {/* soft floor shadow puddle */}
+      <ellipse cx="50" cy="104" rx="32" ry="4.5" fill="rgba(60,15,5,0.35)" opacity="0.55" filter={`blur(3px)`}/>
 
-      {/* base body */}
-      <g fill={`url(#${id}-body)`}>{glyphPaths[variant]}</g>
-      {/* bottom rim glow */}
-      <g fill={`url(#${id}-rim)`}>{glyphPaths[variant]}</g>
-      {/* top gloss highlight */}
-      <g fill={`url(#${id}-gloss)`} style={{ mixBlendMode: "screen" }}>{glyphPaths[variant]}</g>
-      {/* thin edge sheen */}
-      <g fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.2">{glyphPaths[variant]}</g>
+      {/* 1. offset "back" of the shape — creates real thickness */}
+      <g transform="translate(1.5, 4)" fill={c.back} opacity="0.95">
+        <path d={paths[variant]}/>
+      </g>
+
+      {/* 2. lime/orange refracted underlight behind — sliver visible at bottom-back */}
+      <g transform="translate(1.5, 6.5)" fill={c.rim} opacity="0.9" style={{ mixBlendMode: "screen" }}>
+        <path d={paths[variant]}/>
+      </g>
+
+      {/* 3. front body */}
+      <g filter={`url(#${id}-drop)`}>
+        <path d={paths[variant]} fill={`url(#${id}-front)`}/>
+      </g>
+
+      {/* 4. inner shadow along deep edge */}
+      <g filter={`url(#${id}-inner)`}>
+        <path d={paths[variant]} fill={`url(#${id}-front)`}/>
+      </g>
+
+      {/* 5. wide soft gloss layer across the top */}
+      <g style={{ mixBlendMode: "screen" }}>
+        <path d={paths[variant]} fill={`url(#${id}-gloss)`}/>
+      </g>
+
+      {/* 6. small hard specular dot — the reference-image glossy shine */}
+      <ellipse cx="34" cy="26" rx="12" ry="7" fill={`url(#${id}-spec)`} transform="rotate(-25 34 26)" style={{ mixBlendMode: "screen" }}/>
+
+      {/* 7. tiny pinpoint catchlight */}
+      <circle cx="30" cy="22" r="2.2" fill="#fff" opacity="0.95"/>
+
+      {/* 8. inner glyph details (dots / lines / check) — drawn on top of everything */}
+      {overlay[variant]}
     </svg>
   );
 }
