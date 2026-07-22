@@ -360,22 +360,13 @@ function Solution({ t }) {
         </div>
 
         <FadeUp delay={200}>
-          <div className="ev-banner ev-banner-v2">
-            <div className="ev-banner-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="4 12 10 18 20 6"/>
-              </svg>
-            </div>
-            <div className="ev-banner-body">
-              <p className="ev-banner-line ev-banner-lead">
-                <span>{t.solution.bannerA}</span>
-                <span className="ev-banner-dot" aria-hidden="true"></span>
-                <span>{t.solution.bannerB}</span>
-              </p>
-              <p className="ev-banner-punch">
-                {t.solution.bannerCPre} <span className="ev-banner-money">{t.solution.bannerCAmount}</span> {t.solution.bannerCPost}
-              </p>
-            </div>
+          <div className="ev-banner ev-banner-v3">
+            <p className="ev-banner-lead">
+              {t.solution.bannerA} {t.solution.bannerB}
+            </p>
+            <p className="ev-banner-punch">
+              {t.solution.bannerCPre} <span className="ev-banner-money">{t.solution.bannerCAmount}</span> {t.solution.bannerCPost}
+            </p>
           </div>
         </FadeUp>
       </div>
