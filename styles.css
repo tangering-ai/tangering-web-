@@ -9702,7 +9702,27 @@ section .spine-h1 em {
   letter-spacing: 0.08em;
   color: rgba(0,0,0,0.32);
 }
-/* ── Jelly-bean 3D orb icons (Tangering brand style) ────────────── */
+/* SVG-based jelly icons: transparent wrapper, all detail lives in the SVG */
+.ev-card-icon-svg {
+  margin: 14px 0 22px !important;
+  width: 108px !important;
+  height: 108px !important;
+  background: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: perspective(700px) rotateX(10deg) rotateY(-6deg);
+  transform-origin: center;
+  transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: drop-shadow(0 22px 22px rgba(120,20,10,0.28));
+}
+.ev-card-icon-svg::before,
+.ev-card-icon-svg::after { display: none !important; }
+.ev-card:hover .ev-card-icon-svg {
+  transform: perspective(700px) rotateX(4deg) rotateY(-2deg) translateY(-6px) scale(1.06);
+}
+.ev-card-icon-svg svg { width: 100%; height: 100%; overflow: visible; }
+
+/* ── Legacy jelly-bean 3D orb icons (kept for other uses) ────────────── */
 .ev-card-icon {
   margin: 14px 0 22px;
   position: relative;

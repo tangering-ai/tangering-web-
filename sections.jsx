@@ -199,13 +199,101 @@ function renderStage(step) {
   return <SolutionPhone step={step} />;
 }
 
+// 3D glossy jelly-style SVG icons — the four evidence-mechanism symbols.
+// Each renders a filled glyph with radial highlight, bottom rim glow and drop shadow.
+function JellyIcon3D({ variant }) {
+  const id = `ji-${variant}`;
+  // Two color families in the brand: warm (orange/coral/lime) and cool (lilac).
+  const isLilac = variant === "recover";
+  const grad = isLilac
+    ? { top: "#ffe4fd", mid: "#f2c8ef", low: "#c88bc4", deep: "#6b1e60", rim: "#ffb37e" }
+    : { top: "#ffd8a8", mid: "#ff8b5c", low: "#fe5e32", deep: "#a02614", rim: "#d4ef61" };
+
+  const glyphPaths = {
+    // 1. Communicate — chat bubble with two orbiting dots
+    communicate: (
+      <>
+        <path d="M18 40c0-11.5 9.3-20.8 20.8-20.8h30.4C80.7 19.2 90 28.5 90 40v14c0 11.5-9.3 20.8-20.8 20.8H50l-15 12.5v-12.5h-.2C23.3 74.8 18 65.5 18 54z" />
+        <circle cx="38" cy="47" r="4.5" fill="#fff" opacity="0.85"/>
+        <circle cx="54" cy="47" r="4.5" fill="#fff" opacity="0.85"/>
+        <circle cx="70" cy="47" r="4.5" fill="#fff" opacity="0.85"/>
+      </>
+    ),
+    // 2. Capture — document with lines + timestamp badge
+    capture: (
+      <>
+        <path d="M28 14h34l16 16v52c0 4.4-3.6 8-8 8H28c-4.4 0-8-3.6-8-8V22c0-4.4 3.6-8 8-8z" />
+        <path d="M62 14v14c0 2.2 1.8 4 4 4h12z" fill="rgba(255,255,255,0.28)"/>
+        <rect x="30" y="46" width="34" height="4" rx="2" fill="#fff" opacity="0.85"/>
+        <rect x="30" y="56" width="42" height="4" rx="2" fill="#fff" opacity="0.7"/>
+        <rect x="30" y="66" width="28" height="4" rx="2" fill="#fff" opacity="0.6"/>
+      </>
+    ),
+    // 3. Detect & certify — shield with check
+    detect: (
+      <>
+        <path d="M50 10 20 22v22c0 20.5 12.4 39.2 30 46 17.6-6.8 30-25.5 30-46V22z" />
+        <path d="M37 50 46 59 63 42" stroke="#fff" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.95"/>
+      </>
+    ),
+    // 4. Make it recoverable — upward arrow with rising column
+    recover: (
+      <>
+        <path d="M50 8 22 42h16v40c0 4.4 3.6 8 8 8h8c4.4 0 8-3.6 8-8V42h16z" />
+        <path d="M50 8 22 42h16v40c0 4.4 3.6 8 8 8h8c4.4 0 8-3.6 8-8V42h16z" fill={`url(#${id}-gloss)`} opacity="0.5"/>
+      </>
+    ),
+  };
+
+  return (
+    <svg viewBox="0 0 100 108" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
+      <defs>
+        <radialGradient id={`${id}-body`} cx="34%" cy="26%" r="82%">
+          <stop offset="0%" stopColor={grad.top}/>
+          <stop offset="42%" stopColor={grad.mid}/>
+          <stop offset="82%" stopColor={grad.low}/>
+          <stop offset="100%" stopColor={grad.deep}/>
+        </radialGradient>
+        <linearGradient id={`${id}-rim`} x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stopColor={grad.rim} stopOpacity="0.9"/>
+          <stop offset="30%" stopColor={grad.rim} stopOpacity="0.4"/>
+          <stop offset="55%" stopColor={grad.rim} stopOpacity="0"/>
+        </linearGradient>
+        <radialGradient id={`${id}-gloss`} cx="32%" cy="22%" r="38%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.95)"/>
+          <stop offset="55%" stopColor="rgba(255,255,255,0.28)"/>
+          <stop offset="100%" stopColor="rgba(255,255,255,0)"/>
+        </radialGradient>
+        <filter id={`${id}-shadow`} x="-20%" y="-10%" width="140%" height="130%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+          <feOffset dx="0" dy="6"/>
+          <feComponentTransfer><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+          <feComposite in2="SourceGraphic" operator="arithmetic" k2="-1" k3="1"/>
+        </filter>
+      </defs>
+
+      {/* soft floor shadow */}
+      <ellipse cx="50" cy="102" rx="30" ry="4" fill="rgba(0,0,0,0.22)" filter="blur(2px)"/>
+
+      {/* base body */}
+      <g fill={`url(#${id}-body)`}>{glyphPaths[variant]}</g>
+      {/* bottom rim glow */}
+      <g fill={`url(#${id}-rim)`}>{glyphPaths[variant]}</g>
+      {/* top gloss highlight */}
+      <g fill={`url(#${id}-gloss)`} style={{ mixBlendMode: "screen" }}>{glyphPaths[variant]}</g>
+      {/* thin edge sheen */}
+      <g fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.2">{glyphPaths[variant]}</g>
+    </svg>
+  );
+}
+
 // Sticky storytelling: scroll position drives which phone variant shows
 function Solution({ t }) {
   const steps = [
-    { icon: "forum",         title: t.solution.step1t, desc: t.solution.step1d, tone: "lime"   },
-    { icon: "graphic_eq",    title: t.solution.step2t, desc: t.solution.step2d, tone: "orange" },
-    { icon: "fact_check",    title: t.solution.step3t, desc: t.solution.step3d, tone: "coral"  },
-    { icon: "workspace_premium", title: t.solution.step4t, desc: t.solution.step4d, tone: "lilac"  },
+    { variant: "communicate", title: t.solution.step1t, desc: t.solution.step1d, tone: "lime"   },
+    { variant: "capture",     title: t.solution.step2t, desc: t.solution.step2d, tone: "orange" },
+    { variant: "detect",      title: t.solution.step3t, desc: t.solution.step3d, tone: "coral"  },
+    { variant: "recover",     title: t.solution.step4t, desc: t.solution.step4d, tone: "lilac"  },
   ];
 
   return (
@@ -228,9 +316,8 @@ function Solution({ t }) {
             <FadeUp key={i} delay={120 + i * 90}>
               <div className={`ev-card ev-card-${s.tone}`}>
                 <div className="ev-card-num">0{i + 1}</div>
-                <div className="ev-card-icon">
-                  <span className="material-icons">{s.icon}</span>
-                  <span className="ev-card-icon-shadow" aria-hidden="true"></span>
+                <div className="ev-card-icon ev-card-icon-svg">
+                  <JellyIcon3D variant={s.variant} />
                 </div>
                 <h3 className="ev-card-title">{s.title}</h3>
                 <p className="ev-card-desc">{s.desc}</p>
