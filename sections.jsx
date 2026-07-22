@@ -1745,37 +1745,44 @@ function SocialProof({ t }) {
 
 function WhyItMatters({ t }) {
   return (
-    <section className="whyit" data-screen-label="05a Why it matters">
-      <div className="container">
-        <FadeUp>
-          <div className="eyebrow whyit-eyebrow">
-            <span className="pulse"></span>
-            {t.whyit.eyebrow}
-          </div>
-        </FadeUp>
-        <FadeUp delay={100}>
-          <h2 className="whyit-h2">
-            <WordReveal>{t.whyit.h2a}</WordReveal>
-            <br/>
-            <em><WordReveal delay={280}>{t.whyit.h2b}</WordReveal></em>
-          </h2>
-        </FadeUp>
+    <section className="whyit whyit-v2" data-screen-label="05a Why it matters">
+      <div className="whyit-bg" aria-hidden="true">
+        <span className="whyit-blob whyit-blob-a"></span>
+        <span className="whyit-blob whyit-blob-b"></span>
+        <span className="whyit-blob whyit-blob-c"></span>
+        <span className="whyit-grid"></span>
+      </div>
+      <div className="container whyit-inner">
+        <div className="whyit-head">
+          <FadeUp>
+            <div className="eyebrow whyit-eyebrow">
+              <span className="pulse"></span>
+              {t.whyit.eyebrow}
+            </div>
+          </FadeUp>
+          <FadeUp delay={100}>
+            <h2 className="whyit-h2">
+              <WordReveal>{t.whyit.h2a}</WordReveal>
+              <br/>
+              <em><WordReveal delay={280}>{t.whyit.h2b}</WordReveal></em>
+            </h2>
+          </FadeUp>
+        </div>
 
-        <FadeUp delay={220}>
-          <div className="whyit-eq">
-            <div className="whyit-eq-cell">
-              <div className="whyit-eq-num">360M</div>
-              <div className="whyit-eq-label">{t.whyit.eqA}</div>
-            </div>
-            <div className="whyit-eq-op">×</div>
-            <div className="whyit-eq-cell">
-              <div className="whyit-eq-num">$60</div>
-              <div className="whyit-eq-label">{t.whyit.eqB}</div>
-            </div>
-            <div className="whyit-eq-op">=</div>
-            <div className="whyit-eq-cell whyit-eq-total">
-              <div className="whyit-eq-num">$21.6B</div>
-              <div className="whyit-eq-label">{t.whyit.eqC}</div>
+        <FadeUp delay={200}>
+          <div className="whyit-focal">
+            <div className="whyit-focal-label">{t.whyit.eqC}</div>
+            <div className="whyit-focal-num">$21.6B</div>
+            <div className="whyit-focal-eq">
+              <div className="whyit-eq-cell">
+                <div className="whyit-eq-num">360M</div>
+                <div className="whyit-eq-label">{t.whyit.eqA}</div>
+              </div>
+              <div className="whyit-eq-op">×</div>
+              <div className="whyit-eq-cell">
+                <div className="whyit-eq-num">$60</div>
+                <div className="whyit-eq-label">{t.whyit.eqB}</div>
+              </div>
             </div>
           </div>
         </FadeUp>
