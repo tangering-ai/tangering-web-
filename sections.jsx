@@ -1771,25 +1771,32 @@ function WhyItMatters({ t }) {
           </FadeUp>
         </div>
 
-        {/* SCALE VISUAL: the McKinsey $65-95B bar with the $21.6B recoverable slice */}
+        {/* SCALE VISUAL — two clean rows, no floating labels */}
         <FadeUp delay={220}>
           <div className="whyit-scale">
-            <div className="whyit-scale-head">
-              <span className="whyit-scale-title">{es ? "Desperdicio total del handoff de última milla en EE.UU. (est. McKinsey)" : "Total US last-mile handoff waste (McKinsey estimate)"}</span>
-              <span className="whyit-scale-range">$65B–$95B</span>
+            {/* Top label row: external anchor */}
+            <div className="whyit-scale-topline">
+              <span className="whyit-scale-topline-label">{es ? "Waste total del handoff (est. McKinsey)" : "Total US last-mile handoff waste (McKinsey est.)"}</span>
+              <span className="whyit-scale-topline-value">$65B–$95B</span>
             </div>
+
+            {/* The bar itself: orange slice + gray remainder, side-by-side, no overlap */}
             <div className="whyit-scale-bar" aria-label="Scale comparison">
               <div className="whyit-scale-fill" style={{ width: "25.4%" }}>
-                <div className="whyit-scale-fill-arrow" aria-hidden="true"></div>
-                <div className="whyit-scale-fill-label">
-                  <span className="whyit-scale-fill-num">$21.6B</span>
-                  <span className="whyit-scale-fill-tag">{es ? "recuperable vía reclamos" : "recoverable via claims"}</span>
-                </div>
+                <span className="whyit-scale-fill-inner">$21.6B</span>
               </div>
+              <div className="whyit-scale-rest" style={{ width: "74.6%" }}></div>
             </div>
-            <div className="whyit-scale-legend">
-              <span className="whyit-scale-legend-item"><span className="dot dot-orange"></span>{es ? "Reclamos disputables (nuestra cuña)" : "Disputable claims (our wedge)"}</span>
-              <span className="whyit-scale-legend-item"><span className="dot dot-gray"></span>{es ? "Waste total del handoff (ancla externa)" : "Total handoff waste (external anchor)"}</span>
+
+            {/* Bottom label row: split into two aligned cells matching the bar's ratio */}
+            <div className="whyit-scale-labels">
+              <div className="whyit-scale-labels-orange" style={{ width: "25.4%" }}>
+                <div className="whyit-scale-labels-num">$21.6B</div>
+                <div className="whyit-scale-labels-tag">{es ? "Recuperable vía reclamos" : "Recoverable via claims"}</div>
+              </div>
+              <div className="whyit-scale-labels-gray" style={{ width: "74.6%" }}>
+                <div className="whyit-scale-labels-tag muted">{es ? "El resto queda fuera del alcance de las disputas" : "The rest is out of reach of disputes"}</div>
+              </div>
             </div>
           </div>
         </FadeUp>
@@ -1797,20 +1804,20 @@ function WhyItMatters({ t }) {
         {/* Equation as a clean inline breakdown */}
         <FadeUp delay={300}>
           <div className="whyit-eq-inline">
-            <span className="whyit-eq-part">
+            <div className="whyit-eq-part">
               <span className="whyit-eq-partn">360M</span>
               <span className="whyit-eq-partl">{t.whyit.eqA}</span>
-            </span>
-            <span className="whyit-eq-x">×</span>
-            <span className="whyit-eq-part">
+            </div>
+            <span className="whyit-eq-x" aria-hidden="true">×</span>
+            <div className="whyit-eq-part">
               <span className="whyit-eq-partn">$60</span>
               <span className="whyit-eq-partl">{t.whyit.eqB}</span>
-            </span>
-            <span className="whyit-eq-x">=</span>
-            <span className="whyit-eq-part is-total">
+            </div>
+            <span className="whyit-eq-x" aria-hidden="true">=</span>
+            <div className="whyit-eq-part is-total">
               <span className="whyit-eq-partn">$21.6B</span>
               <span className="whyit-eq-partl">{t.whyit.eqC}</span>
-            </span>
+            </div>
           </div>
         </FadeUp>
 
