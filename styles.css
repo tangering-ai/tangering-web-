@@ -10087,6 +10087,100 @@ section .spine-h1 em {
 .whyit-scale-v .whyit-inner { position: relative; z-index: 1; }
 .whyit-scale-v .whyit-head { max-width: 780px; margin: 0 auto; text-align: center; }
 
+/* Editorial header — magazine-style, left-aligned, with a ticker meta row */
+.whyit-head-editorial {
+  max-width: 1080px !important;
+  margin: 0 auto !important;
+  text-align: left !important;
+  padding-left: clamp(0px, 2vw, 24px);
+}
+.whyit-head-meta {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 16px 8px 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.06);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.62);
+  font-weight: 500;
+}
+.whyit-head-meta .whyit-eyebrow {
+  color: inherit !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  font-size: inherit !important;
+  letter-spacing: inherit !important;
+  text-transform: uppercase !important;
+  font-weight: 500 !important;
+}
+.whyit-tick {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 4px rgba(254,94,50,0.16);
+}
+.whyit-meta-sep {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background: rgba(0,0,0,0.16);
+}
+.whyit-meta-tag { color: rgba(0,0,0,0.5); }
+
+.whyit-h2-editorial {
+  margin: 28px 0 0 !important;
+  max-width: none !important;
+  font-size: clamp(38px, 6vw, 84px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.045em !important;
+  font-weight: 600 !important;
+}
+.whyit-h2-editorial .whyit-h2-line { display: block; }
+.whyit-h2-editorial .whyit-h2-line-a {
+  color: var(--dark);
+  max-width: 22ch;
+}
+.whyit-h2-editorial .whyit-h2-line-b {
+  margin-top: 10px;
+  padding-left: clamp(48px, 8vw, 120px);
+  position: relative;
+  color: rgba(0,0,0,0.7);
+  font-size: 0.6em;
+  line-height: 1.2;
+  font-weight: 400;
+  max-width: 32ch;
+}
+.whyit-h2-editorial .whyit-h2-line-b::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: clamp(32px, 6vw, 88px);
+  height: 2px;
+  background: var(--orange);
+  border-radius: 2px;
+}
+.whyit-h2-editorial .whyit-h2-line-b em {
+  color: var(--dark);
+  font-style: italic;
+  font-weight: 400;
+}
+.whyit-h2-editorial .whyit-h2-line-b em::first-letter { color: var(--orange); }
+
+@media (max-width: 700px) {
+  .whyit-head-editorial { padding-left: 0; }
+  .whyit-h2-editorial { font-size: clamp(30px, 9vw, 44px) !important; letter-spacing: -0.03em !important; }
+  .whyit-h2-editorial .whyit-h2-line-b { padding-left: 32px; font-size: 0.55em; }
+  .whyit-h2-editorial .whyit-h2-line-b::before { width: 20px; }
+}
+
 .whyit-scale-v .whyit-eyebrow {
   color: rgba(0,0,0,0.7) !important;
   background: transparent !important;
@@ -10118,7 +10212,8 @@ section .spine-h1 em {
 /* SCALE BAR — three stacked rows, no absolute overlap */
 .whyit-scale {
   margin: clamp(64px, 8vw, 100px) auto 0;
-  max-width: 1000px;
+  max-width: 1080px;
+  padding: 0 clamp(0px, 2vw, 24px);
 }
 /* Row 1: top label (external anchor) */
 .whyit-scale-topline {

@@ -1755,18 +1755,17 @@ function WhyItMatters({ t }) {
         <span className="whyit-blob whyit-blob-c"></span>
       </div>
       <div className="container whyit-inner">
-        <div className="whyit-head">
-          <FadeUp>
-            <div className="eyebrow whyit-eyebrow">
-              <span className="pulse"></span>
-              {t.whyit.eyebrow}
-            </div>
+        <div className="whyit-head whyit-head-editorial">
+          <FadeUp className="whyit-head-meta">
+            <span className="whyit-tick" aria-hidden="true"></span>
+            <span className="whyit-eyebrow">{t.whyit.eyebrow}</span>
+            <span className="whyit-meta-sep" aria-hidden="true"></span>
+            <span className="whyit-meta-tag">{es ? "EE.UU. · Última milla" : "US · Last-mile"}</span>
           </FadeUp>
-          <FadeUp delay={100}>
-            <h2 className="whyit-h2">
-              <WordReveal>{t.whyit.h2a}</WordReveal>
-              <br/>
-              <em><WordReveal delay={280}>{t.whyit.h2b}</WordReveal></em>
+          <FadeUp delay={120}>
+            <h2 className="whyit-h2 whyit-h2-editorial">
+              <span className="whyit-h2-line whyit-h2-line-a"><WordReveal>{t.whyit.h2a}</WordReveal></span>
+              <span className="whyit-h2-line whyit-h2-line-b"><em><WordReveal delay={280}>{t.whyit.h2b}</WordReveal></em></span>
             </h2>
           </FadeUp>
         </div>
