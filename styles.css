@@ -10148,37 +10148,24 @@ section .spine-h1 em {
   max-width: 22ch;
 }
 .whyit-h2-editorial .whyit-h2-line-b {
-  margin-top: 10px;
-  padding-left: clamp(48px, 8vw, 120px);
-  position: relative;
-  color: rgba(0,0,0,0.7);
-  font-size: 0.6em;
-  line-height: 1.2;
+  margin-top: 16px;
+  padding-left: 0;
+  color: rgba(0,0,0,0.55);
+  font-size: 0.58em;
+  line-height: 1.25;
   font-weight: 400;
-  max-width: 32ch;
-}
-.whyit-h2-editorial .whyit-h2-line-b::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: clamp(32px, 6vw, 88px);
-  height: 2px;
-  background: var(--orange);
-  border-radius: 2px;
+  max-width: 34ch;
 }
 .whyit-h2-editorial .whyit-h2-line-b em {
-  color: var(--dark);
+  color: var(--orange);
   font-style: italic;
   font-weight: 400;
 }
-.whyit-h2-editorial .whyit-h2-line-b em::first-letter { color: var(--orange); }
 
 @media (max-width: 700px) {
   .whyit-head-editorial { padding-left: 0; }
   .whyit-h2-editorial { font-size: clamp(30px, 9vw, 44px) !important; letter-spacing: -0.03em !important; }
-  .whyit-h2-editorial .whyit-h2-line-b { padding-left: 32px; font-size: 0.55em; }
-  .whyit-h2-editorial .whyit-h2-line-b::before { width: 20px; }
+  .whyit-h2-editorial .whyit-h2-line-b { font-size: 0.52em; margin-top: 12px; }
 }
 
 .whyit-scale-v .whyit-eyebrow {
