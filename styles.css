@@ -10569,8 +10569,172 @@ section .spine-h1 em {
 }
 
 /* ===========================================================
-   USE CASES — compact 5-item menu with hero highlight
+   USE CASES — human-style: portrait hero + editorial rows
    =========================================================== */
+.uc-human { padding: clamp(80px, 12vw, 140px) 0; background: #fff; }
+.uch-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+  margin-bottom: clamp(64px, 8vw, 100px);
+}
+.uch-hero-copy { min-width: 0; }
+.uch-h2 { margin-top: 20px !important; max-width: 20ch; }
+.uch-h2 em { color: var(--orange); font-style: italic; font-weight: 400; }
+.uch-intro { margin-top: 20px; max-width: 44ch; color: var(--muted); }
+.uch-live {
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 10px;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.22);
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #16a34a;
+}
+.uch-live-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34,197,94,0.75);
+  animation: callPulse 1.8s ease-in-out infinite;
+}
+.uch-hero-photo-col { display: flex; justify-content: center; }
+.uch-photo {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 1 / 1.1;
+  border-radius: 28px;
+  overflow: hidden;
+  background: linear-gradient(140deg, #ffe6d3 0%, #ffcbb0 45%, #f5b8b5 100%);
+  box-shadow:
+    0 40px 80px -30px rgba(0,0,0,0.28),
+    0 12px 30px -12px rgba(254,94,50,0.35);
+}
+.uch-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: normal;
+}
+.uch-photo-caption {
+  position: absolute;
+  left: 16px; bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--dark);
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 18px -6px rgba(0,0,0,0.2);
+}
+.uch-photo-caption-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 3px rgba(254,94,50,0.18);
+}
+
+/* Feature rows — human, warm, generously spaced */
+.uch-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.uch-row {
+  display: grid;
+  grid-template-columns: 56px 56px 1fr;
+  gap: 22px;
+  align-items: center;
+  padding: 24px 28px;
+  border-radius: 18px;
+  background: #fafafa;
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: background .25s ease, border-color .25s ease, transform .25s ease;
+}
+.uch-row:hover { background: #f4f4f4; transform: translateY(-1px); }
+.uch-row-index {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(0,0,0,0.35);
+}
+.uch-row-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, #ffb455 0%, #ff8250 100%);
+  box-shadow: 0 8px 20px -6px rgba(254,94,50,0.35), inset 0 -3px 8px rgba(120,20,10,0.15), inset 0 3px 8px rgba(255,255,255,0.35);
+}
+.uch-row-icon svg { width: 22px; height: 22px; }
+.uch-row-lime   .uch-row-icon { background: linear-gradient(135deg, #d4ef61 0%, #a6c72e 100%); color: #33470b; box-shadow: 0 8px 20px -6px rgba(197,233,74,0.5), inset 0 -3px 8px rgba(90,110,20,0.18), inset 0 3px 8px rgba(255,255,255,0.4); }
+.uch-row-coral  .uch-row-icon { background: linear-gradient(135deg, #ff9d95 0%, #ee5d55 100%); }
+.uch-row-orange .uch-row-icon { background: linear-gradient(135deg, #ffb455 0%, #ff8250 100%); }
+.uch-row-lilac  .uch-row-icon { background: linear-gradient(135deg, #f6c9f2 0%, #c07dbc 100%); color: #4d1046; box-shadow: 0 8px 20px -6px rgba(200,139,196,0.45), inset 0 -3px 8px rgba(90,30,80,0.2), inset 0 3px 8px rgba(255,255,255,0.5); }
+.uch-row-title {
+  margin: 0;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.uch-row-desc { margin: 6px 0 0; font-size: 15px; line-height: 1.55; color: rgba(0,0,0,0.62); }
+.uch-row-badge { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.09em; padding: 4px 10px; border-radius: 999px; background: var(--orange); color: #fff; font-weight: 600; }
+.uch-row-hero {
+  background: linear-gradient(100deg, rgba(197,233,74,0.14) 0%, rgba(255,165,61,0.16) 45%, rgba(236,187,233,0.2) 100%);
+  border-color: rgba(254,94,50,0.28);
+  padding: 30px 32px;
+}
+.uch-row-hero .uch-row-icon { background: linear-gradient(135deg, #fe5e32 0%, #ffa53d 100%); box-shadow: 0 12px 30px -8px rgba(254,94,50,0.5), inset 0 -3px 8px rgba(120,20,10,0.2), inset 0 3px 8px rgba(255,255,255,0.4); }
+.uch-row-hero .uch-row-title { font-size: 21px; }
+
+.uch-cta-wrap { margin-top: 44px; text-align: center; }
+.uch-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 26px; border-radius: 999px;
+  background: var(--dark); color: #fff;
+  text-decoration: none; font-weight: 500; font-size: 15px;
+  transition: background .2s ease;
+}
+.uch-cta:hover { background: var(--orange); }
+
+@media (max-width: 900px) {
+  .uch-hero { grid-template-columns: 1fr; gap: 32px; }
+  .uch-hero-photo-col { order: -1; }
+  .uch-photo { max-width: 380px; }
+}
+@media (max-width: 700px) {
+  .uch-row { grid-template-columns: 40px 44px 1fr; gap: 14px; padding: 20px 22px; }
+  .uch-row-index { font-size: 12px; }
+  .uch-row-icon { width: 40px; height: 40px; border-radius: 11px; }
+  .uch-row-icon svg { width: 20px; height: 20px; }
+  .uch-row-title { font-size: 16px; gap: 8px; }
+  .uch-row-hero { padding: 22px 22px; }
+  .uch-row-hero .uch-row-title { font-size: 18px; }
+}
+
+/* Legacy uc-menu kept for other pages */
 .uc-menu { padding: clamp(80px, 12vw, 140px) 0; background: #fff; }
 .ucm-h2 { margin-top: 24px; }
 .ucm-h2 em { color: var(--orange); font-style: italic; font-weight: 400; }

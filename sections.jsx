@@ -1840,46 +1840,95 @@ function WhyItMatters({ t }) {
 }
 
 function UseCases({ t }) {
+  // Small inline SVG icons — no font dependency, warm brand tone
+  const IconCalendar = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="M8 15h3"/>
+    </svg>
+  );
+  const IconPin = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s-7-7.58-7-13a7 7 0 0 1 14 0c0 5.42-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/>
+    </svg>
+  );
+  const IconSync = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M3 21v-5h5"/>
+    </svg>
+  );
+  const IconGavel = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 4l6 6-4 4-6-6z"/><path d="M11 7l-7 7 4 4 7-7"/><path d="M3 21h10"/>
+    </svg>
+  );
+  const IconSupport = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 14v-3a8 8 0 0 1 16 0v3"/><rect x="2" y="14" width="4" height="6" rx="1"/><rect x="18" y="14" width="4" height="6" rx="1"/><path d="M18 20a3 3 0 0 1-3 3h-2"/>
+    </svg>
+  );
   const items = [
-    { icon: "event_available",   title: t.uc.i1t, desc: t.uc.i1d },
-    { icon: "pin_drop",          title: t.uc.i2t, desc: t.uc.i2d },
-    { icon: "sync_problem",      title: t.uc.i3t, desc: t.uc.i3d },
-    { icon: "gavel",             title: t.uc.i4t, desc: t.uc.i4d, hero: true },
-    { icon: "support_agent",     title: t.uc.i5t, desc: t.uc.i5d },
+    { Icon: IconCalendar, title: t.uc.i1t, desc: t.uc.i1d, tone: "lime"   },
+    { Icon: IconPin,      title: t.uc.i2t, desc: t.uc.i2d, tone: "coral"  },
+    { Icon: IconSync,     title: t.uc.i3t, desc: t.uc.i3d, tone: "orange" },
+    { Icon: IconGavel,    title: t.uc.i4t, desc: t.uc.i4d, tone: "hero", hero: true },
+    { Icon: IconSupport,  title: t.uc.i5t, desc: t.uc.i5d, tone: "lilac"  },
   ];
-  return (
-    <section className="usecases uc-menu" id="cases" data-screen-label="05 Use cases">
-      <div className="container">
-        <FadeUp>
-          <div className="eyebrow">
-            <span className="pulse"></span>
-            {t.uc.eyebrow}
-          </div>
-        </FadeUp>
-        <FadeUp delay={100}>
-          <h2 className="ucm-h2">
-            <WordReveal>{t.uc.h2a}</WordReveal>
-            <br/>
-            <em><WordReveal delay={220}>{t.uc.h2b}</WordReveal></em>
-          </h2>
-        </FadeUp>
-        <FadeUp delay={200}>
-          <p className="lead ucm-intro">{t.uc.intro}</p>
-        </FadeUp>
+  const es = isEsLang();
 
-        <div className="ucm-list">
-          {items.map((it, i) => (
-            <FadeUp key={i} delay={100 + i * 70}>
-              <div className={`ucm-row ${it.hero ? "ucm-row-hero" : ""}`}>
-                <div className="ucm-row-icon">
-                  <span className="material-icons">{it.icon}</span>
-                </div>
-                <div className="ucm-row-body">
-                  <h3 className="ucm-row-title">
+  return (
+    <section className="usecases uc-human" id="cases" data-screen-label="05 Use cases">
+      <div className="container">
+        {/* Human hero: portrait alongside intro copy */}
+        <div className="uch-hero">
+          <div className="uch-hero-copy">
+            <FadeUp>
+              <div className="eyebrow">
+                <span className="pulse"></span>
+                {t.uc.eyebrow}
+              </div>
+            </FadeUp>
+            <FadeUp delay={100}>
+              <h2 className="uch-h2">
+                <WordReveal>{t.uc.h2a}</WordReveal>
+                <br/>
+                <em><WordReveal delay={220}>{t.uc.h2b}</WordReveal></em>
+              </h2>
+            </FadeUp>
+            <FadeUp delay={200}>
+              <p className="lead uch-intro">{t.uc.intro}</p>
+            </FadeUp>
+            <FadeUp delay={280}>
+              <div className="uch-live">
+                <span className="uch-live-dot"></span>
+                {es ? "En vivo — corriendo con operadores líderes" : "Live — running with leading carriers"}
+              </div>
+            </FadeUp>
+          </div>
+
+          <FadeUp delay={160} className="uch-hero-photo-col">
+            <div className="uch-photo">
+              <img src="assets/final-cta-portrait.png" alt="A person on a Tangering conversation" />
+              <div className="uch-photo-caption">
+                <span className="uch-photo-caption-dot" aria-hidden="true"></span>
+                {es ? "Cada llamada, cada mensaje" : "Every call, every message"}
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+
+        {/* Human-styled feature rows */}
+        <div className="uch-rows">
+          {items.map(({ Icon, ...it }, i) => (
+            <FadeUp key={i} delay={80 + i * 90}>
+              <div className={`uch-row uch-row-${it.tone} ${it.hero ? "uch-row-hero" : ""}`}>
+                <div className="uch-row-index">0{i + 1}</div>
+                <div className="uch-row-icon"><Icon /></div>
+                <div className="uch-row-body">
+                  <h3 className="uch-row-title">
                     {it.title}
-                    {it.hero && <span className="ucm-row-badge">{t.uc.heroBadge}</span>}
+                    {it.hero && <span className="uch-row-badge">{t.uc.heroBadge}</span>}
                   </h3>
-                  <p className="ucm-row-desc">{it.desc}</p>
+                  <p className="uch-row-desc">{it.desc}</p>
                 </div>
               </div>
             </FadeUp>
@@ -1887,8 +1936,8 @@ function UseCases({ t }) {
         </div>
 
         <FadeUp delay={600}>
-          <div className="ucm-cta-wrap">
-            <a href="/use-cases" className="ucm-cta">
+          <div className="uch-cta-wrap">
+            <a href="/use-cases" className="uch-cta">
               {t.uc.ctaAll} <span aria-hidden="true">→</span>
             </a>
           </div>
