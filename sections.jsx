@@ -1839,14 +1839,19 @@ function WhyItMatters({ t }) {
   );
 }
 
-// UseCases — clean editorial list, info-first, no elaborate visual
+// UseCases — editorial rows: thumb on the left expands on hover, title + rule + desc on the right
 function UseCases({ t }) {
+  const IconCal = () => (<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><rect x="10" y="16" width="44" height="40" rx="4"/><path d="M42 8v12M22 8v12M10 28h44"/></svg>);
+  const IconPin = () => (<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M32 56s-18-18-18-32a18 18 0 0 1 36 0c0 14-18 32-18 32z"/><circle cx="32" cy="24" r="6"/></svg>);
+  const IconAlert = () => (<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M32 8 6 54h52z"/><path d="M32 26v14M32 46h.01"/></svg>);
+  const IconGavel = () => (<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M36 8l20 20-12 12-20-20z"/><path d="M28 20 6 42l14 14 22-22"/><path d="M6 58h34"/></svg>);
+  const IconSup = () => (<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M10 38V26a22 22 0 0 1 44 0v12"/><rect x="4" y="38" width="12" height="18" rx="3"/><rect x="48" y="38" width="12" height="18" rx="3"/><path d="M48 56a8 8 0 0 1-8 8h-6"/></svg>);
   const items = [
-    { title: t.uc.i1t, desc: t.uc.i1d, accent: "lime"   },
-    { title: t.uc.i2t, desc: t.uc.i2d, accent: "orange" },
-    { title: t.uc.i3t, desc: t.uc.i3d, accent: "coral"  },
-    { title: t.uc.i4t, desc: t.uc.i4d, accent: "hero", hero: true },
-    { title: t.uc.i5t, desc: t.uc.i5d, accent: "lilac"  },
+    { title: t.uc.i1t, desc: t.uc.i1d, accent: "lime",   Icon: IconCal   },
+    { title: t.uc.i2t, desc: t.uc.i2d, accent: "orange", Icon: IconPin   },
+    { title: t.uc.i3t, desc: t.uc.i3d, accent: "coral",  Icon: IconAlert },
+    { title: t.uc.i4t, desc: t.uc.i4d, accent: "hero", hero: true, Icon: IconGavel },
+    { title: t.uc.i5t, desc: t.uc.i5d, accent: "lilac",  Icon: IconSup   },
   ];
   return (
     <section className="usecases uc-clean" id="cases" data-screen-label="05 Use cases">
@@ -1870,15 +1875,21 @@ function UseCases({ t }) {
         </div>
 
         <div className="ucc-list">
-          {items.map((it, i) => (
+          {items.map(({ Icon, ...it }, i) => (
             <FadeUp key={i} delay={100 + i * 70}>
               <div className={`ucc-item ucc-item-${it.accent} ${it.hero ? "is-hero" : ""}`}>
+                <div className="ucc-item-thumb" aria-hidden="true">
+                  <div className="ucc-item-thumb-inner">
+                    <Icon />
+                  </div>
+                </div>
                 <div className="ucc-item-num">0{i + 1}</div>
                 <div className="ucc-item-body">
                   <h3 className="ucc-item-title">
                     {it.title}
                     {it.hero && <span className="ucc-item-badge">{t.uc.heroBadge}</span>}
                   </h3>
+                  <div className="ucc-item-rule"></div>
                   <p className="ucc-item-desc">{it.desc}</p>
                 </div>
               </div>
