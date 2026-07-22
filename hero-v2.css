@@ -114,9 +114,16 @@
 
 .vhero-metrics {
   margin-top: 44px;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  gap: 24px;
+  align-items: stretch;
+  max-width: 560px;
+}
+.vhero-metrics .m {
   display: flex;
-  align-items: center;
-  gap: 28px;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 .vhero-metrics .m .v {
   font-size: clamp(24px, 2.4vw, 34px);
@@ -124,18 +131,25 @@
   color: white;
   letter-spacing: -0.03em;
   line-height: 1;
+  min-height: 1em;
 }
 .vhero-metrics .m .l {
   font-size: 11px;
   color: rgba(255,255,255,0.6);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-top: 5px;
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+  line-height: 1.35;
 }
 .vhero-metrics .m-sep {
   width: 1px;
-  height: 36px;
-  background: rgba(255,255,255,0.2);
+  align-self: stretch;
+  background: rgba(255,255,255,0.18);
+}
+@media (max-width: 700px) {
+  .vhero-metrics { grid-template-columns: 1fr; gap: 14px; max-width: 100%; }
+  .vhero-metrics .m-sep { height: 1px; width: 100%; align-self: auto; }
+  .vhero-metrics .m .l { margin-top: 4px; }
 }
 
 .vhero-live-inline {
