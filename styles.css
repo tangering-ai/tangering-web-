@@ -9676,18 +9676,26 @@ section .spine-h1 em {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
+  align-items: stretch;
+}
+/* Make the FadeUp wrapper stretch to full grid-cell height so every card matches */
+.ev-grid > * {
+  display: flex;
+  height: 100%;
 }
 .ev-card {
   position: relative;
   border-radius: 24px;
   padding: 32px 24px 28px;
-  min-height: 320px;
   color: var(--dark);
   background: #fff;
   border: 1px solid rgba(0,0,0,0.07);
   box-shadow: 0 8px 30px rgba(0,0,0,0.04);
   overflow: hidden;
   transition: transform .3s ease, box-shadow .3s ease;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 .ev-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
 .ev-card-num {
