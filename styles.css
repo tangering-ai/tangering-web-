@@ -11533,8 +11533,8 @@ section .spine-h1 em {
   background: none !important;
 }
 .ucc-row.is-hero { align-items: center; }
-.ucc-row:nth-child(even) { direction: rtl; }
-.ucc-row:nth-child(even) > * { direction: ltr; }
+.ucc-row.is-flip { direction: rtl; }
+.ucc-row.is-flip > * { direction: ltr; }
 
 .ucc-row-photo {
   position: relative;
