@@ -1747,13 +1747,12 @@ function SocialProof({ t }) {
 }
 
 function WhyItMatters({ t }) {
+  const es = t.whyit.eyebrow.toLowerCase().includes("por qu");
   return (
-    <section className="whyit whyit-v2" data-screen-label="05a Why it matters">
+    <section className="whyit whyit-scale-v" data-screen-label="05a Why it matters">
       <div className="whyit-bg" aria-hidden="true">
         <span className="whyit-blob whyit-blob-a"></span>
-        <span className="whyit-blob whyit-blob-b"></span>
         <span className="whyit-blob whyit-blob-c"></span>
-        <span className="whyit-grid"></span>
       </div>
       <div className="container whyit-inner">
         <div className="whyit-head">
@@ -1772,29 +1771,54 @@ function WhyItMatters({ t }) {
           </FadeUp>
         </div>
 
-        <FadeUp delay={200}>
-          <div className="whyit-focal">
-            <div className="whyit-focal-label">{t.whyit.eqC}</div>
-            <div className="whyit-focal-num">$21.6B</div>
-            <div className="whyit-focal-eq">
-              <div className="whyit-eq-cell">
-                <div className="whyit-eq-num">360M</div>
-                <div className="whyit-eq-label">{t.whyit.eqA}</div>
+        {/* SCALE VISUAL: the McKinsey $65-95B bar with the $21.6B recoverable slice */}
+        <FadeUp delay={220}>
+          <div className="whyit-scale">
+            <div className="whyit-scale-head">
+              <span className="whyit-scale-title">{es ? "Desperdicio total del handoff de última milla en EE.UU. (est. McKinsey)" : "Total US last-mile handoff waste (McKinsey estimate)"}</span>
+              <span className="whyit-scale-range">$65B–$95B</span>
+            </div>
+            <div className="whyit-scale-bar" aria-label="Scale comparison">
+              <div className="whyit-scale-fill" style={{ width: "25.4%" }}>
+                <div className="whyit-scale-fill-arrow" aria-hidden="true"></div>
+                <div className="whyit-scale-fill-label">
+                  <span className="whyit-scale-fill-num">$21.6B</span>
+                  <span className="whyit-scale-fill-tag">{es ? "recuperable vía reclamos" : "recoverable via claims"}</span>
+                </div>
               </div>
-              <div className="whyit-eq-op">×</div>
-              <div className="whyit-eq-cell">
-                <div className="whyit-eq-num">$60</div>
-                <div className="whyit-eq-label">{t.whyit.eqB}</div>
-              </div>
+            </div>
+            <div className="whyit-scale-legend">
+              <span className="whyit-scale-legend-item"><span className="dot dot-orange"></span>{es ? "Reclamos disputables (nuestra cuña)" : "Disputable claims (our wedge)"}</span>
+              <span className="whyit-scale-legend-item"><span className="dot dot-gray"></span>{es ? "Waste total del handoff (ancla externa)" : "Total handoff waste (external anchor)"}</span>
             </div>
           </div>
         </FadeUp>
 
-        <FadeUp delay={280}>
+        {/* Equation as a clean inline breakdown */}
+        <FadeUp delay={300}>
+          <div className="whyit-eq-inline">
+            <span className="whyit-eq-part">
+              <span className="whyit-eq-partn">360M</span>
+              <span className="whyit-eq-partl">{t.whyit.eqA}</span>
+            </span>
+            <span className="whyit-eq-x">×</span>
+            <span className="whyit-eq-part">
+              <span className="whyit-eq-partn">$60</span>
+              <span className="whyit-eq-partl">{t.whyit.eqB}</span>
+            </span>
+            <span className="whyit-eq-x">=</span>
+            <span className="whyit-eq-part is-total">
+              <span className="whyit-eq-partn">$21.6B</span>
+              <span className="whyit-eq-partl">{t.whyit.eqC}</span>
+            </span>
+          </div>
+        </FadeUp>
+
+        <FadeUp delay={360}>
           <div className="whyit-banner">{t.whyit.banner}</div>
         </FadeUp>
 
-        <FadeUp delay={340}>
+        <FadeUp delay={420}>
           <p className="whyit-foot">{t.whyit.foot}</p>
         </FadeUp>
       </div>

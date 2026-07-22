@@ -10069,7 +10069,244 @@ section .spine-h1 em {
 @media (max-width: 600px) { .ev-grid { grid-template-columns: 1fr; } .ev-card { min-height: 0; } }
 
 /* ===========================================================
-   WHY IT MATTERS v3 — editorial hero-number, cream background
+   WHY IT MATTERS v4 — scale-comparison bar
+   =========================================================== */
+.whyit-scale-v {
+  position: relative;
+  padding: clamp(96px, 14vw, 160px) 0;
+  overflow: hidden;
+  isolation: isolate;
+  background: #faf7f2;
+  color: var(--dark);
+}
+.whyit-scale-v .whyit-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.whyit-scale-v .whyit-blob { position: absolute; border-radius: 50%; filter: blur(140px); }
+.whyit-scale-v .whyit-blob-a { top: -160px; left: -120px; width: 480px; height: 480px; background: radial-gradient(circle, rgba(255,165,61,0.22) 0%, rgba(255,165,61,0) 70%); }
+.whyit-scale-v .whyit-blob-c { bottom: -200px; right: -140px; width: 520px; height: 520px; background: radial-gradient(circle, rgba(236,187,233,0.28) 0%, rgba(236,187,233,0) 70%); }
+
+.whyit-scale-v .whyit-inner { position: relative; z-index: 1; }
+.whyit-scale-v .whyit-head { max-width: 780px; margin: 0 auto; text-align: center; }
+
+.whyit-scale-v .whyit-eyebrow {
+  color: rgba(0,0,0,0.7) !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  backdrop-filter: none;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.whyit-scale-v .whyit-eyebrow .pulse { background: var(--orange) !important; }
+.whyit-scale-v .whyit-h2 {
+  margin: 20px auto 0 !important;
+  color: var(--dark) !important;
+  max-width: 22ch;
+}
+.whyit-scale-v .whyit-h2 em { color: var(--orange) !important; font-style: italic; font-weight: 400; }
+
+/* SCALE BAR */
+.whyit-scale {
+  margin: clamp(64px, 8vw, 100px) auto 0;
+  max-width: 1000px;
+}
+.whyit-scale-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.whyit-scale-title {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.55);
+  font-weight: 500;
+}
+.whyit-scale-range {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: rgba(0,0,0,0.4);
+  line-height: 1;
+}
+.whyit-scale-bar {
+  position: relative;
+  height: 88px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.08) 100%);
+  border: 1px solid rgba(0,0,0,0.06);
+  overflow: visible;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
+}
+.whyit-scale-fill {
+  position: relative;
+  height: 100%;
+  border-radius: 16px 4px 4px 16px;
+  background: linear-gradient(100deg, #ffa53d 0%, #fe5e32 60%, #ff7c6e 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    inset 0 -3px 8px rgba(120,20,10,0.2),
+    0 8px 24px -8px rgba(254,94,50,0.55);
+  animation: whyit-fill 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  transform-origin: left;
+}
+@keyframes whyit-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.whyit-scale-fill-arrow {
+  position: absolute;
+  top: -14px;
+  right: -1px;
+  width: 2px;
+  height: 22px;
+  background: var(--orange);
+}
+.whyit-scale-fill-arrow::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: var(--orange);
+  border-radius: 2px;
+}
+.whyit-scale-fill-label {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  transform: translateX(50%);
+  min-width: 140px;
+  text-align: center;
+}
+.whyit-scale-fill-num {
+  display: block;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--orange);
+  line-height: 1;
+}
+.whyit-scale-fill-tag {
+  display: block;
+  margin-top: 4px;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.55);
+  font-weight: 500;
+}
+.whyit-scale-legend {
+  margin-top: 28px;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: rgba(0,0,0,0.6);
+}
+.whyit-scale-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.whyit-scale-legend .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.whyit-scale-legend .dot-orange { background: var(--orange); }
+.whyit-scale-legend .dot-gray { background: rgba(0,0,0,0.2); }
+
+/* EQUATION (inline breakdown) */
+.whyit-eq-inline {
+  margin: clamp(56px, 7vw, 80px) auto 0;
+  padding: 24px 32px;
+  max-width: 900px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -18px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 32px);
+  flex-wrap: wrap;
+}
+.whyit-eq-part {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+}
+.whyit-eq-part.is-total .whyit-eq-partn { color: var(--orange); }
+.whyit-eq-partn {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--dark);
+}
+.whyit-eq-partl {
+  margin-top: 8px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: rgba(0,0,0,0.5);
+  max-width: 180px;
+}
+.whyit-eq-x {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(20px, 2vw, 26px);
+  color: rgba(0,0,0,0.28);
+  font-weight: 300;
+  padding-bottom: 14px;
+}
+
+/* BANNER + FOOT */
+.whyit-scale-v .whyit-banner {
+  margin: clamp(48px, 6vw, 72px) auto 0;
+  max-width: 640px;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: center;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.4;
+  color: var(--dark);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.whyit-scale-v .whyit-foot {
+  margin: 20px auto 0;
+  max-width: 560px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(0,0,0,0.42);
+  text-align: center;
+  font-style: italic;
+}
+
+@media (max-width: 700px) {
+  .whyit-scale-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .whyit-scale-bar { height: 72px; }
+  .whyit-scale-fill-label { min-width: 120px; }
+  .whyit-scale-fill-num { font-size: 26px; }
+  .whyit-scale-fill-tag { font-size: 10px; }
+  .whyit-eq-inline { flex-direction: column; gap: 20px; padding: 24px; }
+  .whyit-eq-x { padding: 0; }
+}
+
+/* ===========================================================
+   WHY IT MATTERS v3 — editorial hero-number, cream background (legacy)
    =========================================================== */
 .whyit-v2 {
   position: relative;
