@@ -9702,6 +9702,23 @@ section .spine-h1 em {
   letter-spacing: 0.08em;
   color: rgba(0,0,0,0.32);
 }
+/* Real 3D icon PNGs (Microsoft Fluent Emoji, MIT) */
+.ev-card-icon-3d {
+  margin: 14px 0 22px !important;
+  width: 118px !important;
+  height: 118px !important;
+  background: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  filter: drop-shadow(0 22px 22px rgba(0,0,0,0.18)) drop-shadow(0 6px 10px rgba(0,0,0,0.12));
+  transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ev-card-icon-3d::before,
+.ev-card-icon-3d::after { display: none !important; }
+.ev-card:hover .ev-card-icon-3d { transform: translateY(-6px) scale(1.06); }
+.ev-card-icon-img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
 /* SVG-based jelly icons: transparent wrapper, all detail lives in the SVG */
 .ev-card-icon-svg {
   margin: 14px 0 22px !important;

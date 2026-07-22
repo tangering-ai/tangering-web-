@@ -344,8 +344,13 @@ function Solution({ t }) {
             <FadeUp key={i} delay={120 + i * 90}>
               <div className={`ev-card ev-card-${s.tone}`}>
                 <div className="ev-card-num">0{i + 1}</div>
-                <div className="ev-card-icon ev-card-icon-svg">
-                  <JellyIcon3D variant={s.variant} />
+                <div className="ev-card-icon ev-card-icon-3d">
+                  <img
+                    src={`assets/icons-3d/${s.variant}.png`}
+                    alt=""
+                    className="ev-card-icon-img"
+                    loading="lazy"
+                  />
                 </div>
                 <h3 className="ev-card-title">{s.title}</h3>
                 <p className="ev-card-desc">{s.desc}</p>
