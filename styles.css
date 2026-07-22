@@ -10883,3 +10883,251 @@ section .spine-h1 em {
   .prob-h2, .prob-sub, .prob-close { max-width: 100%; }
   .prob-stat { padding: 24px; }
 }
+
+/* ===========================================================
+   USE CASES v3 — "4 conversations → 1 record → claims outcome"
+   =========================================================== */
+.uc-new { padding: clamp(96px, 14vw, 160px) 0; background: #fff; }
+.ucn-head { max-width: 780px; margin: 0 auto; text-align: center; }
+.ucn-eyebrow { display: inline-flex !important; }
+.ucn-h2 { margin: 24px auto 0 !important; max-width: 22ch; }
+.ucn-h2 em { color: var(--orange); font-style: italic; font-weight: 400; }
+.ucn-intro { margin: 20px auto 0; max-width: 56ch; color: var(--muted); text-align: center; }
+
+.ucn-flow {
+  position: relative;
+  margin: clamp(56px, 8vw, 88px) auto 0;
+  max-width: 1080px;
+}
+
+/* SOURCES ROW — 4 conversation mini-cards */
+.ucn-sources {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.ucn-src {
+  position: relative;
+  padding: 18px 18px 14px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 12px 30px -18px rgba(0,0,0,0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 168px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.ucn-src:hover { transform: translateY(-3px); box-shadow: 0 24px 44px -20px rgba(0,0,0,0.18); }
+.ucn-src-tag {
+  align-self: flex-start;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.06);
+  color: rgba(0,0,0,0.6);
+}
+.ucn-src-lime   { border-color: rgba(197,233,74,0.4);  }
+.ucn-src-lime   .ucn-src-tag { background: rgba(197,233,74,0.28); color: #556a10; }
+.ucn-src-orange { border-color: rgba(255,165,61,0.42); }
+.ucn-src-orange .ucn-src-tag { background: rgba(255,165,61,0.2);  color: #b56b12; }
+.ucn-src-coral  { border-color: rgba(254,94,50,0.35);  }
+.ucn-src-coral  .ucn-src-tag { background: rgba(254,94,50,0.14);  color: #b23616; }
+.ucn-src-lilac  { border-color: rgba(200,139,196,0.42);}
+.ucn-src-lilac  .ucn-src-tag { background: rgba(236,187,233,0.28); color: #6b1e60; }
+
+.ucn-src-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.ucn-src-msg,
+.ucn-src-alert {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.ucn-src-msg.them { background: rgba(254,94,50,0.06); }
+.ucn-src-msg p, .ucn-src-alert p { margin: 0; font-size: 12.5px; line-height: 1.45; color: var(--dark); }
+.ucn-src-avatar {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: linear-gradient(135deg, #fe5e32, #ffa53d);
+  color: #fff;
+  display: grid; place-items: center;
+  font-size: 11px; font-weight: 700;
+  flex-shrink: 0;
+}
+.ucn-src-time { display: block; margin-top: 4px; font-size: 10.5px; color: rgba(0,0,0,0.4); letter-spacing: 0.02em; }
+.ucn-src-alert-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245,158,11,0.18);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+.ucn-src-label {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--dark);
+  padding-top: 6px;
+  border-top: 1px dashed rgba(0,0,0,0.1);
+}
+
+/* CONVERGING LINES */
+.ucn-lines {
+  width: 100%;
+  height: 60px;
+  margin: 8px 0;
+}
+.ucn-lines svg { width: 100%; height: 100%; display: block; }
+
+/* EVIDENCE RECORD — central artifact */
+.ucn-record {
+  position: relative;
+  padding: 26px 30px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #fff 0%, #fff8f4 100%);
+  border: 1.5px solid rgba(254,94,50,0.35);
+  box-shadow:
+    0 30px 60px -20px rgba(254,94,50,0.28),
+    0 12px 28px -14px rgba(0,0,0,0.15);
+  max-width: 720px;
+  margin: 0 auto;
+}
+.ucn-record::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 22px 0 0 22px;
+  background: linear-gradient(180deg, #fe5e32, #ffa53d);
+}
+.ucn-record-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.ucn-record-eyebrow {
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.5);
+  font-weight: 600;
+  display: block;
+}
+.ucn-record-title {
+  margin: 6px 0 0;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--dark);
+}
+.ucn-record-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(34,197,94,0.1);
+  color: #16a34a;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.ucn-record-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,0.7); }
+.ucn-record-meta {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed rgba(0,0,0,0.08);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(0,0,0,0.6);
+}
+.ucn-record-meta strong { color: var(--dark); font-weight: 600; }
+.ucn-record-meta .dot { color: rgba(0,0,0,0.25); }
+
+/* CLAIMS & DISPUTES OUTCOME */
+.ucn-claims {
+  margin: 24px auto 0;
+  max-width: 720px;
+  padding: 24px 28px;
+  border-radius: 20px;
+  background: linear-gradient(100deg, rgba(197,233,74,0.16) 0%, rgba(255,165,61,0.2) 45%, rgba(236,187,233,0.22) 100%);
+  border: 1px solid rgba(254,94,50,0.28);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: center;
+}
+.ucn-claims-arrow {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, #fe5e32, #ffa53d);
+  color: #fff;
+  box-shadow: 0 8px 20px -6px rgba(254,94,50,0.5);
+  flex-shrink: 0;
+}
+.ucn-claims-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.ucn-claims-badge {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 700;
+}
+.ucn-claims-title {
+  margin: 0;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--dark);
+}
+.ucn-claims-desc {
+  margin: 8px 0 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(0,0,0,0.68);
+}
+
+.ucn-cta-wrap { margin-top: 44px; text-align: center; }
+.ucn-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 26px; border-radius: 999px;
+  background: var(--dark); color: #fff;
+  text-decoration: none; font-weight: 500; font-size: 15px;
+  transition: background .2s ease;
+}
+.ucn-cta:hover { background: var(--orange); }
+
+@media (max-width: 900px) {
+  .ucn-sources { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .ucn-lines { display: none; }
+  .ucn-record { margin-top: 24px; }
+  .ucn-claims { grid-template-columns: 1fr; gap: 12px; text-align: left; }
+  .ucn-claims-arrow { width: 40px; height: 40px; }
+}
+@media (max-width: 500px) {
+  .ucn-sources { grid-template-columns: 1fr; }
+}

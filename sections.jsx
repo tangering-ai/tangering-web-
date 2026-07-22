@@ -1839,7 +1839,161 @@ function WhyItMatters({ t }) {
   );
 }
 
+// New UseCases — "conversation types → single evidence record → claims outcome".
+// A concept-first composition, not a card list.
 function UseCases({ t }) {
+  const es = isEsLang();
+  const sources = [
+    { key: "sched",   label: t.uc.i1t, tag: es ? "Voz" : "Voice",     accent: "lime" },
+    { key: "wismo",   label: t.uc.i2t, tag: "WhatsApp",              accent: "orange" },
+    { key: "excep",   label: t.uc.i3t, tag: es ? "Voz + Chat" : "Voice + Chat", accent: "coral" },
+    { key: "support", label: t.uc.i5t, tag: "SMS · WhatsApp",         accent: "lilac" },
+  ];
+  return (
+    <section className="usecases uc-new" id="cases" data-screen-label="05 Use cases">
+      <div className="container">
+
+        {/* Head */}
+        <div className="ucn-head">
+          <FadeUp>
+            <div className="eyebrow ucn-eyebrow">
+              <span className="pulse"></span>
+              {t.uc.eyebrow}
+            </div>
+          </FadeUp>
+          <FadeUp delay={100}>
+            <h2 className="ucn-h2">
+              <WordReveal>{t.uc.h2a}</WordReveal>{' '}
+              <em><WordReveal delay={220}>{t.uc.h2b}</WordReveal></em>
+            </h2>
+          </FadeUp>
+          <FadeUp delay={200}>
+            <p className="lead ucn-intro">{t.uc.intro}</p>
+          </FadeUp>
+        </div>
+
+        {/* Visual flow: 4 sources → 1 evidence record → claims outcome */}
+        <div className="ucn-flow">
+
+          {/* Row of 4 conversation sources */}
+          <div className="ucn-sources">
+            {sources.map((s, i) => (
+              <FadeUp key={s.key} delay={140 + i * 90}>
+                <div className={`ucn-src ucn-src-${s.accent}`}>
+                  <div className="ucn-src-tag">{s.tag}</div>
+                  <div className="ucn-src-body">
+                    {s.key === "sched" && (
+                      <div className="ucn-src-msg">
+                        <span className="ucn-src-avatar">S</span>
+                        <div>
+                          <p>{es ? "Hola María, confirmamos tu entrega hoy 3–5 pm en 742 Elm Street." : "Hi Maria, confirming delivery today 3–5 pm at 742 Elm Street."}</p>
+                          <span className="ucn-src-time">02:14 pm · #4521</span>
+                        </div>
+                      </div>
+                    )}
+                    {s.key === "wismo" && (
+                      <div className="ucn-src-msg them">
+                        <div>
+                          <p>{es ? "¿Dónde está mi pedido?" : "Where's my order?"}</p>
+                          <span className="ucn-src-time">03:02 pm · #4521</span>
+                        </div>
+                      </div>
+                    )}
+                    {s.key === "excep" && (
+                      <div className="ucn-src-alert">
+                        <span className="ucn-src-alert-dot" aria-hidden="true"></span>
+                        <div>
+                          <p><strong>{es ? "Excepción" : "Exception"}</strong> — {es ? "Cliente no ubicable · reagendado" : "Unreachable customer · rescheduled"}</p>
+                          <span className="ucn-src-time">03:47 pm · #4521</span>
+                        </div>
+                      </div>
+                    )}
+                    {s.key === "support" && (
+                      <div className="ucn-src-msg">
+                        <span className="ucn-src-avatar">S</span>
+                        <div>
+                          <p>{es ? "Encuesta enviada. Rating: 5★" : "Survey sent. Rating: 5★"}</p>
+                          <span className="ucn-src-time">05:30 pm · #4521</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="ucn-src-label">{s.label}</div>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+
+          {/* Converging arrows */}
+          <div className="ucn-lines" aria-hidden="true">
+            <svg viewBox="0 0 600 80" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="ucn-line-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="rgba(0,0,0,0.15)"/>
+                  <stop offset="100%" stopColor="rgba(254,94,50,0.5)"/>
+                </linearGradient>
+              </defs>
+              {[75, 225, 375, 525].map((x, i) => (
+                <path key={i} d={`M${x},0 C${x},40 300,40 300,80`} fill="none" stroke="url(#ucn-line-grad)" strokeWidth="1.5" strokeDasharray="3 4"/>
+              ))}
+            </svg>
+          </div>
+
+          {/* Evidence record — the central artifact */}
+          <FadeUp delay={520}>
+            <div className="ucn-record">
+              <div className="ucn-record-head">
+                <div className="ucn-record-title-wrap">
+                  <span className="ucn-record-eyebrow">{es ? "Registro de evidencia" : "Evidence record"}</span>
+                  <h3 className="ucn-record-title">#4521 · {es ? "María González" : "Maria Gonzalez"}</h3>
+                </div>
+                <div className="ucn-record-status">
+                  <span className="ucn-record-dot"></span>
+                  {es ? "Certificado · listo para disputar" : "Certified · dispute-ready"}
+                </div>
+              </div>
+              <div className="ucn-record-meta">
+                <span><strong>4</strong> {es ? "conversaciones" : "conversations"}</span>
+                <span className="dot" aria-hidden="true">·</span>
+                <span><strong>1</strong> {es ? "tracking number" : "tracking number"}</span>
+                <span className="dot" aria-hidden="true">·</span>
+                <span>{es ? "Timestamps completos" : "Full timestamps"}</span>
+                <span className="dot" aria-hidden="true">·</span>
+                <span>{es ? "Transcripciones exportables" : "Exportable transcripts"}</span>
+              </div>
+            </div>
+          </FadeUp>
+
+          {/* Downstream outcome: Claims & disputes as the payoff */}
+          <FadeUp delay={640}>
+            <div className="ucn-claims">
+              <div className="ucn-claims-arrow" aria-hidden="true">
+                <svg viewBox="0 0 40 40" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6v28M10 22l10 12 10-12"/></svg>
+              </div>
+              <div className="ucn-claims-body">
+                <div className="ucn-claims-top">
+                  <span className="ucn-claims-badge">{t.uc.heroBadge}</span>
+                  <h3 className="ucn-claims-title">{t.uc.i4t}</h3>
+                </div>
+                <p className="ucn-claims-desc">{t.uc.i4d}</p>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+
+        <FadeUp delay={720}>
+          <div className="ucn-cta-wrap">
+            <a href="/use-cases" className="ucn-cta">
+              {t.uc.ctaAll} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+function UseCasesV2Legacy({ t }) {
   // Small inline SVG icons — no font dependency, warm brand tone
   const IconCalendar = () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
