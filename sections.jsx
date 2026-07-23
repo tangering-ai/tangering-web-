@@ -359,16 +359,6 @@ function Solution({ t }) {
           ))}
         </div>
 
-        <FadeUp delay={200}>
-          <div className="ev-banner ev-banner-v3">
-            <p className="ev-banner-lead">
-              {t.solution.bannerA} {t.solution.bannerB}
-            </p>
-            <p className="ev-banner-punch">
-              {t.solution.bannerCPre} <span className="ev-banner-money">{t.solution.bannerCAmount}</span> {t.solution.bannerCPost}
-            </p>
-          </div>
-        </FadeUp>
       </div>
     </section>
   );
@@ -1821,17 +1811,6 @@ function WhyItMatters({ t }) {
         </FadeUp>
 
         <FadeUp delay={360}>
-          <div className="whyit-banner whyit-banner-quote">
-            <span className="whyit-banner-mark" aria-hidden="true">“</span>
-            <p className="whyit-banner-body">
-              {es
-                ? <>La evidencia para ganar estas disputas nunca ha estado estructurada. <em>Hasta ahora.</em></>
-                : <>The evidence to win these disputes has never been structured. <em>Until now.</em></>}
-            </p>
-          </div>
-        </FadeUp>
-
-        <FadeUp delay={420}>
           <p className="whyit-foot">{t.whyit.foot}</p>
         </FadeUp>
       </div>
@@ -1877,7 +1856,6 @@ function UseCases({ t }) {
                 <img src={it.photo} alt="" loading="lazy" />
               </div>
               <div className="ucc-row-body">
-                <div className="ucc-row-index">0{i + 1} / 05</div>
                 <h3 className="ucc-row-title">
                   {it.title}
                   {it.hero && <span className="ucc-row-badge">{t.uc.heroBadge}</span>}
