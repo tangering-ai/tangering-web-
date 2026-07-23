@@ -1680,8 +1680,9 @@ function SocialProof({ t }) {
   }, []);
 
   const results = [
-    { text: t.proof.t1n, desc: t.proof.t1d, co: t.proof.t1w, color: "#22c55e" },
-    { text: t.proof.t2n, desc: t.proof.t2d, co: t.proof.t2w, color: "#fe5e32" },
+    { text: t.proof.t1n, desc: t.proof.t1d, color: "#22c55e" },
+    { text: t.proof.t2n, desc: t.proof.t2d, color: "#fe5e32" },
+    { text: t.proof.t3n, desc: t.proof.t3d, color: "var(--dark)" },
   ];
 
   return (
@@ -1725,9 +1726,6 @@ function SocialProof({ t }) {
                 </div>
               </FadeUp>
             ))}
-            <FadeUp delay={280}>
-              <div className="proof-attribution">{results[0].co}</div>
-            </FadeUp>
           </div>
 
         </div>
