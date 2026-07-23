@@ -11974,24 +11974,61 @@ section .spine-h1 em {
 }
 
 /* ===========================================================
-   PRODUCT — P2 Spine reminder (one-line pull-quote after hero)
+   PRODUCT — P2 Spine reminder (brand-gradient hero-like band)
    =========================================================== */
 .prod-spine {
-  padding: clamp(56px, 8vw, 96px) 24px;
-  background: #fff;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  padding: clamp(80px, 12vw, 140px) 24px;
+  overflow: hidden;
+  isolation: isolate;
+  border: none;
+  /* Official Tangering brand gradient — same recipe as the home Spine */
+  background:
+    linear-gradient(100deg,
+      #c5e94a 0%,
+      #ffa53d 10%,
+      #fe5e32 50%,
+      #ff7c6e 90%,
+      #ecbbe9 100%);
 }
-.prod-spine-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+/* Brand grain overlay */
+.prod-spine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.16) 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1.4px);
+  background-size: 3px 3px, 4px 4px;
+  background-position: 0 0, 1.5px 1.5px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+.prod-spine-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; text-align: center; }
 .prod-spine-line {
   margin: 0;
   font-family: 'Overused Grotesk', sans-serif;
-  font-size: clamp(22px, 2.8vw, 34px);
-  line-height: 1.25;
-  letter-spacing: -0.02em;
+  font-size: clamp(24px, 3.2vw, 42px);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
   font-weight: 500;
-  color: var(--dark);
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(120,30,10,0.22);
+  max-width: 24ch;
+  margin-left: auto;
+  margin-right: auto;
 }
-.prod-spine-line em { color: var(--orange); font-style: italic; font-weight: 400; }
+.prod-spine-line em {
+  color: #fff;
+  font-style: italic;
+  font-weight: 400;
+  background: linear-gradient(90deg, #fff 0%, #fff5ec 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 /* ===========================================================
    PRODUCT — P9 Platform capabilities (6 grouped cards)
