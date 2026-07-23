@@ -696,18 +696,76 @@ function SecurityCarousel({ items }) {
   );
 }
 
-// Platform — compressed feature grid, replaces Differentiator/HowItWorks/FlowBuilder/VoiceTech/Security on home
+// Platform — bento-style grid with unique visual per feature
 function Platform({ t }) {
+  const VisWave = () => (
+    <div className="pf-vis pf-vis-wave" aria-hidden="true">
+      {Array.from({length: 22}).map((_, i) => <span key={i} style={{animationDelay: `${i * 0.06}s`}}/>)}
+    </div>
+  );
+  const VisPin = () => (
+    <div className="pf-vis pf-vis-pin" aria-hidden="true">
+      <svg viewBox="0 0 200 100" preserveAspectRatio="none">
+        <path d="M 10 70 Q 60 20 100 55 T 190 40" fill="none" stroke="rgba(254,94,50,0.35)" strokeWidth="1.5" strokeDasharray="3 4"/>
+        <circle cx="10" cy="70" r="3" fill="#fe5e32"/>
+        <circle cx="190" cy="40" r="3" fill="#fe5e32"/>
+      </svg>
+      <div className="pf-vis-pin-tag">742 Elm Street · 3–5 PM</div>
+    </div>
+  );
+  const VisOmni = () => (
+    <div className="pf-vis pf-vis-omni" aria-hidden="true">
+      <span className="pf-omni-chip"><span className="material-icons">call</span></span>
+      <span className="pf-omni-chip pf-omni-chip-mid"><span className="material-icons">chat</span></span>
+      <span className="pf-omni-chip"><span className="material-icons">sms</span></span>
+      <span className="pf-omni-chip pf-omni-chip-outer"><span className="material-icons">swap_horiz</span></span>
+    </div>
+  );
+  const VisBuilder = () => (
+    <div className="pf-vis pf-vis-builder" aria-hidden="true">
+      <span className="pf-block pf-block-a">Confirm</span>
+      <span className="pf-arrow">→</span>
+      <span className="pf-block pf-block-b">Reschedule</span>
+      <span className="pf-arrow">→</span>
+      <span className="pf-block pf-block-c">Notify</span>
+      <span className="pf-cursor" aria-hidden="true">✎</span>
+    </div>
+  );
+  const VisSIP = () => (
+    <div className="pf-vis pf-vis-sip" aria-hidden="true">
+      <span className="pf-node">SIP</span>
+      <span className="pf-node-line"></span>
+      <span className="pf-node pf-node-mid">TANGERING</span>
+      <span className="pf-node-line"></span>
+      <span className="pf-node">CRM</span>
+    </div>
+  );
+  const VisDash = () => (
+    <div className="pf-vis pf-vis-dash" aria-hidden="true">
+      <div className="pf-dash-row">
+        <span className="pf-dash-dot"></span>
+        <span className="pf-dash-label">LIVE</span>
+        <span className="pf-dash-val">247 calls</span>
+      </div>
+      <svg viewBox="0 0 200 60" preserveAspectRatio="none" className="pf-dash-chart">
+        <path d="M 0 42 L 30 38 L 55 32 L 85 34 L 115 22 L 145 24 L 175 14 L 200 10" fill="none" stroke="#fe5e32" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M 0 42 L 30 38 L 55 32 L 85 34 L 115 22 L 145 24 L 175 14 L 200 10 L 200 60 L 0 60 Z" fill="url(#pf-grad)"/>
+        <defs><linearGradient id="pf-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="rgba(254,94,50,0.28)"/><stop offset="100%" stopColor="rgba(254,94,50,0)"/></linearGradient></defs>
+      </svg>
+    </div>
+  );
+
   const features = [
-    { title: t.platform.f1t, desc: t.platform.f1d, icon: "record_voice_over" },
-    { title: t.platform.f2t, desc: t.platform.f2d, icon: "local_shipping"    },
-    { title: t.platform.f3t, desc: t.platform.f3d, icon: "hub"               },
-    { title: t.platform.f4t, desc: t.platform.f4d, icon: "smart_toy"         },
-    { title: t.platform.f5t, desc: t.platform.f5d, icon: "cable"             },
-    { title: t.platform.f6t, desc: t.platform.f6d, icon: "insights"          },
+    { title: t.platform.f1t, desc: t.platform.f1d, size: "wide",   Vis: VisWave    },
+    { title: t.platform.f2t, desc: t.platform.f2d, size: "narrow", Vis: VisPin     },
+    { title: t.platform.f3t, desc: t.platform.f3d, size: "narrow", Vis: VisOmni    },
+    { title: t.platform.f4t, desc: t.platform.f4d, size: "wide",   Vis: VisBuilder },
+    { title: t.platform.f5t, desc: t.platform.f5d, size: "narrow", Vis: VisSIP     },
+    { title: t.platform.f6t, desc: t.platform.f6d, size: "narrow", Vis: VisDash    },
   ];
+
   return (
-    <section className="platform" data-screen-label="08 Platform">
+    <section className="platform pf-bento" data-screen-label="08 Platform">
       <div className="container">
         <div className="platform-head">
           <FadeUp>
@@ -720,13 +778,15 @@ function Platform({ t }) {
             </h2>
           </FadeUp>
         </div>
-        <div className="platform-grid">
-          {features.map((f, i) => (
-            <FadeUp key={i} delay={140 + i * 60}>
-              <div className="platform-card">
-                <div className="platform-card-icon"><span className="material-icons">{f.icon}</span></div>
-                <h3 className="platform-card-title">{f.title}</h3>
-                <p className="platform-card-desc">{f.desc}</p>
+        <div className="pf-grid">
+          {features.map(({ Vis, ...f }, i) => (
+            <FadeUp key={i} delay={140 + i * 70}>
+              <div className={`pf-card pf-card-${f.size}`}>
+                <Vis />
+                <div className="pf-card-body">
+                  <h3 className="pf-card-title">{f.title}</h3>
+                  <p className="pf-card-desc">{f.desc}</p>
+                </div>
               </div>
             </FadeUp>
           ))}
