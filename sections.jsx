@@ -1809,6 +1809,17 @@ function WhyItMatters({ t }) {
         </FadeUp>
 
         <FadeUp delay={360}>
+          <div className="whyit-banner whyit-banner-quote">
+            <span className="whyit-banner-mark" aria-hidden="true">“</span>
+            <p className="whyit-banner-body">
+              {es
+                ? <>La evidencia para ganar estas disputas nunca ha estado estructurada. <em>Hasta ahora.</em></>
+                : <>The evidence to win these disputes has never been structured. <em>Until now.</em></>}
+            </p>
+          </div>
+        </FadeUp>
+
+        <FadeUp delay={420}>
           <p className="whyit-foot">{t.whyit.foot}</p>
         </FadeUp>
       </div>
