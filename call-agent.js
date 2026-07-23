@@ -105,6 +105,7 @@
     };
 
     fab.addEventListener('click', open);
+    window.addEventListener('tangering:open-call-agent', open);
     closeBtn.addEventListener('click', close);
     backdrop.addEventListener('click', (e) => { if (e.target === backdrop) close(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !backdrop.hidden) close(); });

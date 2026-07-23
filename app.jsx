@@ -33,11 +33,7 @@ function App() {
       <WhyItMatters t={t} />
       <SocialProof t={t} />
       <UseCases t={t} />
-      <Differentiator t={t} />
-      <HowItWorks t={t} />
-      <FlowBuilder t={t} />
-      <VoiceTech t={t} />
-      <Security t={t} />
+      <Platform t={t} />
       <FinalCTA t={t} />
       <Footer t={t} />
     </>

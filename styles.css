@@ -11769,3 +11769,62 @@ section .spine-h1 em {
   .ucc-row-title { font-size: clamp(22px, 6vw, 30px); }
   .ucc-row-rule { margin: 16px 0; }
 }
+
+/* ===========================================================
+   PLATFORM — compressed feature grid on the home page
+   =========================================================== */
+.platform {
+  padding: clamp(96px, 14vw, 140px) 0;
+  background: #f5f5f7;
+}
+.platform-head { max-width: 780px; margin: 0 auto clamp(48px, 6vw, 72px); text-align: center; }
+.platform-eyebrow { display: inline-flex; }
+.platform-h2 { margin: 24px auto 0 !important; max-width: 22ch; }
+.platform-h2 em { color: var(--orange); font-style: italic; font-weight: 400; }
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.platform-grid > * { display: flex; height: 100%; }
+.platform-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 28px 26px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px -18px rgba(0,0,0,0.08);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.platform-card:hover { transform: translateY(-3px); box-shadow: 0 24px 40px -18px rgba(0,0,0,0.12); }
+.platform-card-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, #fe5e32 0%, #ffa53d 100%);
+  box-shadow: 0 8px 18px -6px rgba(254,94,50,0.35), inset 0 -3px 6px rgba(120,20,10,0.15), inset 0 3px 6px rgba(255,255,255,0.35);
+  margin-bottom: 20px;
+}
+.platform-card-icon .material-icons { font-size: 22px; }
+.platform-card-title {
+  margin: 0;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--dark);
+}
+.platform-card-desc {
+  margin: 8px 0 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(0,0,0,0.62);
+}
+@media (max-width: 900px) { .platform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .platform-grid { grid-template-columns: 1fr; } }

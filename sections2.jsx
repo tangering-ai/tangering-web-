@@ -696,4 +696,44 @@ function SecurityCarousel({ items }) {
   );
 }
 
-Object.assign(window, { Differentiator, HowItWorks, FlowBuilder, VoiceTech, Security });
+// Platform — compressed feature grid, replaces Differentiator/HowItWorks/FlowBuilder/VoiceTech/Security on home
+function Platform({ t }) {
+  const features = [
+    { title: t.platform.f1t, desc: t.platform.f1d, icon: "record_voice_over" },
+    { title: t.platform.f2t, desc: t.platform.f2d, icon: "local_shipping"    },
+    { title: t.platform.f3t, desc: t.platform.f3d, icon: "hub"               },
+    { title: t.platform.f4t, desc: t.platform.f4d, icon: "smart_toy"         },
+    { title: t.platform.f5t, desc: t.platform.f5d, icon: "cable"             },
+    { title: t.platform.f6t, desc: t.platform.f6d, icon: "insights"          },
+  ];
+  return (
+    <section className="platform" data-screen-label="08 Platform">
+      <div className="container">
+        <div className="platform-head">
+          <FadeUp>
+            <div className="eyebrow platform-eyebrow"><span className="pulse"></span>{t.platform.eyebrow}</div>
+          </FadeUp>
+          <FadeUp delay={100}>
+            <h2 className="platform-h2">
+              <WordReveal>{t.platform.h2a}</WordReveal>{' '}
+              <em><WordReveal delay={220}>{t.platform.h2b}</WordReveal></em>
+            </h2>
+          </FadeUp>
+        </div>
+        <div className="platform-grid">
+          {features.map((f, i) => (
+            <FadeUp key={i} delay={140 + i * 60}>
+              <div className="platform-card">
+                <div className="platform-card-icon"><span className="material-icons">{f.icon}</span></div>
+                <h3 className="platform-card-title">{f.title}</h3>
+                <p className="platform-card-desc">{f.desc}</p>
+              </div>
+            </FadeUp>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, { Differentiator, HowItWorks, FlowBuilder, VoiceTech, Security, Platform });

@@ -144,10 +144,10 @@ function FinalCTA({ t }) {
                 {t.cta.b1}
                 <span className="material-icons">arrow_forward</span>
               </a>
-              <a href="#cases" className="sub-banner-secondary">
+              <button type="button" className="sub-banner-secondary" onClick={() => window.dispatchEvent(new CustomEvent("tangering:open-call-agent"))}>
                 {t.cta.b2}
-                <span className="material-icons">arrow_outward</span>
-              </a>
+                <span className="material-icons">graphic_eq</span>
+              </button>
             </div>
             <p className="sub-banner-sub">{t.cta.sub}</p>
           </div>
