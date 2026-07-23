@@ -11516,20 +11516,15 @@ section .spine-h1 em {
 /* ===========================================================
    USE CASES v6 — reference layout: real photo left + editorial text right
    =========================================================== */
-.uc-clean .ucc-list {
+.uc-clean .ucc-list.ucc-stack {
   max-width: 1180px !important;
-  display: flex !important;
-  flex-direction: column;
-  gap: 0 !important;
-  padding-bottom: 40vh;
+  margin: 0 auto !important;
+  display: block !important;
+  padding-bottom: 20vh;
 }
-.uc-clean .ucc-list > * {
-  display: block;
-  position: relative;
-  min-height: 80vh;
-  margin-bottom: 0;
-}
-.uc-clean .ucc-list > *:last-child { min-height: auto; }
+/* Every card is a direct sibling — they share the same sticky container so they
+   stack visually (later siblings paint over earlier ones as you scroll). */
+.ucc-stack > .ucc-row + .ucc-row { margin-top: 60vh; }
 
 /* Sticky-stacked cards — each row pins as the next one scrolls over it */
 .ucc-row {

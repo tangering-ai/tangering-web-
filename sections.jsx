@@ -1869,27 +1869,26 @@ function UseCases({ t }) {
           </FadeUp>
         </div>
 
-        <div className="ucc-list">
+        <div className="ucc-list ucc-stack">
           {items.map((it, i) => (
-            <FadeUp key={i} delay={100 + i * 90}>
-              <div
-                className={`ucc-row ${i % 2 === 1 ? "is-flip" : ""} ${it.hero ? "is-hero" : ""}`}
-                style={{ "--ci": i, top: `calc(96px + ${i * 14}px)` }}
-              >
-                <div className="ucc-row-photo">
-                  <img src={it.photo} alt="" loading="lazy" />
-                </div>
-                <div className="ucc-row-body">
-                  <div className="ucc-row-index">0{i + 1} / 05</div>
-                  <h3 className="ucc-row-title">
-                    {it.title}
-                    {it.hero && <span className="ucc-row-badge">{t.uc.heroBadge}</span>}
-                  </h3>
-                  <div className="ucc-row-rule"></div>
-                  <p className="ucc-row-desc">{it.desc}</p>
-                </div>
+            <div
+              key={i}
+              className={`ucc-row ${i % 2 === 1 ? "is-flip" : ""} ${it.hero ? "is-hero" : ""}`}
+              style={{ "--i": i, top: `calc(96px + ${i * 16}px)` }}
+            >
+              <div className="ucc-row-photo">
+                <img src={it.photo} alt="" loading="lazy" />
               </div>
-            </FadeUp>
+              <div className="ucc-row-body">
+                <div className="ucc-row-index">0{i + 1} / 05</div>
+                <h3 className="ucc-row-title">
+                  {it.title}
+                  {it.hero && <span className="ucc-row-badge">{t.uc.heroBadge}</span>}
+                </h3>
+                <div className="ucc-row-rule"></div>
+                <p className="ucc-row-desc">{it.desc}</p>
+              </div>
+            </div>
           ))}
         </div>
 
