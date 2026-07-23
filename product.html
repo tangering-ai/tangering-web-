@@ -6,8 +6,8 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=202606303" />
-  <link rel="stylesheet" href="hero-v2.css?v=202606303" />
+  <link rel="stylesheet" href="styles.css?v=202606304" />
+  <link rel="stylesheet" href="hero-v2.css?v=202606304" />
 </head>
 <body>
 <div class="prod-page">
@@ -208,8 +208,8 @@
     </div>
   </section>
 
-  <!-- P8 · STATS strip (de-identified) -->
-  <section class="prod-section prod-stats" data-screen-label="P8 Stats">
+  <!-- P8 · STATS lockup (de-identified, focal-number design) -->
+  <section class="prod-section prod-stats prod-stats-v2" data-screen-label="P8 Stats">
     <div class="prod-section-head">
       <span class="eyebrow"><span class="pulse"></span> <span data-i18n="st.eyebrow">In production</span></span>
       <h2 data-i18n="st.h2">
@@ -217,13 +217,46 @@
         <em>in production.</em>
       </h2>
     </div>
-    <div class="about-stats prod-stats-grid">
-      <div class="stat"><p class="v accent">80.8%</p><p class="l" data-i18n="st.s1">first-attempt delivery success</p></div>
-      <div class="stat"><p class="v accent">+2.8 pts</p><p class="l" data-i18n="st.s2">lift over baseline</p></div>
-      <div class="stat"><p class="v accent">&lt;90 days</p><p class="l" data-i18n="st.s3">measurable impact</p></div>
+
+    <div class="ps-lockup">
+      <!-- Focal: 80.8% hero -->
+      <div class="ps-focal">
+        <div class="ps-focal-live">
+          <span class="ps-focal-live-dot"></span>
+          <span data-i18n="st.live">LIVE IN PRODUCTION</span>
+        </div>
+        <div class="ps-focal-num">80.8<span class="ps-focal-num-unit">%</span></div>
+        <div class="ps-focal-bar" aria-hidden="true"><span style="width:80.8%"></span></div>
+        <div class="ps-focal-label" data-i18n="st.s1">First-attempt delivery success</div>
+      </div>
+
+      <!-- Side: supporting stats -->
+      <div class="ps-side">
+        <div class="ps-side-item">
+          <div class="ps-side-num">+2.8 <span class="ps-side-unit">pts</span></div>
+          <div class="ps-side-label" data-i18n="st.s2">Lift over baseline</div>
+          <div class="ps-side-bar" aria-hidden="true"><span style="width:62%"></span></div>
+          <div class="ps-side-foot" data-i18n="st.s2f">Every point is a redelivery they never had to pay for.</div>
+        </div>
+        <div class="ps-side-divider" aria-hidden="true"></div>
+        <div class="ps-side-item">
+          <div class="ps-side-num">&lt;90 <span class="ps-side-unit">days</span></div>
+          <div class="ps-side-label" data-i18n="st.s3">To measurable impact</div>
+          <div class="ps-side-timeline" aria-hidden="true">
+            <span class="ps-tl-dot"></span>
+            <span class="ps-tl-line"></span>
+            <span class="ps-tl-dot ps-tl-dot-mid"></span>
+            <span class="ps-tl-line"></span>
+            <span class="ps-tl-dot ps-tl-dot-end"></span>
+          </div>
+          <div class="ps-side-foot" data-i18n="st.s3f">Kickoff · integration · first live campaign.</div>
+        </div>
+      </div>
     </div>
-    <p class="prod-stats-attribution" data-i18n="st.attr">
-      A leading last-mile carrier in Latin America. Live in production.
+
+    <p class="prod-stats-attribution ps-attr" data-i18n="st.attr">
+      <span class="ps-attr-mark" aria-hidden="true"></span>
+      A leading last-mile carrier in Latin America.
     </p>
   </section>
 
@@ -613,10 +646,13 @@
 
     "st.eyebrow": "En producción",
     "st.h2": "Lo que ven los operadores<br/><em>en producción.</em>",
-    "st.s1": "de éxito de entrega al primer intento",
-    "st.s2": "sobre la línea base",
-    "st.s3": "impacto medible",
-    "st.attr": "Un operador líder de última milla en Latinoamérica. En producción.",
+    "st.live": "EN PRODUCCIÓN AHORA",
+    "st.s1": "Éxito de entrega al primer intento",
+    "st.s2": "Sobre la línea base",
+    "st.s2f": "Cada punto es una reentrega que dejaron de pagar.",
+    "st.s3": "Hasta impacto medible",
+    "st.s3f": "Kickoff · integración · primera campaña en vivo.",
+    "st.attr": "Un operador líder de última milla en Latinoamérica.",
 
     "pc.eyebrow": "Capacidades de plataforma",
     "pc.h2": "Bajo <em>el capó.</em>",
@@ -751,9 +787,9 @@
 })();
 </script>
 
-  <script src="call-agent.js?v=202606303"></script>
-  <script src="carousel-arrows.js?v=202606303"></script>
-  <script src="nav-mobile.js?v=202606303"></script>
-  <script src="video-lazy.js?v=202606303"></script>
+  <script src="call-agent.js?v=202606304"></script>
+  <script src="carousel-arrows.js?v=202606304"></script>
+  <script src="nav-mobile.js?v=202606304"></script>
+  <script src="video-lazy.js?v=202606304"></script>
 </body>
 </html>
