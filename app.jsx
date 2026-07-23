@@ -30,8 +30,8 @@ function App() {
       <Problem t={t} />
       <Spine t={t} />
       <Solution t={t} />
-      <SocialProof t={t} />
       <WhyItMatters t={t} />
+      <SocialProof t={t} />
       <UseCases t={t} />
       <Differentiator t={t} />
       <HowItWorks t={t} />
