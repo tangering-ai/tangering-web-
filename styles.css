@@ -11391,6 +11391,45 @@ section .spine-h1 em {
 .ucc-h2 em { color: var(--orange); font-style: italic; font-weight: 400; }
 .ucc-intro { margin: 20px auto 0; max-width: 56ch; color: var(--muted); text-align: center; }
 
+/* Editorial head — left-aligned title, intro in a sibling column */
+.ucc-head-editorial {
+  max-width: 1180px !important;
+  margin: 0 auto clamp(56px, 8vw, 88px) !important;
+  text-align: left !important;
+  padding: 0 clamp(0px, 2vw, 24px);
+}
+.ucc-head-editorial .ucc-eyebrow { display: inline-flex; margin-bottom: 32px; }
+.ucc-head-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: end;
+}
+.ucc-head-editorial .ucc-h2 {
+  margin: 0 !important;
+  max-width: none !important;
+  text-align: left;
+  line-height: 1.02 !important;
+  letter-spacing: -0.035em !important;
+}
+.ucc-head-editorial .ucc-h2-line-a,
+.ucc-head-editorial .ucc-h2-line-b { display: block; }
+.ucc-head-editorial .ucc-h2-line-b { margin-top: 8px; }
+.ucc-head-editorial .ucc-intro {
+  margin: 0 !important;
+  max-width: 44ch;
+  text-align: left;
+  padding-bottom: 8px;
+  font-size: 16.5px;
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .ucc-head-grid { grid-template-columns: 1fr; gap: 24px; align-items: start; }
+  .ucc-head-editorial .ucc-eyebrow { margin-bottom: 20px; }
+  .ucc-head-editorial .ucc-intro { padding-bottom: 0; }
+}
+
 .ucc-list {
   max-width: 900px;
   margin: clamp(56px, 8vw, 88px) auto 0;
