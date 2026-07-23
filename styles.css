@@ -12029,8 +12029,21 @@ section .spine-h1 em {
 }
 
 /* ===========================================================
-   PRODUCT — P9 Platform capabilities (6 grouped cards)
+   PRODUCT — P8 stats + P9 Platform capabilities read as ONE region
    =========================================================== */
+/* Match the stats strip background to the platcap so they visually continue */
+.prod-page .prod-stats {
+  background: #f5f5f7;
+  padding-top: clamp(80px, 12vw, 140px);
+  padding-bottom: clamp(40px, 5vw, 56px);
+}
+.prod-page .prod-stats + .platcap {
+  padding-top: clamp(40px, 5vw, 56px);
+  border-top: 1px dashed rgba(0,0,0,0.1);
+  margin-top: 0;
+}
+.prod-page .prod-stats-attribution { margin-bottom: 0; }
+
 .platcap { padding: clamp(80px, 12vw, 140px) 0; background: #f5f5f7; }
 .platcap-grid {
   display: grid;
