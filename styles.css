@@ -11575,31 +11575,33 @@ section .spine-h1 em {
 }
 .ucc-cta:hover { background: var(--orange); }
 
-/* Outro — closes the story: rule + subtitle + link, all together */
+/* Outro — closes the story: rule + subtitle + link, right after the last card */
 .ucc-outro {
   position: relative;
-  margin-top: 24vh;
-  padding: clamp(48px, 6vw, 72px) 0 0;
+  margin: 8vh auto 0;
+  padding: clamp(32px, 4vw, 56px) 0 0;
   text-align: center;
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 820px;
 }
 .ucc-outro-rule {
-  width: 48px;
+  width: 64px;
   height: 1px;
-  background: rgba(0,0,0,0.18);
-  margin: 0 auto 24px;
+  background: rgba(0,0,0,0.2);
+  margin: 0 auto 32px;
 }
 .ucc-outro-lead {
-  margin: 0 auto 20px;
+  margin: 0 auto 28px;
   font-family: 'Overused Grotesk', sans-serif;
-  font-size: clamp(18px, 2vw, 24px);
-  line-height: 1.35;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.15;
   color: var(--dark);
   font-weight: 500;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.025em;
   max-width: 22ch;
+}
+.ucc-outro .ucc-outro-link {
+  font-size: 17px;
+  padding: 8px 4px;
 }
 .ucc-outro-link {
   display: inline-flex;
