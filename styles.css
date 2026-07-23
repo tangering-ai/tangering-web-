@@ -11391,7 +11391,36 @@ section .spine-h1 em {
 .ucc-h2 em { color: var(--orange); font-style: italic; font-weight: 400; }
 .ucc-intro { margin: 20px auto 0; max-width: 56ch; color: var(--muted); text-align: center; }
 
-/* Editorial head — left-aligned title, intro in a sibling column */
+/* Centered head — title and subtitle each on one line, generous but tight */
+.ucc-head-center {
+  max-width: 1080px !important;
+  margin: 0 auto clamp(48px, 6vw, 72px) !important;
+  text-align: center !important;
+  padding: 0 clamp(0px, 2vw, 24px);
+}
+.ucc-head-center .ucc-eyebrow { justify-content: center; margin-bottom: 24px; }
+.ucc-h2-single {
+  margin: 0 !important;
+  max-width: none !important;
+  text-align: center !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.025em !important;
+  white-space: nowrap;
+}
+.ucc-intro-single {
+  margin: 18px auto 0 !important;
+  text-align: center !important;
+  color: var(--muted);
+  font-size: 16.5px;
+  line-height: 1.5;
+  max-width: none;
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .ucc-h2-single, .ucc-intro-single { white-space: normal; }
+}
+
+/* Editorial head (legacy left-aligned split, unused now) */
 .ucc-head-editorial {
   max-width: 1180px !important;
   margin: 0 auto clamp(56px, 8vw, 88px) !important;
@@ -11563,20 +11592,20 @@ section .spine-h1 em {
 }
 /* Every card is a direct sibling — they share the same sticky container so they
    stack visually (later siblings paint over earlier ones as you scroll). */
-.ucc-stack > .ucc-row + .ucc-row { margin-top: 60vh; }
+.ucc-stack > .ucc-row + .ucc-row { margin-top: 42vh; }
 
 /* Sticky-stacked cards — each row pins as the next one scrolls over it */
 .ucc-row {
   position: sticky;
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: clamp(40px, 6vw, 88px);
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(24px, 3.5vw, 48px);
   align-items: center;
-  padding: clamp(28px, 4vw, 48px) !important;
-  border-radius: 26px;
+  padding: clamp(18px, 2.4vw, 28px) !important;
+  border-radius: 20px;
   background: #fff !important;
   border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 40px 80px -30px rgba(0,0,0,0.22), 0 14px 30px -14px rgba(0,0,0,0.1);
+  box-shadow: 0 32px 60px -28px rgba(0,0,0,0.2), 0 10px 24px -12px rgba(0,0,0,0.08);
   transform-origin: center top;
 }
 .ucc-row.is-flip { direction: rtl; }
@@ -11584,11 +11613,11 @@ section .spine-h1 em {
 
 .ucc-row-photo {
   position: relative;
-  aspect-ratio: 4 / 5;
-  border-radius: 20px;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
   overflow: hidden;
   background: #f2f2f2;
-  box-shadow: 0 24px 50px -22px rgba(0,0,0,0.28);
+  box-shadow: 0 18px 36px -18px rgba(0,0,0,0.22);
 }
 .ucc-row-photo img {
   width: 100%;

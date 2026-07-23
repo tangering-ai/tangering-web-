@@ -1851,24 +1851,22 @@ function UseCases({ t }) {
   return (
     <section className="usecases uc-clean" id="cases" data-screen-label="05 Use cases">
       <div className="container">
-        <div className="ucc-head ucc-head-editorial">
+        <div className="ucc-head ucc-head-center">
           <FadeUp>
             <div className="eyebrow ucc-eyebrow">
               <span className="pulse"></span>
               {t.uc.eyebrow}
             </div>
           </FadeUp>
-          <div className="ucc-head-grid">
-            <FadeUp delay={100}>
-              <h2 className="ucc-h2">
-                <span className="ucc-h2-line-a"><WordReveal>{t.uc.h2a}</WordReveal></span>
-                <span className="ucc-h2-line-b"><em><WordReveal delay={220}>{t.uc.h2b}</WordReveal></em></span>
-              </h2>
-            </FadeUp>
-            <FadeUp delay={200}>
-              <p className="lead ucc-intro">{t.uc.intro}</p>
-            </FadeUp>
-          </div>
+          <FadeUp delay={100}>
+            <h2 className="ucc-h2 ucc-h2-single">
+              <WordReveal>{t.uc.h2a}</WordReveal>{' '}
+              <em><WordReveal delay={220}>{t.uc.h2b}</WordReveal></em>
+            </h2>
+          </FadeUp>
+          <FadeUp delay={200}>
+            <p className="ucc-intro ucc-intro-single">{t.uc.intro}</p>
+          </FadeUp>
         </div>
 
         <div className="ucc-list ucc-stack">
