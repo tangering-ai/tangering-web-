@@ -760,17 +760,17 @@ function RescheduleView() {
 // ── Step 4: Courier WhatsApp notification ──────────────────────
 function getCourierMsgs(es) {
   return es ? [
-    { delay: 600,  side: "out", text: "Hola 👋 Tienes una entrega lista — Pedido #4521", time: "3:41" },
+    { delay: 600,  side: "out", text: "Hola 👋 Tienes una entrega lista · Pedido #4521", time: "3:41" },
     { delay: 1900, side: "in",  text: "Listo, ¿cuál es la dirección?", time: "3:41" },
-    { delay: 3100, side: "out", text: "📍 Calle 100 #20-30, Bogotá — apto 3B", time: "3:42" },
+    { delay: 3100, side: "out", text: "📍 Calle 100 #20-30, Bogotá · apto 3B", time: "3:42" },
     { delay: 4300, side: "out", text: "🕐 Ventana de hoy: 3:00 – 5:00 PM", time: "3:42" },
     { delay: 5500, side: "out", text: "⚠️ Entrada lateral, timbre 3B", time: "3:42" },
     { delay: 6900, side: "in",  text: "Recibido, ya voy en camino 👍", time: "3:43" },
     { delay: 8200, side: "out", text: "✅ El cliente acaba de confirmar la entrega.", time: "3:43", confirm: true },
   ] : [
-    { delay: 600,  side: "out", text: "Hey 👋 New delivery ready — Order #4521", time: "3:41" },
+    { delay: 600,  side: "out", text: "Hey 👋 New delivery ready · Order #4521", time: "3:41" },
     { delay: 1900, side: "in",  text: "Got it, what's the address?", time: "3:41" },
-    { delay: 3100, side: "out", text: "📍 742 Elm Street, San Francisco — apt 3B", time: "3:42" },
+    { delay: 3100, side: "out", text: "📍 742 Elm Street, San Francisco · apt 3B", time: "3:42" },
     { delay: 4300, side: "out", text: "🕐 Today's window: 3:00 – 5:00 PM", time: "3:42" },
     { delay: 5500, side: "out", text: "⚠️ Side entrance on Larkin St, ring 3B", time: "3:42" },
     { delay: 6900, side: "in",  text: "Got it, on my way 👍", time: "3:43" },
@@ -1954,7 +1954,7 @@ function UseCasesV2Legacy({ t }) {
             <FadeUp delay={280}>
               <div className="uch-live">
                 <span className="uch-live-dot"></span>
-                {es ? "En vivo — corriendo con operadores líderes" : "Live — running with leading carriers"}
+                {es ? "En vivo · corriendo con operadores líderes" : "Live · running with leading carriers"}
               </div>
             </FadeUp>
           </div>
