@@ -1819,11 +1819,11 @@ function WhyItMatters({ t }) {
 // UseCases — editorial rows with real photos on the left + title/rule/description on the right
 function UseCases({ t }) {
   const items = [
-    { title: t.uc.i1t, desc: t.uc.i1d, photo: "assets/usecases/scheduling.jpg", tone: "lime"   },
-    { title: t.uc.i2t, desc: t.uc.i2d, photo: "assets/usecases/wismo.jpg",      tone: "orange" },
-    { title: t.uc.i3t, desc: t.uc.i3d, photo: "assets/usecases/exception.jpg",  tone: "coral"  },
-    { title: t.uc.i4t, desc: t.uc.i4d, photo: "assets/usecases/claims.jpg", hero: true, tone: "hero" },
-    { title: t.uc.i5t, desc: t.uc.i5d, photo: "assets/usecases/support.jpg",    tone: "lilac"  },
+    { title: t.uc.i1t, desc: t.uc.i1d, photo: "assets/usecases/scheduling.jpg", tone: "g1" },
+    { title: t.uc.i2t, desc: t.uc.i2d, photo: "assets/usecases/wismo.jpg",      tone: "g2" },
+    { title: t.uc.i3t, desc: t.uc.i3d, photo: "assets/usecases/exception.jpg",  tone: "g3" },
+    { title: t.uc.i4t, desc: t.uc.i4d, photo: "assets/usecases/claims.jpg", hero: true, tone: "g4" },
+    { title: t.uc.i5t, desc: t.uc.i5d, photo: "assets/usecases/support.jpg",    tone: "g5" },
   ];
   return (
     <section className="usecases uc-clean" id="cases" data-screen-label="05 Use cases">

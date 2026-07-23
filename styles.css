@@ -11657,22 +11657,23 @@ section .spine-h1 em {
   box-shadow: 0 32px 60px -28px rgba(0,0,0,0.2), 0 10px 24px -12px rgba(0,0,0,0.08);
   transform-origin: center top;
 }
-/* Brand-tinted card backgrounds — subtle so photos still lead */
-.ucc-row-lime   { background: linear-gradient(120deg, #f6fcd8 0%, #fdfff0 100%) !important; border-color: rgba(197,233,74,0.4); }
-.ucc-row-orange { background: linear-gradient(120deg, #fff2e0 0%, #fffaf3 100%) !important; border-color: rgba(255,165,61,0.35); }
-.ucc-row-coral  { background: linear-gradient(120deg, #ffe8e2 0%, #fff5f1 100%) !important; border-color: rgba(254,94,50,0.28); }
-.ucc-row-lilac  { background: linear-gradient(120deg, #fbeafa 0%, #fdf6fc 100%) !important; border-color: rgba(200,139,196,0.35); }
-.ucc-row-hero   {
-  background: linear-gradient(115deg, #eaf5b8 0%, #ffe0be 32%, #ffd0c0 60%, #fbd8f0 100%) !important;
-  border-color: rgba(254,94,50,0.4);
-  box-shadow: 0 40px 80px -28px rgba(254,94,50,0.35), 0 12px 26px -12px rgba(0,0,0,0.1);
-}
-/* Accent number color per tone */
-.ucc-row-lime   .ucc-row-index { color: #7a9020; }
-.ucc-row-orange .ucc-row-index { color: #c56e10; }
-.ucc-row-coral  .ucc-row-index { color: #c53818; }
-.ucc-row-lilac  .ucc-row-index { color: #7a4472; }
-.ucc-row-hero   .ucc-row-index { color: var(--orange); font-weight: 600; }
+/* Brand-gradient walk: each card takes one stop of the official Tangering gradient
+   (lime → orange-light → orange → coral → lilac). Backgrounds are soft washes of
+   each stop, so scrolling through the stack visually traverses the full gradient. */
+.ucc-row-g1 { background: linear-gradient(120deg, #eaf5a8 0%, #f8fce0 100%) !important; border-color: rgba(197,233,74,0.5); }
+.ucc-row-g2 { background: linear-gradient(120deg, #ffe1b5 0%, #fff4de 100%) !important; border-color: rgba(255,165,61,0.5); }
+.ucc-row-g3 { background: linear-gradient(120deg, #ffcab5 0%, #ffe7dc 100%) !important; border-color: rgba(254,94,50,0.42); }
+.ucc-row-g4 { background: linear-gradient(120deg, #ffd0ca 0%, #ffe6df 100%) !important; border-color: rgba(255,124,110,0.5); }
+.ucc-row-g5 { background: linear-gradient(120deg, #f2d4ee 0%, #fbecf9 100%) !important; border-color: rgba(236,187,233,0.55); }
+
+/* Accent number color per stop (kept for legacy — index element is removed on this section) */
+.ucc-row-g1 .ucc-row-index { color: #7a9020; }
+.ucc-row-g2 .ucc-row-index { color: #c56e10; }
+.ucc-row-g3 .ucc-row-index { color: #c53818; }
+.ucc-row-g4 .ucc-row-index { color: #b4463c; }
+.ucc-row-g5 .ucc-row-index { color: #7a4472; }
+/* Hero card keeps extra emphasis via badge + a slightly stronger shadow */
+.ucc-row.is-hero { box-shadow: 0 40px 80px -28px rgba(254,94,50,0.32), 0 14px 30px -14px rgba(0,0,0,0.1); }
 .ucc-row.is-flip { direction: rtl; }
 .ucc-row.is-flip > * { direction: ltr; }
 
