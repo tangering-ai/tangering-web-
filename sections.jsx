@@ -1872,7 +1872,10 @@ function UseCases({ t }) {
         <div className="ucc-list">
           {items.map((it, i) => (
             <FadeUp key={i} delay={100 + i * 90}>
-              <div className={`ucc-row ${i % 2 === 1 ? "is-flip" : ""} ${it.hero ? "is-hero" : ""}`}>
+              <div
+                className={`ucc-row ${i % 2 === 1 ? "is-flip" : ""} ${it.hero ? "is-hero" : ""}`}
+                style={{ "--ci": i, top: `calc(96px + ${i * 14}px)` }}
+              >
                 <div className="ucc-row-photo">
                   <img src={it.photo} alt="" loading="lazy" />
                 </div>
