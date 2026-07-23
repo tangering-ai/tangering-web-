@@ -12155,15 +12155,33 @@ section .spine-h1 em {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 24px 24px 28px;
+  padding: 22px 22px 24px;
   border-radius: 22px;
   border: 1px solid rgba(0,0,0,0.06);
   background: #fff;
   box-shadow: 0 18px 40px -22px rgba(0,0,0,0.14);
   overflow: hidden;
-  transition: transform .25s ease, box-shadow .25s ease;
+  /* Entrance state — flipped by JS via .pc-reveal */
+  opacity: 0;
+  transform: translateY(28px) scale(0.985);
+  transition:
+    opacity .7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform .7s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow .3s ease;
 }
-.platcap-bento .pc-card:hover { transform: translateY(-3px); box-shadow: 0 30px 50px -22px rgba(254,94,50,0.16); }
+.platcap-bento .pc-card.pc-reveal { opacity: 1; transform: translateY(0) scale(1); }
+.platcap-bento .pc-card:hover {
+  transform: translateY(-4px) scale(1);
+  box-shadow: 0 30px 60px -22px rgba(254,94,50,0.22), 0 12px 26px -14px rgba(0,0,0,0.14);
+}
+.platcap-bento .pc-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
 .pc-wide   { grid-column: span 4; }
 .pc-narrow { grid-column: span 2; }
 .pc-half   { grid-column: span 3; }
@@ -12186,9 +12204,9 @@ section .spine-h1 em {
   color: rgba(0,0,0,0.32);
 }
 .pc-title {
-  margin: 12px 0 12px;
+  margin: 14px 0 10px;
   font-family: 'Overused Grotesk', sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--dark);
@@ -12222,49 +12240,72 @@ section .spine-h1 em {
 }
 .pc-defs dt {
   font-family: 'Overused Grotesk', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--orange);
   margin: 0;
-  padding-top: 14px;
+  padding-top: 12px;
   border-top: 1px solid rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pc-defs dt::before {
+  content: '';
+  width: 14px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+  flex-shrink: 0;
 }
 .pc-defs dt:first-of-type { padding-top: 0; border-top: none; }
 .pc-defs dd {
-  margin: 6px 0 14px;
-  font-size: 14.5px;
-  line-height: 1.6;
+  margin: 5px 0 12px;
+  font-size: 14px;
+  line-height: 1.55;
   color: rgba(0,0,0,0.72);
 }
 .pc-defs dd:last-of-type { margin-bottom: 0; }
 .pc-note {
-  margin: 14px 0 0;
-  padding-top: 14px;
+  margin: 12px 0 0;
+  padding-top: 12px;
   border-top: 1px dashed rgba(0,0,0,0.14);
-  font-size: 12.5px;
+  font-size: 12px;
   line-height: 1.55;
   color: rgba(0,0,0,0.48);
   font-style: italic;
 }
 
-/* --- pc-vis (visuals) --- */
+/* --- pc-vis (visuals) — standardized height, subtle idle motion --- */
 .pc-vis {
   position: relative;
-  min-height: 110px;
-  margin-bottom: 4px;
-  padding: 16px 18px;
+  height: 128px;
+  min-height: 128px;
+  margin-bottom: 6px;
+  padding: 14px 18px;
   border-radius: 16px;
-  background: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.6);
   border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
   overflow: hidden;
+  transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1);
 }
+.platcap-bento .pc-card:hover .pc-vis { transform: translateY(-2px); }
+
+/* Per-visual hover accents */
+.platcap-bento .pc-card:hover .pc-block-c { transform: translateY(-2px); box-shadow: 0 10px 22px -8px rgba(254,94,50,0.35); }
+.platcap-bento .pc-card:hover .pc-lock { transform: rotate(-4deg) scale(1.06); }
+.platcap-bento .pc-card:hover .pc-node-mid { transform: scale(1.05); box-shadow: 0 14px 26px -8px rgba(254,94,50,0.55); }
+.platcap-bento .pc-card:hover .pc-dash-chart path { animation: pc-chart-pulse 1.4s ease-in-out infinite; }
+@keyframes pc-chart-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.7; } }
+.pc-block, .pc-lock, .pc-node-mid { transition: transform .4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow .4s ease; }
 
 /* 01 · Builder blocks */
 .pc-tone-g1 .pc-vis { justify-content: flex-start; }

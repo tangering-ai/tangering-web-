@@ -6,8 +6,8 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=202606302" />
-  <link rel="stylesheet" href="hero-v2.css?v=202606302" />
+  <link rel="stylesheet" href="styles.css?v=202606303" />
+  <link rel="stylesheet" href="hero-v2.css?v=202606303" />
 </head>
 <body>
 <div class="prod-page">
@@ -727,12 +727,33 @@
     if (btn) applyLang(btn.dataset.setLang);
   });
   applyLang(getLang());
+
+  // P9 · Reveal cards as they enter the viewport, staggered
+  (function () {
+    const cards = document.querySelectorAll('.platcap-bento .pc-card');
+    if (!cards.length) return;
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach(c => c.classList.add('pc-reveal'));
+      return;
+    }
+    let baseDelay = 0;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        setTimeout(() => el.classList.add('pc-reveal'), baseDelay);
+        baseDelay = Math.min(baseDelay + 90, 540);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+    cards.forEach(c => io.observe(c));
+  })();
 })();
 </script>
 
-  <script src="call-agent.js?v=202606302"></script>
-  <script src="carousel-arrows.js?v=202606302"></script>
-  <script src="nav-mobile.js?v=202606302"></script>
-  <script src="video-lazy.js?v=202606302"></script>
+  <script src="call-agent.js?v=202606303"></script>
+  <script src="carousel-arrows.js?v=202606303"></script>
+  <script src="nav-mobile.js?v=202606303"></script>
+  <script src="video-lazy.js?v=202606303"></script>
 </body>
 </html>
