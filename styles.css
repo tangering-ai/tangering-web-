@@ -12008,17 +12008,15 @@ section .spine-h1 em {
 }
 .prod-spine-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; text-align: center; }
 .prod-spine-line {
-  margin: 0;
+  margin: 0 auto;
   font-family: 'Overused Grotesk', sans-serif;
-  font-size: clamp(24px, 3.2vw, 42px);
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-  font-weight: 500;
+  font-size: clamp(34px, 5.2vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  font-weight: 600;
   color: #fff;
-  text-shadow: 0 2px 24px rgba(120,30,10,0.22);
-  max-width: 24ch;
-  margin-left: auto;
-  margin-right: auto;
+  text-shadow: 0 2px 30px rgba(120,30,10,0.28);
+  max-width: 22ch;
 }
 .prod-spine-line em {
   color: #fff;
