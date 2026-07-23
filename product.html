@@ -6,8 +6,8 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=202606301" />
-  <link rel="stylesheet" href="hero-v2.css?v=202606301" />
+  <link rel="stylesheet" href="styles.css?v=202606302" />
+  <link rel="stylesheet" href="hero-v2.css?v=202606302" />
 </head>
 <body>
 <div class="prod-page">
@@ -248,11 +248,14 @@
         </div>
         <span class="pc-num">01</span>
         <h3 class="pc-title" data-i18n="pc.g1t">Agent builder & versioning</h3>
-        <ul class="pc-list">
-          <li data-i18n="pc.g1a">Guided copilot builds the agent for you: describe the process in natural language, it generates the agent and the prompt, then drops you into a canvas to fine-tune.</li>
-          <li data-i18n="pc.g1b">The prompt copilot follows each LLM provider's own prompting guidelines, and proposes changes you accept or reject one by one.</li>
-          <li data-i18n="pc.g1c">Git-style version control: save drafts without publishing, major / minor / patch versions, test any version before publish, one-click rollback.</li>
-        </ul>
+        <dl class="pc-defs">
+          <dt data-i18n="pc.g1la">Copilot-built agent</dt>
+          <dd data-i18n="pc.g1a">Describe the process in natural language; it generates the agent and the prompt, then drops you into a canvas to fine-tune.</dd>
+          <dt data-i18n="pc.g1lb">Prompt guidelines</dt>
+          <dd data-i18n="pc.g1b">The prompt copilot follows each LLM provider's own prompting guidelines, and proposes changes you accept or reject one by one.</dd>
+          <dt data-i18n="pc.g1lc">Git-style versioning</dt>
+          <dd data-i18n="pc.g1c">Save drafts without publishing, major / minor / patch versions, test any version before publish, one-click rollback.</dd>
+        </dl>
       </article>
 
       <!-- 02 Models, transcription & voice (narrow) — waveform scene -->
@@ -264,11 +267,14 @@
         </div>
         <span class="pc-num">02</span>
         <h3 class="pc-title" data-i18n="pc.g2t">Models, transcription & voice</h3>
-        <ul class="pc-list">
-          <li data-i18n="pc.g2a">Model routing via OpenRouter for reliability/SLA. Available models include Anthropic Haiku, GPT-5.4 mini/nano, DeepSeek, Nemotron. Unlimited agents; new client models can be added through an evaluation stage for latency.</li>
-          <li data-i18n="pc.g2b">Transcription: Tangering's own model or Deepgram (recommended for production). Per-agent key terms for hard-to-transcribe names (place names, brands): up to 100 terms, max 2 words each.</li>
-          <li data-i18n="pc.g2c">Voice via ElevenLabs with tunable stability, similarity and speed. Direct in-app voice selection is in progress; for now voices are added on request.</li>
-        </ul>
+        <dl class="pc-defs">
+          <dt data-i18n="pc.g2la">Model routing</dt>
+          <dd data-i18n="pc.g2a">Via OpenRouter for reliability and SLA. Available models: Anthropic Haiku, GPT-5.4 mini/nano, DeepSeek, Nemotron. Unlimited agents; new client models can be added through an evaluation stage for latency.</dd>
+          <dt data-i18n="pc.g2lb">Transcription</dt>
+          <dd data-i18n="pc.g2b">Tangering's own model or Deepgram (recommended for production). Per-agent key terms for hard-to-transcribe names: up to 100 terms, max 2 words each.</dd>
+          <dt data-i18n="pc.g2lc">Voice</dt>
+          <dd data-i18n="pc.g2c">ElevenLabs with tunable stability, similarity and speed. Direct in-app voice selection is in progress; for now voices are added on request.</dd>
+        </dl>
       </article>
 
       <!-- 03 Data security (narrow) — lock scene -->
@@ -307,10 +313,12 @@
         </div>
         <span class="pc-num">04</span>
         <h3 class="pc-title" data-i18n="pc.g4t">Voice quality in the real world</h3>
-        <ul class="pc-list">
-          <li data-i18n="pc.g4a">Voice isolation for bad-audio environments: drivers on speakerphone, music playing, poor signal.</li>
-          <li data-i18n="pc.g4b">Answering-machine detection with adjustable threshold; configurable interruption sensitivity (how many words interrupt the agent); silence handling (nudge, then hang up).</li>
-        </ul>
+        <dl class="pc-defs">
+          <dt data-i18n="pc.g4la">Voice isolation</dt>
+          <dd data-i18n="pc.g4a">For bad-audio environments: drivers on speakerphone, music playing, poor signal.</dd>
+          <dt data-i18n="pc.g4lb">Answering-machine detection</dt>
+          <dd data-i18n="pc.g4b">Adjustable threshold; configurable interruption sensitivity (how many words interrupt the agent); silence handling (nudge, then hang up).</dd>
+        </dl>
         <p class="pc-note" data-i18n="pc.g4n">A built-in voice stack (real-time telephony, native audio processing) is why this actually works in production, not a wrapper on top of a generic model.</p>
       </article>
 
@@ -325,11 +333,14 @@
         </div>
         <span class="pc-num">05</span>
         <h3 class="pc-title" data-i18n="pc.g5t">Tools, integrations & telephony</h3>
-        <ul class="pc-list">
-          <li data-i18n="pc.g5a">Custom HTTP tools and MCP servers; connect the client's TMS / CRM / any API. Build a tool library and assign the same tool to multiple agents.</li>
-          <li data-i18n="pc.g5b">Bring your own SIP trunk (IP, user/password, or SIP credentials auth) or buy numbers in-platform. Agents bind to a number or extension; inbound and outbound on the same number.</li>
-          <li data-i18n="pc.g5c">Dedicated environments available on request for regulated industries and large enterprise accounts, custom integrations and dedicated deployments.</li>
-        </ul>
+        <dl class="pc-defs">
+          <dt data-i18n="pc.g5la">Custom tools & MCP</dt>
+          <dd data-i18n="pc.g5a">Custom HTTP tools and MCP servers; connect the client's TMS / CRM / any API. Build a tool library and assign the same tool to multiple agents.</dd>
+          <dt data-i18n="pc.g5lb">Bring your own SIP</dt>
+          <dd data-i18n="pc.g5b">SIP trunk (IP, user/password, or SIP credentials auth), or buy numbers in-platform. Agents bind to a number or extension; inbound and outbound on the same number.</dd>
+          <dt data-i18n="pc.g5lc">Dedicated environments</dt>
+          <dd data-i18n="pc.g5c">Available on request for regulated industries and large enterprise accounts, custom integrations and dedicated deployments.</dd>
+        </dl>
       </article>
 
       <!-- 06 Monitoring, reporting & access (narrow-3) — dashboard scene -->
@@ -348,11 +359,14 @@
         </div>
         <span class="pc-num">06</span>
         <h3 class="pc-title" data-i18n="pc.g6t">Monitoring, reporting & access</h3>
-        <ul class="pc-list">
-          <li data-i18n="pc.g6a">Live monitoring of active calls and messages, one-click human takeover, alerts when a conversation needs attention.</li>
-          <li data-i18n="pc.g6b">Reports: scheduled, webhook (fires on call hangup, pushes call analysis to the client's endpoint), and period analysis. A metrics copilot generates dashboards and KPIs and can email daily summaries.</li>
-          <li data-i18n="pc.g6c">Role-based access: default super-admin / supervisor / AI roles, plus custom roles with granular permissions; team invitations; optional 2-factor auth.</li>
-        </ul>
+        <dl class="pc-defs">
+          <dt data-i18n="pc.g6la">Live monitoring</dt>
+          <dd data-i18n="pc.g6a">Active calls and messages in real time, one-click human takeover, alerts when a conversation needs attention.</dd>
+          <dt data-i18n="pc.g6lb">Reports</dt>
+          <dd data-i18n="pc.g6b">Scheduled, webhook (fires on call hangup, pushes call analysis to the client's endpoint) and period analysis. A metrics copilot generates dashboards and KPIs, and can email daily summaries.</dd>
+          <dt data-i18n="pc.g6lc">Role-based access</dt>
+          <dd data-i18n="pc.g6c">Default super-admin / supervisor / AI roles, plus custom roles with granular permissions; team invitations; optional 2-factor auth.</dd>
+        </dl>
       </article>
 
     </div>
@@ -608,28 +622,42 @@
     "pc.h2": "Bajo <em>el capó.</em>",
     "pc.sub": "La capa técnica para el líder de operaciones que quiere ver exactamente qué está corriendo.",
     "pc.g1t": "Constructor de agentes y control de versiones",
-    "pc.g1a": "El copiloto guiado construye el agente por ti: describes el proceso en lenguaje natural, genera el agente y el prompt, y te deja en un canvas para afinarlo.",
+    "pc.g1la": "Agente construido por Copiloto",
+    "pc.g1a": "Describe el proceso en lenguaje natural; genera el agente y el prompt, y te deja en un canvas para afinarlo.",
+    "pc.g1lb": "Guías de prompt",
     "pc.g1b": "El copiloto de prompt sigue las guías de cada proveedor de LLM, y propone cambios que aceptas o rechazas uno por uno.",
-    "pc.g1c": "Control de versiones estilo Git: guarda borradores sin publicar, versiones mayor / menor / patch, prueba cualquier versión antes de publicar, rollback con un click.",
+    "pc.g1lc": "Versionado estilo Git",
+    "pc.g1c": "Guarda borradores sin publicar, versiones mayor / menor / patch, prueba cualquier versión antes de publicar, rollback con un click.",
     "pc.g2t": "Modelos, transcripción y voz",
-    "pc.g2a": "Ruteo de modelos vía OpenRouter para confiabilidad/SLA. Modelos disponibles incluyen Anthropic Haiku, GPT-5.4 mini/nano, DeepSeek, Nemotron. Agentes ilimitados; nuevos modelos por cliente se pueden agregar tras una etapa de evaluación de latencia.",
-    "pc.g2b": "Transcripción: modelo propio de Tangering o Deepgram (recomendado para producción). Términos clave por agente para nombres difíciles (topónimos, marcas): hasta 100 términos, máximo 2 palabras cada uno.",
-    "pc.g2c": "Voz vía ElevenLabs con estabilidad, similitud y velocidad ajustables. Selección directa de voz en la app está en desarrollo; por ahora las voces se agregan a solicitud.",
+    "pc.g2la": "Ruteo de modelos",
+    "pc.g2a": "Vía OpenRouter para confiabilidad y SLA. Modelos disponibles: Anthropic Haiku, GPT-5.4 mini/nano, DeepSeek, Nemotron. Agentes ilimitados; nuevos modelos por cliente pueden agregarse tras una etapa de evaluación de latencia.",
+    "pc.g2lb": "Transcripción",
+    "pc.g2b": "Modelo propio de Tangering o Deepgram (recomendado para producción). Términos clave por agente para nombres difíciles: hasta 100 términos, máximo 2 palabras cada uno.",
+    "pc.g2lc": "Voz",
+    "pc.g2c": "ElevenLabs con estabilidad, similitud y velocidad ajustables. Selección directa de voz en la app está en desarrollo; por ahora las voces se agregan a solicitud.",
     "pc.g3t": "Seguridad de datos",
     "pc.g3d": "Tus datos están cifrados en tránsito y en reposo. Los campos sensibles se enmascaran por defecto, el acceso es por roles y cada acción queda registrada para auditoría. Usamos tus datos únicamente para operar tu logística, nunca se venden ni se reutilizan para entrenar modelos de terceros.",
     "pc.g3n": "Grabaciones retenidas ~2 años y accesibles en la plataforma. Los enlaces de reportes compartidos son firmados y expiran, máximo una semana.",
     "pc.g4t": "Calidad de voz en el mundo real",
-    "pc.g4a": "Aislamiento de voz para entornos con mal audio: mensajeros en altavoz, música de fondo, mala señal.",
-    "pc.g4b": "Detección de contestador con umbral ajustable; sensibilidad de interrupción configurable (cuántas palabras interrumpen al agente); manejo de silencios (pregunta, luego cuelga).",
+    "pc.g4la": "Aislamiento de voz",
+    "pc.g4a": "Para entornos con mal audio: mensajeros en altavoz, música de fondo, mala señal.",
+    "pc.g4lb": "Detección de contestador",
+    "pc.g4b": "Umbral ajustable; sensibilidad de interrupción configurable (cuántas palabras interrumpen al agente); manejo de silencios (pregunta, luego cuelga).",
     "pc.g4n": "Un stack de voz propio (telefonía en tiempo real, procesamiento nativo de audio) es lo que hace que esto funcione en producción, no un wrapper encima de un modelo genérico.",
     "pc.g5t": "Herramientas, integraciones y telefonía",
-    "pc.g5a": "Herramientas HTTP personalizadas y servidores MCP; conecta el TMS / CRM / cualquier API del cliente. Construye una librería de herramientas y asigna la misma herramienta a múltiples agentes.",
-    "pc.g5b": "Trae tu propio SIP trunk (autenticación por IP, usuario/contraseña o credenciales SIP) o compra números en la plataforma. Los agentes se enlazan a un número o extensión; llamadas entrantes y salientes en el mismo número.",
-    "pc.g5c": "Entornos dedicados disponibles a solicitud para industrias reguladas y cuentas grandes de enterprise, con integraciones e infraestructura dedicada a medida.",
+    "pc.g5la": "Herramientas custom & MCP",
+    "pc.g5a": "Herramientas HTTP personalizadas y servidores MCP; conecta el TMS / CRM / cualquier API del cliente. Construye una librería de herramientas y asigna la misma a múltiples agentes.",
+    "pc.g5lb": "Trae tu propio SIP",
+    "pc.g5b": "SIP trunk (autenticación por IP, usuario/contraseña o credenciales SIP), o compra números en la plataforma. Los agentes se enlazan a un número o extensión; entrantes y salientes en el mismo número.",
+    "pc.g5lc": "Entornos dedicados",
+    "pc.g5c": "Disponibles a solicitud para industrias reguladas y cuentas grandes de enterprise, con integraciones e infraestructura dedicada a medida.",
     "pc.g6t": "Monitoreo, reportes y accesos",
-    "pc.g6a": "Monitoreo en vivo de llamadas y mensajes activos, toma de control humana con un click, alertas cuando una conversación necesita atención.",
-    "pc.g6b": "Reportes: programados, por webhook (dispara al colgar y envía el análisis de la llamada al endpoint del cliente) y por período. Un copiloto de métricas genera dashboards y KPIs, y puede enviar resúmenes diarios por correo.",
-    "pc.g6c": "Acceso por roles: roles por defecto super-admin / supervisor / AI, más roles personalizados con permisos granulares; invitaciones a equipo; 2FA opcional.",
+    "pc.g6la": "Monitoreo en vivo",
+    "pc.g6a": "Llamadas y mensajes activos en tiempo real, toma de control humana con un click, alertas cuando una conversación necesita atención.",
+    "pc.g6lb": "Reportes",
+    "pc.g6b": "Programados, por webhook (dispara al colgar y envía el análisis de la llamada al endpoint del cliente) y por período. Un copiloto de métricas genera dashboards y KPIs, y puede enviar resúmenes diarios por correo.",
+    "pc.g6lc": "Acceso por roles",
+    "pc.g6c": "Roles por defecto super-admin / supervisor / AI, más roles personalizados con permisos granulares; invitaciones a equipo; 2FA opcional.",
 
     "d3.eyebrow": "Infraestructura",
     "d3.h2": "Usa tu infraestructura <em>o la nuestra.</em>",
@@ -702,9 +730,9 @@
 })();
 </script>
 
-  <script src="call-agent.js?v=202606301"></script>
-  <script src="carousel-arrows.js?v=202606301"></script>
-  <script src="nav-mobile.js?v=202606301"></script>
-  <script src="video-lazy.js?v=202606301"></script>
+  <script src="call-agent.js?v=202606302"></script>
+  <script src="carousel-arrows.js?v=202606302"></script>
+  <script src="nav-mobile.js?v=202606302"></script>
+  <script src="video-lazy.js?v=202606302"></script>
 </body>
 </html>

@@ -12208,21 +12208,37 @@ section .spine-h1 em {
   gap: 12px;
 }
 .pc-list li {
-  position: relative;
-  padding-left: 20px;
   font-size: 14.5px;
   line-height: 1.6;
   color: rgba(0,0,0,0.7);
 }
-.pc-list li::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 10px;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #fe5e32 0%, #ffa53d 100%);
-  box-shadow: 0 2px 6px rgba(254,94,50,0.35);
+/* Editorial definition list — lead term over description, no bullets */
+.pc-defs {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
+.pc-defs dt {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+.pc-defs dt:first-of-type { padding-top: 0; border-top: none; }
+.pc-defs dd {
+  margin: 6px 0 14px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: rgba(0,0,0,0.72);
+}
+.pc-defs dd:last-of-type { margin-bottom: 0; }
 .pc-note {
   margin: 14px 0 0;
   padding-top: 14px;
