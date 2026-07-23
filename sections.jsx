@@ -1892,13 +1892,17 @@ function UseCases({ t }) {
           ))}
         </div>
 
-        <FadeUp delay={600}>
-          <div className="ucc-cta-wrap">
-            <a href="/use-cases" className="ucc-cta">
-              {t.uc.ctaAll} <span aria-hidden="true">→</span>
+        <div className="ucc-outro">
+          <FadeUp>
+            <div className="ucc-outro-rule" aria-hidden="true"></div>
+            <a href="/use-cases" className="ucc-outro-link">
+              <span>{t.uc.ctaAll}</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
             </a>
-          </div>
-        </FadeUp>
+          </FadeUp>
+        </div>
       </div>
     </section>
   );
