@@ -1864,9 +1864,6 @@ function UseCases({ t }) {
               <em><WordReveal delay={220}>{t.uc.h2b}</WordReveal></em>
             </h2>
           </FadeUp>
-          <FadeUp delay={200}>
-            <p className="ucc-intro ucc-intro-single">{t.uc.intro}</p>
-          </FadeUp>
         </div>
 
         <div className="ucc-list ucc-stack">
@@ -1895,6 +1892,7 @@ function UseCases({ t }) {
         <div className="ucc-outro">
           <FadeUp>
             <div className="ucc-outro-rule" aria-hidden="true"></div>
+            <p className="ucc-outro-lead">{t.uc.intro}</p>
             <a href="/use-cases" className="ucc-outro-link">
               <span>{t.uc.ctaAll}</span>
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
