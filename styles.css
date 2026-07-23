@@ -11603,11 +11603,26 @@ section .spine-h1 em {
   align-items: center;
   padding: clamp(18px, 2.4vw, 28px) !important;
   border-radius: 20px;
-  background: #fff !important;
   border: 1px solid rgba(0,0,0,0.06);
   box-shadow: 0 32px 60px -28px rgba(0,0,0,0.2), 0 10px 24px -12px rgba(0,0,0,0.08);
   transform-origin: center top;
 }
+/* Brand-tinted card backgrounds — subtle so photos still lead */
+.ucc-row-lime   { background: linear-gradient(120deg, #f6fcd8 0%, #fdfff0 100%) !important; border-color: rgba(197,233,74,0.4); }
+.ucc-row-orange { background: linear-gradient(120deg, #fff2e0 0%, #fffaf3 100%) !important; border-color: rgba(255,165,61,0.35); }
+.ucc-row-coral  { background: linear-gradient(120deg, #ffe8e2 0%, #fff5f1 100%) !important; border-color: rgba(254,94,50,0.28); }
+.ucc-row-lilac  { background: linear-gradient(120deg, #fbeafa 0%, #fdf6fc 100%) !important; border-color: rgba(200,139,196,0.35); }
+.ucc-row-hero   {
+  background: linear-gradient(115deg, #eaf5b8 0%, #ffe0be 32%, #ffd0c0 60%, #fbd8f0 100%) !important;
+  border-color: rgba(254,94,50,0.4);
+  box-shadow: 0 40px 80px -28px rgba(254,94,50,0.35), 0 12px 26px -12px rgba(0,0,0,0.1);
+}
+/* Accent number color per tone */
+.ucc-row-lime   .ucc-row-index { color: #7a9020; }
+.ucc-row-orange .ucc-row-index { color: #c56e10; }
+.ucc-row-coral  .ucc-row-index { color: #c53818; }
+.ucc-row-lilac  .ucc-row-index { color: #7a4472; }
+.ucc-row-hero   .ucc-row-index { color: var(--orange); font-weight: 600; }
 .ucc-row.is-flip { direction: rtl; }
 .ucc-row.is-flip > * { direction: ltr; }
 

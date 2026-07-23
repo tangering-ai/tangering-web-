@@ -1842,11 +1842,11 @@ function WhyItMatters({ t }) {
 // UseCases — editorial rows with real photos on the left + title/rule/description on the right
 function UseCases({ t }) {
   const items = [
-    { title: t.uc.i1t, desc: t.uc.i1d, photo: "assets/usecases/scheduling.jpg" },
-    { title: t.uc.i2t, desc: t.uc.i2d, photo: "assets/usecases/wismo.jpg"      },
-    { title: t.uc.i3t, desc: t.uc.i3d, photo: "assets/usecases/exception.jpg"  },
-    { title: t.uc.i4t, desc: t.uc.i4d, photo: "assets/usecases/claims.jpg", hero: true },
-    { title: t.uc.i5t, desc: t.uc.i5d, photo: "assets/usecases/support.jpg"    },
+    { title: t.uc.i1t, desc: t.uc.i1d, photo: "assets/usecases/scheduling.jpg", tone: "lime"   },
+    { title: t.uc.i2t, desc: t.uc.i2d, photo: "assets/usecases/wismo.jpg",      tone: "orange" },
+    { title: t.uc.i3t, desc: t.uc.i3d, photo: "assets/usecases/exception.jpg",  tone: "coral"  },
+    { title: t.uc.i4t, desc: t.uc.i4d, photo: "assets/usecases/claims.jpg", hero: true, tone: "hero" },
+    { title: t.uc.i5t, desc: t.uc.i5d, photo: "assets/usecases/support.jpg",    tone: "lilac"  },
   ];
   return (
     <section className="usecases uc-clean" id="cases" data-screen-label="05 Use cases">
@@ -1873,7 +1873,7 @@ function UseCases({ t }) {
           {items.map((it, i) => (
             <div
               key={i}
-              className={`ucc-row ${i % 2 === 1 ? "is-flip" : ""} ${it.hero ? "is-hero" : ""}`}
+              className={`ucc-row ucc-row-${it.tone} ${i % 2 === 1 ? "is-flip" : ""} ${it.hero ? "is-hero" : ""}`}
               style={{ "--i": i, top: `calc(96px + ${i * 16}px)` }}
             >
               <div className="ucc-row-photo">
