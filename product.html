@@ -6,8 +6,8 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=202606305" />
-  <link rel="stylesheet" href="hero-v2.css?v=202606305" />
+  <link rel="stylesheet" href="styles.css?v=202606306" />
+  <link rel="stylesheet" href="hero-v2.css?v=202606306" />
 </head>
 <body>
 <div class="prod-page">
@@ -218,19 +218,40 @@
       </h2>
     </div>
 
-    <div class="ps-lockup">
-      <div class="ps-focal">
-        <div class="ps-focal-num">80.8<span class="ps-focal-num-unit">%</span></div>
-        <div class="ps-focal-label" data-i18n="st.s1">First-attempt delivery success</div>
-      </div>
-      <div class="ps-side">
-        <div class="ps-side-item">
-          <div class="ps-side-num">+2.8 <span class="ps-side-unit">pts</span></div>
-          <div class="ps-side-label" data-i18n="st.s2">Lift over baseline</div>
+    <!-- Success story: baseline → current, showing the movement itself -->
+    <div class="ps-story">
+      <div class="ps-story-pair">
+        <div class="ps-story-side ps-story-side-baseline">
+          <div class="ps-story-tag" data-i18n="st.baselineTag">Baseline</div>
+          <div class="ps-story-num">78<span class="ps-story-unit">%</span></div>
+          <div class="ps-story-cap" data-i18n="st.baselineCap">First-attempt success before</div>
         </div>
-        <div class="ps-side-item">
-          <div class="ps-side-num">&lt;90 <span class="ps-side-unit">days</span></div>
-          <div class="ps-side-label" data-i18n="st.s3">To measurable impact</div>
+
+        <div class="ps-story-mid" aria-hidden="true">
+          <svg class="ps-story-arrow" viewBox="0 0 240 60" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="ps-arrow-grad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="rgba(0,0,0,0.14)"/>
+                <stop offset="55%" stop-color="#ffa53d"/>
+                <stop offset="100%" stop-color="#fe5e32"/>
+              </linearGradient>
+            </defs>
+            <path d="M 4 30 L 224 30" fill="none" stroke="url(#ps-arrow-grad)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 214 22 L 232 30 L 214 38" fill="none" stroke="#fe5e32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="ps-story-delta">
+            <span class="ps-story-delta-num">+2.8 pts</span>
+            <span class="ps-story-delta-time" data-i18n="st.deltaTime">in under 90 days</span>
+          </div>
+        </div>
+
+        <div class="ps-story-side ps-story-side-live">
+          <div class="ps-story-tag ps-story-tag-live">
+            <span class="ps-story-live-dot"></span>
+            <span data-i18n="st.liveTag">Live in production</span>
+          </div>
+          <div class="ps-story-num ps-story-num-live">80.8<span class="ps-story-unit">%</span></div>
+          <div class="ps-story-cap" data-i18n="st.currentCap">First-attempt delivery success</div>
         </div>
       </div>
     </div>
@@ -625,6 +646,11 @@
     "st.eyebrow": "En producción",
     "st.h2": "Lo que ven los operadores<br/><em>en producción.</em>",
     "st.live": "EN PRODUCCIÓN AHORA",
+    "st.baselineTag": "Línea base",
+    "st.baselineCap": "Éxito al primer intento antes",
+    "st.liveTag": "En producción",
+    "st.currentCap": "Éxito de entrega al primer intento",
+    "st.deltaTime": "en menos de 90 días",
     "st.s1": "Éxito de entrega al primer intento",
     "st.s2": "Sobre la línea base",
     "st.s2f": "Cada punto es una reentrega que dejaron de pagar.",
@@ -765,9 +791,9 @@
 })();
 </script>
 
-  <script src="call-agent.js?v=202606305"></script>
-  <script src="carousel-arrows.js?v=202606305"></script>
-  <script src="nav-mobile.js?v=202606305"></script>
-  <script src="video-lazy.js?v=202606305"></script>
+  <script src="call-agent.js?v=202606306"></script>
+  <script src="carousel-arrows.js?v=202606306"></script>
+  <script src="nav-mobile.js?v=202606306"></script>
+  <script src="video-lazy.js?v=202606306"></script>
 </body>
 </html>
