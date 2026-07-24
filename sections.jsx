@@ -359,6 +359,17 @@ function Solution({ t }) {
           ))}
         </div>
 
+        <FadeUp delay={260}>
+          <div className="ev-banner ev-banner-v3">
+            <p className="ev-banner-lead">
+              {t.solution.bannerA} {t.solution.bannerB}
+            </p>
+            <p className="ev-banner-punch">
+              {t.solution.bannerCPre} <span className="ev-banner-money">{t.solution.bannerCAmount}</span> {t.solution.bannerCPost}
+            </p>
+          </div>
+        </FadeUp>
+
       </div>
     </section>
   );
