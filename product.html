@@ -6,8 +6,8 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=202606309" />
-  <link rel="stylesheet" href="hero-v2.css?v=202606309" />
+  <link rel="stylesheet" href="styles.css?v=202606310" />
+  <link rel="stylesheet" href="hero-v2.css?v=202606310" />
 </head>
 <body>
 <div class="prod-page">
@@ -274,14 +274,32 @@
         </div>
         <span class="pc-num">01</span>
         <h3 class="pc-title" data-i18n="pc.g1t">Agent builder & versioning</h3>
-        <dl class="pc-defs">
-          <dt data-i18n="pc.g1la">Copilot-built agent</dt>
-          <dd data-i18n="pc.g1a">Describe the process in natural language; it generates the agent and the prompt, then drops you into a canvas to fine-tune.</dd>
-          <dt data-i18n="pc.g1lb">Prompt guidelines</dt>
-          <dd data-i18n="pc.g1b">The prompt copilot follows each LLM provider's own prompting guidelines, and proposes changes you accept or reject one by one.</dd>
-          <dt data-i18n="pc.g1lc">Git-style versioning</dt>
-          <dd data-i18n="pc.g1c">Save drafts without publishing, major / minor / patch versions, test any version before publish, one-click rollback.</dd>
-        </dl>
+        <div class="pc-flow">
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">a</span>
+              <span class="pc-flow-title" data-i18n="pc.g1la">Copilot-built agent</span>
+              <span class="pc-flow-tag" data-i18n="pc.g1ta">Natural language</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g1a">Describe the process; it generates the agent and the prompt, then drops you into a canvas to fine-tune.</p>
+          </div>
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">b</span>
+              <span class="pc-flow-title" data-i18n="pc.g1lb">Prompt guidelines</span>
+              <span class="pc-flow-tag" data-i18n="pc.g1tb">LLM-safe</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g1b">The prompt copilot follows each LLM provider's own guidelines, and proposes changes you accept or reject one by one.</p>
+          </div>
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">c</span>
+              <span class="pc-flow-title" data-i18n="pc.g1lc">Git-style versioning</span>
+              <span class="pc-flow-tag" data-i18n="pc.g1tc">Draft · Publish · Rollback</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g1c">Save drafts without publishing, major / minor / patch versions, test any version before publish, one-click rollback.</p>
+          </div>
+        </div>
       </article>
 
       <!-- 02 Models, transcription & voice (narrow) — waveform scene -->
@@ -293,14 +311,32 @@
         </div>
         <span class="pc-num">02</span>
         <h3 class="pc-title" data-i18n="pc.g2t">Models, transcription & voice</h3>
-        <dl class="pc-defs">
-          <dt data-i18n="pc.g2la">Model routing</dt>
-          <dd data-i18n="pc.g2a">Via OpenRouter for reliability and SLA. Available models: Anthropic Haiku, GPT-5.4 mini/nano, DeepSeek, Nemotron. Unlimited agents; new client models can be added through an evaluation stage for latency.</dd>
-          <dt data-i18n="pc.g2lb">Transcription</dt>
-          <dd data-i18n="pc.g2b">Tangering's own model or Deepgram (recommended for production). Per-agent key terms for hard-to-transcribe names: up to 100 terms, max 2 words each.</dd>
-          <dt data-i18n="pc.g2lc">Voice</dt>
-          <dd data-i18n="pc.g2c">ElevenLabs with tunable stability, similarity and speed. Direct in-app voice selection is in progress; for now voices are added on request.</dd>
-        </dl>
+        <div class="pc-flow">
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">a</span>
+              <span class="pc-flow-title" data-i18n="pc.g2la">Model routing</span>
+              <span class="pc-flow-tag" data-i18n="pc.g2ta">OpenRouter</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g2a">Reliability and SLA via OpenRouter. Available models: Anthropic Haiku, GPT-5.4 mini/nano, DeepSeek, Nemotron. Unlimited agents.</p>
+          </div>
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">b</span>
+              <span class="pc-flow-title" data-i18n="pc.g2lb">Transcription</span>
+              <span class="pc-flow-tag" data-i18n="pc.g2tb">Tangering · Deepgram</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g2b">Tangering's own model or Deepgram (recommended for production). Per-agent key terms for hard names: up to 100 terms, max 2 words each.</p>
+          </div>
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">c</span>
+              <span class="pc-flow-title" data-i18n="pc.g2lc">Voice</span>
+              <span class="pc-flow-tag" data-i18n="pc.g2tc">ElevenLabs</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g2c">Tunable stability, similarity and speed. Direct in-app voice selection is in progress; for now voices are added on request.</p>
+          </div>
+        </div>
       </article>
 
       <!-- 03 Data security (narrow) — lock scene -->
@@ -317,7 +353,32 @@
         </div>
         <span class="pc-num">03</span>
         <h3 class="pc-title" data-i18n="pc.g3t">Data security</h3>
-        <p class="pc-body" data-i18n="pc.g3d">Your data is encrypted in transit and at rest. Sensitive fields are masked by default, access is role-controlled, and every action is audit-logged. We use your data only to run your operation, never sold, never reused to train anyone else's models.</p>
+        <div class="pc-flow">
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">a</span>
+              <span class="pc-flow-title" data-i18n="pc.g3la">Encrypted end-to-end</span>
+              <span class="pc-flow-tag" data-i18n="pc.g3ta">TLS + AES-256</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g3a">Your data is encrypted in transit and at rest.</p>
+          </div>
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">b</span>
+              <span class="pc-flow-title" data-i18n="pc.g3lb">Masked, role-controlled, audit-logged</span>
+              <span class="pc-flow-tag" data-i18n="pc.g3tb">PII · RBAC · Audit</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g3b">Sensitive fields are masked by default, access is role-controlled, and every action is audit-logged.</p>
+          </div>
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">c</span>
+              <span class="pc-flow-title" data-i18n="pc.g3lc">Only for your operation</span>
+              <span class="pc-flow-tag" data-i18n="pc.g3tc">Not sold · Not trained</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g3c">We use your data only to run your operation, never sold, never reused to train anyone else's models.</p>
+          </div>
+        </div>
         <p class="pc-note" data-i18n="pc.g3n">Recordings retained ~2 years and accessible in-platform. Shared report links are signed and expiring, max one week.</p>
       </article>
 
@@ -339,12 +400,24 @@
         </div>
         <span class="pc-num">04</span>
         <h3 class="pc-title" data-i18n="pc.g4t">Voice quality in the real world</h3>
-        <dl class="pc-defs">
-          <dt data-i18n="pc.g4la">Voice isolation</dt>
-          <dd data-i18n="pc.g4a">For bad-audio environments: drivers on speakerphone, music playing, poor signal.</dd>
-          <dt data-i18n="pc.g4lb">Answering-machine detection</dt>
-          <dd data-i18n="pc.g4b">Adjustable threshold; configurable interruption sensitivity (how many words interrupt the agent); silence handling (nudge, then hang up).</dd>
-        </dl>
+        <div class="pc-flow">
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">a</span>
+              <span class="pc-flow-title" data-i18n="pc.g4la">Voice isolation</span>
+              <span class="pc-flow-tag" data-i18n="pc.g4ta">Real-time DSP</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g4a">For bad-audio environments: drivers on speakerphone, music playing, poor signal.</p>
+          </div>
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">b</span>
+              <span class="pc-flow-title" data-i18n="pc.g4lb">Answering-machine detection</span>
+              <span class="pc-flow-tag" data-i18n="pc.g4tb">Configurable</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g4b">Adjustable threshold; configurable interruption sensitivity (how many words interrupt the agent); silence handling (nudge, then hang up).</p>
+          </div>
+        </div>
         <p class="pc-note" data-i18n="pc.g4n">A built-in voice stack (real-time telephony, native audio processing) is why this actually works in production, not a wrapper on top of a generic model.</p>
       </article>
 
@@ -359,14 +432,32 @@
         </div>
         <span class="pc-num">05</span>
         <h3 class="pc-title" data-i18n="pc.g5t">Tools, integrations & telephony</h3>
-        <dl class="pc-defs">
-          <dt data-i18n="pc.g5la">Custom tools & MCP</dt>
-          <dd data-i18n="pc.g5a">Custom HTTP tools and MCP servers; connect the client's TMS / CRM / any API. Build a tool library and assign the same tool to multiple agents.</dd>
-          <dt data-i18n="pc.g5lb">Bring your own SIP</dt>
-          <dd data-i18n="pc.g5b">SIP trunk (IP, user/password, or SIP credentials auth), or buy numbers in-platform. Agents bind to a number or extension; inbound and outbound on the same number.</dd>
-          <dt data-i18n="pc.g5lc">Dedicated environments</dt>
-          <dd data-i18n="pc.g5c">Available on request for regulated industries and large enterprise accounts, custom integrations and dedicated deployments.</dd>
-        </dl>
+        <div class="pc-flow">
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">a</span>
+              <span class="pc-flow-title" data-i18n="pc.g5la">Custom tools & MCP</span>
+              <span class="pc-flow-tag" data-i18n="pc.g5ta">MCP · HTTP</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g5a">Custom HTTP tools and MCP servers; connect the client's TMS / CRM / any API. Build a tool library and reuse across agents.</p>
+          </div>
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">b</span>
+              <span class="pc-flow-title" data-i18n="pc.g5lb">Bring your own SIP</span>
+              <span class="pc-flow-tag" data-i18n="pc.g5tb">SIP · Numbers</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g5b">SIP trunk (IP, user/password, or SIP credentials auth), or buy numbers in-platform. Inbound and outbound on the same number.</p>
+          </div>
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">c</span>
+              <span class="pc-flow-title" data-i18n="pc.g5lc">Dedicated environments</span>
+              <span class="pc-flow-tag" data-i18n="pc.g5tc">On request</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g5c">Available on request for regulated industries and large enterprise accounts, with custom integrations and dedicated deployments.</p>
+          </div>
+        </div>
       </article>
 
       <!-- 06 Monitoring, reporting & access (narrow-3) — dashboard scene -->
@@ -385,14 +476,32 @@
         </div>
         <span class="pc-num">06</span>
         <h3 class="pc-title" data-i18n="pc.g6t">Monitoring, reporting & access</h3>
-        <dl class="pc-defs">
-          <dt data-i18n="pc.g6la">Live monitoring</dt>
-          <dd data-i18n="pc.g6a">Active calls and messages in real time, one-click human takeover, alerts when a conversation needs attention.</dd>
-          <dt data-i18n="pc.g6lb">Reports</dt>
-          <dd data-i18n="pc.g6b">Scheduled, webhook (fires on call hangup, pushes call analysis to the client's endpoint) and period analysis. A metrics copilot generates dashboards and KPIs, and can email daily summaries.</dd>
-          <dt data-i18n="pc.g6lc">Role-based access</dt>
-          <dd data-i18n="pc.g6c">Default super-admin / supervisor / AI roles, plus custom roles with granular permissions; team invitations; optional 2-factor auth.</dd>
-        </dl>
+        <div class="pc-flow">
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">a</span>
+              <span class="pc-flow-title" data-i18n="pc.g6la">Live monitoring</span>
+              <span class="pc-flow-tag" data-i18n="pc.g6ta">Real-time</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g6a">Active calls and messages in real time, one-click human takeover, alerts when a conversation needs attention.</p>
+          </div>
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">b</span>
+              <span class="pc-flow-title" data-i18n="pc.g6lb">Reports</span>
+              <span class="pc-flow-tag" data-i18n="pc.g6tb">Webhook · Schedule</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g6b">Scheduled, webhook (fires on call hangup, pushes call analysis to the client's endpoint) and period analysis. A metrics copilot generates dashboards and daily email summaries.</p>
+          </div>
+          <div class="pc-flow-node">
+            <div class="pc-flow-head">
+              <span class="pc-flow-num">c</span>
+              <span class="pc-flow-title" data-i18n="pc.g6lc">Role-based access</span>
+              <span class="pc-flow-tag" data-i18n="pc.g6tc">RBAC · 2FA</span>
+            </div>
+            <p class="pc-flow-desc" data-i18n="pc.g6c">Default super-admin / supervisor / AI roles, plus custom roles with granular permissions; team invitations; optional 2-factor auth.</p>
+          </div>
+        </div>
       </article>
 
     </div>
@@ -657,40 +766,63 @@
     "pc.sub": "La capa técnica para el líder de operaciones que quiere ver exactamente qué está corriendo.",
     "pc.g1t": "Constructor de agentes y control de versiones",
     "pc.g1la": "Agente construido por Copiloto",
-    "pc.g1a": "Describe el proceso en lenguaje natural; genera el agente y el prompt, y te deja en un canvas para afinarlo.",
+    "pc.g1ta": "Lenguaje natural",
+    "pc.g1a": "Describe el proceso; genera el agente y el prompt, y te deja en un canvas para afinarlo.",
     "pc.g1lb": "Guías de prompt",
+    "pc.g1tb": "LLM-safe",
     "pc.g1b": "El copiloto de prompt sigue las guías de cada proveedor de LLM, y propone cambios que aceptas o rechazas uno por uno.",
     "pc.g1lc": "Versionado estilo Git",
+    "pc.g1tc": "Draft · Publish · Rollback",
     "pc.g1c": "Guarda borradores sin publicar, versiones mayor / menor / patch, prueba cualquier versión antes de publicar, rollback con un click.",
     "pc.g2t": "Modelos, transcripción y voz",
     "pc.g2la": "Ruteo de modelos",
-    "pc.g2a": "Vía OpenRouter para confiabilidad y SLA. Modelos disponibles: Anthropic Haiku, GPT-5.4 mini/nano, DeepSeek, Nemotron. Agentes ilimitados; nuevos modelos por cliente pueden agregarse tras una etapa de evaluación de latencia.",
+    "pc.g2ta": "OpenRouter",
+    "pc.g2a": "Confiabilidad y SLA vía OpenRouter. Modelos disponibles: Anthropic Haiku, GPT-5.4 mini/nano, DeepSeek, Nemotron. Agentes ilimitados.",
     "pc.g2lb": "Transcripción",
+    "pc.g2tb": "Tangering · Deepgram",
     "pc.g2b": "Modelo propio de Tangering o Deepgram (recomendado para producción). Términos clave por agente para nombres difíciles: hasta 100 términos, máximo 2 palabras cada uno.",
     "pc.g2lc": "Voz",
-    "pc.g2c": "ElevenLabs con estabilidad, similitud y velocidad ajustables. Selección directa de voz en la app está en desarrollo; por ahora las voces se agregan a solicitud.",
+    "pc.g2tc": "ElevenLabs",
+    "pc.g2c": "Estabilidad, similitud y velocidad ajustables. Selección directa de voz en la app está en desarrollo; por ahora las voces se agregan a solicitud.",
+    "pc.g3la": "Cifrado end-to-end",
+    "pc.g3ta": "TLS + AES-256",
+    "pc.g3a": "Tus datos están cifrados en tránsito y en reposo.",
+    "pc.g3lb": "Enmascarados, por roles, con auditoría",
+    "pc.g3tb": "PII · RBAC · Audit",
+    "pc.g3b": "Los campos sensibles se enmascaran por defecto, el acceso es por roles y cada acción queda registrada para auditoría.",
+    "pc.g3lc": "Solo para tu operación",
+    "pc.g3tc": "No vendidos · No para entrenar",
+    "pc.g3c": "Usamos tus datos únicamente para operar tu logística, nunca se venden ni se reutilizan para entrenar modelos de terceros.",
     "pc.g3t": "Seguridad de datos",
     "pc.g3d": "Tus datos están cifrados en tránsito y en reposo. Los campos sensibles se enmascaran por defecto, el acceso es por roles y cada acción queda registrada para auditoría. Usamos tus datos únicamente para operar tu logística, nunca se venden ni se reutilizan para entrenar modelos de terceros.",
     "pc.g3n": "Grabaciones retenidas ~2 años y accesibles en la plataforma. Los enlaces de reportes compartidos son firmados y expiran, máximo una semana.",
     "pc.g4t": "Calidad de voz en el mundo real",
     "pc.g4la": "Aislamiento de voz",
+    "pc.g4ta": "DSP en tiempo real",
     "pc.g4a": "Para entornos con mal audio: mensajeros en altavoz, música de fondo, mala señal.",
     "pc.g4lb": "Detección de contestador",
+    "pc.g4tb": "Configurable",
     "pc.g4b": "Umbral ajustable; sensibilidad de interrupción configurable (cuántas palabras interrumpen al agente); manejo de silencios (pregunta, luego cuelga).",
     "pc.g4n": "Un stack de voz propio (telefonía en tiempo real, procesamiento nativo de audio) es lo que hace que esto funcione en producción, no un wrapper encima de un modelo genérico.",
     "pc.g5t": "Herramientas, integraciones y telefonía",
     "pc.g5la": "Herramientas custom & MCP",
-    "pc.g5a": "Herramientas HTTP personalizadas y servidores MCP; conecta el TMS / CRM / cualquier API del cliente. Construye una librería de herramientas y asigna la misma a múltiples agentes.",
+    "pc.g5ta": "MCP · HTTP",
+    "pc.g5a": "Herramientas HTTP personalizadas y servidores MCP; conecta el TMS / CRM / cualquier API del cliente. Construye una librería de herramientas y reutilízalas entre agentes.",
     "pc.g5lb": "Trae tu propio SIP",
-    "pc.g5b": "SIP trunk (autenticación por IP, usuario/contraseña o credenciales SIP), o compra números en la plataforma. Los agentes se enlazan a un número o extensión; entrantes y salientes en el mismo número.",
+    "pc.g5tb": "SIP · Números",
+    "pc.g5b": "SIP trunk (autenticación por IP, usuario/contraseña o credenciales SIP), o compra números en la plataforma. Entrantes y salientes en el mismo número.",
     "pc.g5lc": "Entornos dedicados",
+    "pc.g5tc": "A solicitud",
     "pc.g5c": "Disponibles a solicitud para industrias reguladas y cuentas grandes de enterprise, con integraciones e infraestructura dedicada a medida.",
     "pc.g6t": "Monitoreo, reportes y accesos",
     "pc.g6la": "Monitoreo en vivo",
+    "pc.g6ta": "Tiempo real",
     "pc.g6a": "Llamadas y mensajes activos en tiempo real, toma de control humana con un click, alertas cuando una conversación necesita atención.",
     "pc.g6lb": "Reportes",
-    "pc.g6b": "Programados, por webhook (dispara al colgar y envía el análisis de la llamada al endpoint del cliente) y por período. Un copiloto de métricas genera dashboards y KPIs, y puede enviar resúmenes diarios por correo.",
+    "pc.g6tb": "Webhook · Agendado",
+    "pc.g6b": "Programados, por webhook (dispara al colgar y envía el análisis de la llamada al endpoint del cliente) y por período. Un copiloto de métricas genera dashboards y resúmenes diarios por correo.",
     "pc.g6lc": "Acceso por roles",
+    "pc.g6tc": "RBAC · 2FA",
     "pc.g6c": "Roles por defecto super-admin / supervisor / AI, más roles personalizados con permisos granulares; invitaciones a equipo; 2FA opcional.",
 
     "d3.eyebrow": "Infraestructura",
@@ -785,9 +917,9 @@
 })();
 </script>
 
-  <script src="call-agent.js?v=202606309"></script>
-  <script src="carousel-arrows.js?v=202606309"></script>
-  <script src="nav-mobile.js?v=202606309"></script>
-  <script src="video-lazy.js?v=202606309"></script>
+  <script src="call-agent.js?v=202606310"></script>
+  <script src="carousel-arrows.js?v=202606310"></script>
+  <script src="nav-mobile.js?v=202606310"></script>
+  <script src="video-lazy.js?v=202606310"></script>
 </body>
 </html>
