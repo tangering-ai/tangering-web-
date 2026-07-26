@@ -12151,6 +12151,134 @@ section .spine-h1 em {
   margin: clamp(48px, 6vw, 72px) auto 0;
   padding: 0 clamp(0px, 2vw, 24px);
 }
+
+/* ===========================================================
+   PRODUCT P9 — Tabbed explorer (single panel at a time)
+   =========================================================== */
+.platcap-tabs .pct-nav {
+  display: flex;
+  gap: 8px;
+  max-width: 1200px;
+  margin: clamp(40px, 5vw, 56px) auto clamp(24px, 3vw, 32px);
+  padding: 8px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.05);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.platcap-tabs .pct-nav::-webkit-scrollbar { display: none; }
+.pct-tab {
+  flex: 1 1 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  color: rgba(0,0,0,0.55);
+  font-family: 'Overused Grotesk', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition: background .25s ease, color .25s ease, box-shadow .25s ease;
+}
+.pct-tab:hover { color: var(--dark); background: rgba(0,0,0,0.04); }
+.pct-tab.is-active {
+  background: #fff;
+  color: var(--dark);
+  box-shadow: 0 6px 18px -8px rgba(0,0,0,0.14), inset 0 0 0 1px rgba(254,94,50,0.28);
+}
+.pct-tab-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(0,0,0,0.35);
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.04);
+}
+.pct-tab.is-active .pct-tab-num {
+  color: var(--orange);
+  background: rgba(254,94,50,0.12);
+}
+.pct-tab-label { line-height: 1; }
+
+/* Override the bento grid — now a single-panel container */
+.platcap-tabs .pc-bento {
+  display: block;
+  padding: 0 clamp(0px, 2vw, 24px);
+}
+.platcap-tabs .pc-card {
+  display: none;
+  grid-column: unset !important;
+  width: 100%;
+  padding: clamp(28px, 3.5vw, 44px);
+  min-height: 0;
+}
+.platcap-tabs .pc-card.is-active { display: grid; }
+.platcap-tabs .pc-card {
+  grid-template-columns: 5fr 6fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  animation: pct-panel-in .5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes pct-panel-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* Left column: visual */
+.platcap-tabs .pc-vis {
+  height: clamp(220px, 30vw, 360px);
+  min-height: clamp(220px, 30vw, 360px);
+  margin: 0;
+  border-radius: 20px;
+  align-self: stretch;
+}
+/* Right column: title + flow */
+.platcap-tabs .pc-num { display: none; }
+.platcap-tabs .pc-title {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0 0 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  font-size: clamp(22px, 2.4vw, 30px);
+}
+.platcap-tabs .pc-flow {
+  grid-column: 2;
+  grid-row: 2;
+}
+.platcap-tabs .pc-body {
+  grid-column: 2;
+  grid-row: 2;
+}
+.platcap-tabs .pc-note {
+  grid-column: 2;
+  grid-row: 3;
+  margin-top: 18px;
+}
+/* Assign visual to left col */
+.platcap-tabs .pc-card > .pc-vis { grid-column: 1; grid-row: 1 / span 3; }
+
+@media (max-width: 780px) {
+  .platcap-tabs .pct-nav { border-radius: 20px; padding: 6px; }
+  .pct-tab { padding: 9px 12px; font-size: 12.5px; }
+  .pct-tab-label { display: none; }
+  .platcap-tabs .pc-card,
+  .platcap-tabs .pc-card.is-active {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .platcap-tabs .pc-card > .pc-vis { grid-column: 1; grid-row: 1; }
+  .platcap-tabs .pc-title { grid-column: 1; grid-row: 2; }
+  .platcap-tabs .pc-flow, .platcap-tabs .pc-body { grid-column: 1; grid-row: 3; }
+  .platcap-tabs .pc-note { grid-column: 1; grid-row: 4; }
+  .platcap-tabs .pc-vis { height: 180px; min-height: 180px; }
+}
 .platcap-bento .pc-card {
   position: relative;
   display: flex;

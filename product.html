@@ -6,8 +6,8 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=202606310" />
-  <link rel="stylesheet" href="hero-v2.css?v=202606310" />
+  <link rel="stylesheet" href="styles.css?v=202606311" />
+  <link rel="stylesheet" href="hero-v2.css?v=202606311" />
 </head>
 <body>
 <div class="prod-page">
@@ -253,17 +253,27 @@
     <p class="prod-stats-attribution ps-attr" data-i18n="st.attr">A leading last-mile carrier in Latin America.</p>
   </section>
 
-  <!-- P9 · PLATFORM CAPABILITIES (bento-style deep block) -->
-  <section class="prod-section platcap platcap-bento" data-screen-label="P9 Platform capabilities">
+  <!-- P9 · PLATFORM CAPABILITIES (tabbed explorer) -->
+  <section class="prod-section platcap platcap-tabs" data-screen-label="P9 Platform capabilities">
     <div class="prod-section-head">
       <span class="eyebrow"><span class="pulse"></span> <span data-i18n="pc.eyebrow">Platform capabilities</span></span>
       <h2 data-i18n="pc.h2">Under <em>the hood.</em></h2>
       <p class="lead" data-i18n="pc.sub">The technical layer for the ops leader who wants to see exactly what's running.</p>
     </div>
-    <div class="pc-bento">
+
+    <div class="pct-nav" role="tablist" aria-label="Platform capabilities">
+      <button class="pct-tab is-active" role="tab" data-pct="01"><span class="pct-tab-num">01</span><span class="pct-tab-label" data-i18n="pc.g1t">Agent builder & versioning</span></button>
+      <button class="pct-tab" role="tab" data-pct="02"><span class="pct-tab-num">02</span><span class="pct-tab-label" data-i18n="pc.g2t">Models, transcription & voice</span></button>
+      <button class="pct-tab" role="tab" data-pct="03"><span class="pct-tab-num">03</span><span class="pct-tab-label" data-i18n="pc.g3t">Data security</span></button>
+      <button class="pct-tab" role="tab" data-pct="04"><span class="pct-tab-num">04</span><span class="pct-tab-label" data-i18n="pc.g4t">Voice quality</span></button>
+      <button class="pct-tab" role="tab" data-pct="05"><span class="pct-tab-num">05</span><span class="pct-tab-label" data-i18n="pc.g5t">Tools & telephony</span></button>
+      <button class="pct-tab" role="tab" data-pct="06"><span class="pct-tab-num">06</span><span class="pct-tab-label" data-i18n="pc.g6t">Monitoring & access</span></button>
+    </div>
+
+    <div class="pc-bento pct-panels">
 
       <!-- 01 Agent builder & versioning (wide) — builder blocks scene -->
-      <article class="pc-card pc-tone-g1 pc-wide">
+      <article class="pc-card pc-tone-g1 pc-wide is-active" data-pct="01">
         <div class="pc-vis">
           <span class="pc-block pc-block-a">Draft</span>
           <span class="pc-arrow">→</span>
@@ -303,7 +313,7 @@
       </article>
 
       <!-- 02 Models, transcription & voice (narrow) — waveform scene -->
-      <article class="pc-card pc-tone-g2 pc-narrow">
+      <article class="pc-card pc-tone-g2 pc-narrow" data-pct="02">
         <div class="pc-vis pc-vis-wave">
           <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
           <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
@@ -340,7 +350,7 @@
       </article>
 
       <!-- 03 Data security (narrow) — lock scene -->
-      <article class="pc-card pc-tone-g3 pc-narrow">
+      <article class="pc-card pc-tone-g3 pc-narrow" data-pct="03">
         <div class="pc-vis pc-vis-lock">
           <div class="pc-lock">
             <span class="material-icons">lock</span>
@@ -383,7 +393,7 @@
       </article>
 
       <!-- 04 Voice quality in the real world (wide) — noise + iso scene -->
-      <article class="pc-card pc-tone-g4 pc-wide">
+      <article class="pc-card pc-tone-g4 pc-wide" data-pct="04">
         <div class="pc-vis pc-vis-noise">
           <div class="pc-noise-track">
             <span class="pc-noise-label">Raw</span>
@@ -422,7 +432,7 @@
       </article>
 
       <!-- 05 Tools, integrations & telephony (narrow-3) — SIP nodes scene -->
-      <article class="pc-card pc-tone-g5 pc-half">
+      <article class="pc-card pc-tone-g5 pc-half" data-pct="05">
         <div class="pc-vis pc-vis-sip">
           <span class="pc-node">SIP</span>
           <span class="pc-node-line"></span>
@@ -461,7 +471,7 @@
       </article>
 
       <!-- 06 Monitoring, reporting & access (narrow-3) — dashboard scene -->
-      <article class="pc-card pc-tone-g6 pc-half">
+      <article class="pc-card pc-tone-g6 pc-half" data-pct="06">
         <div class="pc-vis pc-vis-dash">
           <div class="pc-dash-row">
             <span class="pc-dash-dot"></span>
@@ -894,32 +904,40 @@
   });
   applyLang(getLang());
 
-  // P9 · Reveal cards as they enter the viewport, staggered
+  // P9 · Tab switching (Platform capabilities)
   (function () {
-    const cards = document.querySelectorAll('.platcap-bento .pc-card');
-    if (!cards.length) return;
-    if (!('IntersectionObserver' in window)) {
-      cards.forEach(c => c.classList.add('pc-reveal'));
-      return;
-    }
-    let baseDelay = 0;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        setTimeout(() => el.classList.add('pc-reveal'), baseDelay);
-        baseDelay = Math.min(baseDelay + 90, 540);
-        io.unobserve(el);
+    const tabs   = document.querySelectorAll('.pct-tab');
+    const panels = document.querySelectorAll('.platcap-tabs .pc-card');
+    if (!tabs.length) return;
+    tabs.forEach(t => {
+      t.addEventListener('click', () => {
+        const id = t.dataset.pct;
+        tabs.forEach(x => x.classList.toggle('is-active', x === t));
+        panels.forEach(p => p.classList.toggle('is-active', p.dataset.pct === id));
       });
-    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
-    cards.forEach(c => io.observe(c));
+    });
+    // Fade cards in on section reveal
+    const section = document.querySelector('.platcap-tabs');
+    if (section && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            panels.forEach(p => p.classList.add('pc-reveal'));
+            io.unobserve(section);
+          }
+        });
+      }, { threshold: 0.14 });
+      io.observe(section);
+    } else {
+      panels.forEach(p => p.classList.add('pc-reveal'));
+    }
   })();
 })();
 </script>
 
-  <script src="call-agent.js?v=202606310"></script>
-  <script src="carousel-arrows.js?v=202606310"></script>
-  <script src="nav-mobile.js?v=202606310"></script>
-  <script src="video-lazy.js?v=202606310"></script>
+  <script src="call-agent.js?v=202606311"></script>
+  <script src="carousel-arrows.js?v=202606311"></script>
+  <script src="nav-mobile.js?v=202606311"></script>
+  <script src="video-lazy.js?v=202606311"></script>
 </body>
 </html>
