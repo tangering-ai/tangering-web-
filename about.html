@@ -6,8 +6,8 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=overused-grotesk@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="styles.css?v=202606318" />
-  <link rel="stylesheet" href="hero-v2.css?v=202606318" />
+  <link rel="stylesheet" href="styles.css?v=202606319" />
+  <link rel="stylesheet" href="hero-v2.css?v=202606319" />
 </head>
 <body>
 <div class="prod-page">
@@ -34,7 +34,7 @@
   <section class="vhero vhero-product" data-screen-label="01 About hero">
     <div class="vhero-media">
       <div class="vhero-bg">
-        <video data-eager src="assets/about-hero-bg.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <video id="about-hero-video" data-eager src="assets/about-hero-bg.mp4" autoplay muted loop playsinline preload="metadata"></video>
       </div>
       <div class="vhero-overlay"></div>
       <div class="vhero-grain"></div>
@@ -168,9 +168,31 @@
     </div>
   </footer>
 </div>
-  <script src="call-agent.js?v=202606318"></script>
-  <script src="lang-toggle.js?v=202606318"></script>
-  <script src="nav-mobile.js?v=202606318"></script>
-  <script src="video-lazy.js?v=202606318"></script>
+  <script>
+    // About hero video — cut the loop before the chair spins at the end.
+    (function () {
+      const v = document.getElementById('about-hero-video');
+      if (!v) return;
+      const CUT = 2.5; // seconds trimmed from the end
+      const restart = () => {
+        try { v.currentTime = 0; v.play(); } catch (e) {}
+      };
+      const wire = () => {
+        if (!v.duration || !isFinite(v.duration)) return;
+        const end = Math.max(0, v.duration - CUT);
+        v.removeAttribute('loop');
+        v.addEventListener('timeupdate', () => {
+          if (v.currentTime >= end) restart();
+        });
+        v.addEventListener('ended', restart);
+      };
+      if (v.readyState >= 1) wire();
+      else v.addEventListener('loadedmetadata', wire, { once: true });
+    })();
+  </script>
+  <script src="call-agent.js?v=202606319"></script>
+  <script src="lang-toggle.js?v=202606319"></script>
+  <script src="nav-mobile.js?v=202606319"></script>
+  <script src="video-lazy.js?v=202606319"></script>
 </body>
 </html>
