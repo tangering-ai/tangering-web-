@@ -20,9 +20,18 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 45%;
   display: block;
   filter: blur(4px);
-  transform: scale(1.05);
+  transform: scale(1.18);
+}
+/* Bottom-right vignette to mask any residual watermark on hero videos */
+.vhero-product .vhero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(160% 90% at 100% 100%, rgba(10,8,6,0.55) 0%, rgba(10,8,6,0) 42%);
 }
 .vhero-overlay {
   position: absolute;
