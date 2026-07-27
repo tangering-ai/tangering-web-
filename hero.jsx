@@ -131,7 +131,7 @@ function SceneWhatsApp({ t, sceneActive }) {
           </div>
           <div className="chat-bubble them">
             <span className="chat-sender">Sarah</span>
-            {t.hero.wa.msg1 || "Hola María 👋 te escribo desde Envios.co sobre tu pedido."}
+            {t.hero.wa.msg1 || "Hola María 👋 te escribo desde Logistics.com sobre tu pedido."}
             <span className="chat-meta">3:42 PM</span>
           </div>
         </div>
@@ -1023,7 +1023,7 @@ function HeroChatCard({ t }) {
               <img src="assets/icono-tangering.png" alt="" className="hcc-av-img" />
             </div>
             <div className="hcc-bubble agent">
-              {t.hero.cm1 || "Hi James 👋 this is Sarah, from Envios.co"}
+              {t.hero.cm1 || "Hi James 👋 this is Sarah, from Logistics.com"}
               <span className="hcc-time">3:42</span>
             </div>
           </div>

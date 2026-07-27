@@ -379,7 +379,7 @@ function Solution({ t }) {
 function getCallTranscript(es) {
   return es ? [
     [
-      { agent: true,  msg: "¡Hola James! Soy Sarah, asistente de IA de Envios.co." },
+      { agent: true,  msg: "¡Hola James! Soy Sarah, asistente de IA de Logistics.com." },
       { agent: false, msg: "¿Aló?" },
       { agent: true,  msg: "Te llamo por tu pedido #4521 programado para entrega hoy." },
     ],
@@ -405,7 +405,7 @@ function getCallTranscript(es) {
     ],
   ] : [
     [
-      { agent: true,  msg: "Hi James! I'm Sarah, an AI assistant from Envios.co." },
+      { agent: true,  msg: "Hi James! I'm Sarah, an AI assistant from Logistics.com." },
       { agent: false, msg: "Hello?" },
       { agent: true,  msg: "I'm calling about your order #4521 scheduled for delivery today." },
     ],
