@@ -171,16 +171,14 @@ function Footer({ t }) {
           <div>
             <h4>{t.foot.h1}</h4>
             <ul>
-              <li><a href="#cases">{t.foot.l1}</a></li>
-              <li><a href="#flow">{t.foot.l2}</a></li>
-              <li><a href="#diff">{t.foot.l3}</a></li>
-              <li><a href="#diff">{t.foot.l4}</a></li>
+              <li><a href="product.html">{t.foot.l1}</a></li>
+              <li><a href="#cases">{t.foot.l2}</a></li>
             </ul>
           </div>
           <div>
             <h4>{t.foot.h2}</h4>
             <ul>
-              <li><a href="mailto:hello@tangering.ai">{t.foot.l5}</a></li>
+              <li><a href="about.html">{t.foot.l3}</a></li>
               <li><a href="https://www.linkedin.com/company/tangering/" target="_blank" rel="noopener">{t.foot.l6}</a></li>
               <li><a href="https://calendar.app.google/rSZM4ebTrNXp7bzk9" target="_blank" rel="noopener">{t.foot.l7}</a></li>
             </ul>
