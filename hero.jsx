@@ -11,7 +11,6 @@ function Nav({ lang, setLang, t }) {
       <div className="nav-links">
         <a href={`landing.html${q}`} className="active">{t.nav.home || (lang === 'es' ? 'Inicio' : 'Home')}</a>
         <a href={`product.html${q}`}>{t.nav.product}</a>
-        <a href={`/use-cases${q}`}>{t.nav.cases || (lang === 'es' ? 'Casos de uso' : 'Use Cases')}</a>
         <a href={`about.html${q}`}>{t.nav.contact}</a>
       </div>
       <div className="nav-right">
