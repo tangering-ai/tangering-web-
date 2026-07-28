@@ -11848,6 +11848,11 @@ section .spine-h1 em {
   .ucc-row-photo { aspect-ratio: 16 / 11; }
   .ucc-row-title { font-size: clamp(22px, 6vw, 30px); }
   .ucc-row-rule { margin: 16px 0; }
+
+  /* Bring "Every conversation feeds..." closer to the last card (Customer
+     support) — the 8vh top margin + padding was built for the desktop
+     sticky-stack's tall bottom gap, which no longer applies once stacked. */
+  .ucc-outro { margin-top: 0; padding-top: 20px; }
 }
 
 /* ===========================================================
