@@ -7091,6 +7091,13 @@ section h2 i {
   .prod-row.alt > .prod-row-inner,
   .prod-section,
   .prod-section.alt > .prod-section-inner { padding: 70px 24px; }
+
+  /* Once columns stack, the gradient card's -64px top overflow (built for
+     sitting beside the text in a separate column) reaches back up into the
+     text block above it. Push the frame down and shrink the overflow so it
+     clears the text with room to spare. */
+  .prod-glow-wrap { margin-top: 28px; }
+  .prod-glow-wrap::after { top: -20px; bottom: -20px; }
 }
 
 /* ================================
