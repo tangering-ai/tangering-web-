@@ -6,6 +6,24 @@
 (function () {
   'use strict';
 
+  // ---------------------------------------------------------------------
+  // DISABLED at the Amplify launch. The widget POSTs to /api/call, which was
+  // a Vercel Serverless Function; Amplify Hosting does not run those, so the
+  // route does not exist here and the button would fail on every click.
+  //
+  // Re-enabling needs BOTH of:
+  //   1. A backend for /api/call (planned: a Supabase Edge Function), and
+  //   2. A durable rate limit. This endpoint places real outbound calls and
+  //      spends telephony credits with no authentication in front of it. The
+  //      in-memory per-IP cooldown below is per-instance and resets on cold
+  //      start, so on its own it is not a limit.
+  //
+  // Flip to true only once both exist. See api/call.js for the proxy that
+  // needs porting.
+  // ---------------------------------------------------------------------
+  const WIDGET_ENABLED = false;
+  if (!WIDGET_ENABLED) return;
+
   const COOLDOWN_KEY = 'tg-call-cooldown-until';
   const COOLDOWN_MS = 60_000;
 
