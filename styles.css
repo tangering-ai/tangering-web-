@@ -11825,6 +11825,9 @@ section .spine-h1 em {
   .ucc-row, .ucc-row.is-flip { grid-template-columns: 1fr; direction: ltr; gap: 24px; position: static; top: auto !important; }
   .uc-clean .ucc-list > * { min-height: auto; margin-bottom: 32px; }
   .uc-clean .ucc-list { padding-bottom: 0; }
+  /* The 42vh gap is the desktop scroll-driven parallax-stack spacing —
+     on mobile the stack isn't sticky, so kill it in favor of a normal gap. */
+  .ucc-stack > .ucc-row + .ucc-row { margin-top: 24px !important; }
   .ucc-row-photo { aspect-ratio: 16 / 11; }
   .ucc-row-title { font-size: clamp(22px, 6vw, 30px); }
   .ucc-row-rule { margin: 16px 0; }
