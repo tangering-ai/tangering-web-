@@ -9199,6 +9199,34 @@ section.sub-banner .sub-banner-headline em {
   box-shadow: 0 0 0 3px rgba(254,94,50,0.18);
 }
 
+.tg-call-phone-row {
+  display: grid;
+  grid-template-columns: minmax(0, 128px) 1fr;
+  gap: 8px;
+}
+.tg-call-country {
+  padding: 12px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(48,48,48,0.14);
+  background: #fafafa;
+  font-family: inherit;
+  font-size: 14px;
+  color: #1a1a2e;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.tg-call-country:focus {
+  outline: none;
+  border-color: #fe5e32;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(254,94,50,0.18);
+}
+.tg-call-phone-row input[name="phone"] { min-width: 0; }
+@media (max-width: 420px) {
+  .tg-call-phone-row { grid-template-columns: 96px 1fr; }
+  .tg-call-country { font-size: 13px; padding: 12px 6px; }
+}
+
 .tg-call-submit {
   margin-top: 6px;
   display: inline-flex;

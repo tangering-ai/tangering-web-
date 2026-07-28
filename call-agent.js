@@ -25,6 +25,35 @@
     return trimmed;
   }
 
+  // Country dial-code list — dial code first (native display order for a phone form),
+  // biased toward the markets this site talks to, then a broader global set.
+  const COUNTRIES = [
+    { code: '+1',   flag: '🇺🇸', name: 'United States' },
+    { code: '+1',   flag: '🇨🇦', name: 'Canada' },
+    { code: '+57',  flag: '🇨🇴', name: 'Colombia' },
+    { code: '+52',  flag: '🇲🇽', name: 'Mexico' },
+    { code: '+593', flag: '🇪🇨', name: 'Ecuador' },
+    { code: '+51',  flag: '🇵🇪', name: 'Peru' },
+    { code: '+56',  flag: '🇨🇱', name: 'Chile' },
+    { code: '+54',  flag: '🇦🇷', name: 'Argentina' },
+    { code: '+55',  flag: '🇧🇷', name: 'Brazil' },
+    { code: '+507', flag: '🇵🇦', name: 'Panama' },
+    { code: '+506', flag: '🇨🇷', name: 'Costa Rica' },
+    { code: '+502', flag: '🇬🇹', name: 'Guatemala' },
+    { code: '+1',   flag: '🇩🇴', name: 'Dominican Republic' },
+    { code: '+34',  flag: '🇪🇸', name: 'Spain' },
+    { code: '+44',  flag: '🇬🇧', name: 'United Kingdom' },
+    { code: '+351', flag: '🇵🇹', name: 'Portugal' },
+    { code: '+33',  flag: '🇫🇷', name: 'France' },
+    { code: '+49',  flag: '🇩🇪', name: 'Germany' },
+    { code: '+39',  flag: '🇮🇹', name: 'Italy' },
+    { code: '+91',  flag: '🇮🇳', name: 'India' },
+    { code: '+63',  flag: '🇵🇭', name: 'Philippines' },
+    { code: '+234', flag: '🇳🇬', name: 'Nigeria' },
+    { code: '+27',  flag: '🇿🇦', name: 'South Africa' },
+    { code: '+61',  flag: '🇦🇺', name: 'Australia' },
+  ];
+
   const lang = (() => {
     const url = new URLSearchParams(location.search).get('lang');
     return (url === 'es' || url === 'en') ? url : 'en';
@@ -62,11 +91,16 @@
         <form class="tg-call-form">
           <label class="tg-call-field">
             <span>Your name <em>(optional)</em></span>
-            <input type="text" name="name" autocomplete="given-name" maxlength="60" placeholder="Cindy" />
+            <input type="text" name="name" autocomplete="given-name" maxlength="60" placeholder="Alex" />
           </label>
           <label class="tg-call-field">
-            <span>Phone number <em>with country code</em></span>
-            <input type="tel" name="phone" required autocomplete="tel" placeholder="+57 300 123 4567" />
+            <span>Phone number</span>
+            <div class="tg-call-phone-row">
+              <select name="country" class="tg-call-country" aria-label="Country code">
+                ${COUNTRIES.map((c, i) => `<option value="${c.code}" ${i === (es ? 2 : 0) ? 'selected' : ''}>${c.flag} ${c.code} ${c.name}</option>`).join('')}
+              </select>
+              <input type="tel" name="phone" required autocomplete="tel" placeholder="300 123 4567" />
+            </div>
           </label>
           <button type="submit" class="tg-call-submit">
             Call me now
@@ -92,6 +126,7 @@
     const msg = backdrop.querySelector('.tg-call-msg');
     const submit = backdrop.querySelector('.tg-call-submit');
     const phoneInput = backdrop.querySelector('input[name="phone"]');
+    const countrySelect = backdrop.querySelector('select[name="country"]');
     const nameInput = backdrop.querySelector('input[name="name"]');
 
     const open = () => {
@@ -126,9 +161,10 @@
         return;
       }
 
-      const phone = normalizePhone(phoneInput.value);
+      const localDigits = phoneInput.value.replace(/\D/g, '').replace(/^0+/, '');
+      const phone = normalizePhone(`${countrySelect.value}${localDigits}`);
       if (!phone) {
-        setMessage('Please enter a valid number including the country code (e.g. +57 300 123 4567).', 'error');
+        setMessage(es ? 'Ese número no se ve válido. Revisa el código de país y el número.' : 'That number doesn\'t look valid. Check the country code and number.', 'error');
         phoneInput.focus();
         return;
       }
