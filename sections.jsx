@@ -128,7 +128,7 @@ function Problem({ t }) {
                 <div className="prob-stat-num">
                   <CountUp to={t.problem.c2n} /><span className="unit">{t.problem.c2u}</span>
                 </div>
-                <div className="prob-stat-bar"><span style={{ width: "30%" }} /></div>
+                <div className="prob-stat-bar"><span style={{ width: "10%" }} /></div>
                 <div className="prob-stat-label">{t.problem.c2}</div>
                 <div className="prob-stat-foot">{t.problem.benchmark}</div>
               </div>
