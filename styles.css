@@ -8159,8 +8159,18 @@ section h2 i {
     min-height: 0;
   }
   .prod-section .security-tile .security-tile-visual {
+    /* Reset the desktop row-layout flex sizing (flex: 1 1 50%, min-height: 100%)
+       so aspect-ratio fully controls the box — otherwise the absolutely
+       positioned video renders in a collapsed/mis-sized container and looks
+       shifted. */
+    flex: none;
+    min-height: 0;
     aspect-ratio: 16/10;
     width: 100%;
+  }
+  .prod-section .security-tile .security-tile-visual > div {
+    position: absolute !important;
+    inset: 0 !important;
   }
 }
 
