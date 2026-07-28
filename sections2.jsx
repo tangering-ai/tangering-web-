@@ -611,7 +611,7 @@ function Security({ t }) {
             <p>
               {es
                 ? "Desde la privacidad de datos hasta la resiliencia global, Tangering cumple con los estándares de seguridad necesarios para operar voz y mensajería críticas a escala de producción."
-                : "From data privacy to global resilience, Tangering meets the security standards required to run mission-critical voice and messaging at production scale."}
+                : "From data privacy to global resilience, Tangering meets the security standards required to run mission critical voice and messaging at production scale."}
             </p>
           </FadeUp>
         </div>
