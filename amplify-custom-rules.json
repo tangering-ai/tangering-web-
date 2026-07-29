@@ -1,0 +1,22 @@
+[
+  {
+    "source": "/landing.html",
+    "target": "/",
+    "status": "301"
+  },
+  {
+    "source": "/about",
+    "target": "/about.html",
+    "status": "200"
+  },
+  {
+    "source": "/product",
+    "target": "/product.html",
+    "status": "200"
+  },
+  {
+    "source": "/call-transfer",
+    "target": "/call-transfer.html",
+    "status": "200"
+  }
+]
